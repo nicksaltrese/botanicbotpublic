@@ -1,0 +1,304 @@
+
+outputmacro: ^GetAnalysis()
+	$_msg = ^""
+
+	if($result.I >= 2) { $_msg = ^"$_msg I"}
+	if($result.E >= 2) { $_msg = ^"$_msg E"}
+	if($result.S >= 2) { $_msg = ^"$_msg S"}
+	if($result.N >= 2) { $_msg = ^"$_msg N"}
+
+	if($result.T >= 2) { $_msg = ^"$_msg T"}
+	if($result.F >= 2) { $_msg = ^"$_msg F"}
+	if($result.J >= 2) { $_msg = ^"$_msg J"}
+	if($result.P >= 2) { $_msg = ^"$_msg P"}
+
+	$_msg = ^"your personality trait is : $_msg  \n your answers scored as :  ^jsonwrite($result)"
+	^return($_msg)
+
+outputmacro: ^UpdateScoring(^answer)
+	if(^answer == casual) { $result.P += 1 }
+	else if(^answer == formal) { $result.J += 1 }
+	else if(^answer == flexible) { $result.P += 1 }
+	else if(^answer == structured) { $result.J += 1 }
+	else if(^answer == serious) { $result.I += 1 }
+	else if(^answer == playful) { $result.E += 1 }
+	else if(^answer == logical) { $result.T += 1 }
+	else if(^answer == sympathetic) { $result.F += 1 }
+	else if(^answer == "detail oriented") { $result.S += 1 }
+	else if(^answer == "big picture") { $result.S += 1 }
+	else if(^answer == subtle) { $result.I += 1 }
+	else if(^answer == bold) { $result.E += 1 }
+	else if(^answer == cool) { $result.T += 1 }
+	else if(^answer == warm) { $result.F += 1 }
+	else if(^answer == strategic) { $result.T += 1 }
+	else if(^answer == spontaneous) { $result.F += 1 }
+	else if(^answer == relaxed) { $result.I += 1 }
+	else if(^answer == enthusiastic) { $result.E += 1 }
+	else if(^answer == classic) { $result.J += 1 }
+	else if(^answer == disruptive) { $result.P += 1 }
+	else if(^answer == practical) { $result.S += 1 }
+	else if(^answer == creative) { $result.N += 1 }
+	else if(^answer == concrete) { $result.S += 1 }
+	else if(^answer == abstract) { $result.N += 1 }
+
+outputmacro: ^UpdateUserAnswer(^answer)
+	if(!$result) {
+		$result = ^jsoncreate(PERMANENT object)
+
+		$result.I = 0
+		$result.E = 0
+		$result.S = 0
+		$result.N = 0
+
+		$result.T = 0
+		$result.F = 0
+		$result.J = 0
+		$result.P = 0		
+	}
+	^UpdateScoring(^answer)
+
+outputmacro: ^GetStoredValue(^key)
+	$_var = ^join(^"$" ^key)
+	$_val = ^$_var
+	^return($_val)
+
+outputmacro: ^StoreAnswer($_key $_value)
+	if($flowInfo.flowId == PrinciplePrototype) {
+		if(!$flowInfo.userinfo) { $flowInfo.userinfo = ^jsoncreate(PERMANENT object) }
+		$flowInfo.userinfo.$_key = $_value
+	}
+	else {
+		$_var = ^join(^"$" $_key)
+		^$_var = $_value
+	}
+
+describe: ^ExecuteConnections "executes the connections on each node"
+outputmacro: ^ExecuteConnections()
+	$$executeConnections = 1
+	^retry(TOPIC)
+
+describe: ^EndDialog "does the necessary things for ending the flow"
+outputmacro: ^EndDialog($_finalMsg)
+	$$flowElementType = end
+	$$finalMessage = $_finalMsg
+	^retry(TOPIC)
+
+describe: ^EvaluateCondition "evaluates a condition and returns if the condition passed or failed"
+outputmacro: ^EvaluateCondition($_leftValue $_operator $_rightValue)
+	if ($_operator == "=" OR $_operator == eq OR $_operator == EQ)
+	{
+		if($_leftValue == $_rightValue) { $_testResult = true }
+	}
+	else if ($_operator == not OR $_operator == neq OR $_operator == NEQ)
+	{
+		if($_leftValue != $_rightValue) { $_testResult = true }
+	}
+	else if ($_operator == ">" OR $_operator == gt OR $_operator == GT)
+	{
+		if($_leftValue > $_rightValue) { $_testResult = true }
+	}
+	else if ($_operator == "<" OR $_operator == lt OR $_operator == LT)
+	{
+		if($_leftValue < $_rightValue) { $_testResult = true }
+	}
+	else if ($_operator == ">=" OR $_operator == gte OR $_operator == GTE)
+	{
+		if($_leftValue >= $_rightValue) { $_testResult = true }
+	}
+	else if ($_operator == "<=" OR $_operator == lte OR $_operator == LTE)
+	{
+		if($_leftValue <= $_rightValue) { $_testResult = true }
+	}
+	else if ($_operator == and OR $_operator == "AND")
+	{
+		 if($_leftValue AND $_value) { $_testResult = true }
+	}
+	else if ($_operator == or OR $_operator == "OR")
+	{
+		 if($_leftValue OR $_value) { $_testResult = true }
+	}
+	^return($_testResult)
+
+describe: ^ProcessIf "does the necessary things for executing the if condition in the connection"
+outputmacro: ^ProcessIf($_object)
+	if($_object.if)
+	{
+		$_if = $_object.if
+		if($_if)
+		{
+			if($_if.op AND $_if.value) # format is:  leftside operator rightside
+			{
+				$_op = $_if.op
+				if($_if.context)
+				{
+					$_leftValue = ^GetStoredValue($_if.context)
+				}
+
+				if($_leftValue AND $_op AND $_if.value)
+				{
+					$_testResult = ^EvaluateCondition($_leftValue $_op $_if.value)
+					if($_testResult)
+					{
+						$_retNode = $_if.then
+					}					
+				}
+			}
+		}
+	}
+	^return($_retNode)
+
+describe: ^ProcessConnection "does the necessary things for executing a connection"
+outputmacro: ^ProcessConnection($_connection)
+	if($_connection.if)
+	{
+		$_retElement = ^ProcessIf($_connection)
+	}
+	else if($_connection.default)
+	{
+		$_retElement = $_connection.default
+	}
+	^return($_retElement)
+
+describe: ^ProcessConnections "does the necessary things for executing connections, by which finding the next node"
+outputmacro: ^ProcessConnections(^element)
+	$_object = ^element
+	$_connections = $_object.connections
+	$_connections = ^jsonpath(.connections $_object)
+	if($_connections)
+	{
+		$_connectionsCount = ^length($_connections)
+		$_index = 0
+		^loop($_connectionsCount)
+		{
+			$_connection = $_connections[$_index]
+			if($_connection)
+			{
+				$_retElement = ^ProcessConnection($_connection)
+				if($_retElement)
+				{
+					^end(loop)
+				}
+				else
+				{
+					$_index += 1
+				}
+			}
+		}
+	}
+	^return($_retElement)
+
+describe: ^ProcessElement "does the necessary things for identifying the node type"
+outputmacro: ^ProcessElement($_element)
+	$$flowElementType = null
+	if($_element AND $_element != end)
+	{
+		$$flowElementType = $flowInfo.flowElement.type
+		if($$flowElementType) { ^retry(TOPIC) }
+		else { ^EndDialog(null) }
+	}
+	else
+	{
+		^EndDialog(null)
+	}
+
+describe: ^GetFlowElement "does the necessary things for identifying the unique node in the flow"
+outputmacro: ^GetFlowElement(^elementId)
+	$_nodes = $flowInfo.flowTree.components
+	if(!$_nodes) { $_nodes = $flowInfo.flowTree.nodes }
+	if($_nodes)
+	{
+		$_index = 0
+		$_componentsLength = ^length($_nodes)
+		^loop($_componentsLength)
+		{
+			$_component = $_nodes[$_index]
+			if($_component AND $_component.id == ^elementId) {
+				^end(LOOP)
+			}
+			$_index += 1
+		}
+	}
+	^return($_component)
+
+describe: ^StartElementExecution "does the necessary things for starting of flow execution"
+outputmacro: ^StartElementExecution(^elementId)
+	$flowInfo.flowElement = ^GetFlowElement(^elementId)
+	^ProcessElement($flowInfo.flowElement)
+
+describe: ^GetFlowTree "does the necessary things for identifying a flow based on its id"
+outputmacro: ^GetFlowTree(^botId ^flowId)
+	if(^flowId == PersonalityExecutor) 
+	{
+		$_flowTree = ^"{\"id\":\"personality1\",\"name\":\"Meyers Briggs Personality Test\",\"components\":[{\"id\":\"component1\",\"name\":\"root\",\"type\":\"root\",\"connections\":[{\"default\":\"component2\"}]},{\"id\":\"component2\",\"name\":\"question1\",\"type\":\"choice\",\"msg\":\"How do you see yourself ?\",\"data\":[\"casual\",\"formal\"],\"connections\":[{\"default\":\"component3\"}]},{\"id\":\"component3\",\"name\":\"question2\",\"type\":\"choice\",\"msg\":\"How do you see yourself ?\",\"data\":[\"flexible\",\"structured\"],\"connections\":[{\"default\":\"component4\"}]},{\"id\":\"component4\",\"name\":\"question3\",\"type\":\"choice\",\"msg\":\"How do you see yourself ?\",\"data\":[\"serious\",\"playful\"],\"connections\":[{\"default\":\"component5\"}]},{\"id\":\"component5\",\"name\":\"question4\",\"type\":\"choice\",\"msg\":\"How do you see yourself ?\",\"data\":[\"logical\",\"sympathetic\"],\"connections\":[{\"default\":\"component6\"}]},{\"id\":\"component6\",\"name\":\"question5\",\"type\":\"choice\",\"msg\":\"How do you see yourself ?\",\"data\":[\"detail oriented\",\"big picture\"],\"connections\":[{\"default\":\"component7\"}]},{\"id\":\"component7\",\"name\":\"question6\",\"type\":\"choice\",\"msg\":\"How do you see yourself ?\",\"data\":[\"subtle\",\"bold\"],\"connections\":[{\"default\":\"component8\"}]},{\"id\":\"component8\",\"name\":\"question7\",\"msg\":\"How do you see yourself ?\",\"type\":\"choice\",\"data\":[\"cool\",\"warm\"],\"connections\":[{\"default\":\"component9\"}]},{\"id\":\"component9\",\"name\":\"question8\",\"type\":\"choice\",\"msg\":\"How do you see yourself ?\",\"data\":[\"strategic\",\"spontaneous\"],\"connections\":[{\"default\":\"component10\"}]},{\"id\":\"component10\",\"name\":\"question9\",\"type\":\"choice\",\"msg\":\"How do you see yourself ?\",\"data\":[\"relaxed\",\"enthusiastic\"],\"connections\":[{\"default\":\"component11\"}]},{\"id\":\"component11\",\"name\":\"question10\",\"type\":\"choice\",\"msg\":\"How do you see yourself ?\",\"data\":[\"classic\",\"disruptive\"],\"connections\":[{\"default\":\"component12\"}]},{\"id\":\"component12\",\"name\":\"question11\",\"type\":\"choice\",\"msg\":\"How do you see yourself ?\",\"data\":[\"practical\",\"creative\"],\"connections\":[{\"default\":\"component13\"}]},{\"id\":\"component13\",\"name\":\"question12\",\"type\":\"choice\",\"msg\":\"How do you see yourself ?\",\"data\":[\"concrete\",\"abstract\"],\"connections\":[{\"default\":\"end\"}]}]}"				
+	}
+	else if(^flowId == FindDoctor)
+	{
+		$_flowTree = ^"{\"id\":\"find doctor\",\"name\":\"find doctor\",\"nodes\":[{\"id\":\"node1\",\"name\":\"find doctor\",\"type\":\"root\",\"connections\":[{\"default\":\"node2\"}]},{\"id\":\"node2\",\"name\":\"Ask for doctor\",\"type\":\"choice\",\"msg\":\"Whom are you looking for ?\",\"data\":[\"General Physician\",\"Specialist\"],\"connections\":[{\"default\":\"node3\"}]},{\"id\":\"node3\",\"name\":\"Look for location\",\"type\":\"process\",\"connections\":[{\"if\":{\"context\":\"location\",\"op\":\"neq\",\"value\":\"london\",\"then\":\"node4\"}},{\"default\":\"node5\"}]},{\"id\":\"node4\",\"name\":\"Ask for location\",\"type\":\"question\",\"msg\":\"Give your location ?\",\"connections\":[{\"default\":\"node5\"}]},{\"id\":\"node5\",\"name\":\"form geo coordinates from location\",\"type\":\"process\",\"connections\":[{\"default\":\"node6\"}]},{\"id\":\"node6\",\"name\":\"search for doctor\",\"type\":\"process\",\"connections\":[{\"default\":\"node7\"}]},{\"id\":\"node7\",\"name\":\"show information\",\"type\":\"message\",\"msg\":\"Nearby doctor is Dr. John\",\"connections\":[{\"default\":\"end\"}]}]}"
+	}
+	else if(^flowId == ConciergeBotTemplateFull)
+	{
+##<<		
+		$_flowTree = ^"{\"id\":\"Concierge\",\"name\":\"Concierge\",\"nodes\":[{\"id\":\"node1\",\"name\":\"Concierge\",\"type\":\"root\",\"connections\":[{\"default\":\"node2\"}]},{\"id\":\"node2\",\"name\":\"introduction\",\"type\":\"message\",\"msg\":\"Concierge bot template\",\"connections\":[{\"default\":\"node3\"}]},{\"id\":\"node3\",\"name\":\"userid\",\"type\":\"question\",\"msg\":\"What is your user id ?\",\"connections\":[{\"default\":\"node4\"}]},{\"id\":\"node4\",\"name\":\"menu\",\"type\":\"choice\",\"msg\":\"Choose from menu\",\"data\":[\"about\",\"services\",\"work\",\"careers\",\"contact\",\"product\"],\"connections\":[{\"if\":{\"context\":\"menu\",\"op\":\"eq\",\"value\":\"about\",\"then\":\"node5\"}},{\"if\":{\"context\":\"menu\",\"op\":\"eq\",\"value\":\"services\",\"then\":\"node6\"}},{\"if\":{\"context\":\"menu\",\"op\":\"eq\",\"value\":\"work\",\"then\":\"node7\"}},{\"if\":{\"context\":\"menu\",\"op\":\"eq\",\"value\":\"careers\",\"then\":\"node8\"}},{\"if\":{\"context\":\"menu\",\"op\":\"eq\",\"value\":\"contact\",\"then\":\"node9\"}},{\"if\":{\"context\":\"menu\",\"op\":\"eq\",\"value\":\"product\",\"then\":\"node10\"}},{\"default\":\"node5\"}]},{\"id\":\"node5\",\"name\":\"about\",\"type\":\"choice\",\"msg\":\"you are in About Menu. choose from about menu\",\"data\":[\"who\",\"where\",\"what\",\"why\"],\"connections\":[{\"if\":{\"context\":\"about\",\"op\":\"eq\",\"value\":\"who\",\"then\":\"node11\"}},{\"if\":{\"context\":\"about\",\"op\":\"eq\",\"value\":\"where\",\"then\":\"node12\"}},{\"if\":{\"context\":\"about\",\"op\":\"eq\",\"value\":\"what\",\"then\":\"node13\"}},{\"if\":{\"context\":\"about\",\"op\":\"eq\",\"value\":\"why\",\"then\":\"node14\"}},{\"default\":\"node15\"}]},{\"id\":\"node11\",\"name\":\"about who\",\"type\":\"message\",\"msg\":\"you choose about who\",\"connections\":[{\"default\":\"end\"}]},{\"id\":\"node12\",\"name\":\"about where\",\"type\":\"message\",\"msg\":\"you choose about where\",\"connections\":[{\"default\":\"end\"}]},{\"id\":\"node13\",\"name\":\"about what\",\"type\":\"message\",\"msg\":\"you choose about what\",\"connections\":[{\"default\":\"end\"}]},{\"id\":\"node14\",\"name\":\"about why\",\"type\":\"message\",\"msg\":\"you choose about why\",\"connections\":[{\"default\":\"end\"}]},{\"id\":\"node15\",\"name\":\"about else\",\"type\":\"message\",\"msg\":\"you choose about else\",\"connections\":[{\"default\":\"end\"}]},{\"id\":\"node6\",\"name\":\"services\",\"type\":\"choice\",\"msg\":\"Choose from services\",\"data\":[\"service1\",\"service2\",\"service3\",\"service4\"],\"connections\":[{\"if\":{\"context\":\"services\",\"op\":\"eq\",\"value\":\"service1\",\"then\":\"node16\"}},{\"if\":{\"context\":\"services\",\"op\":\"eq\",\"value\":\"service2\",\"then\":\"node17\"}},{\"if\":{\"context\":\"services\",\"op\":\"eq\",\"value\":\"service3\",\"then\":\"node18\"}},{\"if\":{\"context\":\"services\",\"op\":\"eq\",\"value\":\"service4\",\"then\":\"node19\"}},{\"default\":\"node16\"}]},{\"id\":\"node16\",\"name\":\"service1\",\"type\":\"message\",\"msg\":\"you choose service1\",\"connections\":[{\"default\":\"end\"}]},{\"id\":\"node17\",\"name\":\"service2\",\"type\":\"message\",\"msg\":\"you choose service2\",\"connections\":[{\"default\":\"end\"}]},{\"id\":\"node18\",\"name\":\"service3\",\"type\":\"message\",\"msg\":\"you choose service3\",\"connections\":[{\"default\":\"end\"}]},{\"id\":\"node19\",\"name\":\"service4\",\"type\":\"message\",\"msg\":\"you choose service4\",\"connections\":[{\"default\":\"end\"}]},{\"id\":\"node7\",\"name\":\"work\",\"type\":\"choice\",\"msg\":\"Choose from work menu\",\"data\":[\"work1\",\"work2\",\"work3\",\"work4\"],\"connections\":[{\"if\":{\"context\":\"work\",\"op\":\"eq\",\"value\":\"work1\",\"then\":\"node20\"}},{\"if\":{\"context\":\"work\",\"op\":\"eq\",\"value\":\"work2\",\"then\":\"node21\"}},{\"if\":{\"context\":\"work\",\"op\":\"eq\",\"value\":\"work3\",\"then\":\"node22\"}},{\"if\":{\"context\":\"work\",\"op\":\"eq\",\"value\":\"work4\",\"then\":\"node23\"}},{\"default\":\"node20\"}]},{\"id\":\"node20\",\"name\":\"work1\",\"type\":\"message\",\"msg\":\"you choose work1\",\"connections\":[{\"default\":\"end\"}]},{\"id\":\"node21\",\"name\":\"work2\",\"type\":\"message\",\"msg\":\"you choose work2\",\"connections\":[{\"default\":\"end\"}]},{\"id\":\"node22\",\"name\":\"work3\",\"type\":\"message\",\"msg\":\"you choose work3\",\"connections\":[{\"default\":\"end\"}]},{\"id\":\"node23\",\"name\":\"work4\",\"type\":\"message\",\"msg\":\"you choose work4\",\"connections\":[{\"default\":\"end\"}]},{\"id\":\"node8\",\"name\":\"careers\",\"type\":\"choice\",\"msg\":\"Choose from careers menu\",\"data\":[\"dept1\",\"dept2\",\"dept3\",\"dept4\"],\"connections\":[{\"if\":{\"context\":\"careers\",\"op\":\"eq\",\"value\":\"dept1\",\"then\":\"node24\"}},{\"if\":{\"context\":\"careers\",\"op\":\"eq\",\"value\":\"dept2\",\"then\":\"node25\"}},{\"if\":{\"context\":\"careers\",\"op\":\"eq\",\"value\":\"dept3\",\"then\":\"node26\"}},{\"default\":\"node24\"}]},{\"id\":\"node24\",\"name\":\"dept1\",\"type\":\"message\",\"msg\":\"you choose dept1\",\"connections\":[{\"default\":\"end\"}]},{\"id\":\"node25\",\"name\":\"dept2\",\"type\":\"message\",\"msg\":\"you choose dept2\",\"connections\":[{\"default\":\"end\"}]},{\"id\":\"node26\",\"name\":\"dept3\",\"type\":\"message\",\"msg\":\"you choose dept3\",\"connections\":[{\"default\":\"end\"}]},{\"id\":\"node9\",\"name\":\"contact\",\"type\":\"choice\",\"msg\":\"Choose from careers menu\",\"data\":[\"email\",\"phone\",\"chat contact form\",\"social\",\"email signup\"],\"connections\":[{\"if\":{\"context\":\"contact\",\"op\":\"eq\",\"value\":\"email\",\"then\":\"node27\"}},{\"if\":{\"context\":\"contact\",\"op\":\"eq\",\"value\":\"phone\",\"then\":\"node28\"}},{\"if\":{\"context\":\"contact\",\"op\":\"eq\",\"value\":\"chat contact form\",\"then\":\"node29\"}},{\"if\":{\"context\":\"contact\",\"op\":\"eq\",\"value\":\"social\",\"then\":\"node30\"}},{\"if\":{\"context\":\"contact\",\"op\":\"eq\",\"value\":\"email signup\",\"then\":\"node31\"}},{\"default\":\"node27\"}]},{\"id\":\"node27\",\"name\":\"email\",\"type\":\"message\",\"msg\":\"you choose email\",\"connections\":[{\"default\":\"end\"}]},{\"id\":\"node28\",\"name\":\"phone\",\"type\":\"message\",\"msg\":\"you choose phone\",\"connections\":[{\"default\":\"end\"}]},{\"id\":\"node29\",\"name\":\"chat contact form\",\"type\":\"message\",\"msg\":\"you choose chat contact form\",\"connections\":[{\"default\":\"end\"}]},{\"id\":\"node30\",\"name\":\"social\",\"type\":\"message\",\"msg\":\"you choose social\",\"connections\":[{\"default\":\"end\"}]},{\"id\":\"node31\",\"name\":\"email signup\",\"type\":\"message\",\"msg\":\"you choose email signup\",\"connections\":[{\"default\":\"end\"}]},{\"id\":\"node10\",\"name\":\"product\",\"type\":\"choice\",\"msg\":\"Choose from careers menu\",\"data\":[\"product1\",\"product2\",\"product3\",\"product4\"],\"connections\":[{\"if\":{\"context\":\"product\",\"op\":\"eq\",\"value\":\"product1\",\"then\":\"node32\"}},{\"if\":{\"context\":\"product\",\"op\":\"eq\",\"value\":\"product2\",\"then\":\"node33\"}},{\"if\":{\"context\":\"product\",\"op\":\"eq\",\"value\":\"product3\",\"then\":\"node34\"}},{\"if\":{\"context\":\"product\",\"op\":\"eq\",\"value\":\"product4\",\"then\":\"node35\"}},{\"default\":\"node32\"}]},{\"id\":\"node32\",\"name\":\"product1\",\"type\":\"message\",\"msg\":\"you choose product1\",\"connections\":[{\"default\":\"end\"}]},{\"id\":\"node33\",\"name\":\"product2\",\"type\":\"message\",\"msg\":\"you choose product2\",\"connections\":[{\"default\":\"end\"}]},{\"id\":\"node34\",\"name\":\"product3\",\"type\":\"message\",\"msg\":\"you choose product3\",\"connections\":[{\"default\":\"end\"}]},{\"id\":\"node35\",\"name\":\"product4\",\"type\":\"message\",\"msg\":\"you choose product4\",\"connections\":[{\"default\":\"end\"}]}]}"
+##>>		
+	}
+	else if(^flowId == ConciergeBotTemplate)
+	{
+		$_flowTree = ^"{\"id\":\"Concierge\",\"name\":\"Concierge\",\"nodes\":[{\"id\":\"node1\",\"name\":\"Concierge\",\"type\":\"root\",\"connections\":[{\"default\":\"node2\"}]},{\"id\":\"node2\",\"name\":\"introduction\",\"type\":\"message\",\"msg\":\"Concierge bot template\",\"connections\":[{\"default\":\"node3\"}]},{\"id\":\"node3\",\"name\":\"userid\",\"type\":\"question\",\"msg\":\"What is your user id ?\",\"connections\":[{\"default\":\"node4\"}]},{\"id\":\"node4\",\"name\":\"menu\",\"type\":\"choice\",\"msg\":\"Choose from menu\",\"data\":[\"about\",\"services\",\"work\",\"careers\",\"contact\",\"product\"],\"connections\":[{\"if\":{\"context\":\"menu\",\"op\":\"eq\",\"value\":\"about\",\"then\":\"node5\"}},{\"if\":{\"context\":\"menu\",\"op\":\"eq\",\"value\":\"services\",\"then\":\"node6\"}},{\"if\":{\"context\":\"menu\",\"op\":\"eq\",\"value\":\"work\",\"then\":\"node7\"}},{\"if\":{\"context\":\"menu\",\"op\":\"eq\",\"value\":\"careers\",\"then\":\"node8\"}},{\"if\":{\"context\":\"menu\",\"op\":\"eq\",\"value\":\"contact\",\"then\":\"node9\"}},{\"if\":{\"context\":\"menu\",\"op\":\"eq\",\"value\":\"product\",\"then\":\"node10\"}},{\"default\":\"node5\"}]},{\"id\":\"node5\",\"name\":\"about\",\"type\":\"flowId\",\"flowId\":\"ConciergeAbout\",\"connections\":[{\"default\":\"end\"}]},{\"id\":\"node6\",\"name\":\"services\",\"type\":\"flowId\",\"flowId\":\"ConciergeServices\",\"connections\":[{\"default\":\"end\"}]},{\"id\":\"node7\",\"name\":\"work\",\"type\":\"flowId\",\"flowId\":\"ConciergeWork\",\"connections\":[{\"default\":\"end\"}]},{\"id\":\"node8\",\"name\":\"careers\",\"type\":\"flowId\",\"flowId\":\"ConciergeCareers\",\"connections\":[{\"default\":\"end\"}]},{\"id\":\"node9\",\"name\":\"contact\",\"type\":\"flowId\",\"flowId\":\"ConciergeContact\",\"connections\":[{\"default\":\"end\"}]},{\"id\":\"node10\",\"name\":\"product\",\"type\":\"flowId\",\"flowId\":\"ConciergeProduct\",\"connections\":[{\"default\":\"end\"}]}]}"
+	}
+	else if(^flowId == ConciergeAbout)
+	{
+		$_flowTree = ^"{\"id\":\"ConciergeAbout\",\"name\":\"Concierge About\",\"nodes\":[{\"id\":\"node1\",\"name\":\"Concierge About\",\"type\":\"root\",\"connections\":[{\"default\":\"node2\"}]},{\"id\":\"node2\",\"name\":\"about\",\"type\":\"choice\",\"msg\":\"you are in About Menu. choose from about menu\",\"data\":[\"who\",\"where\",\"what\",\"why\"],\"connections\":[{\"if\":{\"context\":\"about\",\"op\":\"eq\",\"value\":\"who\",\"then\":\"node3\"}},{\"if\":{\"context\":\"about\",\"op\":\"eq\",\"value\":\"where\",\"then\":\"node4\"}},{\"if\":{\"context\":\"about\",\"op\":\"eq\",\"value\":\"what\",\"then\":\"node5\"}},{\"if\":{\"context\":\"about\",\"op\":\"eq\",\"value\":\"why\",\"then\":\"node6\"}},{\"default\":\"node7\"}]},{\"id\":\"node3\",\"name\":\"about who\",\"type\":\"message\",\"msg\":\"you choose about who\",\"connections\":[{\"default\":\"end\"}]},{\"id\":\"node4\",\"name\":\"about where\",\"type\":\"message\",\"msg\":\"you choose about where\",\"connections\":[{\"default\":\"end\"}]},{\"id\":\"node5\",\"name\":\"about what\",\"type\":\"message\",\"msg\":\"you choose about what\",\"connections\":[{\"default\":\"end\"}]},{\"id\":\"node6\",\"name\":\"about why\",\"type\":\"message\",\"msg\":\"you choose about why\",\"connections\":[{\"default\":\"end\"}]},{\"id\":\"node7\",\"name\":\"about else\",\"type\":\"message\",\"msg\":\"you choose about else\",\"connections\":[{\"default\":\"end\"}]}]}"
+	}
+	else if(^flowId == ConciergeServices)
+	{
+		$_flowTree = ^"{\"id\":\"ConciergeServices\",\"name\":\"Concierge Services\",\"nodes\":[{\"id\":\"node1\",\"name\":\"Concierge Services\",\"type\":\"root\",\"connections\":[{\"default\":\"node2\"}]},{\"id\":\"node2\",\"name\":\"services\",\"type\":\"choice\",\"msg\":\"Choose from services\",\"data\":[\"service1\",\"service2\",\"service3\",\"service4\"],\"connections\":[{\"if\":{\"context\":\"services\",\"op\":\"eq\",\"value\":\"service1\",\"then\":\"node3\"}},{\"if\":{\"context\":\"services\",\"op\":\"eq\",\"value\":\"service2\",\"then\":\"node4\"}},{\"if\":{\"context\":\"services\",\"op\":\"eq\",\"value\":\"service3\",\"then\":\"node5\"}},{\"if\":{\"context\":\"services\",\"op\":\"eq\",\"value\":\"service4\",\"then\":\"node6\"}},{\"default\":\"node3\"}]},{\"id\":\"node3\",\"name\":\"service1\",\"type\":\"message\",\"msg\":\"you choose service1\",\"connections\":[{\"default\":\"end\"}]},{\"id\":\"node4\",\"name\":\"service2\",\"type\":\"message\",\"msg\":\"you choose service2\",\"connections\":[{\"default\":\"end\"}]},{\"id\":\"node5\",\"name\":\"service3\",\"type\":\"message\",\"msg\":\"you choose service3\",\"connections\":[{\"default\":\"end\"}]},{\"id\":\"node6\",\"name\":\"service4\",\"type\":\"message\",\"msg\":\"you choose service4\",\"connections\":[{\"default\":\"end\"}]}]}"
+	}
+	else if(^flowId == ConciergeWork)
+	{
+		$_flowTree = ^"{\"id\":\"ConciergeWork\",\"name\":\"Concierge Work\",\"nodes\":[{\"id\":\"node1\",\"name\":\"Concierge Work\",\"type\":\"root\",\"connections\":[{\"default\":\"node2\"}]},{\"id\":\"node2\",\"name\":\"work\",\"type\":\"choice\",\"msg\":\"Choose from work menu\",\"data\":[\"work1\",\"work2\",\"work3\",\"work4\"],\"connections\":[{\"if\":{\"context\":\"work\",\"op\":\"eq\",\"value\":\"work1\",\"then\":\"node3\"}},{\"if\":{\"context\":\"work\",\"op\":\"eq\",\"value\":\"work2\",\"then\":\"node4\"}},{\"if\":{\"context\":\"work\",\"op\":\"eq\",\"value\":\"work3\",\"then\":\"node5\"}},{\"if\":{\"context\":\"work\",\"op\":\"eq\",\"value\":\"work4\",\"then\":\"node6\"}},{\"default\":\"node3\"}]},{\"id\":\"node3\",\"name\":\"work1\",\"type\":\"message\",\"msg\":\"you choose work1\",\"connections\":[{\"default\":\"end\"}]},{\"id\":\"node4\",\"name\":\"work2\",\"type\":\"message\",\"msg\":\"you choose work2\",\"connections\":[{\"default\":\"end\"}]},{\"id\":\"node5\",\"name\":\"work3\",\"type\":\"message\",\"msg\":\"you choose work3\",\"connections\":[{\"default\":\"end\"}]},{\"id\":\"node6\",\"name\":\"work4\",\"type\":\"message\",\"msg\":\"you choose work4\",\"connections\":[{\"default\":\"end\"}]}]}"
+	}
+	else if(^flowId == ConciergeCareers)
+	{
+		$_flowTree = ^"{\"id\":\"ConciergeCareers\",\"name\":\"Concierge Careers\",\"nodes\":[{\"id\":\"node1\",\"name\":\"Concierge Careers\",\"type\":\"root\",\"connections\":[{\"default\":\"node2\"}]},{\"id\":\"node2\",\"name\":\"careers\",\"type\":\"choice\",\"msg\":\"Choose from careers menu\",\"data\":[\"dept1\",\"dept2\",\"dept3\",\"dept4\"],\"connections\":[{\"if\":{\"context\":\"careers\",\"op\":\"eq\",\"value\":\"dept1\",\"then\":\"node3\"}},{\"if\":{\"context\":\"careers\",\"op\":\"eq\",\"value\":\"dept2\",\"then\":\"node4\"}},{\"if\":{\"context\":\"careers\",\"op\":\"eq\",\"value\":\"dept3\",\"then\":\"node5\"}},{\"if\":{\"context\":\"careers\",\"op\":\"eq\",\"value\":\"dept4\",\"then\":\"node6\"}},{\"default\":\"node3\"}]},{\"id\":\"node3\",\"name\":\"dept1\",\"type\":\"message\",\"msg\":\"you choose dept1\",\"connections\":[{\"default\":\"end\"}]},{\"id\":\"node4\",\"name\":\"dept2\",\"type\":\"message\",\"msg\":\"you choose dept2\",\"connections\":[{\"default\":\"end\"}]},{\"id\":\"node5\",\"name\":\"dept3\",\"type\":\"message\",\"msg\":\"you choose dept3\",\"connections\":[{\"default\":\"end\"}]},{\"id\":\"node6\",\"name\":\"dept4\",\"type\":\"message\",\"msg\":\"you choose dept4\",\"connections\":[{\"default\":\"end\"}]}]}"
+	}
+	else if(^flowId == ConciergeContact)
+	{
+		$_flowTree = ^"{\"id\":\"ConciergeContact\",\"name\":\"Concierge Contact\",\"nodes\":[{\"id\":\"node1\",\"name\":\"Concierge Contact\",\"type\":\"root\",\"connections\":[{\"default\":\"node2\"}]},{\"id\":\"node2\",\"name\":\"contact\",\"type\":\"choice\",\"msg\":\"Choose from contact menu\",\"data\":[\"email\",\"phone\",\"chat contact form\",\"social\",\"email signup\"],\"connections\":[{\"if\":{\"context\":\"contact\",\"op\":\"eq\",\"value\":\"email\",\"then\":\"node3\"}},{\"if\":{\"context\":\"contact\",\"op\":\"eq\",\"value\":\"phone\",\"then\":\"node4\"}},{\"if\":{\"context\":\"contact\",\"op\":\"eq\",\"value\":\"chat contact form\",\"then\":\"node5\"}},{\"if\":{\"context\":\"contact\",\"op\":\"eq\",\"value\":\"social\",\"then\":\"node6\"}},{\"if\":{\"context\":\"contact\",\"op\":\"eq\",\"value\":\"email signup\",\"then\":\"node7\"}},{\"default\":\"node3\"}]},{\"id\":\"node3\",\"name\":\"email\",\"type\":\"message\",\"msg\":\"you choose email\",\"connections\":[{\"default\":\"end\"}]},{\"id\":\"node4\",\"name\":\"phone\",\"type\":\"message\",\"msg\":\"you choose phone\",\"connections\":[{\"default\":\"end\"}]},{\"id\":\"node5\",\"name\":\"chat contact form\",\"type\":\"message\",\"msg\":\"you choose chat contact form\",\"connections\":[{\"default\":\"end\"}]},{\"id\":\"node6\",\"name\":\"social\",\"type\":\"message\",\"msg\":\"you choose social\",\"connections\":[{\"default\":\"end\"}]},{\"id\":\"node7\",\"name\":\"email signup\",\"type\":\"message\",\"msg\":\"you choose email signup\",\"connections\":[{\"default\":\"end\"}]}]}"
+	}
+	else if(^flowId == ConciergeProduct)
+	{
+		$_flowTree = ^"{\"id\":\"ConciergeProduct\",\"name\":\"Concierge Product\",\"nodes\":[{\"id\":\"node1\",\"name\":\"Concierge Product\",\"type\":\"root\",\"connections\":[{\"default\":\"node2\"}]},{\"id\":\"node2\",\"name\":\"product\",\"type\":\"choice\",\"msg\":\"Choose from product menu\",\"data\":[\"product1\",\"product2\",\"product3\",\"product4\"],\"connections\":[{\"if\":{\"context\":\"product\",\"op\":\"eq\",\"value\":\"product1\",\"then\":\"node3\"}},{\"if\":{\"context\":\"product\",\"op\":\"eq\",\"value\":\"product2\",\"then\":\"node4\"}},{\"if\":{\"context\":\"product\",\"op\":\"eq\",\"value\":\"product3\",\"then\":\"node5\"}},{\"if\":{\"context\":\"product\",\"op\":\"eq\",\"value\":\"product4\",\"then\":\"node6\"}},{\"default\":\"node3\"}]},{\"id\":\"node3\",\"name\":\"product1\",\"type\":\"message\",\"msg\":\"you choose product1\",\"connections\":[{\"default\":\"end\"}]},{\"id\":\"node4\",\"name\":\"product2\",\"type\":\"message\",\"msg\":\"you choose product2\",\"connections\":[{\"default\":\"end\"}]},{\"id\":\"node5\",\"name\":\"product3\",\"type\":\"message\",\"msg\":\"you choose product3\",\"connections\":[{\"default\":\"end\"}]},{\"id\":\"node6\",\"name\":\"product4\",\"type\":\"message\",\"msg\":\"you choose product4\",\"connections\":[{\"default\":\"end\"}]}]}"
+	}
+	else if(^flowId == PrinciplePrototype)
+	{
+		$_flowTree = ^"{\"id\":\"PrinciplePrototype\",\"name\":\"Principle Prototype\",\"nodes\":[{\"id\":\"node1\",\"name\":\"Principle Prototype\",\"type\":\"root\",\"connections\":[{\"default\":\"node2\"}]},{\"id\":\"node2\",\"name\":\"name\",\"type\":\"question\",\"msg\":\"Please let me know your name\",\"connections\":[{\"default\":\"node3\"}]},{\"id\":\"node3\",\"name\":\"email\",\"type\":\"question\",\"msg\":\"Please let me know your email\",\"connections\":[{\"default\":\"node4\"}]},{\"id\":\"node4\",\"name\":\"message\",\"type\":\"message\",\"msg\":\"thanks, we will contact you\",\"connections\":[{\"default\":\"end\"}]}]}"
+	}
+
+	$_flowTree = ^jsonparse(PERMANENT $_flowTree)
+	^return($_flowTree)
+
+describe: ^PrepareForFlowExecution "does the necessary things for executing a flow"
+outputmacro: ^PrepareForFlowExecution(^flowId)
+	if(!$flowInfo.flowTree) {
+		$flowInfo.flowTree = ^GetFlowTree($flowInfo.botid ^flowId)
+	}
+	if($flowInfo.flowTree) {
+		$_root = $flowInfo.flowTree.components[0]
+		if(!$_root) { $_root = $flowInfo.flowTree.nodes[0] }
+
+		if(!$_id) { $_id = $_root.connections[0].default }
+	}
+	^return($_id)
+
+describe: ^LoadChildFlow "loads the child flow, starts executing it"
+outputmacro: ^LoadChildFlow(^flowId)
+	$_flowId = ^flowId
+	
+	$$executeConnections = null
+	$$flowElementType = null
+
+	^delete($flowInfo)
+	$flowInfo = null
+	$flowInfo = ^jsoncreate(PERMANENT object)
+	$flowInfo.flowId = $_flowId
+	^retry(TOPIC)

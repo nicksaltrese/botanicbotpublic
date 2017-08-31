@@ -1,0 +1,249 @@
+
+concept: ~alphaLower IGNORESPELLING (a b c d e f g h i j k l m n o p q r s t u v w x y z)
+
+describe: ^GetAlphaForNumber "returns an alphabet equivalent for a number given"
+outputmacro: ^GetAlphaForNumber (^numberIndex)
+	$_displayChar = ^numberIndex
+	if($_displayChar > 0)
+	{
+		$_displayChar -= 1
+	}
+	$_displayChar = ^nth(~alphaLower $_displayChar)
+	^return($_displayChar)
+
+describe: ^GetNumberForAlpha "returns a number equivalent for an alphabet given"
+outputmacro: ^GetNumberForAlpha (^alphaChar)
+	$_numberIndex = ^alphaChar
+	if(pattern $_numberIndex?~alphaLower)
+	{
+		$_numberIndex = ^find(~alphaLower $_numberIndex)
+		$_numberIndex += 1
+	}
+    else if ($_numberIndex != 0)
+	{
+		$_numberIndex = -1
+	}
+	^return($_numberIndex)
+
+describe: ^FlushChoiceRead "deletes all the stored facts of choices read from user"
+outputmacro: ^FlushChoiceRead()
+	if (^query(exact_s choiceRead ? ? -1 ? @20) AND ^delete(@20)) {}
+
+describe: ^FlushChoice "deletes all the facts created realted to choices shown to user"
+outputmacro: ^FlushChoice(^ChoiceRead)
+	if (^query(exact_v ? displayValue ? -1 ? @20) AND ^delete(@20)) {}
+	if (^query(exact_v ? displayLabel ? -1 ? @20) AND ^delete(@20)) {}
+	
+	if (^ChoiceRead==true) {
+		^FlushChoiceRead()
+	}
+
+describe: ^GenerateChoiceList "generates the list of choices that need to be shown to user from an array"
+outputmacro: ^GenerateChoiceList variable ($_array ^path)
+	@10 = null
+	@11 = null
+	$_indexCounter = 0
+	$_len = ^length($_array)
+	^loop($_len)
+	{
+		$_label = ""
+		 # array is a json array, with object holding important data
+		$_object = $_array[$_indexCounter]
+		$_indexCounter += 1
+	    if (^extract(^path 0 1) == \^) {
+			$_label = ^path($_object)
+		} else {
+			^nofail(RULE $_label = ^jsonpath(^path $_object))
+			$_label = ^jsonundecodestring($_label)
+		}
+
+		$displayCounter += 1
+        $_displayChar = ^GetAlphaForNumber($displayCounter)
+        $_displayValue = $_label
+
+		^nofail(RULE @19 += ^createfact($_label displayLabel $_displayChar))
+		^nofail(RULE @18 += ^createfact($_displayChar displayValue $_displayValue))
+	}
+	^return(null)
+
+describe: ^AddLabelAtIndex "creates a fact with a given index, given label"
+outputmacro: ^AddLabelAtIndex(^label ^index)
+	$_index = ^index
+	$_label = ^label
+	@11 += ^createfact($_label displayLabel $_index)
+	$_tmp = ^createfact($_index displayValue default)
+
+describe: ^GenerateChoice "generates the choices that need to be shown to user from an array"
+outputmacro: ^GenerateChoice variable (^array ^path ^zerofield)
+	 # clear out old data but leaves choiceRead data untouched
+	^FlushChoice(false)
+
+	$displayCounter = null
+	@19 = null
+	# a default choice added as 0th item
+	if (^zerofield)
+	{
+		^AddLabelAtIndex(^zerofield 0)
+	}
+	$displayCounter = 0	
+	^GenerateChoiceList(^array ^path)
+	^return(null)
+
+describe: ^ShowChoiceList "generates the list of choices in a form that can be shown to user"
+outputmacro: ^ShowChoiceList variable (^ignoreTillIndex ^ignoreAfterIndex)
+	@10 = ^query(exact_v ? displayValue ?)
+	@11 = ^query(exact_v ? displayLabel ?)
+
+	# had no choices to show you.
+	if (!@19)
+	{
+		^end(INPUT)
+	}
+
+	@12 = null
+	^loop()
+	{
+		$_label = ^next(FACT @19object)
+		$_choice = ^GetNumberForAlpha($_label)
+		@12 += ^createfact(sortorder sortorder $_choice FACTTRANSIENT)	
+	}
+	^reset(@11)
+	^sort(@12object @11 @10)
+
+	$_displayNumberIndex = ^first(@12object)
+	^loop()
+	{
+		# $_labelFact = ^first(@11fact)
+		$_labelFact = ^last(@11fact)
+		$_choice = $_labelFact.object
+		
+		if ($_displayNumberIndex > ^ignoreTillIndex AND $_displayNumberIndex <= ^ignoreAfterIndex)
+		{
+			$_label = $_labelFact.subject
+			$_tmpMsg = ^"$_tmpMsg $_choice) $_label \n"
+		}
+		$_displayNumberIndex += 1
+	}
+	^return($_tmpMsg)	
+
+describe: ^ShowChoice "generates the choices in a form that can be shown to user"
+outputmacro: ^ShowChoice(^message)
+	^NOTRACE(^FlushChoiceRead())
+	$_tmpChoiceList = ^ShowChoiceList(-1 100000)
+	if(^message) {
+		$_tmpMsg = ^join(^message \n $_tmpChoiceList)
+	} else {
+		$_tmpMsg = $_tmpChoiceList
+	}
+	^return($_tmpMsg)
+
+describe: ^PrepareChoice "generates the list of choices froma a given array and presents in a form that can be shown to user"
+outputmacro: ^PrepareChoice variable(^array ^path ^zerofield ^message)
+	$_junk = ^GenerateChoice(^array ^path ^zerofield)
+	$_tmpChoices = ^ShowChoice(^message)
+	^return($_tmpChoices)
+
+describe: ^GetChoiceObject "gets the fact object for the given choice"
+outputmacro: ^GetChoiceObject($_choice)
+{
+	^nofail(RULE $_retValue = ^query(exact_sv $_choice displayValue ? 1 ? @0object))
+	^return($_retValue)	
+}
+
+describe: ^RespondChoiceForAlphaInput "identifies the choice chosen by user based on the alphabet input"
+outputmacro: ^RespondChoiceForAlphaInput()
+	$_retValue = null
+	$_retValueOriginal = null
+	$_retValueIndex = null
+
+	if (pattern  < _~alphaLower >)
+    {
+    	$_retValue = _0
+    	$_retValueOriginal = ^original(_0)
+  		$_retValueOriginal = ^pos(lowercase $_retValueOriginal)
+    	^nofail(RULE $_retValueIndex = ^find(~alphaLower $_retValueOriginal))
+    }
+
+    if($_retValue)
+    {
+	    if( $_retValueIndex < $displayCounter AND $_retValueIndex >= 0 )
+	    {
+			$_retValue = ^GetChoiceObject($_retValueOriginal)
+		} else {
+	    	$_retValue = null
+	    }	
+    }
+    ^return($_retValue)
+
+describe: ^RespondChoiceForStringInput "identifies the choice chosen by user based on the string input"
+outputmacro: ^RespondChoiceForStringInput()
+	$_retValue = null
+    if (pattern _*)
+    {
+    	$_userInput = ^original(_0)
+    	$_indexCounter = 1
+    	$_lenOfSubStr = ^length($_userInput)
+    	if($_lenOfSubStr == 2)
+        {
+        	$_inputNum = ^GetNumberForAlpha($_userInput)
+        }
+        if($_lenOfSubStr > 2 OR $_inputNum > $displayCounter) 
+        {
+    		^loop($displayCounter)
+    		{
+				$_alpha = ^GetAlphaForNumber($_indexCounter)
+	    		$_label = ^query(exact_vo ? displayLabel $_alpha 1 ? @0subject)
+	    		if($_label)
+	    		{
+					if ( ^findtext($_label $_userInput 0 insensitive) )  
+					{
+						$_alt = ^jsoncreate(transient object)
+						$_alt.value = $_alpha
+						^jsonarrayinsert(transient $$alternateArray $_alt)
+	    			}
+	    		}
+	    		$_indexCounter += 1
+	    	}
+    	}
+
+		if (^length($$alternateArray) == 1)
+		{
+			$_alt = $$alternateArray[0]
+			$_retValue = ^GetChoiceObject($_alt.value)
+		}
+    }
+    ^return($_retValue)
+
+describe: ^RespondChoice "identifies the choice chosen by user"
+outputmacro: ^RespondChoice($_responseTag)
+	$_retValue = null
+	$_retValue = ^RespondChoiceForStringInput()
+	if (!$_retValue) 
+	{
+		$_tmpModified = ^"I'm sorry, I did not understand your choice. Try again."
+		if ($_responseTag) {
+			^reuse($_responseTag)
+			^end(RULE)
+		}
+	}
+	^return($_retValue)
+
+describe: ^GetResponseTag "identifies the rule tag at which the rejoinder needs to be executed"
+outputmacro: ^GetResponseTag()
+	$_ruleTag = ^getrule(TAG ~)
+	_0 = ^burst($_ruleTag .)
+	# top level rule, not rejoinder
+	$_ruleTag = ^join(_0 . _1)
+	^return($_ruleTag)
+
+describe: ^ChoiceResponded "identifies the choice chosen by user"
+outputmacro: ^ChoiceResponded()
+	$_retValue = null
+	$_responseTag = ^GetResponseTag()
+	$_retValue = ^RespondChoiceForAlphaInput()
+	if(!$_retValue)
+	{
+		$$alternateArray = ^jsoncreate(TRANSIENT array)
+		$_retValue = ^RespondChoice($_responseTag)	
+	}
+	^return($_retValue)

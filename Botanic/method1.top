@@ -1,0 +1,116 @@
+
+topic: ~method1 ()
+
+u: (!$result) 
+	$result = ^jsoncreate(PERMANENT object)
+
+	$result.I = 0
+	$result.E = 0
+	$result.S = 0
+	$result.N = 0
+
+	$result.T = 0
+	$result.F = 0
+	$result.J = 0
+	$result.P = 0
+
+u: () 
+	$_query = ^"1. How do you see yourself ? \n a) casual \n b) formal \n"
+	$_query
+
+	a: ([a casual]) $result.P += 1
+	a: ([b formal]) $result.J += 1
+
+u: () 
+	$_query = ^"2. How do you see yourself ? \n a) flexible \n b) structured \n"
+	$_query
+
+	a: ([a flexible]) $result.P += 1
+	a: ([b structured]) $result.J += 1
+
+u: () 
+	$_query = ^"3. How do you see yourself ? \n a) serious \n b) playful \n"
+	$_query
+
+	a: ([a serious]) $result.I += 1
+	a: ([b playful]) $result.E += 1
+
+u: () 
+	$_query = ^"4. How do you see yourself ? \n a) logical \n b) sympathetic \n"
+	$_query
+
+	a: ([a logical]) $result.T += 1
+	a: ([b sympathetic]) $result.F += 1
+
+u: () 
+	$_query = ^"5. How do you see yourself ? \n a) detail oriented \n b) big picture \n"
+	$_query
+
+	a: ([a "detail oriented"]) $result.S += 1
+	a: ([b "big picture"]) $result.N += 1
+
+u: () 
+	$_query = ^"6. How do you see yourself ? \n a) subtle \n b) bold \n"
+	$_query
+
+	a: ([a subtle]) $result.I += 1
+	a: ([b bold]) $result.E += 1
+
+u: () 
+	$_query = ^"7. How do you see yourself ? \n a) cool \n b) warm \n"
+	$_query
+
+	a: ([a cool]) $result.T += 1
+	a: ([b warm]) $result.F += 1
+
+u: () 
+	$_query = ^"8. How do you see yourself ? \n a) strategic \n b) spontaneous \n"
+	$_query
+
+	a: ([a strategic]) $result.T += 1
+	a: ([b spontaneous]) $result.F += 1	
+
+u: () 
+	$_query = ^"9. How do you see yourself ? \n a) relaxed \n b) enthusiastic \n"
+	$_query
+
+	a: ([a relaxed]) $result.I += 1
+	a: ([b enthusiastic]) $result.E += 1	
+
+u: () 
+	$_query = ^"10. How do you see yourself ? \n a) classic \n b) disruptive \n"
+	$_query
+
+	a: ([a classic]) $result.J += 1
+	a: ([b disruptive]) $result.P += 1	
+
+u: () 
+	$_query = ^"11. How do you see yourself ? \n a) practical \n b) creative \n"
+	$_query
+
+	a: ([a practical]) $result.S += 1
+	a: ([b creative]) $result.N += 1	
+
+u: () 
+	$_query = ^"12. How do you see yourself ? \n a) concrete \n b) abstract \n"
+	$_query
+
+	a: ([a concrete]) $result.S += 1
+	a: ([b abstract]) $result.N += 1								
+
+u: ()
+	
+	$_msg = ^""
+
+	if($result.I >= 2) { $_msg = ^"$_msg I"}
+	if($result.E >= 2) { $_msg = ^"$_msg E"}
+	if($result.S >= 2) { $_msg = ^"$_msg S"}
+	if($result.N >= 2) { $_msg = ^"$_msg N"}
+
+	if($result.T >= 2) { $_msg = ^"$_msg T"}
+	if($result.F >= 2) { $_msg = ^"$_msg F"}
+	if($result.J >= 2) { $_msg = ^"$_msg J"}
+	if($result.P >= 2) { $_msg = ^"$_msg P"}
+
+	$_msg = ^"your personality trait is : $_msg  \n your answers scored as :  ^jsonwrite($result)"
+	$_msg

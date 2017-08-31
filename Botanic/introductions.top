@@ -1,0 +1,28 @@
+
+topic: ~INTRODUCTIONS (~emogoodbye ~emohello ~emohowzit name here )
+
+#!x matches every time on startup of a new conversation
+t: ( %input<%userfirstline ) 
+	^keep()   
+	Welcome to ChatScript.
+
+# this rule does the demo of both hardcoding & flow execution
+t: ()
+	$_method = 2
+	# doing personality analysis via hardcoding approach
+	if($_method == 1) { ^respond(~method1) }
+
+	# doing via flow execution approach
+	if($_method == 2) {
+		$flowInfo = ^jsoncreate(PERMANENT object)
+
+		# $flowInfo.flowId = ^"PersonalityExecutor" # doing personality analysis via flow
+		# $flowInfo.flowId = ^"FindDoctor" # doing find doctor via flow
+		# $flowInfo.flowId = ^"ConciergeBotTemplateFull" # doing concierge bot template flow
+		# $flowInfo.flowId = ^"ConciergeBotTemplate" # doing concierge bot template flow
+		$flowInfo.flowId = ^"PrinciplePrototype" # doing principle prototype flow
+		^gambit(~FlowExecutor)
+	}
+
+#! what is your name 
+u: ( what is your name ) My name is Kate.
