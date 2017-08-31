@@ -57,11 +57,13 @@ outputmacro: ^UpdateUserAnswer(^answer)
 	}
 	^UpdateScoring(^answer)
 
+describe: ^GetStoredValue "retrieves the stored value for the given key if exists"
 outputmacro: ^GetStoredValue(^key)
 	$_var = ^join(^"$" ^key)
 	$_val = ^$_var
 	^return($_val)
 
+describe: ^StoreAnswer "stores the key value pair"
 outputmacro: ^StoreAnswer($_key $_value)
 	if($flowInfo.flowId == PrinciplePrototype) {
 		if(!$flowInfo.userinfo) { $flowInfo.userinfo = ^jsoncreate(PERMANENT object) }
@@ -71,6 +73,15 @@ outputmacro: ^StoreAnswer($_key $_value)
 		$_var = ^join(^"$" $_key)
 		^$_var = $_value
 	}
+
+describe: ^GetRandomMessage "gives a random message from an array of messages"
+outputmacro: ^GetRandomMessage(^msg)
+	if (^JsonKind(^msg) == array) {
+		@1 = ^query(exact_s ^msg ? ?)
+		$_msg = ^pick(@1object)
+	}
+	else { $_msg = ^msg }
+	^return($_msg)
 
 describe: ^ExecuteConnections "executes the connections on each node"
 outputmacro: ^ExecuteConnections()
@@ -272,6 +283,10 @@ outputmacro: ^GetFlowTree(^botId ^flowId)
 	else if(^flowId == PrinciplePrototype)
 	{
 		$_flowTree = ^"{\"id\":\"PrinciplePrototype\",\"name\":\"Principle Prototype\",\"nodes\":[{\"id\":\"node1\",\"name\":\"Principle Prototype\",\"type\":\"root\",\"connections\":[{\"default\":\"node2\"}]},{\"id\":\"node2\",\"name\":\"name\",\"type\":\"question\",\"msg\":\"Please let me know your name\",\"connections\":[{\"default\":\"node3\"}]},{\"id\":\"node3\",\"name\":\"email\",\"type\":\"question\",\"msg\":\"Please let me know your email\",\"connections\":[{\"default\":\"node4\"}]},{\"id\":\"node4\",\"name\":\"message\",\"type\":\"message\",\"msg\":\"thanks, we will contact you\",\"connections\":[{\"default\":\"end\"}]}]}"
+	}
+	else if(^flowId == PrinciplePrototype2)
+	{
+		$_flowTree = ^"{\"id\":\"PrinciplePrototype\",\"name\":\"Principle Prototype\",\"nodes\":[{\"id\":\"node1\",\"name\":\"Principle Prototype\",\"type\":\"root\",\"connections\":[{\"default\":\"node2\"}]},{\"id\":\"node2\",\"name\":\"name\",\"type\":\"message\",\"msg\":[\"Hello, how are you\",\"Hey, how's it going.\"],\"connections\":[{\"default\":\"node3\"}]},{\"id\":\"node3\",\"name\":\"name\",\"type\":\"question\",\"msg\":\"Please let me know your name\",\"connections\":[{\"default\":\"node4\"}]},{\"id\":\"node4\",\"name\":\"email\",\"type\":\"question\",\"msg\":\"Please let me know your email\",\"connections\":[{\"default\":\"node5\"}]},{\"id\":\"node5\",\"name\":\"message\",\"type\":\"message\",\"msg\":\"thanks, we will contact you\",\"connections\":[{\"default\":\"end\"}]}]}"
 	}
 
 	$_flowTree = ^jsonparse(PERMANENT $_flowTree)

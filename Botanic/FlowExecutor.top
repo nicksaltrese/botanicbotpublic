@@ -81,7 +81,7 @@ t: START($flowInfo.flowId !$flowInfo.flowElement)
 
 # this rule takes the reponsibility of taking care of node type choice
 t: QUESTION_WITH_CHOICE ($flowInfo.flowElement $$flowElementType=choice)
-	$_msg = $flowInfo.flowElement.msg
+	$_msg = ^GetRandomMessage($flowInfo.flowElement.msg)
 	$_msg = ^PrepareChoice($flowInfo.flowElement.data null null $_msg)
 	$_msg
 
@@ -101,7 +101,7 @@ t: PROCESS ($flowInfo.flowElement $$flowElementType=process)
 
 # this rule takes the reponsibility of taking care of node type question
 t: QUESTION ($flowInfo.flowElement $$flowElementType=question)
-	$_msg = $flowInfo.flowElement.msg
+	$_msg = ^GetRandomMessage($flowInfo.flowElement.msg)
 	$_msg
 
 	a:(_*)
@@ -111,7 +111,7 @@ t: QUESTION ($flowInfo.flowElement $$flowElementType=question)
 
 # this rule takes the reponsibility of taking care of node type message
 t: MESSAGE ($flowInfo.flowElement $$flowElementType=message)
-	$_msg = $flowInfo.flowElement.msg
+	$_msg = ^GetRandomMessage($flowInfo.flowElement.msg)
 	$_msg
 
 	a:(_*)
