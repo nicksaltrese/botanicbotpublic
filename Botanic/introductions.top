@@ -4,7 +4,7 @@ topic: ~INTRODUCTIONS (~emogoodbye ~emohello ~emohowzit name here )
 #!x matches every time on startup of a new conversation
 t: ( %input<%userfirstline ) 
 	^keep()   
-	Welcome to ChatScript.
+	Welcome to Botanic.
 
 # this rule does the demo of both hardcoding & flow execution
 t: ()
