@@ -20,8 +20,9 @@ t: ()
 		# $flowInfo.flowId = ^"FindDoctor" # doing find doctor via flow
 		# $flowInfo.flowId = ^"ConciergeBotTemplateFull" # doing concierge bot template flow
 		# $flowInfo.flowId = ^"ConciergeBotTemplate" # doing concierge bot template flow
-		$flowInfo.flowId = ^"PrinciplePrototype" # doing principle prototype flow
+		# $flowInfo.flowId = ^"PrinciplePrototype" # doing principle prototype flow
 		# $flowInfo.flowId = ^"PrinciplePrototype2" # doing principle prototype flow
+		$flowInfo.flowId = ^"BotanicBot" # doing principle prototype flow
 		^gambit(~FlowExecutor)
 	}
 
