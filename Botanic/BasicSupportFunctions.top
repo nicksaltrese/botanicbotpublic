@@ -180,6 +180,8 @@ outputmacro: ^RespondChoiceForStringInput()
 	$_retValue = null
     if (pattern _*)
     {
+		$$alternateArray = ^jsoncreate(TRANSIENT array)
+
     	$_userInput = ^original(_0)
     	$_indexCounter = 1
     	$_lenOfSubStr = ^length($_userInput)
@@ -211,6 +213,14 @@ outputmacro: ^RespondChoiceForStringInput()
 			$_alt = $$alternateArray[0]
 			$_retValue = ^GetChoiceObject($_alt.value)
 		}
+		else if(^length($$alternateArray) > 1)
+		{
+			$_retValue = ^"many"
+		}
+		else if(^length($$alternateArray) == 0)
+		{
+			$_retValue = ^"none"
+		}
     }
     ^return($_retValue)
 
@@ -221,7 +231,17 @@ outputmacro: ^RespondChoice($_responseTag)
 	if (!$_retValue) 
 	{
 		$_tmpModified = ^"I'm sorry, I did not understand your choice. Try again."
-		if ($_responseTag) {
+	}
+	else if($_retValue)
+	{
+		if($_retValue == none) { $_tmpModified = ^"I'm sorry, your choice didn't match with any. Please try again." }
+		else if($_retValue == many) { $_tmpModified = ^"I'm sorry, your choice matched with many. Please try again." }
+	}
+	if($_tmpModified)
+	{
+		$_tmpModified
+		if ($_responseTag) 
+		{
 			^reuse($_responseTag)
 			^end(RULE)
 		}
@@ -243,7 +263,6 @@ outputmacro: ^ChoiceResponded()
 	$_retValue = ^RespondChoiceForAlphaInput()
 	if(!$_retValue)
 	{
-		$$alternateArray = ^jsoncreate(TRANSIENT array)
 		$_retValue = ^RespondChoice($_responseTag)	
 	}
 	^return($_retValue)
