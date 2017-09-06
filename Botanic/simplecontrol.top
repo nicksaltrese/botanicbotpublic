@@ -1,7 +1,7 @@
 bot: botanic
 
 # this function is executed once for every new user chatting with harry
-outputmacro: ^botanic()  # you get harry by default.
+outputmacro: ^botanic()  # you get harry by default
 	# $cs_token = #DO_INTERJECTION_SPLITTING  | #DO_SUBSTITUTE_SYSTEM   | #DO_NUMBER_MERGE | #DO_DATE_MERGE  | #DO_PROPERNAME_MERGE  | #DO_SPELLCHECK  | #DO_PARSE 
 
 	$cs_token = #DO_SUBSTITUTE_SYSTEM   | #DO_NUMBER_MERGE | #DO_DATE_MERGE  | #DO_PROPERNAME_MERGE  | #DO_SPELLCHECK  | #DO_PARSE 
@@ -29,6 +29,8 @@ topic: ~control system ()
 
 # set all variables received in OOB
 u: () ^respond(~process_oob_input)
+
+u: () ^respond(~devcheatcodes)
 
 # on startup, do introduction
 u: ( %input<%userfirstline) 
@@ -174,3 +176,18 @@ u: (\[ _* \] ) # grab params and main sentence
 		^_2 = _3 # do assignment onto variable
 	}
 	^fail(sentence)
+
+topic: ~devcheatcodes system repeat ()
+
+u: ( < cheat who am I > )
+    if(%user) { $_msg = ^" your UserId is : %user " }
+    else { $_msg = ^" your UserId is : test-user" }
+    $_msg
+
+u: ( < cheat show emotion variables > ) $showEmotionVariables = true
+
+u: ( < cheat hide emotion variables > ) $showEmotionVariables = null
+
+u: ( cheat bot version )
+	$_msg = ^" bot version is : $botVersion"
+	$_msg
