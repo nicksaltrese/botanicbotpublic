@@ -58,13 +58,19 @@ outputmacro: ^UpdateUserAnswer(^answer)
 	^UpdateScoring(^answer)
 
 describe: ^GetStoredValue "retrieves the stored value for the given key if exists"
-outputmacro: ^GetStoredValue(^key)
+outputmacro: ^GetStoredValue($_key)
+	$_val = $userInfo.$_key
+##<<
 	$_var = ^join(^"$" ^key)
 	$_val = ^$_var
+##>>	
 	^return($_val)
 
 describe: ^StoreAnswer "stores the key value pair"
 outputmacro: ^StoreAnswer($_key $_value)
+	if(!$userInfo) { $userInfo = ^jsoncreate(PERMANENT object) }
+	$userInfo.$_key = $_value
+##<<
 	if( $flowInfo.flowId == PrinciplePrototype OR
 		$flowInfo.flowId == BotanicChatContactForm )
 	{
@@ -75,6 +81,7 @@ outputmacro: ^StoreAnswer($_key $_value)
 		$_var = ^join(^"$" $_key)
 		^$_var = $_value
 	}
+##>>
 
 describe: ^GetRandomMessage "gives a random message from an array of messages"
 outputmacro: ^GetRandomMessage(^msg)

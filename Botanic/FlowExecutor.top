@@ -160,13 +160,18 @@ t: END_FLOW ($flowInfo.flowElement $$flowElementType=end)
 	else if($flowInfo.flowId == PrinciplePrototype OR
 			$flowInfo.flowId == BotanicChatContactForm) 
 	{
-		$$oobjson = ^jsonwrite($flowInfo.userinfo)
+		# $$oobjson = ^jsonwrite($flowInfo.userinfo)
+		$$oobjson = ^jsonwrite($userInfo)
 		if($flowInfo.flowId == PrinciplePrototype) 
 		{
 			$_msg = ^"information sent to MTOne is : $$oobjson"
 		}
 	}
 	^EndFlow()
+
+	^delete($userInfo)
+	$userInfo = null
+
 	if($_msg) { $_msg }
 
 # this rule takes the reponsibility of taking care of identifying the type of the node

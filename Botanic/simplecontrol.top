@@ -2,7 +2,9 @@ bot: botanic
 
 # this function is executed once for every new user chatting with harry
 outputmacro: ^botanic()  # you get harry by default
-	$cs_token = #DO_INTERJECTION_SPLITTING  | #DO_SUBSTITUTE_SYSTEM   | #DO_NUMBER_MERGE | #DO_DATE_MERGE  | #DO_PROPERNAME_MERGE  | #DO_SPELLCHECK  | #DO_PARSE 
+	# $cs_token = #DO_INTERJECTION_SPLITTING  | #DO_SUBSTITUTE_SYSTEM   | #DO_NUMBER_MERGE | #DO_DATE_MERGE  | #DO_PROPERNAME_MERGE  | #DO_SPELLCHECK  | #DO_PARSE 
+
+	$cs_token = #DO_SUBSTITUTE_SYSTEM   | #DO_NUMBER_MERGE | #DO_DATE_MERGE  | #DO_PROPERNAME_MERGE  | #DO_SPELLCHECK  | #DO_PARSE 
 
 	^addtopic(~introductions)
 	$cs_control_main = ~control
@@ -131,6 +133,9 @@ u: () # main per-sentence processing
 
 
 topic: ~XPOSTPROCESS system () # gambits only - not allowed to write to  output - generates speech on windows -- for Linux you'd want to install Festival (or equivalent) and call that instead.
+
+t: ($userInfo)
+	$$oobjson = ^jsonwrite($userInfo)
 
 t: ($$oobjson)
 	^postprintbefore( \[ $$oobjson \])
