@@ -17,6 +17,8 @@ outputmacro: ^botanic()  # you get harry by default.
 	$cs_userfactlimit = 100000 # how many user facts to keep
 	$cs_looplimit = 15000  # high but...
 
+	$botVersion = ##BOT_VERSION
+
 
 table: defaultbot (^name)
 ^createfact(^name defaultbot defaultbot)

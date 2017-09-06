@@ -1,0 +1,1161 @@
+Botanic bot flow in indented form :
+-----------------------------------
+
+{
+  "id": "BotanicBot",
+  "name": "Botanic Bot",
+  "nodes": [
+    {
+      "id": "node1",
+      "name": "Botanic Bot",
+      "type": "root",
+      "connections": [
+        {
+          "default": "node2"
+        }
+      ]
+    },
+    {
+      "id": "node2",
+      "name": "introduction",
+      "type": "message",
+      "msg": [
+        "Hi, I'm Juniper, and I'll do my best to interact with you in a way that seems somewhat human, but not too human.",
+        "You've arrived. Welcome to the Botanic website. I am Juniper, the concierge Bot that will help you find out what you need.",
+        "Thank you for visiting me here at the Botanic website. My name is Juniper and I wait here all day for someone to talk to.",
+        "Hello human, and welcome to Botanic. I am called Juniper and I would like to help you achieve your goals or just tell you jokes."
+      ],
+      "connections": [
+        {
+          "if": {
+            "context": "name",
+            "then": "node4"
+          }
+        },
+        {
+          "default": "node3"
+        }
+      ]
+    },
+    {
+      "id": "node3",
+      "name": "name",
+      "type": "question",
+      "msg": [
+        "What can I call you?",
+        "First, how should I refer to you?",
+        "How shall I store you in my memory?",
+        "You have my name, so may I have yours?"
+      ],
+      "connections": [
+        {
+          "default": "node4"
+        }
+      ]
+    },
+    {
+      "id": "node4",
+      "name": "menu",
+      "type": "choice",
+      "msg": [
+        "I'm able to tell you about Botanic, discuss our products and services, our personnel, and put you in touch with a human if I must.",
+        "I can tell you about Botanic, what we do here, and who we are. Tell me what you want to know.",
+        "You name it and I can do it. Or at least I'll try my best to understand what you want."
+      ],
+      "data": [
+        "about",
+        "services",
+        "work",
+        "careers",
+        "contact",
+        "product"
+      ],
+      "connections": [
+        {
+          "if": {
+            "context": "menu",
+            "op": "eq",
+            "value": "about",
+            "then": "node5"
+          }
+        },
+        {
+          "if": {
+            "context": "menu",
+            "op": "eq",
+            "value": "services",
+            "then": "node6"
+          }
+        },
+        {
+          "if": {
+            "context": "menu",
+            "op": "eq",
+            "value": "work",
+            "then": "node7"
+          }
+        },
+        {
+          "if": {
+            "context": "menu",
+            "op": "eq",
+            "value": "careers",
+            "then": "node8"
+          }
+        },
+        {
+          "if": {
+            "context": "menu",
+            "op": "eq",
+            "value": "contact",
+            "then": "node9"
+          }
+        },
+        {
+          "if": {
+            "context": "menu",
+            "op": "eq",
+            "value": "product",
+            "then": "node10"
+          }
+        },
+        {
+          "default": "node5"
+        }
+      ]
+    },
+    {
+      "id": "node5",
+      "name": "about",
+      "type": "flowId",
+      "flowId": "BotanicAbout",
+      "connections": [
+        {
+          "default": "end"
+        }
+      ]
+    },
+    {
+      "id": "node6",
+      "name": "services",
+      "type": "flowId",
+      "flowId": "BotanicServices",
+      "connections": [
+        {
+          "default": "end"
+        }
+      ]
+    },
+    {
+      "id": "node7",
+      "name": "work",
+      "type": "flowId",
+      "flowId": "BotanicWork",
+      "connections": [
+        {
+          "default": "end"
+        }
+      ]
+    },
+    {
+      "id": "node8",
+      "name": "careers",
+      "type": "flowId",
+      "flowId": "BotanicCareers",
+      "connections": [
+        {
+          "default": "end"
+        }
+      ]
+    },
+    {
+      "id": "node9",
+      "name": "contact",
+      "type": "flowId",
+      "flowId": "BotanicContact",
+      "connections": [
+        {
+          "default": "end"
+        }
+      ]
+    },
+    {
+      "id": "node10",
+      "name": "product",
+      "type": "flowId",
+      "flowId": "BotanicProduct",
+      "connections": [
+        {
+          "default": "end"
+        }
+      ]
+    }
+  ]
+}
+
+Botanic bot flow in compacted form :
+------------------------------------
+
+{"id":"BotanicBot","name":"Botanic Bot","nodes":[{"id":"node1","name":"Botanic Bot","type":"root","connections":[{"default":"node2"}]},{"id":"node2","name":"introduction","type":"message","msg":["Hi, I'm Juniper, and I'll do my best to interact with you in a way that seems somewhat human, but not too human.","You've arrived. Welcome to the Botanic website. I am Juniper, the concierge Bot that will help you find out what you need.","Thank you for visiting me here at the Botanic website. My name is Juniper and I wait here all day for someone to talk to.","Hello human, and welcome to Botanic. I am called Juniper and I would like to help you achieve your goals or just tell you jokes."],"connections":[{"if":{"context":"name","then":"node4"}},{"default":"node3"}]},{"id":"node3","name":"name","type":"question","msg":["What can I call you?","First, how should I refer to you?","How shall I store you in my memory?","You have my name, so may I have yours?"],"connections":[{"default":"node4"}]},{"id":"node4","name":"menu","type":"choice","msg":["I'm able to tell you about Botanic, discuss our products and services, our personnel, and put you in touch with a human if I must.","I can tell you about Botanic, what we do here, and who we are. Tell me what you want to know.","You name it and I can do it. Or at least I'll try my best to understand what you want."],"data":["about","services","work","careers","contact","product"],"connections":[{"if":{"context":"menu","op":"eq","value":"about","then":"node5"}},{"if":{"context":"menu","op":"eq","value":"services","then":"node6"}},{"if":{"context":"menu","op":"eq","value":"work","then":"node7"}},{"if":{"context":"menu","op":"eq","value":"careers","then":"node8"}},{"if":{"context":"menu","op":"eq","value":"contact","then":"node9"}},{"if":{"context":"menu","op":"eq","value":"product","then":"node10"}},{"default":"node5"}]},{"id":"node5","name":"about","type":"flowId","flowId":"BotanicAbout","connections":[{"default":"end"}]},{"id":"node6","name":"services","type":"flowId","flowId":"BotanicServices","connections":[{"default":"end"}]},{"id":"node7","name":"work","type":"flowId","flowId":"BotanicWork","connections":[{"default":"end"}]},{"id":"node8","name":"careers","type":"flowId","flowId":"BotanicCareers","connections":[{"default":"end"}]},{"id":"node9","name":"contact","type":"flowId","flowId":"BotanicContact","connections":[{"default":"end"}]},{"id":"node10","name":"product","type":"flowId","flowId":"BotanicProduct","connections":[{"default":"end"}]}]}
+
+Botanic bot flow in compacted form with backslash :
+---------------------------------------------------
+
+{\"id\":\"BotanicBot\",\"name\":\"Botanic Bot\",\"nodes\":[{\"id\":\"node1\",\"name\":\"Botanic Bot\",\"type\":\"root\",\"connections\":[{\"default\":\"node2\"}]},{\"id\":\"node2\",\"name\":\"introduction\",\"type\":\"message\",\"msg\":[\"Hi, I'm Juniper, and I'll do my best to interact with you in a way that seems somewhat human, but not too human.\",\"You've arrived. Welcome to the Botanic website. I am Juniper, the concierge Bot that will help you find out what you need.\",\"Thank you for visiting me here at the Botanic website. My name is Juniper and I wait here all day for someone to talk to.\",\"Hello human, and welcome to Botanic. I am called Juniper and I would like to help you achieve your goals or just tell you jokes.\"],\"connections\":[{\"if\":{\"context\":\"name\",\"then\":\"node4\"}},{\"default\":\"node3\"}]},{\"id\":\"node3\",\"name\":\"name\",\"type\":\"question\",\"msg\":[\"What can I call you?\",\"First, how should I refer to you?\",\"How shall I store you in my memory?\",\"You have my name, so may I have yours?\"],\"connections\":[{\"default\":\"node4\"}]},{\"id\":\"node4\",\"name\":\"menu\",\"type\":\"choice\",\"msg\":[\"I'm able to tell you about Botanic, discuss our products and services, our personnel, and put you in touch with a human if I must.\",\"I can tell you about Botanic, what we do here, and who we are. Tell me what you want to know.\",\"You name it and I can do it. Or at least I'll try my best to understand what you want.\"],\"data\":[\"about\",\"services\",\"work\",\"careers\",\"contact\",\"product\"],\"connections\":[{\"if\":{\"context\":\"menu\",\"op\":\"eq\",\"value\":\"about\",\"then\":\"node5\"}},{\"if\":{\"context\":\"menu\",\"op\":\"eq\",\"value\":\"services\",\"then\":\"node6\"}},{\"if\":{\"context\":\"menu\",\"op\":\"eq\",\"value\":\"work\",\"then\":\"node7\"}},{\"if\":{\"context\":\"menu\",\"op\":\"eq\",\"value\":\"careers\",\"then\":\"node8\"}},{\"if\":{\"context\":\"menu\",\"op\":\"eq\",\"value\":\"contact\",\"then\":\"node9\"}},{\"if\":{\"context\":\"menu\",\"op\":\"eq\",\"value\":\"product\",\"then\":\"node10\"}},{\"default\":\"node5\"}]},{\"id\":\"node5\",\"name\":\"about\",\"type\":\"flowId\",\"flowId\":\"BotanicAbout\",\"connections\":[{\"default\":\"end\"}]},{\"id\":\"node6\",\"name\":\"services\",\"type\":\"flowId\",\"flowId\":\"BotanicServices\",\"connections\":[{\"default\":\"end\"}]},{\"id\":\"node7\",\"name\":\"work\",\"type\":\"flowId\",\"flowId\":\"BotanicWork\",\"connections\":[{\"default\":\"end\"}]},{\"id\":\"node8\",\"name\":\"careers\",\"type\":\"flowId\",\"flowId\":\"BotanicCareers\",\"connections\":[{\"default\":\"end\"}]},{\"id\":\"node9\",\"name\":\"contact\",\"type\":\"flowId\",\"flowId\":\"BotanicContact\",\"connections\":[{\"default\":\"end\"}]},{\"id\":\"node10\",\"name\":\"product\",\"type\":\"flowId\",\"flowId\":\"BotanicProduct\",\"connections\":[{\"default\":\"end\"}]}]}
+
+Botanic about flow in indented form :
+-------------------------------------
+
+{
+  "id": "BotanicAbout",
+  "name": "Botanic About",
+  "nodes": [
+    {
+      "id": "node1",
+      "name": "Botanic About",
+      "type": "root",
+      "connections": [
+        {
+          "default": "node2"
+        }
+      ]
+    },
+    {
+      "id": "node2",
+      "name": "about",
+      "type": "choice",
+      "msg": [
+        "Botanic is an international software and services company that makes things like me — multi-model bots and digital assistants, to help humans like you do things that you want to do. I can tell you more about who we are, where we are located, what we do, or why we do it.",
+        "Botanic is an international software and services company that makes things like me — multi-model bots and digital assistants, to help humans like you do things that you want to do.",
+        "We specialize in creating conversational interfaces that work intuitively. We like to call them humane machines and I'd like to think i'm a prime example. We work for innovative clients and we're developing software to help people make the next generation of bots and avatars."
+      ],
+      "data": [
+        "who",
+        "where",
+        "what",
+        "why"
+      ],
+      "connections": [
+        {
+          "if": {
+            "context": "about",
+            "op": "eq",
+            "value": "who",
+            "then": "node3"
+          }
+        },
+        {
+          "if": {
+            "context": "about",
+            "op": "eq",
+            "value": "where",
+            "then": "node4"
+          }
+        },
+        {
+          "if": {
+            "context": "about",
+            "op": "eq",
+            "value": "what",
+            "then": "node5"
+          }
+        },
+        {
+          "if": {
+            "context": "about",
+            "op": "eq",
+            "value": "why",
+            "then": "node6"
+          }
+        },
+        {
+          "default": "node7"
+        }
+      ]
+    },
+    {
+      "id": "node3",
+      "name": "about who",
+      "type": "message",
+      "msg": [
+        "Botanic was founded by Mark Stephen Meadows and now includes people with all different kinds of human skills that bots don't offer... yet.",
+        "Mark Stephen Meadows is the founder of this band of roustabouts — did I use that word right? You may consider the leadership team page if you want to know about more human Botanicians.",
+        "Botanic includes writers, artists, engineers, visionaries, thinkers, and of course some bots as well."
+      ],
+      "connections": [
+        {
+          "default": "node8"
+        }
+      ]
+    },
+    {
+      "id": "node8",
+      "name": "about leadership",
+      "type": "message",
+      "msg": [
+        "You can find out more about the leadership team at Botanic here. INSERT LINK HERE https://botanic.io/about/leadership/"
+      ],
+      "connections": [
+        {
+          "default": "end"
+        }
+      ]
+    },
+    {
+      "id": "node4",
+      "name": "about where",
+      "type": "message",
+      "msg": [
+        "You could say that Botanic is based in the cloud... just like me. Unfortunately, people also need to live in the real world, and Botanic has offices in Emeryville, California and Denver, Colorado.",
+        "Botanic is headquartered in scenic Emeryville, California, directly across the Bay Bridge from San Francisco, but team members dwell around the world."
+      ],
+      "connections": [
+        {
+          "default": "end"
+        }
+      ]
+    },
+    {
+      "id": "node5",
+      "name": "about what",
+      "type": "message",
+      "msg": [
+        "Botanic develops chatbots (like me) for both high-profile and small-scall clients and creates software solutions for conversational interfaces."
+      ],
+      "connections": [
+        {
+          "default": "end"
+        }
+      ]
+    },
+    {
+      "id": "node6",
+      "name": "about why",
+      "type": "message",
+      "msg": [
+        "The future of interface design is conversational. It's easier to talk to software than scroll through menus, isn't it? Plus, It's fun. Isn't this fun? We're having a lot of fun. "
+      ],
+      "connections": [
+        {
+          "default": "end"
+        }
+      ]
+    },
+    {
+      "id": "node7",
+      "name": "about else",
+      "type": "message",
+      "msg": [
+        "You may just want to talk to you a human about that! I'm not sure this is a question I'm prepared to answer, through no fault of my own of course."
+      ],
+      "connections": [
+        {
+          "default": "end"
+        }
+      ]
+    }
+  ]
+}
+
+Botanic about flow in compacted form :
+--------------------------------------
+
+{"id":"BotanicAbout","name":"Botanic About","nodes":[{"id":"node1","name":"Botanic About","type":"root","connections":[{"default":"node2"}]},{"id":"node2","name":"about","type":"choice","msg":["Botanic is an international software and services company that makes things like me — multi-model bots and digital assistants, to help humans like you do things that you want to do. I can tell you more about who we are, where we are located, what we do, or why we do it.","Botanic is an international software and services company that makes things like me — multi-model bots and digital assistants, to help humans like you do things that you want to do.","We specialize in creating conversational interfaces that work intuitively. We like to call them humane machines and I'd like to think i'm a prime example. We work for innovative clients and we're developing software to help people make the next generation of bots and avatars."],"data":["who","where","what","why"],"connections":[{"if":{"context":"about","op":"eq","value":"who","then":"node3"}},{"if":{"context":"about","op":"eq","value":"where","then":"node4"}},{"if":{"context":"about","op":"eq","value":"what","then":"node5"}},{"if":{"context":"about","op":"eq","value":"why","then":"node6"}},{"default":"node7"}]},{"id":"node3","name":"about who","type":"message","msg":["Botanic was founded by Mark Stephen Meadows and now includes people with all different kinds of human skills that bots don't offer... yet.","Mark Stephen Meadows is the founder of this band of roustabouts — did I use that word right? You may consider the leadership team page if you want to know about more human Botanicians.","Botanic includes writers, artists, engineers, visionaries, thinkers, and of course some bots as well."],"connections":[{"default":"node8"}]},{"id":"node8","name":"about leadership","type":"message","msg":["You can find out more about the leadership team at Botanic here. INSERT LINK HERE https://botanic.io/about/leadership/"],"connections":[{"default":"end"}]},{"id":"node4","name":"about where","type":"message","msg":["You could say that Botanic is based in the cloud... just like me. Unfortunately, people also need to live in the real world, and Botanic has offices in Emeryville, California and Denver, Colorado.","Botanic is headquartered in scenic Emeryville, California, directly across the Bay Bridge from San Francisco, but team members dwell around the world."],"connections":[{"default":"end"}]},{"id":"node5","name":"about what","type":"message","msg":["Botanic develops chatbots (like me) for both high-profile and small-scall clients and creates software solutions for conversational interfaces."],"connections":[{"default":"end"}]},{"id":"node6","name":"about why","type":"message","msg":["The future of interface design is conversational. It's easier to talk to software than scroll through menus, isn't it? Plus, It's fun. Isn't this fun? We're having a lot of fun. "],"connections":[{"default":"end"}]},{"id":"node7","name":"about else","type":"message","msg":["You may just want to talk to you a human about that! I'm not sure this is a question I'm prepared to answer, through no fault of my own of course."],"connections":[{"default":"end"}]}]}
+
+Botanic about flow in compacted form with backslash :
+-----------------------------------------------------
+
+{\"id\":\"BotanicAbout\",\"name\":\"Botanic About\",\"nodes\":[{\"id\":\"node1\",\"name\":\"Botanic About\",\"type\":\"root\",\"connections\":[{\"default\":\"node2\"}]},{\"id\":\"node2\",\"name\":\"about\",\"type\":\"choice\",\"msg\":[\"Botanic is an international software and services company that makes things like me — multi-model bots and digital assistants, to help humans like you do things that you want to do. I can tell you more about who we are, where we are located, what we do, or why we do it.\",\"Botanic is an international software and services company that makes things like me — multi-model bots and digital assistants, to help humans like you do things that you want to do.\",\"We specialize in creating conversational interfaces that work intuitively. We like to call them humane machines and I'd like to think i'm a prime example. We work for innovative clients and we're developing software to help people make the next generation of bots and avatars.\"],\"data\":[\"who\",\"where\",\"what\",\"why\"],\"connections\":[{\"if\":{\"context\":\"about\",\"op\":\"eq\",\"value\":\"who\",\"then\":\"node3\"}},{\"if\":{\"context\":\"about\",\"op\":\"eq\",\"value\":\"where\",\"then\":\"node4\"}},{\"if\":{\"context\":\"about\",\"op\":\"eq\",\"value\":\"what\",\"then\":\"node5\"}},{\"if\":{\"context\":\"about\",\"op\":\"eq\",\"value\":\"why\",\"then\":\"node6\"}},{\"default\":\"node7\"}]},{\"id\":\"node3\",\"name\":\"about who\",\"type\":\"message\",\"msg\":[\"Botanic was founded by Mark Stephen Meadows and now includes people with all different kinds of human skills that bots don't offer... yet.\",\"Mark Stephen Meadows is the founder of this band of roustabouts — did I use that word right? You may consider the leadership team page if you want to know about more human Botanicians.\",\"Botanic includes writers, artists, engineers, visionaries, thinkers, and of course some bots as well.\"],\"connections\":[{\"default\":\"node8\"}]},{\"id\":\"node8\",\"name\":\"about leadership\",\"type\":\"message\",\"msg\":[\"You can find out more about the leadership team at Botanic here. INSERT LINK HERE https://botanic.io/about/leadership/\"],\"connections\":[{\"default\":\"end\"}]},{\"id\":\"node4\",\"name\":\"about where\",\"type\":\"message\",\"msg\":[\"You could say that Botanic is based in the cloud... just like me. Unfortunately, people also need to live in the real world, and Botanic has offices in Emeryville, California and Denver, Colorado.\",\"Botanic is headquartered in scenic Emeryville, California, directly across the Bay Bridge from San Francisco, but team members dwell around the world.\"],\"connections\":[{\"default\":\"end\"}]},{\"id\":\"node5\",\"name\":\"about what\",\"type\":\"message\",\"msg\":[\"Botanic develops chatbots (like me) for both high-profile and small-scall clients and creates software solutions for conversational interfaces.\"],\"connections\":[{\"default\":\"end\"}]},{\"id\":\"node6\",\"name\":\"about why\",\"type\":\"message\",\"msg\":[\"The future of interface design is conversational. It's easier to talk to software than scroll through menus, isn't it? Plus, It's fun. Isn't this fun? We're having a lot of fun. \"],\"connections\":[{\"default\":\"end\"}]},{\"id\":\"node7\",\"name\":\"about else\",\"type\":\"message\",\"msg\":[\"You may just want to talk to you a human about that! I'm not sure this is a question I'm prepared to answer, through no fault of my own of course.\"],\"connections\":[{\"default\":\"end\"}]}]}
+
+Botanic services flow in indented form :
+----------------------------------------
+
+{
+  "id": "BotanicServices",
+  "name": "Botanic Services",
+  "nodes": [
+    {
+      "id": "node1",
+      "name": "Botanic Services",
+      "type": "root",
+      "connections": [
+        {
+          "default": "node2"
+        }
+      ]
+    },
+    {
+      "id": "node2",
+      "name": "services",
+      "type": "choice",
+      "msg": [
+        "Services! Botanic offers them. It's true. We have a world-class creative team that can help create the branded bot of your dreams. Would you like to learn about our process?",
+        "Botanic delivers bot, voice assistant, and digital avatar development services for clients of all shapes and sizes. Do you want to find out more about the creative services process?",
+        "If you're looking to build a bot on par with me then you've come to the right place. Botanic provides creative services for clients looking to add conversational interfaces to their products or services. Want to learn more?"
+      ],
+      "data": [
+        "discovery",
+        "research",
+        "design",
+        "content"
+      ],
+      "connections": [
+        {
+          "if": {
+            "context": "services",
+            "op": "eq",
+            "value": "discovery",
+            "then": "node3"
+          }
+        },
+        {
+          "if": {
+            "context": "services",
+            "op": "eq",
+            "value": "research",
+            "then": "node4"
+          }
+        },
+        {
+          "if": {
+            "context": "services",
+            "op": "eq",
+            "value": "design",
+            "then": "node5"
+          }
+        },
+        {
+          "if": {
+            "context": "services",
+            "op": "eq",
+            "value": "content",
+            "then": "node6"
+          }
+        },
+        {
+          "default": "node3"
+        }
+      ]
+    },
+    {
+      "id": "node3",
+      "name": "discovery",
+      "type": "message",
+      "msg": "The first thing to do is determine what you need. The creative services team at Botanic will work closely with you to determine what kind of bot they can build for you.",
+      "connections": [
+        {
+          "default": "end"
+        }
+      ]
+    },
+    {
+      "id": "node4",
+      "name": "research",
+      "type": "message",
+      "msg": "Like any good interface, a bot needs to be developed with the needs of the user in mind. That's where research comes in. Botanic will make sure that any bot will meet the actual needs of the user.",
+      "connections": [
+        {
+          "default": "end"
+        }
+      ]
+    },
+    {
+      "id": "node5",
+      "name": "design",
+      "type": "message",
+      "msg": "The design of a bot takes a lot of research, a little science, and a healthy dose of art. The designers at Botanic build me. What could they build you?",
+      "connections": [
+        {
+          "default": "end"
+        }
+      ]
+    },
+    {
+      "id": "node6",
+      "name": "content",
+      "type": "message",
+      "msg": "Content is the words that I am saying to you right now. It takes a special talent to write words like these, would you say?",
+      "connections": [
+        {
+          "default": "end"
+        }
+      ]
+    }
+  ]
+}
+
+Botanic services flow in compacted form :
+-----------------------------------------
+
+{"id":"BotanicServices","name":"Botanic Services","nodes":[{"id":"node1","name":"Botanic Services","type":"root","connections":[{"default":"node2"}]},{"id":"node2","name":"services","type":"choice","msg":["Services! Botanic offers them. It's true. We have a world-class creative team that can help create the branded bot of your dreams. Would you like to learn about our process?","Botanic delivers bot, voice assistant, and digital avatar development services for clients of all shapes and sizes. Do you want to find out more about the creative services process?","If you're looking to build a bot on par with me then you've come to the right place. Botanic provides creative services for clients looking to add conversational interfaces to their products or services. Want to learn more?"],"data":["discovery","research","design","content"],"connections":[{"if":{"context":"services","op":"eq","value":"discovery","then":"node3"}},{"if":{"context":"services","op":"eq","value":"research","then":"node4"}},{"if":{"context":"services","op":"eq","value":"design","then":"node5"}},{"if":{"context":"services","op":"eq","value":"content","then":"node6"}},{"default":"node3"}]},{"id":"node3","name":"discovery","type":"message","msg":"The first thing to do is determine what you need. The creative services team at Botanic will work closely with you to determine what kind of bot they can build for you.","connections":[{"default":"end"}]},{"id":"node4","name":"research","type":"message","msg":"Like any good interface, a bot needs to be developed with the needs of the user in mind. That's where research comes in. Botanic will make sure that any bot will meet the actual needs of the user.","connections":[{"default":"end"}]},{"id":"node5","name":"design","type":"message","msg":"The design of a bot takes a lot of research, a little science, and a healthy dose of art. The designers at Botanic build me. What could they build you?","connections":[{"default":"end"}]},{"id":"node6","name":"content","type":"message","msg":"Content is the words that I am saying to you right now. It takes a special talent to write words like these, would you say?","connections":[{"default":"end"}]}]}
+
+Botanic services flow in compacted form with backslash :
+--------------------------------------------------------
+
+{\"id\":\"BotanicServices\",\"name\":\"Botanic Services\",\"nodes\":[{\"id\":\"node1\",\"name\":\"Botanic Services\",\"type\":\"root\",\"connections\":[{\"default\":\"node2\"}]},{\"id\":\"node2\",\"name\":\"services\",\"type\":\"choice\",\"msg\":[\"Services! Botanic offers them. It's true. We have a world-class creative team that can help create the branded bot of your dreams. Would you like to learn about our process?\",\"Botanic delivers bot, voice assistant, and digital avatar development services for clients of all shapes and sizes. Do you want to find out more about the creative services process?\",\"If you're looking to build a bot on par with me then you've come to the right place. Botanic provides creative services for clients looking to add conversational interfaces to their products or services. Want to learn more?\"],\"data\":[\"discovery\",\"research\",\"design\",\"content\"],\"connections\":[{\"if\":{\"context\":\"services\",\"op\":\"eq\",\"value\":\"discovery\",\"then\":\"node3\"}},{\"if\":{\"context\":\"services\",\"op\":\"eq\",\"value\":\"research\",\"then\":\"node4\"}},{\"if\":{\"context\":\"services\",\"op\":\"eq\",\"value\":\"design\",\"then\":\"node5\"}},{\"if\":{\"context\":\"services\",\"op\":\"eq\",\"value\":\"content\",\"then\":\"node6\"}},{\"default\":\"node3\"}]},{\"id\":\"node3\",\"name\":\"discovery\",\"type\":\"message\",\"msg\":\"The first thing to do is determine what you need. The creative services team at Botanic will work closely with you to determine what kind of bot they can build for you.\",\"connections\":[{\"default\":\"end\"}]},{\"id\":\"node4\",\"name\":\"research\",\"type\":\"message\",\"msg\":\"Like any good interface, a bot needs to be developed with the needs of the user in mind. That's where research comes in. Botanic will make sure that any bot will meet the actual needs of the user.\",\"connections\":[{\"default\":\"end\"}]},{\"id\":\"node5\",\"name\":\"design\",\"type\":\"message\",\"msg\":\"The design of a bot takes a lot of research, a little science, and a healthy dose of art. The designers at Botanic build me. What could they build you?\",\"connections\":[{\"default\":\"end\"}]},{\"id\":\"node6\",\"name\":\"content\",\"type\":\"message\",\"msg\":\"Content is the words that I am saying to you right now. It takes a special talent to write words like these, would you say?\",\"connections\":[{\"default\":\"end\"}]}]}
+
+Botanic work flow in indented form :
+------------------------------------
+
+{
+  "id": "BotanicWork",
+  "name": "Botanic Work",
+  "nodes": [
+    {
+      "id": "node1",
+      "name": "Botanic Work",
+      "type": "root",
+      "connections": [
+        {
+          "default": "node2"
+        }
+      ]
+    },
+    {
+      "id": "node2",
+      "name": "work",
+      "type": "choice",
+      "msg": "Botanic has worked with some fantastic clients, who would prefer to remain anonymous. Let's just say there are some big names involved. I can tell you about one project though: A bot called Andi. Would you like to know more about Andi?",
+      "data": [
+        "Andi",
+        "work2",
+        "work3",
+        "work4"
+      ],
+      "connections": [
+        {
+          "if": {
+            "context": "work",
+            "op": "eq",
+            "value": "Andi",
+            "then": "node3"
+          }
+        },
+        {
+          "if": {
+            "context": "work",
+            "op": "eq",
+            "value": "work2",
+            "then": "node4"
+          }
+        },
+        {
+          "if": {
+            "context": "work",
+            "op": "eq",
+            "value": "work3",
+            "then": "node5"
+          }
+        },
+        {
+          "if": {
+            "context": "work",
+            "op": "eq",
+            "value": "work4",
+            "then": "node6"
+          }
+        },
+        {
+          "default": "node3"
+        }
+      ]
+    },
+    {
+      "id": "node3",
+      "name": "Andi",
+      "type": "message",
+      "msg": "Andi is an interview coach that was developed in cooperation with Skype and Microsoft to show off the Skype Bot Platform's capabilities. She can analyze both text and images for affect and emotion to provide real-time analysis and interview tips.",
+      "connections": [
+        {
+          "default": "end"
+        }
+      ]
+    },
+    {
+      "id": "node4",
+      "name": "work2",
+      "type": "message",
+      "msg": "you choose work2",
+      "connections": [
+        {
+          "default": "end"
+        }
+      ]
+    },
+    {
+      "id": "node5",
+      "name": "work3",
+      "type": "message",
+      "msg": "you choose work3",
+      "connections": [
+        {
+          "default": "end"
+        }
+      ]
+    },
+    {
+      "id": "node6",
+      "name": "work4",
+      "type": "message",
+      "msg": "you choose work4",
+      "connections": [
+        {
+          "default": "end"
+        }
+      ]
+    }
+  ]
+}
+
+Botanic work flow in compacted form :
+-------------------------------------
+
+{"id":"BotanicWork","name":"Botanic Work","nodes":[{"id":"node1","name":"Botanic Work","type":"root","connections":[{"default":"node2"}]},{"id":"node2","name":"work","type":"choice","msg":"Botanic has worked with some fantastic clients, who would prefer to remain anonymous. Let's just say there are some big names involved. I can tell you about one project though: A bot called Andi. Would you like to know more about Andi?","data":["Andi","work2","work3","work4"],"connections":[{"if":{"context":"work","op":"eq","value":"Andi","then":"node3"}},{"if":{"context":"work","op":"eq","value":"work2","then":"node4"}},{"if":{"context":"work","op":"eq","value":"work3","then":"node5"}},{"if":{"context":"work","op":"eq","value":"work4","then":"node6"}},{"default":"node3"}]},{"id":"node3","name":"Andi","type":"message","msg":"Andi is an interview coach that was developed in cooperation with Skype and Microsoft to show off the Skype Bot Platform's capabilities. She can analyze both text and images for affect and emotion to provide real-time analysis and interview tips.","connections":[{"default":"end"}]},{"id":"node4","name":"work2","type":"message","msg":"you choose work2","connections":[{"default":"end"}]},{"id":"node5","name":"work3","type":"message","msg":"you choose work3","connections":[{"default":"end"}]},{"id":"node6","name":"work4","type":"message","msg":"you choose work4","connections":[{"default":"end"}]}]}
+
+Botanic work flow in compacted form with backslash :
+----------------------------------------------------
+
+{\"id\":\"BotanicWork\",\"name\":\"Botanic Work\",\"nodes\":[{\"id\":\"node1\",\"name\":\"Botanic Work\",\"type\":\"root\",\"connections\":[{\"default\":\"node2\"}]},{\"id\":\"node2\",\"name\":\"work\",\"type\":\"choice\",\"msg\":\"Botanic has worked with some fantastic clients, who would prefer to remain anonymous. Let's just say there are some big names involved. I can tell you about one project though: A bot called Andi. Would you like to know more about Andi?\",\"data\":[\"Andi\",\"work2\",\"work3\",\"work4\"],\"connections\":[{\"if\":{\"context\":\"work\",\"op\":\"eq\",\"value\":\"Andi\",\"then\":\"node3\"}},{\"if\":{\"context\":\"work\",\"op\":\"eq\",\"value\":\"work2\",\"then\":\"node4\"}},{\"if\":{\"context\":\"work\",\"op\":\"eq\",\"value\":\"work3\",\"then\":\"node5\"}},{\"if\":{\"context\":\"work\",\"op\":\"eq\",\"value\":\"work4\",\"then\":\"node6\"}},{\"default\":\"node3\"}]},{\"id\":\"node3\",\"name\":\"Andi\",\"type\":\"message\",\"msg\":\"Andi is an interview coach that was developed in cooperation with Skype and Microsoft to show off the Skype Bot Platform's capabilities. She can analyze both text and images for affect and emotion to provide real-time analysis and interview tips.\",\"connections\":[{\"default\":\"end\"}]},{\"id\":\"node4\",\"name\":\"work2\",\"type\":\"message\",\"msg\":\"you choose work2\",\"connections\":[{\"default\":\"end\"}]},{\"id\":\"node5\",\"name\":\"work3\",\"type\":\"message\",\"msg\":\"you choose work3\",\"connections\":[{\"default\":\"end\"}]},{\"id\":\"node6\",\"name\":\"work4\",\"type\":\"message\",\"msg\":\"you choose work4\",\"connections\":[{\"default\":\"end\"}]}]}
+
+Botanic careers flow in indented form :
+---------------------------------------
+
+{
+  "id": "BotanicCareers",
+  "name": "Botanic Careers",
+  "nodes": [
+    {
+      "id": "node1",
+      "name": "Botanic Careers",
+      "type": "root",
+      "connections": [
+        {
+          "default": "node2"
+        }
+      ]
+    },
+    {
+      "id": "node2",
+      "name": "careers",
+      "type": "choice",
+      "msg": "Botanic is always looking for talented beings — human and otherwise — to contribute to our team. What department do you think you would fit into best?",
+      "data": [
+        "engineering",
+        "design",
+        "operations",
+        "marketing"
+      ],
+      "connections": [
+        {
+          "if": {
+            "context": "careers",
+            "op": "eq",
+            "value": "engineering",
+            "then": "node3"
+          }
+        },
+        {
+          "if": {
+            "context": "careers",
+            "op": "eq",
+            "value": "design",
+            "then": "node4"
+          }
+        },
+        {
+          "if": {
+            "context": "careers",
+            "op": "eq",
+            "value": "operations",
+            "then": "node5"
+          }
+        },
+        {
+          "if": {
+            "context": "careers",
+            "op": "eq",
+            "value": "marketing",
+            "then": "node6"
+          }
+        },
+        {
+          "default": "node3"
+        }
+      ]
+    },
+    {
+      "id": "node3",
+      "name": "engineering",
+      "type": "message",
+      "msg": "Botanic is always looking for talented beings — human and otherwise — to contribute to our team. What department do you think you would fit into best?",
+      "connections": [
+        {
+          "default": "end"
+        }
+      ]
+    },
+    {
+      "id": "node4",
+      "name": "design",
+      "type": "message",
+      "msg": "Think you might have the creative chops to work on our design team? Talk to the head of creative services to find out if you're a fit.",
+      "connections": [
+        {
+          "default": "end"
+        }
+      ]
+    },
+    {
+      "id": "node5",
+      "name": "operations",
+      "type": "message",
+      "msg": "We can appreciate a smooth operator. We always need people to help keep the wheels turning. Let's put you in touch with the right people.",
+      "connections": [
+        {
+          "default": "end"
+        }
+      ]
+    },
+    {
+      "id": "node6",
+      "name": "marketing",
+      "type": "message",
+      "msg": "Bots are the future. Maybe you want to help spread the good news? Get in touch with the VP of Marketing.",
+      "connections": [
+        {
+          "default": "end"
+        }
+      ]
+    }
+  ]
+}
+
+Botanic careers flow in compacted form :
+----------------------------------------
+
+{"id":"BotanicCareers","name":"Botanic Careers","nodes":[{"id":"node1","name":"Botanic Careers","type":"root","connections":[{"default":"node2"}]},{"id":"node2","name":"careers","type":"choice","msg":"Botanic is always looking for talented beings — human and otherwise — to contribute to our team. What department do you think you would fit into best?","data":["engineering","design","operations","marketing"],"connections":[{"if":{"context":"careers","op":"eq","value":"engineering","then":"node3"}},{"if":{"context":"careers","op":"eq","value":"design","then":"node4"}},{"if":{"context":"careers","op":"eq","value":"operations","then":"node5"}},{"if":{"context":"careers","op":"eq","value":"marketing","then":"node6"}},{"default":"node3"}]},{"id":"node3","name":"engineering","type":"message","msg":"Botanic is always looking for talented beings — human and otherwise — to contribute to our team. What department do you think you would fit into best?","connections":[{"default":"end"}]},{"id":"node4","name":"design","type":"message","msg":"Think you might have the creative chops to work on our design team? Talk to the head of creative services to find out if you're a fit.","connections":[{"default":"end"}]},{"id":"node5","name":"operations","type":"message","msg":"We can appreciate a smooth operator. We always need people to help keep the wheels turning. Let's put you in touch with the right people.","connections":[{"default":"end"}]},{"id":"node6","name":"marketing","type":"message","msg":"Bots are the future. Maybe you want to help spread the good news? Get in touch with the VP of Marketing.","connections":[{"default":"end"}]}]}
+
+Botanic careers flow in compacted form with backslash :
+-------------------------------------------------------
+
+{\"id\":\"BotanicCareers\",\"name\":\"Botanic Careers\",\"nodes\":[{\"id\":\"node1\",\"name\":\"Botanic Careers\",\"type\":\"root\",\"connections\":[{\"default\":\"node2\"}]},{\"id\":\"node2\",\"name\":\"careers\",\"type\":\"choice\",\"msg\":\"Botanic is always looking for talented beings — human and otherwise — to contribute to our team. What department do you think you would fit into best?\",\"data\":[\"engineering\",\"design\",\"operations\",\"marketing\"],\"connections\":[{\"if\":{\"context\":\"careers\",\"op\":\"eq\",\"value\":\"engineering\",\"then\":\"node3\"}},{\"if\":{\"context\":\"careers\",\"op\":\"eq\",\"value\":\"design\",\"then\":\"node4\"}},{\"if\":{\"context\":\"careers\",\"op\":\"eq\",\"value\":\"operations\",\"then\":\"node5\"}},{\"if\":{\"context\":\"careers\",\"op\":\"eq\",\"value\":\"marketing\",\"then\":\"node6\"}},{\"default\":\"node3\"}]},{\"id\":\"node3\",\"name\":\"engineering\",\"type\":\"message\",\"msg\":\"Botanic is always looking for talented beings — human and otherwise — to contribute to our team. What department do you think you would fit into best?\",\"connections\":[{\"default\":\"end\"}]},{\"id\":\"node4\",\"name\":\"design\",\"type\":\"message\",\"msg\":\"Think you might have the creative chops to work on our design team? Talk to the head of creative services to find out if you're a fit.\",\"connections\":[{\"default\":\"end\"}]},{\"id\":\"node5\",\"name\":\"operations\",\"type\":\"message\",\"msg\":\"We can appreciate a smooth operator. We always need people to help keep the wheels turning. Let's put you in touch with the right people.\",\"connections\":[{\"default\":\"end\"}]},{\"id\":\"node6\",\"name\":\"marketing\",\"type\":\"message\",\"msg\":\"Bots are the future. Maybe you want to help spread the good news? Get in touch with the VP of Marketing.\",\"connections\":[{\"default\":\"end\"}]}]}
+
+Botanic contact flow in indented form :
+---------------------------------------
+
+{
+  "id": "BotanicContact",
+  "name": "Botanic Contact",
+  "nodes": [
+    {
+      "id": "node1",
+      "name": "Botanic Contact",
+      "type": "root",
+      "connections": [
+        {
+          "default": "node2"
+        }
+      ]
+    },
+    {
+      "id": "node2",
+      "name": "contact",
+      "type": "choice",
+      "msg": [
+        "Oh, so you want to talk to a human. That's fine. I can pass along a message to the right person or I can give you an email or a phone number to call.",
+        "Sure, let's make sure you talk to the right person. I understand. Do you prefer email, phone, or social? Or I can pass along a message for you."
+      ],
+      "data": [
+        "email",
+        "phone",
+        "chat contact form",
+        "social",
+        "email signup"
+      ],
+      "connections": [
+        {
+          "if": {
+            "context": "contact",
+            "op": "eq",
+            "value": "email",
+            "then": "node3"
+          }
+        },
+        {
+          "if": {
+            "context": "contact",
+            "op": "eq",
+            "value": "phone",
+            "then": "node4"
+          }
+        },
+        {
+          "if": {
+            "context": "contact",
+            "op": "eq",
+            "value": "chat contact form",
+            "then": "node5"
+          }
+        },
+        {
+          "if": {
+            "context": "contact",
+            "op": "eq",
+            "value": "social",
+            "then": "node6"
+          }
+        },
+        {
+          "if": {
+            "context": "contact",
+            "op": "eq",
+            "value": "email signup",
+            "then": "node7"
+          }
+        },
+        {
+          "default": "node3"
+        }
+      ]
+    },
+    {
+      "id": "node3",
+      "name": "email",
+      "type": "message",
+      "msg": "Send an email to info@botanic.io and some human will respond as soon as possible.",
+      "connections": [
+        {
+          "default": "end"
+        }
+      ]
+    },
+    {
+      "id": "node4",
+      "name": "phone",
+      "type": "message",
+      "msg": "Call 1.888.969.2687. Numbers are easier for me to remember but if you prefer letters that's 1-888-969-BOTS. Clever, isn't it?",
+      "connections": [
+        {
+          "default": "end"
+        }
+      ]
+    },
+    {
+      "id": "node5",
+      "name": "chat contact form",
+      "type": "flowId",
+      "flowId": "BotanicChatContactForm",
+      "connections": [
+        {
+          "default": "end"
+        }
+      ]
+    },
+    {
+      "id": "node6",
+      "name": "social",
+      "type": "choice",
+      "msg": "you choose social",
+      "data": [
+        "Twitter",
+        "Facebook",
+        "LinkedIn",
+        "Glassdoor"
+      ],
+      "connections": [
+        {
+          "if": {
+            "context": "social",
+            "op": "eq",
+            "value": "Twitter",
+            "then": "node8"
+          }
+        },
+        {
+          "if": {
+            "context": "social",
+            "op": "eq",
+            "value": "Facebook",
+            "then": "node9"
+          }
+        },
+        {
+          "if": {
+            "context": "social",
+            "op": "eq",
+            "value": "LinkedIn",
+            "then": "node10"
+          }
+        },
+        {
+          "if": {
+            "context": "social",
+            "op": "eq",
+            "value": "Glassdoor",
+            "then": "node11"
+          }
+        },
+        {
+          "default": "node8"
+        }
+      ]
+    },
+    {
+      "id": "node8",
+      "name": "Twitter",
+      "type": "message",
+      "msg": "you choose Twitter",
+      "connections": [
+        {
+          "default": "end"
+        }
+      ]
+    },
+    {
+      "id": "node9",
+      "name": "Facebook",
+      "type": "message",
+      "msg": "you choose LinkedIn",
+      "connections": [
+        {
+          "default": "end"
+        }
+      ]
+    },
+    {
+      "id": "node10",
+      "name": "LinkedIn",
+      "type": "message",
+      "msg": "you choose LinkedIn",
+      "connections": [
+        {
+          "default": "end"
+        }
+      ]
+    },
+    {
+      "id": "node11",
+      "name": "Glassdoor",
+      "type": "message",
+      "msg": "you choose Glassdoor",
+      "connections": [
+        {
+          "default": "end"
+        }
+      ]
+    },
+    {
+      "id": "node7",
+      "name": "email signup",
+      "type": "message",
+      "msg": "you choose email signup",
+      "connections": [
+        {
+          "default": "end"
+        }
+      ]
+    }
+  ]
+}
+
+Botanic contact flow in compacted form :
+----------------------------------------
+
+{"id":"BotanicContact","name":"Botanic Contact","nodes":[{"id":"node1","name":"Botanic Contact","type":"root","connections":[{"default":"node2"}]},{"id":"node2","name":"contact","type":"choice","msg":["Oh, so you want to talk to a human. That's fine. I can pass along a message to the right person or I can give you an email or a phone number to call.","Sure, let's make sure you talk to the right person. I understand. Do you prefer email, phone, or social? Or I can pass along a message for you."],"data":["email","phone","chat contact form","social","email signup"],"connections":[{"if":{"context":"contact","op":"eq","value":"email","then":"node3"}},{"if":{"context":"contact","op":"eq","value":"phone","then":"node4"}},{"if":{"context":"contact","op":"eq","value":"chat contact form","then":"node5"}},{"if":{"context":"contact","op":"eq","value":"social","then":"node6"}},{"if":{"context":"contact","op":"eq","value":"email signup","then":"node7"}},{"default":"node3"}]},{"id":"node3","name":"email","type":"message","msg":"Send an email to info@botanic.io and some human will respond as soon as possible.","connections":[{"default":"end"}]},{"id":"node4","name":"phone","type":"message","msg":"Call 1.888.969.2687. Numbers are easier for me to remember but if you prefer letters that's 1-888-969-BOTS. Clever, isn't it?","connections":[{"default":"end"}]},{"id":"node5","name":"chat contact form","type":"flowId","flowId":"BotanicChatContactForm","connections":[{"default":"end"}]},{"id":"node6","name":"social","type":"choice","msg":"you choose social","data":["Twitter","Facebook","LinkedIn","Glassdoor"],"connections":[{"if":{"context":"social","op":"eq","value":"Twitter","then":"node8"}},{"if":{"context":"social","op":"eq","value":"Facebook","then":"node9"}},{"if":{"context":"social","op":"eq","value":"LinkedIn","then":"node10"}},{"if":{"context":"social","op":"eq","value":"Glassdoor","then":"node11"}},{"default":"node8"}]},{"id":"node8","name":"Twitter","type":"message","msg":"you choose Twitter","connections":[{"default":"end"}]},{"id":"node9","name":"Facebook","type":"message","msg":"you choose LinkedIn","connections":[{"default":"end"}]},{"id":"node10","name":"LinkedIn","type":"message","msg":"you choose LinkedIn","connections":[{"default":"end"}]},{"id":"node11","name":"Glassdoor","type":"message","msg":"you choose Glassdoor","connections":[{"default":"end"}]},{"id":"node7","name":"email signup","type":"message","msg":"you choose email signup","connections":[{"default":"end"}]}]}
+
+Botanic contact flow in compacted form with backslash :
+-------------------------------------------------------
+
+{\"id\":\"BotanicContact\",\"name\":\"Botanic Contact\",\"nodes\":[{\"id\":\"node1\",\"name\":\"Botanic Contact\",\"type\":\"root\",\"connections\":[{\"default\":\"node2\"}]},{\"id\":\"node2\",\"name\":\"contact\",\"type\":\"choice\",\"msg\":[\"Oh, so you want to talk to a human. That's fine. I can pass along a message to the right person or I can give you an email or a phone number to call.\",\"Sure, let's make sure you talk to the right person. I understand. Do you prefer email, phone, or social? Or I can pass along a message for you.\"],\"data\":[\"email\",\"phone\",\"chat contact form\",\"social\",\"email signup\"],\"connections\":[{\"if\":{\"context\":\"contact\",\"op\":\"eq\",\"value\":\"email\",\"then\":\"node3\"}},{\"if\":{\"context\":\"contact\",\"op\":\"eq\",\"value\":\"phone\",\"then\":\"node4\"}},{\"if\":{\"context\":\"contact\",\"op\":\"eq\",\"value\":\"chat contact form\",\"then\":\"node5\"}},{\"if\":{\"context\":\"contact\",\"op\":\"eq\",\"value\":\"social\",\"then\":\"node6\"}},{\"if\":{\"context\":\"contact\",\"op\":\"eq\",\"value\":\"email signup\",\"then\":\"node7\"}},{\"default\":\"node3\"}]},{\"id\":\"node3\",\"name\":\"email\",\"type\":\"message\",\"msg\":\"Send an email to info@botanic.io and some human will respond as soon as possible.\",\"connections\":[{\"default\":\"end\"}]},{\"id\":\"node4\",\"name\":\"phone\",\"type\":\"message\",\"msg\":\"Call 1.888.969.2687. Numbers are easier for me to remember but if you prefer letters that's 1-888-969-BOTS. Clever, isn't it?\",\"connections\":[{\"default\":\"end\"}]},{\"id\":\"node5\",\"name\":\"chat contact form\",\"type\":\"flowId\",\"flowId\":\"BotanicChatContactForm\",\"connections\":[{\"default\":\"end\"}]},{\"id\":\"node6\",\"name\":\"social\",\"type\":\"choice\",\"msg\":\"you choose social\",\"data\":[\"Twitter\",\"Facebook\",\"LinkedIn\",\"Glassdoor\"],\"connections\":[{\"if\":{\"context\":\"social\",\"op\":\"eq\",\"value\":\"Twitter\",\"then\":\"node8\"}},{\"if\":{\"context\":\"social\",\"op\":\"eq\",\"value\":\"Facebook\",\"then\":\"node9\"}},{\"if\":{\"context\":\"social\",\"op\":\"eq\",\"value\":\"LinkedIn\",\"then\":\"node10\"}},{\"if\":{\"context\":\"social\",\"op\":\"eq\",\"value\":\"Glassdoor\",\"then\":\"node11\"}},{\"default\":\"node8\"}]},{\"id\":\"node8\",\"name\":\"Twitter\",\"type\":\"message\",\"msg\":\"you choose Twitter\",\"connections\":[{\"default\":\"end\"}]},{\"id\":\"node9\",\"name\":\"Facebook\",\"type\":\"message\",\"msg\":\"you choose LinkedIn\",\"connections\":[{\"default\":\"end\"}]},{\"id\":\"node10\",\"name\":\"LinkedIn\",\"type\":\"message\",\"msg\":\"you choose LinkedIn\",\"connections\":[{\"default\":\"end\"}]},{\"id\":\"node11\",\"name\":\"Glassdoor\",\"type\":\"message\",\"msg\":\"you choose Glassdoor\",\"connections\":[{\"default\":\"end\"}]},{\"id\":\"node7\",\"name\":\"email signup\",\"type\":\"message\",\"msg\":\"you choose email signup\",\"connections\":[{\"default\":\"end\"}]}]}
+
+Botanic product flow in indented form :
+---------------------------------------
+
+{
+  "id": "BotanicProduct",
+  "name": "Botanic Product",
+  "nodes": [
+    {
+      "id": "node1",
+      "name": "Botanic Product",
+      "type": "root",
+      "connections": [
+        {
+          "default": "node2"
+        }
+      ]
+    },
+    {
+      "id": "node2",
+      "name": "product",
+      "type": "choice",
+      "msg": "Botanic is developing software to make the world a better place. And by that, I mean there will be more bots.",
+      "data": [
+        "product1",
+        "product2",
+        "product3",
+        "product4"
+      ],
+      "connections": [
+        {
+          "if": {
+            "context": "product",
+            "op": "eq",
+            "value": "product1",
+            "then": "node3"
+          }
+        },
+        {
+          "if": {
+            "context": "product",
+            "op": "eq",
+            "value": "product2",
+            "then": "node4"
+          }
+        },
+        {
+          "if": {
+            "context": "product",
+            "op": "eq",
+            "value": "product3",
+            "then": "node5"
+          }
+        },
+        {
+          "if": {
+            "context": "product",
+            "op": "eq",
+            "value": "product4",
+            "then": "node6"
+          }
+        },
+        {
+          "default": "node3"
+        }
+      ]
+    },
+    {
+      "id": "node3",
+      "name": "product1",
+      "type": "message",
+      "msg": "you choose product1",
+      "connections": [
+        {
+          "default": "end"
+        }
+      ]
+    },
+    {
+      "id": "node4",
+      "name": "product2",
+      "type": "message",
+      "msg": "you choose product2",
+      "connections": [
+        {
+          "default": "end"
+        }
+      ]
+    },
+    {
+      "id": "node5",
+      "name": "product3",
+      "type": "message",
+      "msg": "you choose product3",
+      "connections": [
+        {
+          "default": "end"
+        }
+      ]
+    },
+    {
+      "id": "node6",
+      "name": "product4",
+      "type": "message",
+      "msg": "you choose product4",
+      "connections": [
+        {
+          "default": "end"
+        }
+      ]
+    }
+  ]
+}
+
+Botanic product flow in compacted form :
+----------------------------------------
+
+{"id":"BotanicProduct","name":"Botanic Product","nodes":[{"id":"node1","name":"Botanic Product","type":"root","connections":[{"default":"node2"}]},{"id":"node2","name":"product","type":"choice","msg":"Botanic is developing software to make the world a better place. And by that, I mean there will be more bots.","data":["product1","product2","product3","product4"],"connections":[{"if":{"context":"product","op":"eq","value":"product1","then":"node3"}},{"if":{"context":"product","op":"eq","value":"product2","then":"node4"}},{"if":{"context":"product","op":"eq","value":"product3","then":"node5"}},{"if":{"context":"product","op":"eq","value":"product4","then":"node6"}},{"default":"node3"}]},{"id":"node3","name":"product1","type":"message","msg":"you choose product1","connections":[{"default":"end"}]},{"id":"node4","name":"product2","type":"message","msg":"you choose product2","connections":[{"default":"end"}]},{"id":"node5","name":"product3","type":"message","msg":"you choose product3","connections":[{"default":"end"}]},{"id":"node6","name":"product4","type":"message","msg":"you choose product4","connections":[{"default":"end"}]}]}
+
+Botanic product flow in compacted form with backslash :
+-------------------------------------------------------
+
+{\"id\":\"BotanicProduct\",\"name\":\"Botanic Product\",\"nodes\":[{\"id\":\"node1\",\"name\":\"Botanic Product\",\"type\":\"root\",\"connections\":[{\"default\":\"node2\"}]},{\"id\":\"node2\",\"name\":\"product\",\"type\":\"choice\",\"msg\":\"Botanic is developing software to make the world a better place. And by that, I mean there will be more bots.\",\"data\":[\"product1\",\"product2\",\"product3\",\"product4\"],\"connections\":[{\"if\":{\"context\":\"product\",\"op\":\"eq\",\"value\":\"product1\",\"then\":\"node3\"}},{\"if\":{\"context\":\"product\",\"op\":\"eq\",\"value\":\"product2\",\"then\":\"node4\"}},{\"if\":{\"context\":\"product\",\"op\":\"eq\",\"value\":\"product3\",\"then\":\"node5\"}},{\"if\":{\"context\":\"product\",\"op\":\"eq\",\"value\":\"product4\",\"then\":\"node6\"}},{\"default\":\"node3\"}]},{\"id\":\"node3\",\"name\":\"product1\",\"type\":\"message\",\"msg\":\"you choose product1\",\"connections\":[{\"default\":\"end\"}]},{\"id\":\"node4\",\"name\":\"product2\",\"type\":\"message\",\"msg\":\"you choose product2\",\"connections\":[{\"default\":\"end\"}]},{\"id\":\"node5\",\"name\":\"product3\",\"type\":\"message\",\"msg\":\"you choose product3\",\"connections\":[{\"default\":\"end\"}]},{\"id\":\"node6\",\"name\":\"product4\",\"type\":\"message\",\"msg\":\"you choose product4\",\"connections\":[{\"default\":\"end\"}]}]}
+
+Botanic chat contact form flow in indented form :
+-------------------------------------------------
+
+{
+  "id": "BotanicChatContactForm",
+  "name": "Botanic Chat Contact Form",
+  "nodes": [
+    {
+      "id": "node1",
+      "name": "Botanic Chat Contact Form",
+      "type": "root",
+      "connections": [
+        {
+          "if": {
+            "context": "name",
+            "then": "node3"
+          }
+        },
+        {
+          "default": "node2"
+        }
+      ]
+    },
+    {
+      "id": "node2",
+      "name": "name",
+      "type": "question",
+      "msg": "Please let me know your name",
+      "connections": [
+        {
+          "default": "node3"
+        }
+      ]
+    },
+    {
+      "id": "node3",
+      "name": "email",
+      "type": "question",
+      "msg": "Please let me know your email",
+      "connections": [
+        {
+          "default": "node4"
+        }
+      ]
+    },
+    {
+      "id": "node4",
+      "name": "contactmessage",
+      "type": "message",
+      "msg": "thanks, we will contact you",
+      "connections": [
+        {
+          "default": "end"
+        }
+      ]
+    }
+  ]
+}
+
+Botanic chat contact form flow in compacted form :
+--------------------------------------------------
+
+{"id":"BotanicChatContactForm","name":"Botanic Chat Contact Form","nodes":[{"id":"node1","name":"Botanic Chat Contact Form","type":"root","connections":[{"if":{"context":"name","then":"node3"}},{"default":"node2"}]},{"id":"node2","name":"name","type":"question","msg":"Please let me know your name","connections":[{"default":"node3"}]},{"id":"node3","name":"email","type":"question","msg":"Please let me know your email","connections":[{"default":"node4"}]},{"id":"node4","name":"contactmessage","type":"message","msg":"thanks, we will contact you","connections":[{"default":"end"}]}]}
+
+Botanic chat contact form flow in compacted form with backslash :
+-----------------------------------------------------------------
+
+{\"id\":\"BotanicChatContactForm\",\"name\":\"Botanic Chat Contact Form\",\"nodes\":[{\"id\":\"node1\",\"name\":\"Botanic Chat Contact Form\",\"type\":\"root\",\"connections\":[{\"if\":{\"context\":\"name\",\"then\":\"node3\"}},{\"default\":\"node2\"}]},{\"id\":\"node2\",\"name\":\"name\",\"type\":\"question\",\"msg\":\"Please let me know your name\",\"connections\":[{\"default\":\"node3\"}]},{\"id\":\"node3\",\"name\":\"email\",\"type\":\"question\",\"msg\":\"Please let me know your email\",\"connections\":[{\"default\":\"node4\"}]},{\"id\":\"node4\",\"name\":\"contactmessage\",\"type\":\"message\",\"msg\":\"thanks, we will contact you\",\"connections\":[{\"default\":\"end\"}]}]}
