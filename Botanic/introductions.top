@@ -1,5 +1,5 @@
 
-topic: ~INTRODUCTIONS (~emogoodbye ~emohello ~emohowzit name here )
+topic: ~INTRODUCTIONS system repeat (~emogoodbye ~emohello ~emohowzit name here )
 
 #!x matches every time on startup of a new conversation
 t: ( %input<%userfirstline ) 
