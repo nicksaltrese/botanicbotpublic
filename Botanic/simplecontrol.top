@@ -189,5 +189,5 @@ u: ( < cheat show emotion variables > ) $showEmotionVariables = true
 u: ( < cheat hide emotion variables > ) $showEmotionVariables = null
 
 u: ( cheat bot version )
-	$_msg = ^" bot version is : $botVersion"
+	$_msg = ^" bot version is : 0.$botVersion"
 	$_msg
