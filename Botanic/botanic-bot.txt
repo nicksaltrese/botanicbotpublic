@@ -32,27 +32,7 @@ Botanic bot flow in indented form :
             "then": "node4"
           }
         },
-        {
-          "default": "node3"
-        }
-      ]
-    },
-    {
-      "id": "node3",
-      "name": "name",
-      "type": "question",
-      "msg": [
-        "What can I call you?",
-        "First, how should I refer to you?",
-        "How shall I store you in my memory?",
-        "You have my name, so may I have yours?"
-      ],
-      "connections": [
-        {
-          "default": "node4"
-        }
-      ]
-    },
+  
     {
       "id": "node4",
       "name": "menu",
