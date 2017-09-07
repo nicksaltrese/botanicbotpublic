@@ -27,6 +27,8 @@ botanic
 
 topic: ~control system ()
 
+u: () if($botVersion < ##BOT_VERSION) { $botVersion = ##BOT_VERSION }
+
 # set all variables received in OOB
 u: () ^respond(~process_oob_input)
 
