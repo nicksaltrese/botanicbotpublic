@@ -44,6 +44,10 @@ u: (!$userInfo)
 	if(!$userInfo.message) { $userInfo.message = ^"" }
 	if(!$userInfo.link) { $userInfo.link = ^"" }
 
+u: ($userInfo)
+	$userInfo.shortMessage = NULL
+	$userInfo.sendEmail = NULL
+
 # set all variables received in OOB
 u: () ^respond(~process_oob_input)
 
@@ -160,7 +164,7 @@ topic: ~XPOSTPROCESS system () # gambits only - not allowed to write to  output 
 
 t: ($userInfo)
 	# $$oobjson = ^jsonwrite($userInfo)
-	$$oobjson = ^"\[{\"version\": \"$userInfo.version\", \"name\": \"$userInfo.name\", \"email\": \"$userInfo.email\", \"message\": \"$userInfo.message\", \"link\": \"$userInfo.link\"}\]"
+	$$oobjson = ^"\[{\"version\": \"$userInfo.version\", \"name\": \"$userInfo.name\", \"email\": \"$userInfo.email\", \"shortMessage\": \"$userInfo.shortMessage\", \"sendEmail\": \"$userInfo.sendEmail\", \"message\": \"$userInfo.message\", \"link\": \"$userInfo.link\"}\]"
 
 t: ($$oobjson)
 	# ^postprintbefore( \[ $$oobjson \])

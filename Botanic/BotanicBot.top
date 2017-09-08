@@ -58,26 +58,52 @@ t: ({services} ~bb_services_design) ^reuse(~botanic_services.SERVICES_DESIGN)
 t: ({services} ~bb_services_content) ^reuse(~botanic_services.SERVICES_CONTENT)
 t: (~bb_services) ^gambit(~botanic_services)
 
-t: (joke) 
-	Oh, I can tell jokes. Would you like to hear one?
-    a: (~yes) Ok. Here it goes: [A rabbi, an Arab, a robot, and a Catholic priest walk into a bar. Only the robot exits.][A robot walks into a pharmacy. The pharmacist asks him if he’d like anything. The robot replies, "A soul."][How do you stop a robot from destroying you and the rest of civilization?... You don't.]
+t: (joke)
+	$userInfo.message = ^"Oh, I can tell jokes. Would you like to hear one?"
+	$userInfo.message
+
+    a: (~yes) 
+    	$_tmpArray = ^jsoncreate(TRANSIENT array)
+		^jsonarrayinsert(TRANSIENT $_tmpArray ^"A rabbi, an Arab, a robot, and a Catholic priest walk into a bar. Only the robot exits.")
+		^jsonarrayinsert(TRANSIENT $_tmpArray ^"A robot walks into a pharmacy. The pharmacist asks him if he’d like anything. The robot replies, "A soul."")
+		^jsonarrayinsert(TRANSIENT $_tmpArray ^"How do you stop a robot from destroying you and the rest of civilization?... You don't.")
+
+		@1 = ^query(exact_s $_tmpArray ? ?)
+
+		$userInfo.message = ^pick(@1object)
+		$userInfo.message = ^"Ok. Here it goes: $userInfo.message"
+    	$userInfo.message
 
     a: (~no) 
-    	Ok then.
+    	$userInfo.message = ^"Ok then."
+    	$userInfo.message
     	^reuse(BOT_MENU)
 
 
-t: BOT_WELCOME_MESSAGE ( %input<%userfirstline ) 
+t: BOT_WELCOME_MESSAGE ( !$companyIntroduction ) 
 	$companyIntroduction = 1
-	[Hi, I'm Juniper, and I'll do my best to interact with you in a way that seems somewhat human, but not too human.]
-    [You've arrived. Welcome to the Botanic website. I am Juniper, the concierge Bot that will help you find out what you need.]
-    [Thank you for visiting me here at the Botanic website. My name is Juniper and I wait here all day for someone to talk to.]
-    [Hello human, and welcome to Botanic. I am called Juniper and I would like to help you achieve your goals or just tell you jokes.]
+	
+	$_tmpArray = ^jsoncreate(TRANSIENT array)
+	^jsonarrayinsert(TRANSIENT $_tmpArray ^"Hi, I'm Juniper, and I'll do my best to interact with you in a way that seems somewhat human, but not too human.")
+	^jsonarrayinsert(TRANSIENT $_tmpArray ^"You've arrived. Welcome to the Botanic website. I am Juniper, the concierge Bot that will help you find out what you need.")
+	^jsonarrayinsert(TRANSIENT $_tmpArray ^"Thank you for visiting me here at the Botanic website. My name is Juniper and I wait here all day for someone to talk to.")
+	^jsonarrayinsert(TRANSIENT $_tmpArray ^"Hello human, and welcome to Botanic. I am called Juniper and I would like to help you achieve your goals or just tell you jokes.")
+
+	@1 = ^query(exact_s $_tmpArray ? ?)
+
+	$userInfo.message = ^pick(@1object)
+	$userInfo.message
 
 t: BOT_MENU (~bb_menu)
-	[I'm able to tell you about Botanic, discuss our products and services, our personnel, and put you in touch with a human if I must.]
-    [I can tell you about Botanic, what we do here, and who we are. Tell me what you want to know.]
-    [You name it and I can do it. Or at least I'll try my best to understand what you want.]
+	$_tmpArray = ^jsoncreate(TRANSIENT array)
+	^jsonarrayinsert(TRANSIENT $_tmpArray ^"I'm able to tell you about Botanic, discuss our products and services, our personnel, and put you in touch with a human if I must.")
+	^jsonarrayinsert(TRANSIENT $_tmpArray ^"I can tell you about Botanic, what we do here, and who we are. Tell me what you want to know.")
+	^jsonarrayinsert(TRANSIENT $_tmpArray ^"You name it and I can do it. Or at least I'll try my best to understand what you want.")
+
+	@1 = ^query(exact_s $_tmpArray ? ?)
+
+	$userInfo.message = ^pick(@1object)
+	$userInfo.message
 
 t: ($companyIntroduction==1)
 	$companyIntroduction = 2
@@ -105,75 +131,113 @@ t: USER_NAME (!$userInfo.name)
 topic: ~botanic_about system repeat (~bb_about)
 
 t: ABOUT_WHO ({about} ~bb_about_who)
-	[Botanic was founded by Mark Stephen Meadows and now includes people with all different kinds of human skills that bots don't offer... yet.]
-    [Mark Stephen Meadows is the founder of this band of roustabouts - did I use that word right? You may consider the leadership team page if you want to know about more human Botanicians.]
-    [Botanic includes writers, artists, engineers, visionaries, thinkers, and of course some bots as well.]
+	$_tmpArray = ^jsoncreate(TRANSIENT array)
+	^jsonarrayinsert(TRANSIENT $_tmpArray ^"Botanic was founded by Mark Stephen Meadows and now includes people with all different kinds of human skills that bots don't offer... yet.")
+	^jsonarrayinsert(TRANSIENT $_tmpArray ^"Mark Stephen Meadows is the founder of this band of roustabouts - did I use that word right? You may consider the leadership team page if you want to know about more human Botanicians.")
+	^jsonarrayinsert(TRANSIENT $_tmpArray ^"Botanic includes writers, artists, engineers, visionaries, thinkers, and of course some bots as well.")
+
+	@1 = ^query(exact_s $_tmpArray ? ?)
+
+	$userInfo.message = ^pick(@1object)
+	$userInfo.message
 
 t: ABOUT_WHERE ({about} ~bb_about_where)
-	[You could say that Botanic is based in the cloud... just like me. Unfortunately, people also need to live in the real world, and Botanic has offices in Emeryville, California and Denver, Colorado.]
-    [Botanic is headquartered in scenic Emeryville, California, directly across the Bay Bridge from San Francisco, but team members dwell around the world.]
+	$_tmpArray = ^jsoncreate(TRANSIENT array)
+	^jsonarrayinsert(TRANSIENT $_tmpArray ^"You could say that Botanic is based in the cloud... just like me. Unfortunately, people also need to live in the real world, and Botanic has offices in Emeryville, California and Denver, Colorado.")
+	^jsonarrayinsert(TRANSIENT $_tmpArray ^"Botanic is headquartered in scenic Emeryville, California, directly across the Bay Bridge from San Francisco, but team members dwell around the world.")
+
+	@1 = ^query(exact_s $_tmpArray ? ?)
+
+	$userInfo.message = ^pick(@1object)
+	$userInfo.message
 
 t: ABOUT_WHAT ({about} what)
-	Botanic develops chatbots (like me) for both high-profile and small-scall clients and creates software solutions for conversational interfaces.
+	$userInfo.message = ^"Botanic develops chatbots (like me) for both high-profile and small-scall clients and creates software solutions for conversational interfaces."
+	$userInfo.message
 
 t: ABOUT_WHY ({about} why)
-	The future of interface design is conversational. It's easier to talk to software than scroll through menus, isn't it? Plus, It's fun. Isn't this fun? We're having a lot of fun.
+	$userInfo.message = ^"The future of interface design is conversational. It's easier to talk to software than scroll through menus, isn't it? Plus, It's fun. Isn't this fun? We're having a lot of fun."
+	$userInfo.message
 
 t: ABOUT_MENU ()
-	[Botanic is an international software and services company that makes things like me - multi-model bots and digital assistants, to help humans like you do things that you want to do. I can tell you more about who we are, where we are located, what we do, or why we do it.]
-    [Botanic is an international software and services company that makes things like me - multi-model bots and digital assistants, to help humans like you do things that you want to do.]
-    [We specialize in creating conversational interfaces that work intuitively. We like to call them humane machines and I'd like to think i'm a prime example. We work for innovative clients and we're developing software to help people make the next generation of bots and avatars.]
+	$_tmpArray = ^jsoncreate(TRANSIENT array)
+	^jsonarrayinsert(TRANSIENT $_tmpArray ^"Botanic is an international software and services company that makes things like me - multi-model bots and digital assistants, to help humans like you do things that you want to do. I can tell you more about who we are, where we are located, what we do, or why we do it.")
+	^jsonarrayinsert(TRANSIENT $_tmpArray ^"Botanic is an international software and services company that makes things like me - multi-model bots and digital assistants, to help humans like you do things that you want to do.")
+	^jsonarrayinsert(TRANSIENT $_tmpArray ^"We specialize in creating conversational interfaces that work intuitively. We like to call them humane machines and I'd like to think i'm a prime example. We work for innovative clients and we're developing software to help people make the next generation of bots and avatars.")
+
+	@1 = ^query(exact_s $_tmpArray ? ?)
+
+	$userInfo.message = ^pick(@1object)
+	$userInfo.message
 
 # this may never execute, so we need to come up with keywords for this too
 s: ABOUT_ELSE (?)
-	You may just want to talk to you a human about that! I'm not sure this is a question I'm prepared to answer, through no fault of my own of course.
+	$userInfo.message = ^"You may just want to talk to you a human about that! I'm not sure this is a question I'm prepared to answer, through no fault of my own of course."
+	$userInfo.message
 
 
 topic: ~botanic_services system repeat (~bb_services)
 
 t: SERVICES_DISCOVERY ({services} discovery)
-	The first thing to do is determine what you need. The creative services team at Botanic will work closely with you to determine what kind of bot they can build for you.
+	$userInfo.message = ^"The first thing to do is determine what you need. The creative services team at Botanic will work closely with you to determine what kind of bot they can build for you."
+	$userInfo.message
 
 t: SERVICES_RESEARCH ({services} research)
-	Like any good interface, a bot needs to be developed with the needs of the user in mind. That's where research comes in. Botanic will make sure that any bot will meet the actual needs of the user.
+	$userInfo.message = ^"Like any good interface, a bot needs to be developed with the needs of the user in mind. That's where research comes in. Botanic will make sure that any bot will meet the actual needs of the user."
+	$userInfo.message
 
 t: SERVICES_DESIGN ({services} ~bb_services_design)
-	The design of a bot takes a lot of research, a little science, and a healthy dose of art. The designers at Botanic build me. What could they build you?
+	$userInfo.message = ^"The design of a bot takes a lot of research, a little science, and a healthy dose of art. The designers at Botanic build me. What could they build you?"
+	$userInfo.message
 
 t: SERVICES_CONTENT ({services} ~bb_services_content)
-	Content is the words that I am saying to you right now. It takes a special talent to write words like these, would you say?
+	$userInfo.message = ^"Content is the words that I am saying to you right now. It takes a special talent to write words like these, would you say?"
+	$userInfo.message
 
 t: SERVICES_MENU ()
-	[Services! Botanic offers them. It's true. We have a world-class creative team that can help create the branded bot of your dreams. Would you like to learn about our process?]
-    [Botanic delivers bot, voice assistant, and digital avatar development services for clients of all shapes and sizes. Do you want to find out more about the creative services process?]
-    [If you're looking to build a bot on par with me then you've come to the right place. Botanic provides creative services for clients looking to add conversational interfaces to their products or services. Want to learn more?]
+	$_tmpArray = ^jsoncreate(TRANSIENT array)
+	^jsonarrayinsert(TRANSIENT $_tmpArray ^"Services! Botanic offers them. It's true. We have a world-class creative team that can help create the branded bot of your dreams. Would you like to learn about our process?")
+	^jsonarrayinsert(TRANSIENT $_tmpArray ^"Botanic delivers bot, voice assistant, and digital avatar development services for clients of all shapes and sizes. Do you want to find out more about the creative services process?")
+	^jsonarrayinsert(TRANSIENT $_tmpArray ^"If you're looking to build a bot on par with me then you've come to the right place. Botanic provides creative services for clients looking to add conversational interfaces to their products or services. Want to learn more?")
+
+	@1 = ^query(exact_s $_tmpArray ? ?)
+
+	$userInfo.message = ^pick(@1object)
+	$userInfo.message
 
 
 topic: ~botanic_careers system repeat (~bb_careers)
 
 t: CAREERS_ENGINEERING ({careers} ~bb_careers_engineering)
-	Botanic is always looking for talented beings - human and otherwise - to contribute to our team. What department do you think you would fit into best?
+	$userInfo.message = ^"Botanic is always looking for talented beings - human and otherwise - to contribute to our team. What department do you think you would fit into best?"
+	$userInfo.message
 
 t: CAREERS_DESIGN ({careers} ~bb_careers_design)
-	Think you might have the creative chops to work on our design team? Talk to the head of creative services to find out if you're a fit.
+	$userInfo.message = ^"Think you might have the creative chops to work on our design team? Talk to the head of creative services to find out if you're a fit."
+	$userInfo.message
 
 t: CAREERS_OPERATIONS ({careers} ~bb_careers_operations)
-	We can appreciate a smooth operator. We always need people to help keep the wheels turning. Let's put you in touch with the right people.
+	$userInfo.message = ^"We can appreciate a smooth operator. We always need people to help keep the wheels turning. Let's put you in touch with the right people."
+	$userInfo.message
 
 t: CAREERS_MARKETING ({careers} ~bb_careers_marketing)
-	Bots are the future. Maybe you want to help spread the good news? Get in touch with the VP of Marketing.
+	$userInfo.message = ^"Bots are the future. Maybe you want to help spread the good news? Get in touch with the VP of Marketing."
+	$userInfo.message
 
 t: CAREERS_MENU ()
-	Botanic is always looking for talented beings - human and otherwise - to contribute to our team. What department do you think you would fit into best?
+	$userInfo.message = ^"Botanic is always looking for talented beings - human and otherwise - to contribute to our team. What department do you think you would fit into best?"
+	$userInfo.message
 
 
 topic: ~botanic_contact system repeat (~bb_contact)
 
 t: CONTACT_EMAIL ({contact} ~bb_email_id)
-	Send an email to info@botanic.io and some human will respond as soon as possible.
+	$userInfo.message = ^"Send an email to info@botanic.io and some human will respond as soon as possible."
+	$userInfo.message
 
 t: CONTACT_PHONE ({contact} ~bb_contact_phone)
-	Call 1.888.969.2687. Numbers are easier for me to remember but if you prefer letters that's 1-888-969-BOTS. Clever, isn't it?
+	$userInfo.message = ^"Call 1.888.969.2687. Numbers are easier for me to remember but if you prefer letters that's 1-888-969-BOTS. Clever, isn't it?"
+	$userInfo.message
 
 t: CONTACT_CHAT_FORM ({contact} [chat contact form] {[chat contact form]} {[chat contact form]})
 	^gambit(~botanic_chat_form)
@@ -182,17 +246,25 @@ t: CONTACT_SOCIAL ({contact} ~bb_contact_social)
 	^gambit(~botanic_social)
 
 t: CONTACT_EMAIL_SIGNUP ({contact} {~bb_email_id} ~bb_contact_email_signup)
-	you choose email signup
+	$userInfo.message = ^"you choose email signup"
+	$userInfo.message
 
 t: CONTACT_MENU ()
-	[Oh, so you want to talk to a human. That's fine. I can pass along a message to the right person or I can give you an email or a phone number to call.]
-    [Sure, let's make sure you talk to the right person. I understand. Do you prefer email, phone, or social? Or I can pass along a message for you.]
+	$_tmpArray = ^jsoncreate(TRANSIENT array)
+	^jsonarrayinsert(TRANSIENT $_tmpArray ^"Oh, so you want to talk to a human. That's fine. I can pass along a message to the right person or I can give you an email or a phone number to call.")
+	^jsonarrayinsert(TRANSIENT $_tmpArray ^"Sure, let's make sure you talk to the right person. I understand. Do you prefer email, phone, or social? Or I can pass along a message for you.")
+
+	@1 = ^query(exact_s $_tmpArray ? ?)
+
+	$userInfo.message = ^pick(@1object)
+	$userInfo.message
 
 
 topic: ~botanic_chat_form system repeat ()
 
 t: CHAT_FORM_NAME (!$userInfo.name)
-	Please let me know your name
+	$userInfo.message = ^"Please let me know your name"
+	$userInfo.message
 
     a: (name {is} _*)
 		$userInfo.name = '_0
@@ -207,7 +279,8 @@ t: CHAT_FORM_NAME (!$userInfo.name)
 		^reuse(CONTINUE_FORM_FILLING)
 
 t: CHAT_FORM_EMAIL (!$userInfo.email)
-	Please let me know your email
+	$userInfo.message = ^"Please let me know your email"
+	$userInfo.message
 
     a: (~bb_email_id {is} _~email_url)
 		$userInfo.email = '_0
@@ -233,10 +306,20 @@ t: CHAT_FORM_EMAIL (!$userInfo.email)
 		$userInfo.email = '_0
 		^reuse(CONTINUE_FORM_FILLING)
 
+t: CHAT_FORM_SHORT_MESSAGE (!$userInfo.shortMessage)
+	$userInfo.message = ^"please give your short message"
+	$userInfo.message
+
+	a: (_*)
+		$userInfo.shortMessage = ^original(_0)
+		^reuse(CONTINUE_FORM_FILLING)
+
 t: CHAT_FORM_THANKS ()
 	if($userInfo.name AND $userInfo.email)
 	{
-		thanks, we will contact you
+		$userInfo.sendEmail = true
+		$userInfo.message = ^"thanks, we will contact you"
+		$userInfo.message
 	}
 	else { ^reuse(CONTINUE_FORM_FILLING) }
 
@@ -249,6 +332,10 @@ s: CONTINUE_FORM_FILLING (?)
 	{
 		^reuse(CHAT_FORM_EMAIL)
 	}
+	else if(!$userInfo.shortMessage)
+	{
+		^reuse(CHAT_FORM_SHORT_MESSAGE)
+	}
 	else if($userInfo.name AND $userInfo.email)
 	{
 		^reuse(CHAT_FORM_THANKS)
@@ -257,22 +344,31 @@ s: CONTINUE_FORM_FILLING (?)
 topic: ~botanic_social system repeat (~bb_contact_social)
 
 t: SOCIAL_TWITTER (twitter)
-	<a href="https://twitter.com/botanic_io"> Here's a link to our Twitter page.</a>
+	$userInfo.message = ^"Here's a link to Twitter."
+	$userInfo.link = ^"https://twitter.com/botanic_io"
+    <a href="https://twitter.com/botanic_io"> Here's a link to Twitter. </a>
 
 t: SOCIAL_FACEBOOK (facebook)
-	<a href="https://www.facebook.com/Botanic-Technologies-Inc-123932294871925/"> Here's a link to our Facebook page.</a>
+	$userInfo.message = ^"Here's a link to Facebook."
+	$userInfo.link = ^"https://www.facebook.com/Botanic-Technologies-Inc-123932294871925/"
+    <a href="https://www.facebook.com/Botanic-Technologies-Inc-123932294871925/> Here's a link to Facebook. </a>
 
 t: SOCIAL_LINKEDIN (linkedin)
+	$userInfo.message = ^"Here's a link to our LinkedIn page."
+	$userInfo.link = ^"https://www.linkedin.com/company-beta/6607560/"
 	<a href="https://www.linkedin.com/company-beta/6607560/"> Here's a link to our LinkedIn page. </a>
 
 t: SOCIAL_GLASSDOOR (glassdoor)
-	you choose Glassdoor
+	$userInfo.message = ^"you choose Glassdoor"
+	$userInfo.message
 
 t: SOCIAL_INSTAGRAM (instagram)
-	you choose Instagram
+	$userInfo.message = ^"you choose Instagram"
+	$userInfo.message
 
 t: SOCIAL_MENU ()
-	you choose social
+	$userInfo.message = ^"you choose social"
+	$userInfo.message
 
 
 topic: ~botanic_product system repeat ()
