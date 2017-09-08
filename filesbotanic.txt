@@ -11,13 +11,15 @@ RAWDATA/BOTANIC/BotanicBot.top
 
 RAWDATA/BOTANIC/simplecontrol.top
 
+# quibble ability
+RAWDATA/QUIBBLE/
+
 # RAWDATA/BOTANIC/enfj.top
 # RAWDATA/BOTANIC/enfp.top
 # RAWDATA/BOTANIC/entj.top
 # RAWDATA/BOTANIC/entp.top
 
-# quibble ability
-RAWDATA/BOTANIC/QUIBBLE/
+
 
 
 
