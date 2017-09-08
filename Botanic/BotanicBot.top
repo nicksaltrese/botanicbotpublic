@@ -27,10 +27,10 @@ topic: ~botanic_bot system repeat (~bb_menu)
 
 t: BOT_WELCOME_MESSAGE ( %input<%userfirstline ) 
 	# ^keep()   
-	[Hi, I'm Juniper, and I'll do my best to interact with you in a way that seems somewhat human, but not too human.]
-    [You've arrived. Welcome to the Botanic website. I am Juniper, the concierge Bot that will help you find out what you need.]
-    [Thank you for visiting me here at the Botanic website. My name is Juniper and I wait here all day for someone to talk to.]
-    [Hello human, and welcome to Botanic. I am called Juniper and I would like to help you achieve your goals or just tell you jokes.]
+	[Welcome to Botanic!]
+	[Hello and welcome to Botanic.]
+	[You've found the Botanic web presence. Congratulations.]
+	[I'm so happy you're here at the Botanic web site.]
 
 t: (!$userInfo) $userInfo = ^jsoncreate(PERMANENT object) 
 
