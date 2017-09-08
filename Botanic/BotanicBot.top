@@ -27,7 +27,10 @@ topic: ~botanic_bot system repeat (~bb_menu)
 
 t: BOT_WELCOME_MESSAGE ( %input<%userfirstline ) 
 	# ^keep()   
-	Welcome to Botanic.
+	[Hi, I'm Juniper, and I'll do my best to interact with you in a way that seems somewhat human, but not too human.]
+    [You've arrived. Welcome to the Botanic website. I am Juniper, the concierge Bot that will help you find out what you need.]
+    [Thank you for visiting me here at the Botanic website. My name is Juniper and I wait here all day for someone to talk to.]
+    [Hello human, and welcome to Botanic. I am called Juniper and I would like to help you achieve your goals or just tell you jokes.]
 
 t: (!$userInfo) $userInfo = ^jsoncreate(PERMANENT object) 
 
@@ -112,7 +115,7 @@ t: COMPANY_INTRODUCTION (!$companyIntroduction)
 	a: ({services} ~bb_services_design) ^reuse(~botanic_services.SERVICES_DESIGN)
     a: ({services} ~bb_services_content) ^reuse(~botanic_services.SERVICES_CONTENT)
 
-    a: (joke) joke
+    a: (joke) Oh, I can tell jokes. 
 
     # a: ({system} ~yes) yes
     # a: ({system} ~no) no
@@ -313,13 +316,13 @@ s: CONTINUE_FORM_FILLING (?)
 topic: ~botanic_social system repeat (~bb_contact_social)
 
 t: SOCIAL_TWITTER (twitter)
-	you choose Twitter
+	<a href="https://twitter.com/botanic_io"> Here's a link to our Twitter page.</a>
 
 t: SOCIAL_FACEBOOK (facebook)
-	you choose Facebook
+	<a href="https://www.facebook.com/Botanic-Technologies-Inc-123932294871925/"> Here's a link to our Facebook page.</a>
 
 t: SOCIAL_LINKEDIN (linkedin)
-	you choose LinkedIn
+	<a href="https://www.linkedin.com/company-beta/6607560/"> Here's a link to our LinkedIn page. </a>
 
 t: SOCIAL_GLASSDOOR (glassdoor)
 	you choose Glassdoor
