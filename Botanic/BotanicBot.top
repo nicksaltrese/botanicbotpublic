@@ -117,7 +117,7 @@ t: COMPANY_INTRODUCTION (!$companyIntroduction)
     # a: ({system} ~yes) yes
     # a: ({system} ~no) no
     # a: ({system} reset) reset
-
+##<<
 t: USER_NAME (!$userInfo.name)
 	[What can I call you?]
     [First, how should I refer to you?]
@@ -133,7 +133,7 @@ t: USER_NAME (!$userInfo.name)
 	a: (_*)
 		$userInfo.name = '_0
 		# ^retry(TOP_RULE)
-
+##>>
 t: () ^reuse(BOT_MENU)
 
 
