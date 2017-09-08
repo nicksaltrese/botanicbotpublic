@@ -36,6 +36,14 @@ u: ()
 	if($botMajorVersion < ##BOT_VERSION_MAJOR) { $botMajorVersion = ##BOT_VERSION_MAJOR }
 	if($botMinorVersion < ##BOT_VERSION_MINOR) { $botMinorVersion = ##BOT_VERSION_MINOR }
 
+u: (!$userInfo)
+	$userInfo = ^jsoncreate(PERMANENT object)
+	if(!$userInfo.version) { $userInfo.version = ^"^join($botMajorVersion . $botMinorVersion)" }
+	if(!$userInfo.name) { $userInfo.name = ^"" }
+	if(!$userInfo.email) { $userInfo.email = ^"" }
+	if(!$userInfo.message) { $userInfo.message = ^"" }
+	if(!$userInfo.link) { $userInfo.link = ^"" }
+
 # set all variables received in OOB
 u: () ^respond(~process_oob_input)
 
@@ -69,6 +77,8 @@ u: () # main per-sentence processing
 		^nofail(TOPIC ^gambit($$currenttopic))  # gambit current topic since no input (usually start of conversation)
 	}
 
+	if (%response == $_responseCount) { ^nofail(TOPIC ^gambit($$currenttopic)) }
+
 	if (%response == $_responseCount) { ^nofail(TOPIC ^respond($$currenttopic)) } # current topic tries to respond to his input
 
 	if (%response == $_responseCount) # see if some other topic has keywords matching his input (given we have no response yet)
@@ -91,16 +101,15 @@ u: () # main per-sentence processing
 	{
 		nofail(TOPIC ^respond(~keywordless))
 	}
-
+##>>
 	# having no good response we know, now generate quibbles
 
 	# now we need to find fake responses 
-	##>>	
-if (%response == $_responseCount AND %rand > 50)
-{
-	nofail(TOPIC respond(~QUIBBLE_ALL))
-}
-
+	if (%response == $_responseCount AND %rand > 50)
+	{
+		nofail(TOPIC respond(~QUIBBLE_ALL))
+	}
+	
 
 	# if we have rejoinders for what we said OR we asked a question, stop here
 	if (%outputrejoinder OR %lastquestion) 
@@ -150,10 +159,12 @@ if (%response == $_responseCount AND %rand > 50)
 topic: ~XPOSTPROCESS system () # gambits only - not allowed to write to  output - generates speech on windows -- for Linux you'd want to install Festival (or equivalent) and call that instead.
 
 t: ($userInfo)
-	$$oobjson = ^jsonwrite($userInfo)
+	# $$oobjson = ^jsonwrite($userInfo)
+	$$oobjson = ^"\[{\"version\": \"$userInfo.version\", \"name\": \"$userInfo.name\", \"email\": \"$userInfo.email\", \"message\": \"$userInfo.message\", \"link\": \"$userInfo.link\"}\]"
 
 t: ($$oobjson)
-	^postprintbefore( \[ $$oobjson \])
+	# ^postprintbefore( \[ $$oobjson \])
+	^postprintbefore($$oobjson)
 	^fail(RULE)
 
 ##<<
@@ -200,6 +211,7 @@ u: ( < cheat show emotion variables > ) $showEmotionVariables = true
 u: ( < cheat hide emotion variables > ) $showEmotionVariables = null
 
 u: ( cheat bot version )
-	$_msg = ^" bot version is : $botMajorVersion . $botMinorVersion"
+	$_msg = ^join($botMajorVersion . $botMinorVersion)
+	$_msg = ^" bot version is : $_msg"
 	$_msg
 
