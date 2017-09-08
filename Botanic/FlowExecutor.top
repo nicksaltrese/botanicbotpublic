@@ -104,17 +104,17 @@ t: QUESTION ($flowInfo.flowElement $$flowElementType=question)
 	$_msg = ^GetRandomMessage($flowInfo.flowElement.msg)
 	$_msg
 
-	a:([name ~emailid] {is} _*)
+	a: ([name ~emailid] {is} _*)
 		$_userInput = '_0 # answer given by the user for the question asked
 		^StoreAnswer($flowInfo.flowElement.name $_userInput)
 		^ExecuteConnections() # executes the connections to find where to move next
 
-	a:(~yes {,} {it} {is} _*)
+	a: (~yes {,} {it} {is} _*)
 		$_userInput = '_0 # answer given by the user for the question asked
 		^StoreAnswer($flowInfo.flowElement.name $_userInput)
 		^ExecuteConnections() # executes the connections to find where to move next		
 
-	a:(_*)
+	a: (_*)
 		$_userInput = '_0 # answer given by the user for the question asked
 		^StoreAnswer($flowInfo.flowElement.name $_userInput)
 		^ExecuteConnections() # executes the connections to find where to move next
@@ -124,7 +124,7 @@ t: MESSAGE ($flowInfo.flowElement $$flowElementType=message)
 	$_msg = ^GetRandomMessage($flowInfo.flowElement.msg)
 	$_msg
 
-	a:(_*)
+	a: (_*)
 		$$response = '_0 # response given by the user for the message shown
 		^ExecuteConnections() # executes the connections to find where to move next
 
