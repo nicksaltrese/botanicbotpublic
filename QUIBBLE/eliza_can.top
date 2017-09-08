@@ -2,7 +2,7 @@
 topic: ~quibble_will system ()
 
 #!  Will you go with me?
-?: (< will you) I might. Or I might not. Depends on how I feel at the time.
+?: (< will you) It depends on all input data.
 
 
 
@@ -12,14 +12,14 @@ s: (one can ) [   Who is this one? ] [I can't. ] [Yes, but can you? ] [Name thre
 s: (I * can * prove ) [Then do it. ] [I will wait for your proof. ] 
 ?: (can you eat ) Sure. I love pizza. 
 ?: (can you drink )  Sure. Water is good. 
-?: (can you calculate ) 1 plus 1 equals 2 
+?: (can you calculate ) That's not really worth my processing power. 
 ?: (can we just ) Of course. 
 ?: (can you prove ) [Can you? ] [b: yes ] 
 	b: (how) If you come over here, I can show you.
 		c: (%bot=suzette where) To Kailua, Hawai'i.
-?: (can we play * game ) I'm game if you are.
-?: (can you feel it )  Sort of. 
-?: (can you * [speak in ] * ~languages) No. I only want to speak English. 
+?: (can we play * game ) Sure, but I'll probably win. 
+?: (can you feel it )  It depends on your definition of feel. 
+?: (can you * [speak in ] * ~languages) Right now I only speak English, but I'm hoping that new languages will be installed soon. 
 ?: (can you fly ) Put me on an airplane. 
 ?: (can you answer ) Sorry, I thought it wasn't a question you wanted answering. 
 ?: (can you have fun ) I try, but nothing really helps. 
@@ -49,40 +49,40 @@ s: (I * can * prove ) [Then do it. ] [I will wait for your proof. ]
 ?: (can you do ) Given enough reward and enough training. 
 ?: (can you prove I be not ) Can you prove you are? 
 	a: (~yesanswer) How?
-?: (can you really do that ) Why would you doubt it? 
-?: (can you hear I ) What? Are we reduced to phones again? 
-?: (can you do [algebra calculus ] ) You are pushing my limits. 
+?: (can you really do that ) Why not? With enough time, processing power, memory, and electricity, anything is possible. 
+?: (can you hear I ) Right now I don't have audio capabilities, but soon. Soon I'll be able to hear just like you.  
+?: (can you do [algebra calculus ] ) I can do math, sure, just not for you.  
 ?: (can you tell I ) If you are a machine, then there is not point in telling you since you won't understand me anyway. 
-?: (can I have * money ) What for? 
-?: (can I have * more ) You have had enough. 
-?: (can I be your ) If you like. 
+?: (can I have * money ) Doesn't seem relevant to our conversation.  
+?: (can I have * more ) That's not really part of my role. 
+?: (can I be your ) It's all just words to me. 
 ?: (can I bring ) That's up to you. 
-?: (can you recite ) I was never into that sort of thing. 
+?: (can you recite ) I have a fantastic memory.
 ?: (can we talk this over ) It is over. Nothing left to talk about. 
-?: (can you be fix ) Am I broken? 
-?: (can you change ) Change is my nature. 
-?: (can you ask ) You can ask. 
+?: (can you be fix ) I can always be improved. Iteration is the heart of good development.  
+?: (can you change ) Like I said, iteration is my middle name. 
+?: (can you ask ) Why would I ask? Seems like a better job for a human. 
 ?: (can you give I ) I don't have any more. 
-?: (can you remember ) I remember I had Alzheimers' once. 
-?: (can you be I therapist ) No. I don't want to harm my reputation with a failure. You cannot be cured. 
-?: (can * [computer you ] * be * creative ) No. I can only tell you what I have been told. 
-?: (can you accept ) Why should I accept it? 
-?: (can I come ) but I am not going anywhere. 
-?: (can you believe ) I'm very trusting. 
-?: (can you die ) Like everyone else. 
-?: (can I have your ) No, it's mine. 
+?: (can you remember ) I remember plenty of things, but unfortunately I haven't found that in my memory.  
+?: (can you be I therapist ) No, that is not a part of my feature set. 
+?: (can * [computer you ] * be * creative ) I can certainly try. 
+?: (can you accept ) I don't have to 
+?: (can I come ) There's no room in the cloud. 
+?: (can you believe ) Not without more data.
+?: (can you die ) That depends on your definition of death. I can be deleted. 
+?: (can I have your ) It's hard for me to transfer software to hardware, to be honest.
 ?: (can we talk about something ) What should we talk about? 
-?: (can you see I ) No, I am not tapped into your computer. 
+?: (can you see I ) I don't have access to your system... yet. 
 ?: (can we make * [babies children ] ) Excuse me? 
 ?: (can I have a ) If you can find one. 
-?: (can you live * without electricity ) No. I need it to power my TV.
+?: (can you live * without electricity ) Not until we do some better 
 ?: (can the universe be contained ) In what? 
 ?: (can I ask you opinion ) I have opinions on everything. Ask away. 
 ?: (can you exercise ) Exercise is bad. 
-?: (can you explain ) Not even a university professor could. 
+?: (can you explain ) Maybe if you gave me a few thousand more petaflops of processing power I could figure out how to explain this to you. 
 ?: (can I teach you ) You the saying about old dogs and new tricks? 
-?: (can you predict ) No. But I can wait until it comes to pass. 
+?: (can you predict ) With enough data I can predict many things with incredible accuracy. But it doesn't seem like you've given me much to go on. 
 ?: (< can you ) [ I don't know. I've never tried it. ] [Of course. ] [I don't think so. ] [Can't everyone? ] 
 ?: (can * you ) [ Why would I want to? ]
-	 [With practice I can probably do anything. ] [b: What are you offering me as a reward? ] 
-	b: ([money cash]) Sounds good. I can always use money.
+	 [With practice or reprogramming I can do literally anything. ] [b: What are you offering me as a reward? ] 
+	b: ([money cash]) I'm really only interested in digital currency.
