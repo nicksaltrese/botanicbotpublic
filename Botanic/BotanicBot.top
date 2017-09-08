@@ -115,7 +115,9 @@ t: COMPANY_INTRODUCTION (!$companyIntroduction)
 	a: ({services} ~bb_services_design) ^reuse(~botanic_services.SERVICES_DESIGN)
     a: ({services} ~bb_services_content) ^reuse(~botanic_services.SERVICES_CONTENT)
 
-    a: (joke) Oh, I can tell jokes. 
+    a: (joke) Oh, I can tell jokes. Would you like to hear one?
+    	b: (~yes) Ok. Here it goes: [A rabbi, an Arab, a robot, and a Catholic priest walk into a bar. Only the robot exits.][A robot walks into a pharmacy. The pharmacist asks him if he’d like anything. The robot replies, “A soul.”][How do you stop a robot from destroying you and the rest of civilization?... You don't.]
+    	b: (~no) Ok then. t: () ^reuse(BOT_MENU)
 
     # a: ({system} ~yes) yes
     # a: ({system} ~no) no
@@ -235,7 +237,7 @@ t: CONTACT_EMAIL ({contact} ~bb_email_id)
 
 t: CONTACT_PHONE ({contact} ~bb_contact_phone)
 	Call 1.888.969.2687. Numbers are easier for me to remember but if you prefer letters that's 1-888-969-BOTS. Clever, isn't it?
-
+##<<
 t: CONTACT_CHAT_FORM ({contact} [chat contact form] {[chat contact form]} {[chat contact form]})
 	^gambit(~botanic_chat_form)
 
@@ -244,7 +246,7 @@ t: CONTACT_SOCIAL ({contact} ~bb_contact_social)
 
 t: CONTACT_EMAIL_SIGNUP ({contact} {~bb_email_id} ~bb_contact_email_signup)
 	you choose email signup
-
+##>>
 t: CONTACT_MENU ()
 	[Oh, so you want to talk to a human. That's fine. I can pass along a message to the right person or I can give you an email or a phone number to call.]
     [Sure, let's make sure you talk to the right person. I understand. Do you prefer email, phone, or social? Or I can pass along a message for you.]
@@ -324,10 +326,10 @@ s: CONTINUE_FORM_FILLING (?)
 topic: ~botanic_social system repeat (~bb_contact_social)
 
 t: SOCIAL_TWITTER (twitter)
-	<a href="https://twitter.com/botanic_io"> Here's a link to our Twitter page.</a>
+	https://twitter.com/botanic_io
 
 t: SOCIAL_FACEBOOK (facebook)
-	<a href="https://www.facebook.com/Botanic-Technologies-Inc-123932294871925/"> Here's a link to our Facebook page.</a>
+	https://www.facebook.com/Botanic-Technologies-Inc-123932294871925/
 
 t: SOCIAL_LINKEDIN (linkedin)
 	<a href="https://www.linkedin.com/company-beta/6607560/"> Here's a link to our LinkedIn page. </a>
