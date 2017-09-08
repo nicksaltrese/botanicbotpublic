@@ -242,13 +242,13 @@ t: CONTACT_PHONE ({contact} ~bb_contact_phone)
 ##<<
 t: CONTACT_CHAT_FORM ({contact} [chat contact form] {[chat contact form]} {[chat contact form]})
 	^gambit(~botanic_chat_form)
-
+##>>
 t: CONTACT_SOCIAL ({contact} ~bb_contact_social)
 	^gambit(~botanic_social)
 
 t: CONTACT_EMAIL_SIGNUP ({contact} {~bb_email_id} ~bb_contact_email_signup)
 	you choose email signup
-##>>
+
 t: CONTACT_MENU ()
 	[Oh, so you want to talk to a human. That's fine. I can pass along a message to the right person or I can give you an email or a phone number to call.]
     [Sure, let's make sure you talk to the right person. I understand. Do you prefer email, phone, or social? Or I can pass along a message for you.]
@@ -328,10 +328,10 @@ s: CONTINUE_FORM_FILLING (?)
 topic: ~botanic_social system repeat (~bb_contact_social)
 
 t: SOCIAL_TWITTER (twitter)
-	https://twitter.com/botanic_io
+	<a href="https://twitter.com/botanic_io"> Here's a link to Twitter. </a>
 
 t: SOCIAL_FACEBOOK (facebook)
-	https://www.facebook.com/Botanic-Technologies-Inc-123932294871925/
+	<a href="https://www.facebook.com/Botanic-Technologies-Inc-123932294871925/> Here's a link to Facebook. </a>
 
 t: SOCIAL_LINKEDIN (linkedin)
 	<a href="https://www.linkedin.com/company-beta/6607560/"> Here's a link to our LinkedIn page. </a>
