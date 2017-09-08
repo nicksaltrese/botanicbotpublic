@@ -1,1 +1,2 @@
-rename: ##BOT_VERSION 6
+rename: ##BOT_VERSION_MAJOR 0
+rename: ##BOT_VERSION_MINOR 6

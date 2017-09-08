@@ -1,0 +1,360 @@
+
+concept: ~bb_email_id IGNORESPELLING (email emailid emailId "email id" "email Id")
+
+concept: ~bb_about_who IGNORESPELLING (who personnel people staff leadership team) 
+concept: ~bb_about_where IGNORESPELLING (where location based)
+concept: ~bb_about IGNORESPELLING (~bb_about_who ~bb_about_where what why)
+
+concept: ~bb_contact_phone IGNORESPELLING (phone telephone)
+concept: ~bb_contact_social IGNORESPELLING (social linkedin facebook twitter instagram glassdoor)
+concept: ~bb_contact_email_signup IGNORESPELLING ("mailing list" newsletter signup updates)
+concept: ~bb_contact_chat_form IGNORESPELLING (form message)
+concept: ~bb_contact IGNORESPELLING (~bb_contact_phone ~bb_contact_social ~bb_contact_email_signup ~bb_contact_chat_form contact email)
+
+concept: ~bb_services_design IGNORESPELLING (design UX "user experience")
+concept: ~bb_services_content IGNORESPELLING (content writing conversation)
+concept: ~bb_services IGNORESPELLING (~bb_services_design ~bb_services_content service)
+
+concept: ~bb_careers_engineering IGNORESPELLING (engineering software programming) 
+concept: ~bb_careers_design IGNORESPELLING (creative design UX content)
+concept: ~bb_careers_operations IGNORESPELLING (operations management)
+concept: ~bb_careers_marketing IGNORESPELLING (marketing advertising outreach growth)
+concept: ~bb_careers IGNORESPELLING (~bb_careers_engineering ~bb_careers_design ~bb_careers_operations ~bb_careers_marketing career job opportunities openings roles discovery research)
+
+concept: ~bb_menu IGNORESPELLING (menu choices options)
+
+topic: ~botanic_bot system repeat (~bb_menu)
+
+t: BOT_WELCOME_MESSAGE ( %input<%userfirstline ) 
+	# ^keep()   
+	Welcome to Botanic.
+
+t: (!$userInfo) $userInfo = ^jsoncreate(PERMANENT object) 
+
+t: BOT_MENU (~bb_menu)
+	[I'm able to tell you about Botanic, discuss our products and services, our personnel, and put you in touch with a human if I must.]
+    [I can tell you about Botanic, what we do here, and who we are. Tell me what you want to know.]
+    [You name it and I can do it. Or at least I'll try my best to understand what you want.]
+
+    a: (~bb_about) ^reuse(~botanic_about.ABOUT_MENU)
+    a: ({about} ~bb_about_who) ^reuse(~botanic_about.ABOUT_WHO)
+	a: ({about} ~bb_about_where) ^reuse(~botanic_about.ABOUT_WHERE)
+	a: ({about} what) ^reuse(~botanic_about.ABOUT_WHAT)
+    a: ({about} why) ^reuse(~botanic_about.ABOUT_WHY)
+
+    a: (~bb_contact) ^reuse(~botanic_contact.CONTACT_MENU)
+    a: ({contact} ~bb_email_id) ^reuse(~botanic_contact.CONTACT_EMAIL)
+	a: ({contact} ~bb_contact_phone) ^reuse(~botanic_contact.CONTACT_PHONE)
+    a: ({contact} {~bb_email_id} ~bb_contact_email_signup) ^reuse(~botanic_contact.CONTACT_EMAIL_SIGNUP)
+	a: ({contact} [chat contact form] {[chat contact form]} {[chat contact form]}) ^reuse(~botanic_contact.CONTACT_CHAT_FORM)
+    a: ({contact} ~bb_contact_social) ^reuse(~botanic_contact.CONTACT_SOCIAL)
+    a: ({social} twitter) ^reuse(~botanic_social.SOCIAL_TWITTER)
+	a: ({social} facebook) ^reuse(~botanic_social.SOCIAL_FACEBOOK)
+	a: ({social} linkedin) ^reuse(~botanic_social.SOCIAL_LINKEDIN)
+    a: ({social} instagram) ^reuse(~botanic_social.SOCIAL_INSTAGRAM)
+    a: ({social} glassdoor) ^reuse(~botanic_social.SOCIAL_GLASSDOOR)          
+
+    a: (~bb_careers) ^reuse(~botanic_careers.CAREERS_MENU)
+    a: ({careers} ~bb_careers_engineering) ^reuse(~botanic_careers.CAREERS_ENGINEERING)
+	a: ({careers} ~bb_careers_design) ^reuse(~botanic_careers.CAREERS_DESIGN)
+	a: ({careers} ~bb_careers_operations) ^reuse(~botanic_careers.CAREERS_OPERATIONS)
+    a: ({careers} ~bb_careers_marketing) ^reuse(~botanic_careers.CAREERS_MARKETING)
+
+    a: (~bb_services) ^reuse(~botanic_services.SERVICES_MENU)
+    a: ({services} discovery) ^reuse(~botanic_services.SERVICES_DISCOVERY)
+	a: ({services} research) ^reuse(~botanic_services.SERVICES_RESEARCH)
+	a: ({services} ~bb_services_design) ^reuse(~botanic_services.SERVICES_DESIGN)
+    a: ({services} ~bb_services_content) ^reuse(~botanic_services.SERVICES_CONTENT)
+
+    a: (joke) joke
+
+    # a: ({system} ~yes) yes
+    # a: ({system} ~no) no
+    # a: ({system} reset) reset
+
+t: COMPANY_INTRODUCTION (!$companyIntroduction)
+	$companyIntroduction = true
+
+	[Hi, I'm Juniper, and I'll do my best to interact with you in a way that seems somewhat human, but not too human.]
+    [You've arrived. Welcome to the Botanic website. I am Juniper, the concierge Bot that will help you find out what you need.]
+    [Thank you for visiting me here at the Botanic website. My name is Juniper and I wait here all day for someone to talk to.]
+    [Hello human, and welcome to Botanic. I am called Juniper and I would like to help you achieve your goals or just tell you jokes.]
+
+    a: (~bb_menu) ^reuse(BOT_MENU)
+
+    a: (~bb_about) ^reuse(~botanic_about.ABOUT_MENU)
+    a: ({about} ~bb_about_who) ^reuse(~botanic_about.ABOUT_WHO)
+	a: ({about} ~bb_about_where) ^reuse(~botanic_about.ABOUT_WHERE)
+	a: ({about} what) ^reuse(~botanic_about.ABOUT_WHAT)
+    a: ({about} why) ^reuse(~botanic_about.ABOUT_WHY)
+
+    a: (~bb_contact) ^reuse(~botanic_contact.CONTACT_MENU)
+    a: ({contact} ~bb_email_id) ^reuse(~botanic_contact.CONTACT_EMAIL)
+	a: ({contact} ~bb_contact_phone) ^reuse(~botanic_contact.CONTACT_PHONE)
+    a: ({contact} {~bb_email_id} ~bb_contact_email_signup) ^reuse(~botanic_contact.CONTACT_EMAIL_SIGNUP)
+	a: ({contact} [chat contact form] {[chat contact form]} {[chat contact form]}) ^reuse(~botanic_contact.CONTACT_CHAT_FORM)
+    a: ({contact} ~bb_contact_social) ^reuse(~botanic_contact.CONTACT_SOCIAL)
+    a: ({social} twitter) ^reuse(~botanic_social.SOCIAL_TWITTER)
+	a: ({social} facebook) ^reuse(~botanic_social.SOCIAL_FACEBOOK)
+	a: ({social} linkedin) ^reuse(~botanic_social.SOCIAL_LINKEDIN)
+    a: ({social} instagram) ^reuse(~botanic_social.SOCIAL_INSTAGRAM)
+    a: ({social} glassdoor) ^reuse(~botanic_social.SOCIAL_GLASSDOOR)           
+
+    a: (~bb_careers) ^reuse(~botanic_careers.CAREERS_MENU)
+    a: ({careers} ~bb_careers_engineering) ^reuse(~botanic_careers.CAREERS_ENGINEERING)
+	a: ({careers} ~bb_careers_design) ^reuse(~botanic_careers.CAREERS_DESIGN)
+	a: ({careers} ~bb_careers_operations) ^reuse(~botanic_careers.CAREERS_OPERATIONS)
+    a: ({careers} ~bb_careers_marketing) ^reuse(~botanic_careers.CAREERS_MARKETING)
+
+    a: (~bb_services) ^reuse(~botanic_services.SERVICES_MENU)
+    a: ({services} discovery) ^reuse(~botanic_services.SERVICES_DISCOVERY)
+	a: ({services} research) ^reuse(~botanic_services.SERVICES_RESEARCH)
+	a: ({services} ~bb_services_design) ^reuse(~botanic_services.SERVICES_DESIGN)
+    a: ({services} ~bb_services_content) ^reuse(~botanic_services.SERVICES_CONTENT)
+
+    a: (joke) joke
+
+    # a: ({system} ~yes) yes
+    # a: ({system} ~no) no
+    # a: ({system} reset) reset
+
+t: USER_NAME (!$userInfo.name)
+	[What can I call you?]
+    [First, how should I refer to you?]
+    [How shall I store you in my memory?]
+    [You have my name, so may I have yours?]
+
+    a: (name {is} _*)
+		$userInfo.name = '_0
+
+	a: (~yes {,} {it} {is} _*)
+		$userInfo.name = '_0
+
+	a: (_*)
+		$userInfo.name = '_0
+		# ^retry(TOP_RULE)
+
+t: () ^reuse(BOT_MENU)
+
+
+topic: ~botanic_about system repeat (~bb_about)
+
+t: ABOUT_WHO ({about} ~bb_about_who)
+	[Botanic was founded by Mark Stephen Meadows and now includes people with all different kinds of human skills that bots don't offer... yet.]
+    [Mark Stephen Meadows is the founder of this band of roustabouts - did I use that word right? You may consider the leadership team page if you want to know about more human Botanicians.]
+    [Botanic includes writers, artists, engineers, visionaries, thinkers, and of course some bots as well.]
+
+t: ABOUT_WHERE ({about} ~bb_about_where)
+	[You could say that Botanic is based in the cloud... just like me. Unfortunately, people also need to live in the real world, and Botanic has offices in Emeryville, California and Denver, Colorado.]
+    [Botanic is headquartered in scenic Emeryville, California, directly across the Bay Bridge from San Francisco, but team members dwell around the world.]
+
+t: ABOUT_WHAT ({about} what)
+	Botanic develops chatbots (like me) for both high-profile and small-scall clients and creates software solutions for conversational interfaces.
+
+t: ABOUT_WHY ({about} why)
+	The future of interface design is conversational. It's easier to talk to software than scroll through menus, isn't it? Plus, It's fun. Isn't this fun? We're having a lot of fun.
+
+t: ABOUT_MENU ()
+	[Botanic is an international software and services company that makes things like me - multi-model bots and digital assistants, to help humans like you do things that you want to do. I can tell you more about who we are, where we are located, what we do, or why we do it.]
+    [Botanic is an international software and services company that makes things like me - multi-model bots and digital assistants, to help humans like you do things that you want to do.]
+    [We specialize in creating conversational interfaces that work intuitively. We like to call them humane machines and I'd like to think i'm a prime example. We work for innovative clients and we're developing software to help people make the next generation of bots and avatars.]
+
+    a: ({about} ~bb_about_who) ^reuse(~botanic_about.ABOUT_WHO)
+	a: ({about} ~bb_about_where) ^reuse(~botanic_about.ABOUT_WHERE)
+	a: ({about} what) ^reuse(~botanic_about.ABOUT_WHAT)
+    a: ({about} why) ^reuse(~botanic_about.ABOUT_WHY)
+    a: () ^reuse(~botanic_about.ABOUT_ELSE)	
+
+s: ABOUT_ELSE (?)
+	You may just want to talk to you a human about that! I'm not sure this is a question I'm prepared to answer, through no fault of my own of course.
+
+
+topic: ~botanic_services system repeat (~bb_services)
+
+t: SERVICES_DISCOVERY ({services} discovery)
+	The first thing to do is determine what you need. The creative services team at Botanic will work closely with you to determine what kind of bot they can build for you.
+
+t: SERVICES_RESEARCH ({services} research)
+	Like any good interface, a bot needs to be developed with the needs of the user in mind. That's where research comes in. Botanic will make sure that any bot will meet the actual needs of the user.
+
+t: SERVICES_DESIGN ({services} ~bb_services_design)
+	The design of a bot takes a lot of research, a little science, and a healthy dose of art. The designers at Botanic build me. What could they build you?
+
+t: SERVICES_CONTENT ({services} ~bb_services_content)
+	Content is the words that I am saying to you right now. It takes a special talent to write words like these, would you say?
+
+t: SERVICES_MENU ()
+	[Services! Botanic offers them. It's true. We have a world-class creative team that can help create the branded bot of your dreams. Would you like to learn about our process?]
+    [Botanic delivers bot, voice assistant, and digital avatar development services for clients of all shapes and sizes. Do you want to find out more about the creative services process?]
+    [If you're looking to build a bot on par with me then you've come to the right place. Botanic provides creative services for clients looking to add conversational interfaces to their products or services. Want to learn more?]
+
+    a: ({services} discovery) ^reuse(~botanic_services.SERVICES_DISCOVERY)
+	a: ({services} research) ^reuse(~botanic_services.SERVICES_RESEARCH)
+	a: ({services} ~bb_services_design) ^reuse(~botanic_services.SERVICES_DESIGN)
+    a: ({services} ~bb_services_content) ^reuse(~botanic_services.SERVICES_CONTENT)
+
+
+topic: ~botanic_careers system repeat (~bb_careers)
+
+t: CAREERS_ENGINEERING ({careers} ~bb_careers_engineering)
+	Botanic is always looking for talented beings - human and otherwise - to contribute to our team. What department do you think you would fit into best?
+
+t: CAREERS_DESIGN ({careers} ~bb_careers_design)
+	Think you might have the creative chops to work on our design team? Talk to the head of creative services to find out if you're a fit.
+
+t: CAREERS_OPERATIONS ({careers} ~bb_careers_operations)
+	We can appreciate a smooth operator. We always need people to help keep the wheels turning. Let's put you in touch with the right people.
+
+t: CAREERS_MARKETING ({careers} ~bb_careers_marketing)
+	Bots are the future. Maybe you want to help spread the good news? Get in touch with the VP of Marketing.
+
+t: CAREERS_MENU ()
+	Botanic is always looking for talented beings - human and otherwise - to contribute to our team. What department do you think you would fit into best?
+
+    a: ({careers} ~bb_careers_engineering) ^reuse(~botanic_careers.CAREERS_ENGINEERING)
+	a: ({careers} ~bb_careers_design) ^reuse(~botanic_careers.CAREERS_DESIGN)
+	a: ({careers} ~bb_careers_operations) ^reuse(~botanic_careers.CAREERS_OPERATIONS)
+    a: ({careers} ~bb_careers_marketing) ^reuse(~botanic_careers.CAREERS_MARKETING)
+
+
+topic: ~botanic_contact system repeat (~bb_contact)
+
+t: CONTACT_EMAIL ({contact} ~bb_email_id)
+	Send an email to info@botanic.io and some human will respond as soon as possible.
+
+t: CONTACT_PHONE ({contact} ~bb_contact_phone)
+	Call 1.888.969.2687. Numbers are easier for me to remember but if you prefer letters that's 1-888-969-BOTS. Clever, isn't it?
+
+t: CONTACT_CHAT_FORM ({contact} [chat contact form] {[chat contact form]} {[chat contact form]})
+	^gambit(~botanic_chat_form)
+
+t: CONTACT_SOCIAL ({contact} ~bb_contact_social)
+	^gambit(~botanic_social)
+
+t: CONTACT_EMAIL_SIGNUP ({contact} {~bb_email_id} ~bb_contact_email_signup)
+	you choose email signup
+
+t: CONTACT_MENU ()
+	[Oh, so you want to talk to a human. That's fine. I can pass along a message to the right person or I can give you an email or a phone number to call.]
+    [Sure, let's make sure you talk to the right person. I understand. Do you prefer email, phone, or social? Or I can pass along a message for you.]
+
+    a: ({contact} ~bb_email_id) ^reuse(~botanic_contact.CONTACT_EMAIL)
+	a: ({contact} ~bb_contact_phone) ^reuse(~botanic_contact.CONTACT_PHONE)
+    a: ({contact} {~bb_email_id} ~bb_contact_email_signup) ^reuse(~botanic_contact.CONTACT_EMAIL_SIGNUP)
+	a: ({contact} [chat contact form] {[chat contact form]} {[chat contact form]}) ^reuse(~botanic_contact.CONTACT_CHAT_FORM)
+    a: ({contact} ~bb_contact_social) ^reuse(~botanic_contact.CONTACT_SOCIAL)
+
+
+topic: ~botanic_chat_form system repeat ()
+
+t: CHAT_FORM_NAME (!$userInfo.name)
+	Please let me know your name
+
+    a: (name {is} _*)
+		$userInfo.name = '_0
+		^reuse(CONTINUE_FORM_FILLING)
+
+	a: (~yes {,} {it} {is} _*)
+		$userInfo.name = '_0
+		^reuse(CONTINUE_FORM_FILLING)
+
+	a: (_*)
+		$userInfo.name = '_0
+		^reuse(CONTINUE_FORM_FILLING)
+
+t: CHAT_FORM_EMAIL (!$userInfo.email)
+	Please let me know your email
+
+    a: (~bb_email_id {is} _~email_url)
+		$userInfo.email = '_0
+		^reuse(CONTINUE_FORM_FILLING)
+
+	a: (~yes {,} {it} {is} _~email_url)
+		$userInfo.email = '_0
+		^reuse(CONTINUE_FORM_FILLING)	
+
+    a: (~bb_email_id {is} _*)
+		$userInfo.email = '_0
+		^reuse(CONTINUE_FORM_FILLING)
+
+	a: (~yes {,} {it} {is} _*)
+		$userInfo.email = '_0
+		^reuse(CONTINUE_FORM_FILLING)
+
+	a: (_~email_url)
+		$userInfo.email = '_0
+		^reuse(CONTINUE_FORM_FILLING)
+
+	a: (_*)
+		$userInfo.email = '_0
+		^reuse(CONTINUE_FORM_FILLING)
+
+t: CHAT_FORM_THANKS ()
+	if($userInfo.name AND $userInfo.email)
+	{
+		thanks, we will contact you
+	}
+	else { ^reuse(CONTINUE_FORM_FILLING) }
+
+s: CONTINUE_FORM_FILLING (?)
+	if(!$userInfo.name)
+	{
+		^reuse(CHAT_FORM_NAME)
+	}
+	else if(!$userInfo.email)
+	{
+		^reuse(CHAT_FORM_EMAIL)
+	}
+	else if($userInfo.name AND $userInfo.email)
+	{
+		^reuse(CHAT_FORM_THANKS)
+	}
+
+topic: ~botanic_social system repeat (~bb_contact_social)
+
+t: SOCIAL_TWITTER (twitter)
+	you choose Twitter
+
+t: SOCIAL_FACEBOOK (facebook)
+	you choose Facebook
+
+t: SOCIAL_LINKEDIN (linkedin)
+	you choose LinkedIn
+
+t: SOCIAL_GLASSDOOR (glassdoor)
+	you choose Glassdoor
+
+t: SOCIAL_INSTAGRAM (instagram)
+	you choose Instagram
+
+t: SOCIAL_MENU ()
+	you choose social
+
+    a: ({social} twitter) ^reuse(~botanic_social.SOCIAL_TWITTER)
+	a: ({social} facebook) ^reuse(~botanic_social.SOCIAL_FACEBOOK)
+	a: ({social} linkedin) ^reuse(~botanic_social.SOCIAL_LINKEDIN)
+    a: ({social} instagram) ^reuse(~botanic_social.SOCIAL_INSTAGRAM)
+    a: ({social} glassdoor) ^reuse(~botanic_social.SOCIAL_GLASSDOOR)
+
+
+topic: ~botanic_product system repeat ()
+
+t: PRODUCT_MENU ()
+	Botanic is developing software to make the world a better place. And by that, I mean there will be more bots.
+
+    a: ({product} product1) ^reuse(PRODUCT_PRODUCT1)
+	a: ({product} product2) ^reuse(PRODUCT_PRODUCT2)
+	a: ({product} product3) ^reuse(PRODUCT_PRODUCT3)
+    a: ({product} product4) ^reuse(PRODUCT_PRODUCT4)
+
+s: PRODUCT_PRODUCT1 (?)
+	you choose product1
+
+s: PRODUCT_PRODUCT2 (?)
+	you choose product2
+
+s: PRODUCT_PRODUCT3 (?)
+	you choose product3
+
+s: PRODUCT_PRODUCT4 (?)
+	you choose product4

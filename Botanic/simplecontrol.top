@@ -6,18 +6,23 @@ outputmacro: ^botanic()  # you get harry by default
 
 	$cs_token = #DO_SUBSTITUTE_SYSTEM   | #DO_NUMBER_MERGE | #DO_DATE_MERGE  | #DO_PROPERNAME_MERGE  | #DO_SPELLCHECK  | #DO_PARSE 
 
-	^addtopic(~introductions)
+	# ^addtopic(~introductions)
+	^addtopic(~botanic_bot)
+
 	$cs_control_main = ~control
 	$cs_control_post = ~XPOSTPROCESS  # uncomment to enable talk
+	
 	$userprompt = ^"%user: >"
 	$botprompt = ^"botanic: "
+
 	$singleResponse = 1 # issue only 1 output message
 
 	# resource limits
 	$cs_userfactlimit = 100000 # how many user facts to keep
 	$cs_looplimit = 15000  # high but...
 
-	$botVersion = ##BOT_VERSION
+	$botMajorVersion = ##BOT_VERSION_MAJOR
+	$botMinorVersion = ##BOT_VERSION_MINOR
 
 
 table: defaultbot (^name)
@@ -27,7 +32,9 @@ botanic
 
 topic: ~control system ()
 
-u: () if($botVersion < ##BOT_VERSION) { $botVersion = ##BOT_VERSION }
+u: () 
+	if($botMajorVersion < ##BOT_VERSION_MAJOR) { $botMajorVersion = ##BOT_VERSION_MAJOR }
+	if($botMinorVersion < ##BOT_VERSION_MINOR) { $botMinorVersion = ##BOT_VERSION_MINOR }
 
 # set all variables received in OOB
 u: () ^respond(~process_oob_input)
@@ -36,7 +43,8 @@ u: () ^respond(~devcheatcodes)
 
 # on startup, do introduction
 u: ( %input<%userfirstline) 
-	^gambit(~introductions)
+	# ^gambit(~introductions)
+	^gambit(~botanic_bot)
 
 u: (< shut up >) $shutup = 1
 u: (< talk  >) $shutup = null
@@ -191,5 +199,6 @@ u: ( < cheat show emotion variables > ) $showEmotionVariables = true
 u: ( < cheat hide emotion variables > ) $showEmotionVariables = null
 
 u: ( cheat bot version )
-	$_msg = ^" bot version is : 0.$botVersion"
+	$_msg = ^" bot version is : $botMajorVersion . $botMinorVersion"
 	$_msg
+
