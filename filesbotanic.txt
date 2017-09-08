@@ -17,7 +17,7 @@ RAWDATA/BOTANIC/simplecontrol.top
 # RAWDATA/BOTANIC/entp.top
 
 # quibble ability
-RAWDATA/QUIBBLE/
+RAWDATA/BOTANIC/QUIBBLE/
 
 
 
