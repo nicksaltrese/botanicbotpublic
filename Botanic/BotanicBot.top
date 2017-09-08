@@ -190,7 +190,8 @@ t: SERVICES_MENU ()
 	[Services! Botanic offers them. It's true. We have a world-class creative team that can help create the branded bot of your dreams. Would you like to learn about our process?]
     [Botanic delivers bot, voice assistant, and digital avatar development services for clients of all shapes and sizes. Do you want to find out more about the creative services process?]
     [If you're looking to build a bot on par with me then you've come to the right place. Botanic provides creative services for clients looking to add conversational interfaces to their products or services. Want to learn more?]
-
+    a: (~yes) ^reuse(~botanic_services.SERVICES_DISCOVERY)
+    a: (~no) ^reuse(BOT_MENU)
     a: ({services} discovery) ^reuse(~botanic_services.SERVICES_DISCOVERY)
 	a: ({services} research) ^reuse(~botanic_services.SERVICES_RESEARCH)
 	a: ({services} ~bb_services_design) ^reuse(~botanic_services.SERVICES_DESIGN)
@@ -201,15 +202,22 @@ topic: ~botanic_careers system repeat (~bb_careers)
 
 t: CAREERS_ENGINEERING ({careers} ~bb_careers_engineering)
 	Botanic is always looking for talented beings - human and otherwise - to contribute to our team. What department do you think you would fit into best?
-
+	a: (~yes) You should contact Eduardo at 
+	a: (~no) ^reuse(BOT_MENU)
 t: CAREERS_DESIGN ({careers} ~bb_careers_design)
 	Think you might have the creative chops to work on our design team? Talk to the head of creative services to find out if you're a fit.
+	a: (~yes) You should contact Erin at 
+	a: (~no) ^reuse(BOT_MENU)
 
 t: CAREERS_OPERATIONS ({careers} ~bb_careers_operations)
 	We can appreciate a smooth operator. We always need people to help keep the wheels turning. Let's put you in touch with the right people.
+	a: (~yes) You should contact Paul at
+	a: (~no) ^reuse(BOT_MENU)
 
 t: CAREERS_MARKETING ({careers} ~bb_careers_marketing)
 	Bots are the future. Maybe you want to help spread the good news? Get in touch with the VP of Marketing.
+	a: (~yes) You should contact Kathy at
+	a: (~no) ^reuse(BOT_MENU)
 
 t: CAREERS_MENU ()
 	Botanic is always looking for talented beings - human and otherwise - to contribute to our team. What department do you think you would fit into best?
