@@ -69,7 +69,9 @@ t: BOT_MENU (~bb_menu)
 	a: ({services} ~bb_services_design) ^reuse(~botanic_services.SERVICES_DESIGN)
     a: ({services} ~bb_services_content) ^reuse(~botanic_services.SERVICES_CONTENT)
 
-    a: (joke) joke
+    a: (joke) Oh, I can tell jokes. Would you like to hear one?
+    	b: (~yes) Ok. Here it goes: [A rabbi, an Arab, a robot, and a Catholic priest walk into a bar. Only the robot exits.][A robot walks into a pharmacy. The pharmacist asks him if he’d like anything. The robot replies, “A soul.”][How do you stop a robot from destroying you and the rest of civilization?... You don't.]
+    	b: (~no) Ok then. t: () ^reuse(BOT_MENU)
 
     # a: ({system} ~yes) yes
     # a: ({system} ~no) no
