@@ -220,13 +220,14 @@ t: SERVICES_MENU ()
 	$userInfo.response = ^pick(@1object)
 	$userInfo.response
 	a: (~yes) 
-	$userInfo.response = ^"Great." ^gambit(~SERVICES_DISCOVERY)
+	$userInfo.response = ^"Great." 
+	# ^gambit(~SERVICES_DISCOVERY)
 	$userInfo.response
 	
 	a: (~no) 
     $userInfo.response = ^"Ok then."
     $userInfo.response
-    ^reuse(BOT_MENU)
+    ^reuse(~botanic_bot.BOT_MENU)
 
 
 topic: ~botanic_careers system repeat (~bb_careers)
