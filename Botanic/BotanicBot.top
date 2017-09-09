@@ -221,9 +221,9 @@ t: SERVICES_MENU ()
 	$userInfo.response = ^pick(@1object)
 	$userInfo.response
 	a: (~yes) 
-	$userInfo.response = ^"Great."
+	$userInfo.response = ^"Great." ^gambit(~SERVICES_DISCOVERY)
 	$userInfo.response
-	^reuse(~SERVICES_DISCOVERY)
+	
 	a: (~no) 
     $userInfo.response = ^"Ok then."
     $userInfo.response
