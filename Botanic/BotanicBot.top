@@ -344,14 +344,14 @@ s: CONTINUE_FORM_FILLING (?)
 topic: ~botanic_social system repeat (~bb_contact_social)
 
 t: SOCIAL_TWITTER (twitter)
-	$userInfo.response = ^"Here's a link to Twitter."
+	$userInfo.response = ^"Here's a link to our Twitter account."
 	$userInfo.link = ^"https://twitter.com/botanic_io"
     <a href="https://twitter.com/botanic_io"> Here's a link to Twitter. </a>
 
 t: SOCIAL_FACEBOOK (facebook)
-	$userInfo.response = ^"Here's a link to Facebook."
+	$userInfo.response = ^"Here's a link to our Facebook page."
 	$userInfo.link = ^"https://www.facebook.com/Botanic-Technologies-Inc-123932294871925/"
-    <a href="https://www.facebook.com/Botanic-Technologies-Inc-123932294871925/> Here's a link to Facebook. </a>
+    <a href="https://www.facebook.com/Botanic-Technologies-Inc-123932294871925/"> Here's a link to our Facebook page. </a>
 
 t: SOCIAL_LINKEDIN (linkedin)
 	$userInfo.response = ^"Here's a link to our LinkedIn page."
@@ -359,15 +359,15 @@ t: SOCIAL_LINKEDIN (linkedin)
 	<a href="https://www.linkedin.com/company-beta/6607560/"> Here's a link to our LinkedIn page. </a>
 
 t: SOCIAL_GLASSDOOR (glassdoor)
-	$userInfo.response = ^"you choose Glassdoor"
-	$userInfo.response
+	$userInfo.response = ^"Here's a link to our Glassdoor page."
+	$userInfo.link = ^"https://www.facebook.com/Botanic-Technologies-Inc-123932294871925/"
 
 t: SOCIAL_INSTAGRAM (instagram)
-	$userInfo.response = ^"you choose Instagram"
+	$userInfo.response = ^"We don't have an Instagram account yet!"
 	$userInfo.response
 
 t: SOCIAL_MENU ()
-	$userInfo.response = ^"you choose social"
+	$userInfo.response = ^"Which social network do you want to connect on? We're on Facebook, Twitter, LinkedIn, and Glassdoor."
 	$userInfo.response
 
 
