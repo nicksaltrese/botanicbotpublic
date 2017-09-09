@@ -142,7 +142,6 @@ t: ABOUT_WHO ({about} ~bb_about_who)
 	$userInfo.response = ^"If you're more interested in humans than bots you can learn about our leadership team here."
 	$userInfo.link = ^"https://botanic.io/about/leadership/"
 	$userInfo.response
- 
 
 t: ABOUT_WHERE ({about} ~bb_about_where)
 	$_tmpArray = ^jsoncreate(TRANSIENT array)
@@ -290,52 +289,76 @@ t: CHAT_FORM_NAME (!$userInfo.name)
 	$userInfo.response = ^"Please let me know your name"
 	$userInfo.response
 
-    a: (name {is} _*)
+    a: (!~negation name {is} _*)
 		$userInfo.name = '_0
 		^reuse(CONTINUE_FORM_FILLING)
 
-	a: (~yes {,} {it} {is} _*)
+	a: (!~negation ~yes {,} {it} {is} _*)
 		$userInfo.name = '_0
 		^reuse(CONTINUE_FORM_FILLING)
 
-	a: (_*)
+	a: ({will} ~negation give)
+		$userInfo.response = ^"For contacting, this information is mandatory, "
+		$userInfo.response
+		^reuse(CONTINUE_FORM_FILLING)
+
+	a: (!~negation _*)
 		$userInfo.name = '_0
 		^reuse(CONTINUE_FORM_FILLING)
+
+	a: () ^reuse(CONTINUE_FORM_FILLING)	
 
 t: CHAT_FORM_EMAIL (!$userInfo.email)
 	$userInfo.response = ^"Please let me know your email"
 	$userInfo.response
 
-    a: (~bb_email_id {is} _~email_url)
+    a: (!~negation ~bb_email_id {is} _~email_url)
 		$userInfo.email = '_0
 		^reuse(CONTINUE_FORM_FILLING)
 
-	a: (~yes {,} {it} {is} _~email_url)
+	a: (!~negation ~yes {,} {it} {is} _~email_url)
 		$userInfo.email = '_0
 		^reuse(CONTINUE_FORM_FILLING)	
 
-    a: (~bb_email_id {is} _*)
+    a: (!~negation ~bb_email_id {is} _*)
 		$userInfo.email = '_0
 		^reuse(CONTINUE_FORM_FILLING)
 
-	a: (~yes {,} {it} {is} _*)
+	a: (!~negation ~yes {,} {it} {is} _*)
 		$userInfo.email = '_0
 		^reuse(CONTINUE_FORM_FILLING)
 
-	a: (_~email_url)
+	a: (!~negation _~email_url)
 		$userInfo.email = '_0
 		^reuse(CONTINUE_FORM_FILLING)
 
-	a: (_*)
-		$userInfo.email = '_0
+	a: ({will} ~negation give)
+		$userInfo.response = ^"For contacting, this information is mandatory, "
+		$userInfo.response
+		^reuse(CONTINUE_FORM_FILLING)		
+
+	a: (!~negation _*)
+		$_userInput = '_0
+		if ( ^findtext(^"@" $_userInput 0 insensitive) ) {
+			if ( ^findtext(^"." $_userInput 0 insensitive) ) {
+				$userInfo.email = $_userInput
+			}
+		}
+		if(!$userInfo.email) {
+			$userInfo.response = ^"For contacting, this information is mandatory, "
+			$userInfo.response
+		}
 		^reuse(CONTINUE_FORM_FILLING)
+
+	a: () ^reuse(CONTINUE_FORM_FILLING)
 
 t: CHAT_FORM_SHORT_MESSAGE (!$userInfo.shortMessage)
 	$userInfo.response = ^"please give your short message"
 	$userInfo.response
 
 	a: (_*)
-		$userInfo.shortMessage = ^original(_0)
+		# $userInfo.shortMessage = ^original(_0)
+		$userInfo.shortMessage = ^"%originalinput"
 		^reuse(CONTINUE_FORM_FILLING)
 
 t: CHAT_FORM_THANKS ()

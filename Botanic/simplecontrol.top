@@ -46,12 +46,6 @@ u: (!$userInfo)
 	if(!$userInfo.name) { $userInfo.name = ^"" }
 	if(!$userInfo.email) { $userInfo.email = ^"" }
 
-u: ($userInfo)
-	$userInfo.link = ^""
-	$userInfo.response = ^""
-	$userInfo.shortMessage = NULL
-	$userInfo.sendEmail = NULL
-
 # set all variables received in OOB
 u: () ^respond(~process_oob_input)
 
@@ -165,34 +159,6 @@ u: () # main per-sentence processing
 	}
 
 
-topic: ~XPOSTPROCESS system () # gambits only - not allowed to write to  output - generates speech on windows -- for Linux you'd want to install Festival (or equivalent) and call that instead.
-
-t: ($userInfo)
-	# $$oobjson = ^jsonwrite($userInfo)
-	$$oobjson = ^"\[{\"version\": \"$userInfo.version\", \"name\": \"$userInfo.name\", \"email\": \"$userInfo.email\", \"shortMessage\": \"$userInfo.shortMessage\", \"sendEmail\": \"$userInfo.sendEmail\", \"link\": \"$userInfo.link\"}\]"
-
-t: ($$oobjson)
-	# ^postprintbefore( \[ $$oobjson \])
-	^postprintbefore($$oobjson)
-	^fail(RULE)
-
-##<<
-t: (^query(direct_v ? chatoutput ? -1 ? @9  ))  # get the sentences  (why is the object) -- no longer has quotes around it
-	^loop()
-	{
-		$$tmp = ^last(@9subject) # note last output which is quoted string
-		if (!%server AND %os == windows  AND !$SHUTUP)
-		{
-			$$tmp = ^"talk \"$$tmp\" "
-			^popen($$tmp null)
-		}
-        if (!%server AND %os == mac  AND !$SHUTUP)
-        {
-            $$shellerror = ^system(^"say \"$$tmp\" ")
-        }
-	}
-##>>
-
 topic: ~process_oob_input system repeat keep()
 
 u: (\[ _* \] ) # grab params and main sentence
@@ -207,6 +173,7 @@ u: (\[ _* \] ) # grab params and main sentence
 		^_2 = _3 # do assignment onto variable
 	}
 	^fail(sentence)
+
 
 topic: ~devcheatcodes system repeat ()
 
@@ -227,3 +194,38 @@ u: ( cheat bot version )
 u: (cheat welcome reset) $companyIntroduction = null
 
 u: (cheat reset) ^eval(:reset)
+
+topic: ~XPOSTPROCESS system () # gambits only - not allowed to write to  output - generates speech on windows -- for Linux you'd want to install Festival (or equivalent) and call that instead.
+
+t: ($userInfo)
+	# $$oobjson = ^jsonwrite($userInfo)
+	$$oobjson = ^"\[{\"version\": \"$userInfo.version\", \"name\": \"$userInfo.name\", \"email\": \"$userInfo.email\", \"shortMessage\": \"$userInfo.shortMessage\", \"sendEmail\": \"$userInfo.sendEmail\", \"link\": \"$userInfo.link\"}\]"
+
+t: ($$oobjson)
+	# ^postprintbefore( \[ $$oobjson \])
+	^postprintbefore($$oobjson)
+	^fail(RULE)
+
+u: ($userInfo)
+	$userInfo.link = ^""
+	$userInfo.response = ^""
+	$userInfo.sendEmail = NULL
+	$userInfo.shortMessage = NULL
+	# $userInfo.sentences = NULL
+
+##<<
+t: (^query(direct_v ? chatoutput ? -1 ? @9  ))  # get the sentences  (why is the object) -- no longer has quotes around it
+	^loop()
+	{
+		$$tmp = ^last(@9subject) # note last output which is quoted string
+		if (!%server AND %os == windows  AND !$SHUTUP)
+		{
+			$$tmp = ^"talk \"$$tmp\" "
+			^popen($$tmp null)
+		}
+        if (!%server AND %os == mac  AND !$SHUTUP)
+        {
+            $$shellerror = ^system(^"say \"$$tmp\" ")
+        }
+	}
+##>>
