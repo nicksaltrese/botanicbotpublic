@@ -139,9 +139,20 @@ t: ABOUT_WHO ({about} ~bb_about_who)
 	@1 = ^query(exact_s $_tmpArray ? ?)
 
 	$userInfo.response = ^pick(@1object)
+<<<<<<< HEAD
+	a: () 
+		$userInfo.response = ^"If you're more interested in humans than bots you can learn about our leadership team here."
+		$userInfo.link = ^"https://botanic.io/about/leadership/"
+		<a href="https://botanic.io/about/leadership/">If you're more interested in humans than bots you can learn about our leadership team here.</a>
+ 
+=======
 	$userInfo.response = ^"If you're more interested in humans than bots you can learn about our leadership team here."
 	$userInfo.link = ^"https://botanic.io/about/leadership/"
 	$userInfo.response
+<<<<<<< Updated upstream
+=======
+>>>>>>> origin/master
+>>>>>>> Stashed changes
 
 t: ABOUT_WHERE ({about} ~bb_about_where)
 	$_tmpArray = ^jsoncreate(TRANSIENT array)
@@ -156,18 +167,18 @@ t: ABOUT_WHERE ({about} ~bb_about_where)
 t: ABOUT_WHAT ({about} what)
 	$userInfo.response = ^"Botanic develops chatbots (like me) for both high-profile and small-scale clients and creates software solutions for conversational interfaces."
 	$userInfo.response
-	a: (~yes more)
+	a: (~yes)
 		$userInfo.response = ^"If you want to read more background on what the Botanicians are up to, click through."
 		$userInfo.link = ^"https://botanic.io/about/"
-		$userInfo.response
+		<a href="https://botanic.io/about/">If you want to read more background on what the Botanicians are up to, click through.</a>
 
 t: ABOUT_WHY ({about} why)
 	$userInfo.response = ^"The future of interface design is conversational. It's easier to talk to software than scroll through menus, isn't it? Plus, It's fun. Isn't this fun? We're having a lot of fun."
 	$userInfo.response
-	a: (~yes more)
+	a: (~yes)
 		$userInfo.response = ^"If you want to read more background on what the Botanicians are up to, click through."
 		$userInfo.link = ^"https://botanic.io/about/"
-		$userInfo.response
+		<a href="https://botanic.io/about/">If you want to read more background on what the Botanicians are up to, click through.</a>
 
 t: ABOUT_MENU ()
 	$_tmpArray = ^jsoncreate(TRANSIENT array)
@@ -179,16 +190,16 @@ t: ABOUT_MENU ()
 
 	$userInfo.response = ^pick(@1object)
 	$userInfo.response
-	a: (~yes more)
+	a: (~yes)
 		$userInfo.response = ^"If you want to read more background on what the Botanicians are up to, click through."
 		$userInfo.link = ^"https://botanic.io/about/"
-		$userInfo.response
+		<a href="https://botanic.io/about/">If you want to read more background on what the Botanicians are up to, click through.</a>
 
 # this may never execute, so we need to come up with keywords for this too
 s: ABOUT_ELSE (?)
 	$userInfo.response = ^"You may just want to talk to you a human about that! I'm not sure this is a question I'm prepared to answer, through no fault of my own of course."
 	$userInfo.link = ^"https://botanic.io/contact"
-	$userInfo.response
+	<a href="https://botanic.io/contact/">You may just want to talk to you a human about that! I'm not sure this is a question I'm prepared to answer, through no fault of my own of course.</a>
 
 
 topic: ~botanic_services system repeat (~bb_services)
@@ -220,8 +231,17 @@ t: SERVICES_MENU ()
 	$userInfo.response = ^pick(@1object)
 	$userInfo.response
 	a: (~yes) 
+<<<<<<< Updated upstream
 	$userInfo.response = ^"Great." 
 	# ^gambit(~SERVICES_DISCOVERY)
+=======
+<<<<<<< HEAD
+	$userInfo.response = ^"Great." ^reuse(~botanic_services.SERVICES_DISCOVERY)
+=======
+	$userInfo.response = ^"Great." 
+	# ^gambit(~SERVICES_DISCOVERY)
+>>>>>>> origin/master
+>>>>>>> Stashed changes
 	$userInfo.response
 	
 	a: (~no) 
