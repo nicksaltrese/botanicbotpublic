@@ -139,20 +139,12 @@ t: ABOUT_WHO ({about} ~bb_about_who)
 	@1 = ^query(exact_s $_tmpArray ? ?)
 
 	$userInfo.response = ^pick(@1object)
-<<<<<<< HEAD
 	a: () 
 		$userInfo.response = ^"If you're more interested in humans than bots you can learn about our leadership team here."
 		$userInfo.link = ^"https://botanic.io/about/leadership/"
 		<a href="https://botanic.io/about/leadership/">If you're more interested in humans than bots you can learn about our leadership team here.</a>
- 
-=======
-	$userInfo.response = ^"If you're more interested in humans than bots you can learn about our leadership team here."
-	$userInfo.link = ^"https://botanic.io/about/leadership/"
-	$userInfo.response
-<<<<<<< Updated upstream
-=======
->>>>>>> origin/master
->>>>>>> Stashed changes
+
+
 
 t: ABOUT_WHERE ({about} ~bb_about_where)
 	$_tmpArray = ^jsoncreate(TRANSIENT array)
@@ -231,23 +223,14 @@ t: SERVICES_MENU ()
 	$userInfo.response = ^pick(@1object)
 	$userInfo.response
 	a: (~yes) 
-<<<<<<< Updated upstream
-	$userInfo.response = ^"Great." 
-	# ^gambit(~SERVICES_DISCOVERY)
-=======
-<<<<<<< HEAD
-	$userInfo.response = ^"Great." ^reuse(~botanic_services.SERVICES_DISCOVERY)
-=======
-	$userInfo.response = ^"Great." 
-	# ^gambit(~SERVICES_DISCOVERY)
->>>>>>> origin/master
->>>>>>> Stashed changes
-	$userInfo.response
+		$userInfo.response = ^"Great." ^reuse(~botanic_services.SERVICES_DISCOVERY)
+		$userInfo.response
+		^reuse(~botanic_services.SERVICES_DISCOVERY)
 	
 	a: (~no) 
-    $userInfo.response = ^"Ok then."
-    $userInfo.response
-    ^reuse(~botanic_bot.BOT_MENU)
+   		$userInfo.response = ^"Ok then."
+   	 	$userInfo.response
+    	^reuse(~botanic_bot.BOT_MENU)
 
 
 topic: ~botanic_careers system repeat (~bb_careers)
