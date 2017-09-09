@@ -157,7 +157,7 @@ t: ABOUT_WHERE ({about} ~bb_about_where)
 t: ABOUT_WHAT ({about} what)
 	$userInfo.response = ^"Botanic develops chatbots (like me) for both high-profile and small-scale clients and creates software solutions for conversational interfaces."
 	$userInfo.response
-	a: ()
+	a: (~yes more)
 		$userInfo.response = ^"If you want to read more background on what the Botanicians are up to, click through."
 		$userInfo.link = ^"https://botanic.io/about/"
 		$userInfo.response
@@ -165,7 +165,7 @@ t: ABOUT_WHAT ({about} what)
 t: ABOUT_WHY ({about} why)
 	$userInfo.response = ^"The future of interface design is conversational. It's easier to talk to software than scroll through menus, isn't it? Plus, It's fun. Isn't this fun? We're having a lot of fun."
 	$userInfo.response
-	a: ()
+	a: (~yes more)
 		$userInfo.response = ^"If you want to read more background on what the Botanicians are up to, click through."
 		$userInfo.link = ^"https://botanic.io/about/"
 		$userInfo.response
@@ -180,7 +180,7 @@ t: ABOUT_MENU ()
 
 	$userInfo.response = ^pick(@1object)
 	$userInfo.response
-	a: ()
+	a: (~yes more)
 		$userInfo.response = ^"If you want to read more background on what the Botanicians are up to, click through."
 		$userInfo.link = ^"https://botanic.io/about/"
 		$userInfo.response
@@ -189,6 +189,7 @@ t: ABOUT_MENU ()
 s: ABOUT_ELSE (?)
 	$userInfo.response = ^"You may just want to talk to you a human about that! I'm not sure this is a question I'm prepared to answer, through no fault of my own of course."
 	$userInfo.link = ^"https://botanic.io/contact"
+	$userInfo.response
 
 
 topic: ~botanic_services system repeat (~bb_services)
@@ -220,7 +221,8 @@ t: SERVICES_MENU ()
 	$userInfo.response = ^pick(@1object)
 	$userInfo.response
 	a: (~yes) 
-	$userInfo.response = 
+	$userInfo.response = ^"Great."
+	$userInfo.response
 	^reuse(~SERVICES_DISCOVERY)
 	a: (~no) 
     $userInfo.response = ^"Ok then."
