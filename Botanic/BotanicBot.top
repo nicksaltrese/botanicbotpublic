@@ -179,9 +179,9 @@ t: ABOUT_WHY ({about} why)
 
 t: ABOUT_MENU ()
 	$_tmpArray = ^jsoncreate(TRANSIENT array)
-	^jsonarrayinsert(TRANSIENT $_tmpArray ^"Botanic is an international software and services company that makes things like me - multi-model bots and digital assistants, to help humans like you do things that you want to do. I can tell you more about who we are, where we are located, what we do, or why we do it.")
 	^jsonarrayinsert(TRANSIENT $_tmpArray ^"Botanic is an international software and services company that makes things like me - multi-model bots and digital assistants, to help humans like you do things that you want to do.")
-	^jsonarrayinsert(TRANSIENT $_tmpArray ^"We specialize in creating conversational interfaces that work intuitively. We like to call them humane machines and I'd like to think i'm a prime example. We work for innovative clients and we're developing software to help people make the next generation of bots and avatars.")
+	^jsonarrayinsert(TRANSIENT $_tmpArray ^"Botanic is a gang of visionaries, programmers, writers, artists, and psychologists dedicated to making humane machines.")
+	^jsonarrayinsert(TRANSIENT $_tmpArray ^"We specialize in creating conversational interfaces that work intuitively. We like to call them humane machines and I'd like to think that I'm a prime example.")
 
 	@1 = ^query(exact_s $_tmpArray ? ?)
 
