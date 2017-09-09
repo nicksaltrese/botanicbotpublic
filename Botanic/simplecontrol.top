@@ -34,17 +34,21 @@ topic: ~control system ()
 
 u: () 
 	if($botMajorVersion < ##BOT_VERSION_MAJOR) { $botMajorVersion = ##BOT_VERSION_MAJOR }
-	if($botMinorVersion < ##BOT_VERSION_MINOR) { $botMinorVersion = ##BOT_VERSION_MINOR }
+	if($botMinorVersion < ##BOT_VERSION_MINOR) 
+	{ 
+		$botMinorVersion = ##BOT_VERSION_MINOR
+		^eval(:reset)
+	}
 
 u: (!$userInfo)
 	$userInfo = ^jsoncreate(PERMANENT object)
 	if(!$userInfo.version) { $userInfo.version = ^"^join($botMajorVersion . $botMinorVersion)" }
 	if(!$userInfo.name) { $userInfo.name = ^"" }
 	if(!$userInfo.email) { $userInfo.email = ^"" }
-	if(!$userInfo.message) { $userInfo.message = ^"" }
-	if(!$userInfo.link) { $userInfo.link = ^"" }
 
 u: ($userInfo)
+	$userInfo.link = ^""
+	$userInfo.response = ^""
 	$userInfo.shortMessage = NULL
 	$userInfo.sendEmail = NULL
 
@@ -164,7 +168,7 @@ topic: ~XPOSTPROCESS system () # gambits only - not allowed to write to  output 
 
 t: ($userInfo)
 	# $$oobjson = ^jsonwrite($userInfo)
-	$$oobjson = ^"\[{\"version\": \"$userInfo.version\", \"name\": \"$userInfo.name\", \"email\": \"$userInfo.email\", \"shortMessage\": \"$userInfo.shortMessage\", \"sendEmail\": \"$userInfo.sendEmail\", \"message\": \"$userInfo.message\", \"link\": \"$userInfo.link\"}\]"
+	$$oobjson = ^"\[{\"version\": \"$userInfo.version\", \"name\": \"$userInfo.name\", \"email\": \"$userInfo.email\", \"shortMessage\": \"$userInfo.shortMessage\", \"sendEmail\": \"$userInfo.sendEmail\", \"link\": \"$userInfo.link\"}\]"
 
 t: ($$oobjson)
 	# ^postprintbefore( \[ $$oobjson \])
@@ -219,3 +223,6 @@ u: ( cheat bot version )
 	$_msg = ^" bot version is : $_msg"
 	$_msg
 
+u: (cheat welcome reset) $companyIntroduction = null
+
+u: (cheat reset) ^eval(:reset)

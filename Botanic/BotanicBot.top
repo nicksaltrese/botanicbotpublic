@@ -59,8 +59,8 @@ t: ({services} ~bb_services_content) ^reuse(~botanic_services.SERVICES_CONTENT)
 t: (~bb_services) ^gambit(~botanic_services)
 
 t: (joke)
-	$userInfo.message = ^"Oh, I can tell jokes. Would you like to hear one?"
-	$userInfo.message
+	$userInfo.response = ^"Oh, I can tell jokes. Would you like to hear one?"
+	$userInfo.response
 
     a: (~yes) 
     	$_tmpArray = ^jsoncreate(TRANSIENT array)
@@ -70,13 +70,13 @@ t: (joke)
 
 		@1 = ^query(exact_s $_tmpArray ? ?)
 
-		$userInfo.message = ^pick(@1object)
-		$userInfo.message = ^"Ok. Here it goes: $userInfo.message"
-    	$userInfo.message
+		$userInfo.response = ^pick(@1object)
+		$userInfo.response = ^"Ok. Here it goes: $userInfo.response"
+    	$userInfo.response
 
     a: (~no) 
-    	$userInfo.message = ^"Ok then."
-    	$userInfo.message
+    	$userInfo.response = ^"Ok then."
+    	$userInfo.response
     	^reuse(BOT_MENU)
 
 
@@ -91,8 +91,8 @@ t: BOT_WELCOME_MESSAGE ( !$companyIntroduction )
 
 	@1 = ^query(exact_s $_tmpArray ? ?)
 
-	$userInfo.message = ^pick(@1object)
-	$userInfo.message
+	$userInfo.response = ^pick(@1object)
+	$userInfo.response
 
 t: BOT_MENU (~bb_menu)
 	$_tmpArray = ^jsoncreate(TRANSIENT array)
@@ -102,8 +102,8 @@ t: BOT_MENU (~bb_menu)
 
 	@1 = ^query(exact_s $_tmpArray ? ?)
 
-	$userInfo.message = ^pick(@1object)
-	$userInfo.message
+	$userInfo.response = ^pick(@1object)
+	$userInfo.response
 
 t: ($companyIntroduction==1)
 	$companyIntroduction = 2
@@ -138,8 +138,8 @@ t: ABOUT_WHO ({about} ~bb_about_who)
 
 	@1 = ^query(exact_s $_tmpArray ? ?)
 
-	$userInfo.message = ^pick(@1object)
-	$userInfo.message
+	$userInfo.response = ^pick(@1object)
+	$userInfo.response
 
 t: ABOUT_WHERE ({about} ~bb_about_where)
 	$_tmpArray = ^jsoncreate(TRANSIENT array)
@@ -148,16 +148,16 @@ t: ABOUT_WHERE ({about} ~bb_about_where)
 
 	@1 = ^query(exact_s $_tmpArray ? ?)
 
-	$userInfo.message = ^pick(@1object)
-	$userInfo.message
+	$userInfo.response = ^pick(@1object)
+	$userInfo.response
 
 t: ABOUT_WHAT ({about} what)
-	$userInfo.message = ^"Botanic develops chatbots (like me) for both high-profile and small-scall clients and creates software solutions for conversational interfaces."
-	$userInfo.message
+	$userInfo.response = ^"Botanic develops chatbots (like me) for both high-profile and small-scall clients and creates software solutions for conversational interfaces."
+	$userInfo.response
 
 t: ABOUT_WHY ({about} why)
-	$userInfo.message = ^"The future of interface design is conversational. It's easier to talk to software than scroll through menus, isn't it? Plus, It's fun. Isn't this fun? We're having a lot of fun."
-	$userInfo.message
+	$userInfo.response = ^"The future of interface design is conversational. It's easier to talk to software than scroll through menus, isn't it? Plus, It's fun. Isn't this fun? We're having a lot of fun."
+	$userInfo.response
 
 t: ABOUT_MENU ()
 	$_tmpArray = ^jsoncreate(TRANSIENT array)
@@ -167,32 +167,32 @@ t: ABOUT_MENU ()
 
 	@1 = ^query(exact_s $_tmpArray ? ?)
 
-	$userInfo.message = ^pick(@1object)
-	$userInfo.message
+	$userInfo.response = ^pick(@1object)
+	$userInfo.response
 
 # this may never execute, so we need to come up with keywords for this too
 s: ABOUT_ELSE (?)
-	$userInfo.message = ^"You may just want to talk to you a human about that! I'm not sure this is a question I'm prepared to answer, through no fault of my own of course."
-	$userInfo.message
+	$userInfo.response = ^"You may just want to talk to you a human about that! I'm not sure this is a question I'm prepared to answer, through no fault of my own of course."
+	$userInfo.response
 
 
 topic: ~botanic_services system repeat (~bb_services)
 
 t: SERVICES_DISCOVERY ({services} discovery)
-	$userInfo.message = ^"The first thing to do is determine what you need. The creative services team at Botanic will work closely with you to determine what kind of bot they can build for you."
-	$userInfo.message
+	$userInfo.response = ^"The first thing to do is determine what you need. The creative services team at Botanic will work closely with you to determine what kind of bot they can build for you."
+	$userInfo.response
 
 t: SERVICES_RESEARCH ({services} research)
-	$userInfo.message = ^"Like any good interface, a bot needs to be developed with the needs of the user in mind. That's where research comes in. Botanic will make sure that any bot will meet the actual needs of the user."
-	$userInfo.message
+	$userInfo.response = ^"Like any good interface, a bot needs to be developed with the needs of the user in mind. That's where research comes in. Botanic will make sure that any bot will meet the actual needs of the user."
+	$userInfo.response
 
 t: SERVICES_DESIGN ({services} ~bb_services_design)
-	$userInfo.message = ^"The design of a bot takes a lot of research, a little science, and a healthy dose of art. The designers at Botanic build me. What could they build you?"
-	$userInfo.message
+	$userInfo.response = ^"The design of a bot takes a lot of research, a little science, and a healthy dose of art. The designers at Botanic build me. What could they build you?"
+	$userInfo.response
 
 t: SERVICES_CONTENT ({services} ~bb_services_content)
-	$userInfo.message = ^"Content is the words that I am saying to you right now. It takes a special talent to write words like these, would you say?"
-	$userInfo.message
+	$userInfo.response = ^"Content is the words that I am saying to you right now. It takes a special talent to write words like these, would you say?"
+	$userInfo.response
 
 t: SERVICES_MENU ()
 	$_tmpArray = ^jsoncreate(TRANSIENT array)
@@ -202,42 +202,42 @@ t: SERVICES_MENU ()
 
 	@1 = ^query(exact_s $_tmpArray ? ?)
 
-	$userInfo.message = ^pick(@1object)
-	$userInfo.message
+	$userInfo.response = ^pick(@1object)
+	$userInfo.response
 
 
 topic: ~botanic_careers system repeat (~bb_careers)
 
 t: CAREERS_ENGINEERING ({careers} ~bb_careers_engineering)
-	$userInfo.message = ^"Botanic is always looking for talented beings - human and otherwise - to contribute to our team. What department do you think you would fit into best?"
-	$userInfo.message
+	$userInfo.response = ^"Botanic is always looking for talented beings - human and otherwise - to contribute to our team. What department do you think you would fit into best?"
+	$userInfo.response
 
 t: CAREERS_DESIGN ({careers} ~bb_careers_design)
-	$userInfo.message = ^"Think you might have the creative chops to work on our design team? Talk to the head of creative services to find out if you're a fit."
-	$userInfo.message
+	$userInfo.response = ^"Think you might have the creative chops to work on our design team? Talk to the head of creative services to find out if you're a fit."
+	$userInfo.response
 
 t: CAREERS_OPERATIONS ({careers} ~bb_careers_operations)
-	$userInfo.message = ^"We can appreciate a smooth operator. We always need people to help keep the wheels turning. Let's put you in touch with the right people."
-	$userInfo.message
+	$userInfo.response = ^"We can appreciate a smooth operator. We always need people to help keep the wheels turning. Let's put you in touch with the right people."
+	$userInfo.response
 
 t: CAREERS_MARKETING ({careers} ~bb_careers_marketing)
-	$userInfo.message = ^"Bots are the future. Maybe you want to help spread the good news? Get in touch with the VP of Marketing."
-	$userInfo.message
+	$userInfo.response = ^"Bots are the future. Maybe you want to help spread the good news? Get in touch with the VP of Marketing."
+	$userInfo.response
 
 t: CAREERS_MENU ()
-	$userInfo.message = ^"Botanic is always looking for talented beings - human and otherwise - to contribute to our team. What department do you think you would fit into best?"
-	$userInfo.message
+	$userInfo.response = ^"Botanic is always looking for talented beings - human and otherwise - to contribute to our team. What department do you think you would fit into best?"
+	$userInfo.response
 
 
 topic: ~botanic_contact system repeat (~bb_contact)
 
 t: CONTACT_EMAIL ({contact} ~bb_email_id)
-	$userInfo.message = ^"Send an email to info@botanic.io and some human will respond as soon as possible."
-	$userInfo.message
+	$userInfo.response = ^"Send an email to info@botanic.io and some human will respond as soon as possible."
+	$userInfo.response
 
 t: CONTACT_PHONE ({contact} ~bb_contact_phone)
-	$userInfo.message = ^"Call 1.888.969.2687. Numbers are easier for me to remember but if you prefer letters that's 1-888-969-BOTS. Clever, isn't it?"
-	$userInfo.message
+	$userInfo.response = ^"Call 1.888.969.2687. Numbers are easier for me to remember but if you prefer letters that's 1-888-969-BOTS. Clever, isn't it?"
+	$userInfo.response
 
 t: CONTACT_CHAT_FORM ({contact} [chat contact form] {[chat contact form]} {[chat contact form]})
 	^gambit(~botanic_chat_form)
@@ -246,8 +246,8 @@ t: CONTACT_SOCIAL ({contact} ~bb_contact_social)
 	^gambit(~botanic_social)
 
 t: CONTACT_EMAIL_SIGNUP ({contact} {~bb_email_id} ~bb_contact_email_signup)
-	$userInfo.message = ^"you choose email signup"
-	$userInfo.message
+	$userInfo.response = ^"you choose email signup"
+	$userInfo.response
 
 t: CONTACT_MENU ()
 	$_tmpArray = ^jsoncreate(TRANSIENT array)
@@ -256,15 +256,15 @@ t: CONTACT_MENU ()
 
 	@1 = ^query(exact_s $_tmpArray ? ?)
 
-	$userInfo.message = ^pick(@1object)
-	$userInfo.message
+	$userInfo.response = ^pick(@1object)
+	$userInfo.response
 
 
 topic: ~botanic_chat_form system repeat ()
 
 t: CHAT_FORM_NAME (!$userInfo.name)
-	$userInfo.message = ^"Please let me know your name"
-	$userInfo.message
+	$userInfo.response = ^"Please let me know your name"
+	$userInfo.response
 
     a: (name {is} _*)
 		$userInfo.name = '_0
@@ -279,8 +279,8 @@ t: CHAT_FORM_NAME (!$userInfo.name)
 		^reuse(CONTINUE_FORM_FILLING)
 
 t: CHAT_FORM_EMAIL (!$userInfo.email)
-	$userInfo.message = ^"Please let me know your email"
-	$userInfo.message
+	$userInfo.response = ^"Please let me know your email"
+	$userInfo.response
 
     a: (~bb_email_id {is} _~email_url)
 		$userInfo.email = '_0
@@ -307,8 +307,8 @@ t: CHAT_FORM_EMAIL (!$userInfo.email)
 		^reuse(CONTINUE_FORM_FILLING)
 
 t: CHAT_FORM_SHORT_MESSAGE (!$userInfo.shortMessage)
-	$userInfo.message = ^"please give your short message"
-	$userInfo.message
+	$userInfo.response = ^"please give your short message"
+	$userInfo.response
 
 	a: (_*)
 		$userInfo.shortMessage = ^original(_0)
@@ -318,8 +318,8 @@ t: CHAT_FORM_THANKS ()
 	if($userInfo.name AND $userInfo.email)
 	{
 		$userInfo.sendEmail = true
-		$userInfo.message = ^"thanks, we will contact you"
-		$userInfo.message
+		$userInfo.response = ^"thanks, we will contact you"
+		$userInfo.response
 	}
 	else { ^reuse(CONTINUE_FORM_FILLING) }
 
@@ -344,31 +344,31 @@ s: CONTINUE_FORM_FILLING (?)
 topic: ~botanic_social system repeat (~bb_contact_social)
 
 t: SOCIAL_TWITTER (twitter)
-	$userInfo.message = ^"Here's a link to Twitter."
+	$userInfo.response = ^"Here's a link to Twitter."
 	$userInfo.link = ^"https://twitter.com/botanic_io"
     <a href="https://twitter.com/botanic_io"> Here's a link to Twitter. </a>
 
 t: SOCIAL_FACEBOOK (facebook)
-	$userInfo.message = ^"Here's a link to Facebook."
+	$userInfo.response = ^"Here's a link to Facebook."
 	$userInfo.link = ^"https://www.facebook.com/Botanic-Technologies-Inc-123932294871925/"
     <a href="https://www.facebook.com/Botanic-Technologies-Inc-123932294871925/> Here's a link to Facebook. </a>
 
 t: SOCIAL_LINKEDIN (linkedin)
-	$userInfo.message = ^"Here's a link to our LinkedIn page."
+	$userInfo.response = ^"Here's a link to our LinkedIn page."
 	$userInfo.link = ^"https://www.linkedin.com/company-beta/6607560/"
 	<a href="https://www.linkedin.com/company-beta/6607560/"> Here's a link to our LinkedIn page. </a>
 
 t: SOCIAL_GLASSDOOR (glassdoor)
-	$userInfo.message = ^"you choose Glassdoor"
-	$userInfo.message
+	$userInfo.response = ^"you choose Glassdoor"
+	$userInfo.response
 
 t: SOCIAL_INSTAGRAM (instagram)
-	$userInfo.message = ^"you choose Instagram"
-	$userInfo.message
+	$userInfo.response = ^"you choose Instagram"
+	$userInfo.response
 
 t: SOCIAL_MENU ()
-	$userInfo.message = ^"you choose social"
-	$userInfo.message
+	$userInfo.response = ^"you choose social"
+	$userInfo.response
 
 
 topic: ~botanic_product system repeat ()
