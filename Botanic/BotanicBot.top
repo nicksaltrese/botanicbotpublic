@@ -199,18 +199,22 @@ topic: ~botanic_services system repeat (~bb_services)
 t: SERVICES_DISCOVERY ({services} discovery)
 	$userInfo.response = ^"The first thing to do is determine what you need. The creative services team at Botanic will work closely with you to determine what kind of bot they can build for you."
 	$userInfo.response
+	^reuse(~botanic_services.SERVICES_RESEARCH)
 
 t: SERVICES_RESEARCH ({services} research)
 	$userInfo.response = ^"Like any good interface, a bot needs to be developed with the needs of the user in mind. That's where research comes in. Botanic will make sure that any bot will meet the actual needs of the user."
 	$userInfo.response
+	^reuse(~botanic_services.SERVICES_DESIGN)
 
 t: SERVICES_DESIGN ({services} ~bb_services_design)
 	$userInfo.response = ^"The design of a bot takes a lot of research, a little science, and a healthy dose of art. The designers at Botanic build me. What could they build you?"
 	$userInfo.response
+	^reuse(~botanic_services.SERVICES_CONTENT)
 
 t: SERVICES_CONTENT ({services} ~bb_services_content)
 	$userInfo.response = ^"Content is the words that I am saying to you right now. It takes a special talent to write words like these, would you say?"
 	$userInfo.response
+	^reuse(~botanic_bot.BOT_MENU)
 
 t: SERVICES_MENU ()
 	$_tmpArray = ^jsoncreate(TRANSIENT array)
@@ -236,20 +240,36 @@ t: SERVICES_MENU ()
 topic: ~botanic_careers system repeat (~bb_careers)
 
 t: CAREERS_ENGINEERING ({careers} ~bb_careers_engineering)
-	$userInfo.response = ^"Botanic is always looking for talented beings - human and otherwise - to contribute to our team. What department do you think you would fit into best?"
+	$userInfo.response = ^"Oh, you speak engineering. Wonderful. We need people that think in code to build bots that think in code."
 	$userInfo.response
+	a: (~yes)
+		$userInfo.response = ^"Send your specs to the Director of Engineering."
+		$userInfo.link = ^"mailto:eduardo@botanic.io"
+		<a href="mailto:eduardo@botanic.io">Send your specs to the Director of Engineering.</a>
 
 t: CAREERS_DESIGN ({careers} ~bb_careers_design)
 	$userInfo.response = ^"Think you might have the creative chops to work on our design team? Talk to the head of creative services to find out if you're a fit."
 	$userInfo.response
+	a: (~yes)
+		$userInfo.response = ^"Get in touch with Erin, the head of the Creative Services team."
+		$userInfo.link = ^"mailto:erin@botanic.io"
+		<a href="mailto:erin@botanic.io">Get in touch with Erin, the head of the Creative Services team.</a>
 
 t: CAREERS_OPERATIONS ({careers} ~bb_careers_operations)
-	$userInfo.response = ^"We can appreciate a smooth operator. We always need people to help keep the wheels turning. Let's put you in touch with the right people."
+	$userInfo.response = ^"We always need people who can keep the lights on — I know I do. Sound like you?"
 	$userInfo.response
+	a: (~yes)
+		$userInfo.response = ^"Send a message to our operations team now!"
+		$userInfo.link = ^"mailto:paul@botanic.io"
+		<a href="mailto:paul@botanic.io">Send a message to our operations team now!</a>
 
 t: CAREERS_MARKETING ({careers} ~bb_careers_marketing)
-	$userInfo.response = ^"Bots are the future. Maybe you want to help spread the good news? Get in touch with the VP of Marketing."
+	$userInfo.response = ^"Bots are the future. Maybe you want to help spread the good news?"
 	$userInfo.response
+	a: (~yes)
+		$userInfo.response = ^"Get in touch with Kathy, the VP of Marketing."
+		$userInfo.link = ^"mailto:kathy@botanic.io"
+		<a href="mailto:kathy@botanic.io">Get in touch with the VP of Marketing.</a>
 
 t: CAREERS_MENU ()
 	$userInfo.response = ^"Botanic is always looking for talented beings - human and otherwise - to contribute to our team. What department do you think you would fit into best?"
