@@ -201,17 +201,16 @@ t: ($userInfo)
 	# $$oobjson = ^jsonwrite($userInfo)
 	$$oobjson = ^"\[{\"version\": \"$userInfo.version\", \"name\": \"$userInfo.name\", \"email\": \"$userInfo.email\", \"shortMessage\": \"$userInfo.shortMessage\", \"sendEmail\": \"$userInfo.sendEmail\", \"link\": \"$userInfo.link\"}\]"
 
-t: ($$oobjson)
-	# ^postprintbefore( \[ $$oobjson \])
-	^postprintbefore($$oobjson)
-	^fail(RULE)
-
-u: ($userInfo)
 	$userInfo.link = ^""
 	$userInfo.response = ^""
 	$userInfo.sendEmail = NULL
 	$userInfo.shortMessage = NULL
 	# $userInfo.sentences = NULL
+
+t: ($$oobjson)
+	# ^postprintbefore( \[ $$oobjson \])
+	^postprintbefore($$oobjson)
+	^fail(RULE)
 
 ##<<
 t: (^query(direct_v ? chatoutput ? -1 ? @9  ))  # get the sentences  (why is the object) -- no longer has quotes around it
