@@ -199,21 +199,25 @@ topic: ~botanic_services system repeat (~bb_services)
 t: SERVICES_DISCOVERY ({services} discovery)
 	$userInfo.response = ^"The first thing to do is determine what you need. The creative services team at Botanic will work closely with you to determine what kind of bot they can build for you."
 	$userInfo.response
+	a: () Then we're on to the research phase.
 	^reuse(~botanic_services.SERVICES_RESEARCH)
 
 t: SERVICES_RESEARCH ({services} research)
 	$userInfo.response = ^"Like any good interface, a bot needs to be developed with the needs of the user in mind. That's where research comes in. Botanic will make sure that any bot will meet the actual needs of the user."
 	$userInfo.response
+	a: () Next comes design.
 	^reuse(~botanic_services.SERVICES_DESIGN)
 
 t: SERVICES_DESIGN ({services} ~bb_services_design)
 	$userInfo.response = ^"The design of a bot takes a lot of research, a little science, and a healthy dose of art. The designers at Botanic build me. What could they build you?"
 	$userInfo.response
+	a: () And finally, you've got content.
 	^reuse(~botanic_services.SERVICES_CONTENT)
 
 t: SERVICES_CONTENT ({services} ~bb_services_content)
 	$userInfo.response = ^"Content is the words that I am saying to you right now. It takes a special talent to write words like these, would you say?"
 	$userInfo.response
+	a: () And that's the process!
 	^reuse(~botanic_bot.BOT_MENU)
 
 t: SERVICES_MENU ()
@@ -227,7 +231,7 @@ t: SERVICES_MENU ()
 	$userInfo.response = ^pick(@1object)
 	$userInfo.response
 	a: (~yes) 
-		$userInfo.response = ^"Great." ^reuse(~botanic_services.SERVICES_DISCOVERY)
+		$userInfo.response = ^"Great."
 		$userInfo.response
 		^reuse(~botanic_services.SERVICES_DISCOVERY)
 	
