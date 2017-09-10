@@ -3,7 +3,7 @@ concept: ~bb_email_id IGNORESPELLING (email emailid emailId "email id" "email Id
 
 concept: ~bb_about_who IGNORESPELLING (who personnel people staff leadership team) 
 concept: ~bb_about_where IGNORESPELLING (where location based)
-concept: ~bb_about IGNORESPELLING (~bb_about_who ~bb_about_where what why)
+concept: ~bb_about IGNORESPELLING (about info information "what * botanic")
 
 concept: ~bb_contact_phone IGNORESPELLING (phone telephone)
 concept: ~bb_contact_social IGNORESPELLING (social linkedin facebook twitter instagram glassdoor)
@@ -15,8 +15,8 @@ concept: ~bb_services_design IGNORESPELLING (design UX "user experience")
 concept: ~bb_services_content IGNORESPELLING (content writing conversation)
 concept: ~bb_services IGNORESPELLING (~bb_services_design ~bb_services_content service discovery research)
 
-concept: ~bb_careers_engineering IGNORESPELLING (engineering software programming) 
-concept: ~bb_careers_design IGNORESPELLING (creative design UX content)
+concept: ~bb_careers_engineering IGNORESPELLING (engineering software programming engineer programmer) 
+concept: ~bb_careers_design IGNORESPELLING (creative design UX content "user experience")
 concept: ~bb_careers_operations IGNORESPELLING (operations management)
 concept: ~bb_careers_marketing IGNORESPELLING (marketing advertising outreach growth)
 concept: ~bb_careers IGNORESPELLING (~bb_careers_engineering ~bb_careers_design ~bb_careers_operations ~bb_careers_marketing career job opportunities openings roles)
@@ -65,13 +65,13 @@ t: (joke)
     a: (~yes) 
     	$_tmpArray = ^jsoncreate(TRANSIENT array)
 		^jsonarrayinsert(TRANSIENT $_tmpArray ^"A rabbi, an Arab, a robot, and a Catholic priest walk into a bar. Only the robot exits.")
-		^jsonarrayinsert(TRANSIENT $_tmpArray ^"A robot walks into a pharmacy. The pharmacist asks him if he’d like anything. The robot replies: A soul.")
-		^jsonarrayinsert(TRANSIENT $_tmpArray ^"How do you stop a robot from destroying you and the rest of civilization?... Answer: You don't.")
-		^jsonarrayinsert(TRANSIENT $_tmpArray ^"Why did the robot marry his fiancee? Answer: He couldn’t resistor.")
-		^jsonarrayinsert(TRANSIENT $_tmpArray ^"Why was the robot bankrupt? Answer: He had used all his cache.")
+		^jsonarrayinsert(TRANSIENT $_tmpArray ^"A robot walks into a pharmacy. The pharmacist asks him if he’d like anything. | The robot replies: A soul.")
+		^jsonarrayinsert(TRANSIENT $_tmpArray ^"How do you stop a robot from destroying you and the rest of civilization? | Answer: You don't.")
+		^jsonarrayinsert(TRANSIENT $_tmpArray ^"Why did the robot marry his fiancee? | Answer: He couldn’t resistor.")
+		^jsonarrayinsert(TRANSIENT $_tmpArray ^"Why was the robot bankrupt? | Answer: He had used all his cache.")
 		^jsonarrayinsert(TRANSIENT $_tmpArray ^"If a Norwegian robot analyzes a bird, it Scandinavian.")
-		^jsonarrayinsert(TRANSIENT $_tmpArray ^"There are 10 kinds of people in the world. Those who can read binary and those who can't.")
-		^jsonarrayinsert(TRANSIENT $_tmpArray ^"A robot walks into a bar, orders a drink, and lays down some cash. The bartender says: Hey, we don't serve robots. And the robot says: Oh, but someday you will.")
+		^jsonarrayinsert(TRANSIENT $_tmpArray ^"There are 10 kinds of people in the world. | Those who can read binary and those who can't.")
+		^jsonarrayinsert(TRANSIENT $_tmpArray ^"A robot walks into a bar, orders a drink, and lays down some cash. | The bartender says: Hey, we don't serve robots. | And the robot says: Oh, but someday you will.")
 
 		@1 = ^query(exact_s $_tmpArray ? ?)
 
@@ -101,7 +101,7 @@ t: BOT_WELCOME_MESSAGE ( !$companyIntroduction )
 
 t: BOT_MENU (~bb_menu)
 	$_tmpArray = ^jsoncreate(TRANSIENT array)
-	^jsonarrayinsert(TRANSIENT $_tmpArray ^"How can I help? I can discuss our products and services, our personnel, and put you in touch with a human if I must.")
+	^jsonarrayinsert(TRANSIENT $_tmpArray ^"How can I help? I can discuss our Botanic and put you in touch with a human if I must.")
 	^jsonarrayinsert(TRANSIENT $_tmpArray ^"What's next? I can tell you about Botanic, what we do here, and who we are.")
 	^jsonarrayinsert(TRANSIENT $_tmpArray ^"What would you like to do now? I'm here to help.")
 
@@ -138,7 +138,7 @@ topic: ~botanic_about system repeat (~bb_about)
 t: ABOUT_WHO ({about} ~bb_about_who)
 	$_tmpArray = ^jsoncreate(TRANSIENT array)
 	^jsonarrayinsert(TRANSIENT $_tmpArray ^"Botanic was founded by Mark Stephen Meadows and now includes people with all different kinds of human skills that bots don't offer... yet.")
-	^jsonarrayinsert(TRANSIENT $_tmpArray ^"Mark Stephen Meadows is the founder of this band of roustabouts - did I use that word right? You may consider the leadership team page if you want to know about more human Botanicians.")
+	^jsonarrayinsert(TRANSIENT $_tmpArray ^"Mark Stephen Meadows founded Botanic. | You may consider the leadership team page if you want to know about more human Botanicians.")
 	^jsonarrayinsert(TRANSIENT $_tmpArray ^"Botanic includes writers, artists, engineers, visionaries, thinkers, and of course some bots as well.")
 
 	@1 = ^query(exact_s $_tmpArray ? ?)
@@ -153,7 +153,7 @@ t: ABOUT_WHO ({about} ~bb_about_who)
 
 t: ABOUT_WHERE ({about} ~bb_about_where)
 	$_tmpArray = ^jsoncreate(TRANSIENT array)
-	^jsonarrayinsert(TRANSIENT $_tmpArray ^"You could say that Botanic is based in the cloud... just like me. Unfortunately, people also need to live in the real world, and Botanic has offices in Emeryville, California and Denver, Colorado.")
+	^jsonarrayinsert(TRANSIENT $_tmpArray ^"You could say that Botanic is based in the cloud... | Unfortunately, people need to live in the real world, and Botanic has offices in Emeryville, California and Denver, Colorado.")
 	^jsonarrayinsert(TRANSIENT $_tmpArray ^"Botanic is headquartered in scenic Emeryville, California, directly across the Bay Bridge from San Francisco, but team members dwell around the world.")
 
 	@1 = ^query(exact_s $_tmpArray ? ?)
@@ -170,7 +170,7 @@ t: ABOUT_WHAT ({about} what)
 		<a href="https://botanic.io/about/">If you want to read more background on what the Botanicians are up to, click through.</a>
 
 t: ABOUT_WHY ({about} why)
-	$userInfo.response = ^"The future of interface design is conversational. It's easier to talk to software than scroll through menus, isn't it? Plus, It's fun. Isn't this fun? We're having a lot of fun."
+	$userInfo.response = ^"The future of interface design is conversational. It's easier to talk to software than scroll through menus, isn't it? | Plus, It's fun. We're having a lot of fun."
 	$userInfo.response
 	a: (~yes)
 		$userInfo.response = ^"If you want to read more background on what the Botanicians are up to, click through."
@@ -181,7 +181,7 @@ t: ABOUT_MENU ()
 	$_tmpArray = ^jsoncreate(TRANSIENT array)
 	^jsonarrayinsert(TRANSIENT $_tmpArray ^"Botanic is an international software and services company that makes things like me - multi-model bots and digital assistants, to help humans like you do things that you want to do.")
 	^jsonarrayinsert(TRANSIENT $_tmpArray ^"Botanic is a gang of visionaries, programmers, writers, artists, and psychologists dedicated to making humane machines.")
-	^jsonarrayinsert(TRANSIENT $_tmpArray ^"We specialize in creating conversational interfaces that work intuitively. We like to call them humane machines and I'd like to think that I'm a prime example.")
+	^jsonarrayinsert(TRANSIENT $_tmpArray ^"We specialize in creating conversational interfaces that work intuitively. | We like to call them humane machines and I'd like to think that I'm a prime example.")
 
 	@1 = ^query(exact_s $_tmpArray ? ?)
 
@@ -227,9 +227,9 @@ t: SERVICES_CONTENT ({services} ~bb_services_content)
 
 t: SERVICES_MENU ()
 	$_tmpArray = ^jsoncreate(TRANSIENT array)
-	^jsonarrayinsert(TRANSIENT $_tmpArray ^"Services! Botanic offers them. It's true. We have a world-class creative team that can help create the branded bot of your dreams. Would you like to learn about our process?")
-	^jsonarrayinsert(TRANSIENT $_tmpArray ^"Botanic delivers bot, voice assistant, and digital avatar development services for clients of all shapes and sizes. Do you want to find out more about the creative services process?")
-	^jsonarrayinsert(TRANSIENT $_tmpArray ^"If you're looking to build a bot on par with me then you've come to the right place. Botanic provides creative services for clients looking to add conversational interfaces to their products or services. Want to learn more?")
+	^jsonarrayinsert(TRANSIENT $_tmpArray ^"Services! Botanic offers them. It's true. We have a world-class creative team that can help create the branded bot of your dreams. | Would you like to learn about our process?")
+	^jsonarrayinsert(TRANSIENT $_tmpArray ^"Botanic delivers bot, voice assistant, and digital avatar development services for clients of all shapes and sizes.| Do you want to find out more about the creative services process?")
+	^jsonarrayinsert(TRANSIENT $_tmpArray ^"If you're looking to build a bot like me you're on the right tack. Botanic provides creative services for clients looking to add conversational interfaces to their products or services. | Want to learn more?")
 
 	@1 = ^query(exact_s $_tmpArray ? ?)
 
@@ -447,7 +447,7 @@ t: SOCIAL_INSTAGRAM (instagram)
 	$userInfo.response
 
 t: SOCIAL_MENU ()
-	$userInfo.response = ^"Which social network do you want to connect on? We're on Facebook, Twitter, LinkedIn, and Glassdoor."
+	$userInfo.response = ^"Which social network do you want to connect on? | We're on Facebook, Twitter, LinkedIn, and Glassdoor."
 	$userInfo.response
 
 
