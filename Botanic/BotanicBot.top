@@ -216,7 +216,7 @@ t: SERVICES_DISCOVERY ({services} discovery)
 t: SERVICES_RESEARCH ({services} research)
 	$userInfo.response = ^"Like any good interface, a bot needs to be developed with the needs of the user in mind. That's where research comes in. Botanic will make sure that any bot will meet the actual needs of the user."
 	$userInfo.response
-	
+
 	a: ()
 		Next comes design.
 		^reuse(~botanic_services.SERVICES_DESIGN)
@@ -272,7 +272,7 @@ t: CAREERS_ENGINEERING ({careers} ~bb_careers_engineering)
 	a: (~yes)
 		$userInfo.response = ^"Send your specs to the Director of Engineering."
 		$userInfo.link = ^"mailto:eduardo@botanic.io"
-		<a href="mailto:eduardo@botanic.io" target="_blank">Send your specs to the Director of Engineering.</a>
+		Send your specs to the <a href="mailto:eduardo@botanic.io" target="_blank">Director</a> of Engineering.
 
 		b: (~emothanks)
 			$userInfo.response = ^"Thank you for expressing your interest with us, providing your information."
@@ -285,7 +285,7 @@ t: CAREERS_DESIGN ({careers} ~bb_careers_design)
 	a: (~yes)
 		$userInfo.response = ^"Get in touch with Erin, the head of the Creative Services team."
 		$userInfo.link = ^"mailto:erin@botanic.io"
-		<a href="mailto:erin@botanic.io" target="_blank">Get in touch with Erin, the head of the Creative Services team.</a>
+		Get in touch with <a href="mailto:erin@botanic.io" target="_blank">Erin</a>, the head of the Creative Services team.
 
 		b: (~emothanks)
 			$userInfo.response = ^"Thank you for expressing your interest with us, providing your information."
@@ -298,7 +298,7 @@ t: CAREERS_OPERATIONS ({careers} ~bb_careers_operations)
 	a: (~yes)
 		$userInfo.response = ^"Send a message to our operations team now!"
 		$userInfo.link = ^"mailto:paul@botanic.io"
-		<a href="mailto:paul@botanic.io" target="_blank">Send a message to our operations team now!</a>
+		Send a message to our <a href="mailto:paul@botanic.io" target="_blank">operations</a> team now!
 
 		b: (~emothanks)
 			$userInfo.response = ^"Thank you for expressing your interest with us, providing your information."
@@ -311,7 +311,7 @@ t: CAREERS_MARKETING ({careers} ~bb_careers_marketing)
 	a: (~yes)
 		$userInfo.response = ^"Get in touch with Kathy, the VP of Marketing."
 		$userInfo.link = ^"mailto:kathy@botanic.io"
-		<a href="mailto:kathy@botanic.io" target="_blank">Get in touch with the VP of Marketing.</a>
+		Get in touch with the <a href="mailto:kathy@botanic.io" target="_blank">VP of Marketing</a>.
 
 		b: (~emothanks)
 			$userInfo.response = ^"Thank you for expressing your interest with us, providing your information."
@@ -469,21 +469,22 @@ topic: ~botanic_social system repeat (~bb_contact_social)
 t: SOCIAL_TWITTER (twitter)
 	$userInfo.response = ^"Here's a link to our Twitter account."
 	$userInfo.link = ^"https://twitter.com/botanic_io"
-    <a href="https://twitter.com/botanic_io" target="_blank"> Here's a link to Twitter. </a>
+    Here's a link to <a href="https://twitter.com/botanic_io" target="_blank">Twitter</a>.
 
 t: SOCIAL_FACEBOOK (facebook)
 	$userInfo.response = ^"Here's a link to our Facebook page."
 	$userInfo.link = ^"https://www.facebook.com/Botanic-Technologies-Inc-123932294871925/"
-    <a href="https://www.facebook.com/Botanic-Technologies-Inc-123932294871925/" target="_blank"> Here's a link to our Facebook page. </a>
+    Here's a link to our <a href="https://www.facebook.com/Botanic-Technologies-Inc-123932294871925/" target="_blank">Facebook</a> page.
 
 t: SOCIAL_LINKEDIN (linkedin)
 	$userInfo.response = ^"Here's a link to our LinkedIn page."
 	$userInfo.link = ^"https://www.linkedin.com/company-beta/6607560/"
-	<a href="https://www.linkedin.com/company-beta/6607560/" target="_blank"> Here's a link to our LinkedIn page. </a>
+	Here's a link to our <a href="https://www.linkedin.com/company-beta/6607560/" target="_blank">LinkedIn</a> page.
 
 t: SOCIAL_GLASSDOOR (glassdoor)
 	$userInfo.response = ^"Here's a link to our Glassdoor page."
 	$userInfo.link = ^"https://www.facebook.com/Botanic-Technologies-Inc-123932294871925/"
+	Here's a link to our <a href="https://www.facebook.com/Botanic-Technologies-Inc-123932294871925/" target="_blank">Glassdoor</a> page.
 
 t: SOCIAL_INSTAGRAM (instagram)
 	$userInfo.response = ^"We don't have an Instagram account yet!"
