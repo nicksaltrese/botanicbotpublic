@@ -28,9 +28,9 @@ topic: ~botanic_bot system repeat (~bb_keywords)
 
 t: ({about} ~bb_about_who {work} * {[botanic there]}) ^reuse(~botanic_about.ABOUT_WHO)
 t: ({about} ~bb_about_where) ^reuse(~botanic_about.ABOUT_WHERE)
-t: ({about} what) ^reuse(~botanic_about.ABOUT_WHAT)
+t: ({about} what * !~bb_careers) ^reuse(~botanic_about.ABOUT_WHAT)
 t: ({about} why) ^reuse(~botanic_about.ABOUT_WHY)
-t: ([~bb_about (what * botanic)]) ^reuse(~botanic_about.ABOUT_MENU)
+t: ([~bb_about (what * !~bb_careers * botanic)]) ^reuse(~botanic_about.ABOUT_MENU)
 
 t: ({contact} ~bb_email_id) ^reuse(~botanic_contact.CONTACT_EMAIL)
 t: ({contact} ~bb_contact_phone) ^reuse(~botanic_contact.CONTACT_PHONE)
@@ -50,7 +50,7 @@ t: ({careers} ~bb_careers_engineering) ^reuse(~botanic_careers.CAREERS_ENGINEERI
 t: ({careers} ~bb_careers_design) ^reuse(~botanic_careers.CAREERS_DESIGN)
 t: ({careers} ~bb_careers_operations) ^reuse(~botanic_careers.CAREERS_OPERATIONS)
 t: ({careers} ~bb_careers_marketing) ^reuse(~botanic_careers.CAREERS_MARKETING)
-t: (~bb_careers) ^gambit(~botanic_careers)
+t: ({type} {of} ~bb_careers ) ^gambit(~botanic_careers)
 
 t: ({services} discovery) ^reuse(~botanic_services.SERVICES_DISCOVERY)
 t: ({services} research) ^reuse(~botanic_services.SERVICES_RESEARCH)
@@ -288,7 +288,7 @@ t: CAREERS_OPERATIONS ({careers} ~bb_careers_operations)
 t: CAREERS_MARKETING ({careers} ~bb_careers_marketing)
 	$userInfo.response = ^"Bots are the future. Maybe you want to help spread the good news?"
 	$userInfo.response
-	
+
 	a: (~yes)
 		$userInfo.response = ^"Get in touch with Kathy, the VP of Marketing."
 		$userInfo.link = ^"mailto:kathy@botanic.io"
