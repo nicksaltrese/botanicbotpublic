@@ -15,6 +15,7 @@ concept: ~bb_services_design IGNORESPELLING (design UX "user experience")
 concept: ~bb_services_content IGNORESPELLING (content writing conversation)
 concept: ~bb_services IGNORESPELLING (~bb_services_design ~bb_services_content service discovery research)
 
+concept: ~bb_careers_departments IGNORESPELLING (department section vertical)
 concept: ~bb_careers_engineering IGNORESPELLING (engineering software programming engineer programmer) 
 concept: ~bb_careers_design IGNORESPELLING (creative design UX content "user experience")
 concept: ~bb_careers_operations IGNORESPELLING (operations management)
@@ -24,7 +25,20 @@ concept: ~bb_careers IGNORESPELLING (~bb_careers_engineering ~bb_careers_design 
 concept: ~bb_menu IGNORESPELLING (menu choices options)
 concept: ~bb_keywords IGNORESPELLING (~bb_menu ~bb_contact ~bb_services ~bb_careers)
 
-topic: ~botanic_bot system repeat (~bb_keywords)
+topic: ~botanic_bot system repeat (~bb_keywords)  
+
+t: ({careers} ~bb_careers_engineering) ^reuse(~botanic_careers.CAREERS_ENGINEERING)
+t: ({careers} ~bb_careers_design) ^reuse(~botanic_careers.CAREERS_DESIGN)
+t: ({careers} ~bb_careers_operations) ^reuse(~botanic_careers.CAREERS_OPERATIONS)
+t: ({careers} ~bb_careers_marketing) ^reuse(~botanic_careers.CAREERS_MARKETING)
+t: ({what} ~bb_careers_departments) ^reuse(~botanic_careers.CAREERS_DEPARTMENTS)
+t: ({[type look]} {[of for]} * ~bb_careers ) ^gambit(~botanic_careers)
+
+t: ({services} discovery) ^reuse(~botanic_services.SERVICES_DISCOVERY)
+t: ({services} research) ^reuse(~botanic_services.SERVICES_RESEARCH)
+t: ({services} ~bb_services_design) ^reuse(~botanic_services.SERVICES_DESIGN)
+t: ({services} ~bb_services_content) ^reuse(~botanic_services.SERVICES_CONTENT)
+t: (~bb_services) ^gambit(~botanic_services)
 
 t: ({about} ~bb_about_who {work} * {[botanic there]}) ^reuse(~botanic_about.ABOUT_WHO)
 t: ({about} ~bb_about_where) ^reuse(~botanic_about.ABOUT_WHERE)
@@ -44,19 +58,7 @@ t: ({social} instagram) ^reuse(~botanic_social.SOCIAL_INSTAGRAM)
 t: ({social} glassdoor) ^reuse(~botanic_social.SOCIAL_GLASSDOOR)
 
 t: ({contact} ~bb_contact_social) ^reuse(~botanic_contact.CONTACT_SOCIAL)
-t: (~bb_contact) ^reuse(~botanic_contact.CONTACT_MENU)  
-
-t: ({careers} ~bb_careers_engineering) ^reuse(~botanic_careers.CAREERS_ENGINEERING)
-t: ({careers} ~bb_careers_design) ^reuse(~botanic_careers.CAREERS_DESIGN)
-t: ({careers} ~bb_careers_operations) ^reuse(~botanic_careers.CAREERS_OPERATIONS)
-t: ({careers} ~bb_careers_marketing) ^reuse(~botanic_careers.CAREERS_MARKETING)
-t: ({type} {of} ~bb_careers ) ^gambit(~botanic_careers)
-
-t: ({services} discovery) ^reuse(~botanic_services.SERVICES_DISCOVERY)
-t: ({services} research) ^reuse(~botanic_services.SERVICES_RESEARCH)
-t: ({services} ~bb_services_design) ^reuse(~botanic_services.SERVICES_DESIGN)
-t: ({services} ~bb_services_content) ^reuse(~botanic_services.SERVICES_CONTENT)
-t: (~bb_services) ^gambit(~botanic_services)
+t: (~bb_contact) ^reuse(~botanic_contact.CONTACT_MENU)
 
 t: (joke)
 	$userInfo.response = ^"Oh, I can tell jokes. Would you like to hear one?"
@@ -148,7 +150,7 @@ t: ABOUT_WHO ({about} ~bb_about_who {work} * {[botanic there]})
 	a: () 
 		$userInfo.response = ^"If you're more interested in humans than bots you can learn about our leadership team here."
 		$userInfo.link = ^"https://botanic.io/about/leadership/"
-		<a href="https://botanic.io/about/leadership/">If you're more interested in humans than bots you can learn about our leadership team here.</a>
+		<a href="https://botanic.io/about/leadership/" target="_blank">If you're more interested in humans than bots you can learn about our leadership team here.</a>
 
 t: ABOUT_WHERE ({about} ~bb_about_where)
 	$_tmpArray = ^jsoncreate(TRANSIENT array)
@@ -167,7 +169,7 @@ t: ABOUT_WHAT ({about} what)
 	a: (~yes)
 		$userInfo.response = ^"If you want to read more background on what the Botanicians are up to, click through."
 		$userInfo.link = ^"https://botanic.io/about/"
-		<a href="https://botanic.io/about/">If you want to read more background on what the Botanicians are up to, click through.</a>
+		<a href="https://botanic.io/about/" target="_blank">If you want to read more background on what the Botanicians are up to, click through.</a>
 
 t: ABOUT_WHY ({about} why)
 	$userInfo.response = ^"The future of interface design is conversational. It's easier to talk to software than scroll through menus, isn't it? <br>  Plus, It's fun. We're having a lot of fun."
@@ -176,7 +178,7 @@ t: ABOUT_WHY ({about} why)
 	a: (~yes)
 		$userInfo.response = ^"If you want to read more background on what the Botanicians are up to, click through."
 		$userInfo.link = ^"https://botanic.io/about/"
-		<a href="https://botanic.io/about/">If you want to read more background on what the Botanicians are up to, click through.</a>
+		<a href="https://botanic.io/about/" target="_blank">If you want to read more background on what the Botanicians are up to, click through.</a>
 
 t: ABOUT_MENU ()
 	$_tmpArray = ^jsoncreate(TRANSIENT array)
@@ -192,13 +194,13 @@ t: ABOUT_MENU ()
 	a: (~yes)
 		$userInfo.response = ^"If you want to read more background on what the Botanicians are up to, click through."
 		$userInfo.link = ^"https://botanic.io/about/"
-		<a href="https://botanic.io/about/">If you want to read more background on what the Botanicians are up to, click through.</a>
+		<a href="https://botanic.io/about/" target="_blank">If you want to read more background on what the Botanicians are up to, click through.</a>
 
 # this may never execute, so we need to come up with keywords for this too
 s: ABOUT_ELSE (?)
 	$userInfo.response = ^"You may just want to talk to you a human about that! I'm not sure this is a question I'm prepared to answer, through no fault of my own of course."
 	$userInfo.link = ^"https://botanic.io/contact"
-	<a href="https://botanic.io/contact/">You may just want to talk to you a human about that! I'm not sure this is a question I'm prepared to answer, through no fault of my own of course.</a>
+	<a href="https://botanic.io/contact/" target="_blank">You may just want to talk to you a human about that! I'm not sure this is a question I'm prepared to answer, through no fault of my own of course.</a>
 
 
 topic: ~botanic_services system repeat (~bb_services)
@@ -265,7 +267,7 @@ t: CAREERS_ENGINEERING ({careers} ~bb_careers_engineering)
 	a: (~yes)
 		$userInfo.response = ^"Send your specs to the Director of Engineering."
 		$userInfo.link = ^"mailto:eduardo@botanic.io"
-		<a href="mailto:eduardo@botanic.io">Send your specs to the Director of Engineering.</a>
+		<a href="mailto:eduardo@botanic.io" target="_blank">Send your specs to the Director of Engineering.</a>
 
 t: CAREERS_DESIGN ({careers} ~bb_careers_design)
 	$userInfo.response = ^"Think you might have the creative chops to work on our design team? Talk to the head of creative services to find out if you're a fit."
@@ -274,7 +276,7 @@ t: CAREERS_DESIGN ({careers} ~bb_careers_design)
 	a: (~yes)
 		$userInfo.response = ^"Get in touch with Erin, the head of the Creative Services team."
 		$userInfo.link = ^"mailto:erin@botanic.io"
-		<a href="mailto:erin@botanic.io">Get in touch with Erin, the head of the Creative Services team.</a>
+		<a href="mailto:erin@botanic.io" target="_blank">Get in touch with Erin, the head of the Creative Services team.</a>
 
 t: CAREERS_OPERATIONS ({careers} ~bb_careers_operations)
 	$userInfo.response = ^"We always need people who can keep the lights on - I know I do. Sound like you?"
@@ -283,7 +285,7 @@ t: CAREERS_OPERATIONS ({careers} ~bb_careers_operations)
 	a: (~yes)
 		$userInfo.response = ^"Send a message to our operations team now!"
 		$userInfo.link = ^"mailto:paul@botanic.io"
-		<a href="mailto:paul@botanic.io">Send a message to our operations team now!</a>
+		<a href="mailto:paul@botanic.io" target="_blank">Send a message to our operations team now!</a>
 
 t: CAREERS_MARKETING ({careers} ~bb_careers_marketing)
 	$userInfo.response = ^"Bots are the future. Maybe you want to help spread the good news?"
@@ -292,7 +294,11 @@ t: CAREERS_MARKETING ({careers} ~bb_careers_marketing)
 	a: (~yes)
 		$userInfo.response = ^"Get in touch with Kathy, the VP of Marketing."
 		$userInfo.link = ^"mailto:kathy@botanic.io"
-		<a href="mailto:kathy@botanic.io">Get in touch with the VP of Marketing.</a>
+		<a href="mailto:kathy@botanic.io" target="_blank">Get in touch with the VP of Marketing.</a>
+
+t: CAREERS_DEPARTMENTS ({what} ~bb_careers_departments)
+	$userInfo.response = ^"Engineering, Design, Operations and Marketing"
+	$userInfo.response
 
 t: CAREERS_MENU ()
 	$userInfo.response = ^"Botanic is always looking for talented beings - human and otherwise - to contribute to our team. What department do you think you would fit into best?"
@@ -442,17 +448,17 @@ topic: ~botanic_social system repeat (~bb_contact_social)
 t: SOCIAL_TWITTER (twitter)
 	$userInfo.response = ^"Here's a link to our Twitter account."
 	$userInfo.link = ^"https://twitter.com/botanic_io"
-    <a href="https://twitter.com/botanic_io"> Here's a link to Twitter. </a>
+    <a href="https://twitter.com/botanic_io" target="_blank"> Here's a link to Twitter. </a>
 
 t: SOCIAL_FACEBOOK (facebook)
 	$userInfo.response = ^"Here's a link to our Facebook page."
 	$userInfo.link = ^"https://www.facebook.com/Botanic-Technologies-Inc-123932294871925/"
-    <a href="https://www.facebook.com/Botanic-Technologies-Inc-123932294871925/"> Here's a link to our Facebook page. </a>
+    <a href="https://www.facebook.com/Botanic-Technologies-Inc-123932294871925/" target="_blank"> Here's a link to our Facebook page. </a>
 
 t: SOCIAL_LINKEDIN (linkedin)
 	$userInfo.response = ^"Here's a link to our LinkedIn page."
 	$userInfo.link = ^"https://www.linkedin.com/company-beta/6607560/"
-	<a href="https://www.linkedin.com/company-beta/6607560/"> Here's a link to our LinkedIn page. </a>
+	<a href="https://www.linkedin.com/company-beta/6607560/" target="_blank"> Here's a link to our LinkedIn page. </a>
 
 t: SOCIAL_GLASSDOOR (glassdoor)
 	$userInfo.response = ^"Here's a link to our Glassdoor page."
