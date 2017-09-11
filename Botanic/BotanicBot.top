@@ -1,4 +1,4 @@
-
+ï»¿
 concept: ~bb_email_id IGNORESPELLING (email emailid emailId "email id" "email Id")
 
 concept: ~bb_about_who IGNORESPELLING (who personnel people staff leadership team "who * botanic") 
@@ -65,9 +65,9 @@ t: (joke)
     a: (~yes) 
     	$_tmpArray = ^jsoncreate(TRANSIENT array)
 		^jsonarrayinsert(TRANSIENT $_tmpArray ^"A rabbi, an Arab, a robot, and a Catholic priest walk into a bar. <br>  Only the robot exits.")
-		^jsonarrayinsert(TRANSIENT $_tmpArray ^"A robot walks into a pharmacy. The pharmacist asks him if he’d like anything. <br>   The robot replies: A soul.")
+		^jsonarrayinsert(TRANSIENT $_tmpArray ^"A robot walks into a pharmacy. The pharmacist asks him if he\'d like anything. <br>   The robot replies: A soul.")
 		^jsonarrayinsert(TRANSIENT $_tmpArray ^"How do you stop a robot from destroying you and the rest of civilization? <br>   Answer: You don't.")
-		^jsonarrayinsert(TRANSIENT $_tmpArray ^"Why did the robot marry his fiancee? <br>  Answer: He couldn’t resistor.")
+		^jsonarrayinsert(TRANSIENT $_tmpArray ^"Why did the robot marry his fiancee? <br>  Answer: He couldn\'t resistor.")
 		^jsonarrayinsert(TRANSIENT $_tmpArray ^"Why was the robot bankrupt? <br>  Answer: He had used all his cache.")
 		^jsonarrayinsert(TRANSIENT $_tmpArray ^"If a Norwegian robot analyzes a bird, it Scandinavian.")
 		^jsonarrayinsert(TRANSIENT $_tmpArray ^"There are 10 kinds of people in the world. <br>  Those who can read binary and those who can't.")
@@ -265,7 +265,7 @@ t: CAREERS_DESIGN ({careers} ~bb_careers_design)
 		<a href="mailto:erin@botanic.io">Get in touch with Erin, the head of the Creative Services team.</a>
 
 t: CAREERS_OPERATIONS ({careers} ~bb_careers_operations)
-	$userInfo.response = ^"We always need people who can keep the lights on — I know I do. Sound like you?"
+	$userInfo.response = ^"We always need people who can keep the lights on - I know I do. Sound like you?"
 	$userInfo.response
 	a: (~yes)
 		$userInfo.response = ^"Send a message to our operations team now!"
@@ -372,8 +372,10 @@ t: CHAT_FORM_EMAIL (!$userInfo.email)
 
 	a: (!~negation _*)
 		$_userInput = '_0
-		if ( ^findtext(^"@" $_userInput 0 insensitive) ) {
-			if ( ^findtext(^"." $_userInput 0 insensitive) ) {
+		$_tmp = "@"
+		if ( ^findtext($_userInput $_tmp 0 insensitive) ) {
+			$_tmp = "."
+			if ( ^findtext($_userInput $_tmp 0 insensitive) ) {
 				$userInfo.email = $_userInput
 			}
 		}
