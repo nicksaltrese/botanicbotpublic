@@ -216,7 +216,8 @@ t: SERVICES_DISCOVERY ({services} discovery)
 t: SERVICES_RESEARCH ({services} research)
 	$userInfo.response = ^"Like any good interface, a bot needs to be developed with the needs of the user in mind. That's where research comes in. Botanic will make sure that any bot will meet the actual needs of the user."
 	$userInfo.response
-	a: () 	
+	
+	a: ()
 		Next comes design.
 		^reuse(~botanic_services.SERVICES_DESIGN)
 
@@ -234,7 +235,11 @@ t: SERVICES_CONTENT ({services} ~bb_services_content)
 
 	a: () 
 		And that's the process!
-		^reuse(~botanic_bot.BOT_MENU)
+		# ^reuse(~botanic_bot.BOT_MENU)
+
+		b: (~emothanks)
+			$userInfo.response = ^"Thank you for expressing your interest with us, providing your information."
+			$userInfo.response
 
 t: SERVICES_MENU ()
 	$_tmpArray = ^jsoncreate(TRANSIENT array)
@@ -269,6 +274,10 @@ t: CAREERS_ENGINEERING ({careers} ~bb_careers_engineering)
 		$userInfo.link = ^"mailto:eduardo@botanic.io"
 		<a href="mailto:eduardo@botanic.io" target="_blank">Send your specs to the Director of Engineering.</a>
 
+		b: (~emothanks)
+			$userInfo.response = ^"Thank you for expressing your interest with us, providing your information."
+			$userInfo.response
+
 t: CAREERS_DESIGN ({careers} ~bb_careers_design)
 	$userInfo.response = ^"Think you might have the creative chops to work on our design team? Talk to the head of creative services to find out if you're a fit."
 	$userInfo.response
@@ -277,6 +286,10 @@ t: CAREERS_DESIGN ({careers} ~bb_careers_design)
 		$userInfo.response = ^"Get in touch with Erin, the head of the Creative Services team."
 		$userInfo.link = ^"mailto:erin@botanic.io"
 		<a href="mailto:erin@botanic.io" target="_blank">Get in touch with Erin, the head of the Creative Services team.</a>
+
+		b: (~emothanks)
+			$userInfo.response = ^"Thank you for expressing your interest with us, providing your information."
+			$userInfo.response
 
 t: CAREERS_OPERATIONS ({careers} ~bb_careers_operations)
 	$userInfo.response = ^"We always need people who can keep the lights on - I know I do. Sound like you?"
@@ -287,6 +300,10 @@ t: CAREERS_OPERATIONS ({careers} ~bb_careers_operations)
 		$userInfo.link = ^"mailto:paul@botanic.io"
 		<a href="mailto:paul@botanic.io" target="_blank">Send a message to our operations team now!</a>
 
+		b: (~emothanks)
+			$userInfo.response = ^"Thank you for expressing your interest with us, providing your information."
+			$userInfo.response
+
 t: CAREERS_MARKETING ({careers} ~bb_careers_marketing)
 	$userInfo.response = ^"Bots are the future. Maybe you want to help spread the good news?"
 	$userInfo.response
@@ -295,6 +312,10 @@ t: CAREERS_MARKETING ({careers} ~bb_careers_marketing)
 		$userInfo.response = ^"Get in touch with Kathy, the VP of Marketing."
 		$userInfo.link = ^"mailto:kathy@botanic.io"
 		<a href="mailto:kathy@botanic.io" target="_blank">Get in touch with the VP of Marketing.</a>
+
+		b: (~emothanks)
+			$userInfo.response = ^"Thank you for expressing your interest with us, providing your information."
+			$userInfo.response
 
 t: CAREERS_DEPARTMENTS ({what} ~bb_careers_departments)
 	$userInfo.response = ^"Engineering, Design, Operations and Marketing"
