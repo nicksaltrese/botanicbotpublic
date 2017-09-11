@@ -4,7 +4,7 @@ topic: ~quibble_ALL system ()
 
 u: ([never not ] ) ^respond(~quibble_not ) 
 
-u: (who) ^respond(~quibble_who ) 
+##u: (who) ^respond(~quibble_who ) 
 
 u: (what ) ^respond(~quibble_what ) 
 
