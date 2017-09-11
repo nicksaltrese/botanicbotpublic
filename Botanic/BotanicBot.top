@@ -1,9 +1,9 @@
 ﻿
 concept: ~bb_email_id IGNORESPELLING (email emailid emailId "email id" "email Id")
 
-concept: ~bb_about_who IGNORESPELLING (who personnel people staff leadership team "who * botanic") 
+concept: ~bb_about_who IGNORESPELLING (who personnel people staff leadership team) 
 concept: ~bb_about_where IGNORESPELLING (where location based)
-concept: ~bb_about IGNORESPELLING (about info information "what * botanic")
+concept: ~bb_about IGNORESPELLING (about info information)
 
 concept: ~bb_contact_phone IGNORESPELLING (phone telephone)
 concept: ~bb_contact_social IGNORESPELLING (social linkedin facebook twitter instagram glassdoor)
@@ -19,18 +19,18 @@ concept: ~bb_careers_engineering IGNORESPELLING (engineering software programmin
 concept: ~bb_careers_design IGNORESPELLING (creative design UX content "user experience")
 concept: ~bb_careers_operations IGNORESPELLING (operations management)
 concept: ~bb_careers_marketing IGNORESPELLING (marketing advertising outreach growth)
-concept: ~bb_careers IGNORESPELLING (~bb_careers_engineering ~bb_careers_design ~bb_careers_operations ~bb_careers_marketing career job opportunities openings roles)
+concept: ~bb_careers IGNORESPELLING (~bb_careers_engineering ~bb_careers_design ~bb_careers_operations ~bb_careers_marketing career job opportunities openings roles hire)
 
 concept: ~bb_menu IGNORESPELLING (menu choices options)
 concept: ~bb_keywords IGNORESPELLING (~bb_menu ~bb_contact ~bb_services ~bb_careers)
 
 topic: ~botanic_bot system repeat (~bb_keywords)
 
-t: ({about} ~bb_about_who) ^reuse(~botanic_about.ABOUT_WHO)
+t: ({about} ~bb_about_who {work} * {[botanic there]}) ^reuse(~botanic_about.ABOUT_WHO)
 t: ({about} ~bb_about_where) ^reuse(~botanic_about.ABOUT_WHERE)
 t: ({about} what) ^reuse(~botanic_about.ABOUT_WHAT)
 t: ({about} why) ^reuse(~botanic_about.ABOUT_WHY)
-t: (~bb_about) ^reuse(~botanic_about.ABOUT_MENU)
+t: ([~bb_about (what * botanic)]) ^reuse(~botanic_about.ABOUT_MENU)
 
 t: ({contact} ~bb_email_id) ^reuse(~botanic_contact.CONTACT_EMAIL)
 t: ({contact} ~bb_contact_phone) ^reuse(~botanic_contact.CONTACT_PHONE)
@@ -132,10 +132,9 @@ t: USER_NAME (!$userInfo.name)
 		# ^retry(TOP_RULE)
 ##>>		
 
-
 topic: ~botanic_about system repeat (~bb_about)
 
-t: ABOUT_WHO ({about} ~bb_about_who)
+t: ABOUT_WHO ({about} ~bb_about_who {work} * {[botanic there]})
 	$_tmpArray = ^jsoncreate(TRANSIENT array)
 	^jsonarrayinsert(TRANSIENT $_tmpArray ^"Botanic was founded by Mark Stephen Meadows and now includes people with all different kinds of human skills that bots don't offer... yet.")
 	^jsonarrayinsert(TRANSIENT $_tmpArray ^"Mark Stephen Meadows founded Botanic. <br>  You may consider the leadership team page if you want to know about more human Botanicians.")
@@ -144,12 +143,12 @@ t: ABOUT_WHO ({about} ~bb_about_who)
 	@1 = ^query(exact_s $_tmpArray ? ?)
 
 	$userInfo.response = ^pick(@1object)
+	$userInfo.response
+
 	a: () 
 		$userInfo.response = ^"If you're more interested in humans than bots you can learn about our leadership team here."
 		$userInfo.link = ^"https://botanic.io/about/leadership/"
 		<a href="https://botanic.io/about/leadership/">If you're more interested in humans than bots you can learn about our leadership team here.</a>
-
-
 
 t: ABOUT_WHERE ({about} ~bb_about_where)
 	$_tmpArray = ^jsoncreate(TRANSIENT array)
@@ -164,6 +163,7 @@ t: ABOUT_WHERE ({about} ~bb_about_where)
 t: ABOUT_WHAT ({about} what)
 	$userInfo.response = ^"Botanic develops chatbots (like me) for both high-profile and small-scale clients and creates software solutions for conversational interfaces."
 	$userInfo.response
+
 	a: (~yes)
 		$userInfo.response = ^"If you want to read more background on what the Botanicians are up to, click through."
 		$userInfo.link = ^"https://botanic.io/about/"
@@ -172,6 +172,7 @@ t: ABOUT_WHAT ({about} what)
 t: ABOUT_WHY ({about} why)
 	$userInfo.response = ^"The future of interface design is conversational. It's easier to talk to software than scroll through menus, isn't it? <br>  Plus, It's fun. We're having a lot of fun."
 	$userInfo.response
+
 	a: (~yes)
 		$userInfo.response = ^"If you want to read more background on what the Botanicians are up to, click through."
 		$userInfo.link = ^"https://botanic.io/about/"
@@ -187,6 +188,7 @@ t: ABOUT_MENU ()
 
 	$userInfo.response = ^pick(@1object)
 	$userInfo.response
+
 	a: (~yes)
 		$userInfo.response = ^"If you want to read more background on what the Botanicians are up to, click through."
 		$userInfo.link = ^"https://botanic.io/about/"
@@ -204,26 +206,33 @@ topic: ~botanic_services system repeat (~bb_services)
 t: SERVICES_DISCOVERY ({services} discovery)
 	$userInfo.response = ^"The first thing to do is determine what you need. The creative services team at Botanic will work closely with you to determine what kind of bot they can build for you."
 	$userInfo.response
-	a: () Then we're on to the research phase.
-	^reuse(~botanic_services.SERVICES_RESEARCH)
+
+	a: () 	
+		Then we're on to the research phase.
+		^reuse(~botanic_services.SERVICES_RESEARCH)
 
 t: SERVICES_RESEARCH ({services} research)
 	$userInfo.response = ^"Like any good interface, a bot needs to be developed with the needs of the user in mind. That's where research comes in. Botanic will make sure that any bot will meet the actual needs of the user."
 	$userInfo.response
-	a: () Next comes design.
-	^reuse(~botanic_services.SERVICES_DESIGN)
+	a: () 	
+		Next comes design.
+		^reuse(~botanic_services.SERVICES_DESIGN)
 
 t: SERVICES_DESIGN ({services} ~bb_services_design)
 	$userInfo.response = ^"The design of a bot takes a lot of research, a little science, and a healthy dose of art. The designers at Botanic build me. What could they build you?"
 	$userInfo.response
-	a: () And finally, you've got content.
-	^reuse(~botanic_services.SERVICES_CONTENT)
+
+	a: () 	
+		And finally, you've got content.
+		^reuse(~botanic_services.SERVICES_CONTENT)
 
 t: SERVICES_CONTENT ({services} ~bb_services_content)
 	$userInfo.response = ^"Content is the words that I am saying to you right now. It takes a special talent to write words like these, would you say?"
 	$userInfo.response
-	a: () And that's the process!
-	^reuse(~botanic_bot.BOT_MENU)
+
+	a: () 
+		And that's the process!
+		^reuse(~botanic_bot.BOT_MENU)
 
 t: SERVICES_MENU ()
 	$_tmpArray = ^jsoncreate(TRANSIENT array)
@@ -235,6 +244,7 @@ t: SERVICES_MENU ()
 
 	$userInfo.response = ^pick(@1object)
 	$userInfo.response
+
 	a: (~yes) 
 		$userInfo.response = ^"Great."
 		$userInfo.response
@@ -251,6 +261,7 @@ topic: ~botanic_careers system repeat (~bb_careers)
 t: CAREERS_ENGINEERING ({careers} ~bb_careers_engineering)
 	$userInfo.response = ^"Oh, you speak engineering. Wonderful. We need people that think in code to build bots that think in code."
 	$userInfo.response
+
 	a: (~yes)
 		$userInfo.response = ^"Send your specs to the Director of Engineering."
 		$userInfo.link = ^"mailto:eduardo@botanic.io"
@@ -259,6 +270,7 @@ t: CAREERS_ENGINEERING ({careers} ~bb_careers_engineering)
 t: CAREERS_DESIGN ({careers} ~bb_careers_design)
 	$userInfo.response = ^"Think you might have the creative chops to work on our design team? Talk to the head of creative services to find out if you're a fit."
 	$userInfo.response
+
 	a: (~yes)
 		$userInfo.response = ^"Get in touch with Erin, the head of the Creative Services team."
 		$userInfo.link = ^"mailto:erin@botanic.io"
@@ -267,6 +279,7 @@ t: CAREERS_DESIGN ({careers} ~bb_careers_design)
 t: CAREERS_OPERATIONS ({careers} ~bb_careers_operations)
 	$userInfo.response = ^"We always need people who can keep the lights on - I know I do. Sound like you?"
 	$userInfo.response
+
 	a: (~yes)
 		$userInfo.response = ^"Send a message to our operations team now!"
 		$userInfo.link = ^"mailto:paul@botanic.io"
@@ -275,6 +288,7 @@ t: CAREERS_OPERATIONS ({careers} ~bb_careers_operations)
 t: CAREERS_MARKETING ({careers} ~bb_careers_marketing)
 	$userInfo.response = ^"Bots are the future. Maybe you want to help spread the good news?"
 	$userInfo.response
+	
 	a: (~yes)
 		$userInfo.response = ^"Get in touch with Kathy, the VP of Marketing."
 		$userInfo.link = ^"mailto:kathy@botanic.io"
