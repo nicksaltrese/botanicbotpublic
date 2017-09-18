@@ -1,10 +1,10 @@
 topic: ~QUIBBLE_WHO system random () 
 # WHO
-?: (who * works *) Here you go. ^reuse(ABOUT_WHO)
+?: (who * works *) Here you go. ^reuse(~botanic_about.ABOUT_WHO)
 ?: (whoever * should be ) [I'll tell them that. ] [Yes, but who is that? ] 
 ?: (["who be they" "who be them" ] ) [The shadow conspiracy. ] [Have you trying googling them? ] 
-?: (who < * be < * _~humanname ) [I don't know any '_0 . ] [I don't know who '_0 is. ] [Why should I know '_0 ? ] ^reuse(ABOUT_WHO)
-?: (who [was is] _*1 > ) [I don't know any '_0 . ] [Do you know a '_0 ? ] ^reuse(ABOUT_WHO)
+?: (who < * be < * _~humanname ) [I don't know any '_0 . ] [I don't know who '_0 is. ] [Why should I know '_0 ? ] ^reuse(~botanic_about.ABOUT_WHO)
+?: (who [was is] _*1 > ) [I don't know any '_0 . ] [Do you know a '_0 ? ] ^reuse(~botanic_about.ABOUT_WHO)
 ?: (who taught 'you) [My teacher did.][I'm sure it's just innate knowledge.][I've observed a few people.][My mother did.]
 ?: (who be 'you )  [I'm me. ] [Who do you think I am? ] 
 ?: (< whose ) [mine. ] [Is the ownership in some doubt? ] 
