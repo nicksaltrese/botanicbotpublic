@@ -503,7 +503,7 @@ t: SOCIAL_LINKEDIN (linkedin)
 
 t: SOCIAL_GLASSDOOR (glassdoor)
 	$userInfo.response = ^"Here's a link to our Glassdoor page."
-	$userInfo.link = ^"https://www.facebook.com/Botanic-Technologies-Inc-123932294871925/"
+	$userInfo.link = ^"https://www.glassdoor.com/Overview/Working-at-Botanic-Technologies-EI_IE1735829.11,31.htm"
 	Here's a link to our <a href="https://www.facebook.com/Botanic-Technologies-Inc-123932294871925/" target="_blank">Glassdoor</a> page.
 
 t: SOCIAL_INSTAGRAM (instagram)
@@ -512,7 +512,11 @@ t: SOCIAL_INSTAGRAM (instagram)
 
 t: SOCIAL_MENU ()
 	$userInfo.response = ^"Which social network do you want to connect on? <br>  We're on Facebook, Twitter, LinkedIn, and Glassdoor."
-	$userInfo.response
+	$userInfo.link = ^"https://www.facebook.com/Botanic-Technologies-Inc-123932294871925/"
+	$userInfo.link = ^"https://twitter.com/botanic_io"
+	$userInfo.link = ^"https://www.linkedin.com/company-beta/6607560/"
+	$userInfo.link = ^"https://www.glassdoor.com/Overview/Working-at-Botanic-Technologies-EI_IE1735829.11,31.htm"
+	Which social network do you want to connect on? <br>  We're on <a href="https://www.facebook.com/Botanic-Technologies-Inc-123932294871925/">Facebook</a>, <a href="https://twitter.com/botanic_io">Twitter</a>, <a href=""https://www.linkedin.com/company-beta/6607560/">LinkedIn</a>, and <a href="https://www.glassdoor.com/Overview/Working-at-Botanic-Technologies-EI_IE1735829.11,31.htm">Glassdoor.</a>
 
 
 topic: ~botanic_product system repeat ()
