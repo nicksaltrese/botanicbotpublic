@@ -17,7 +17,7 @@ concept: ~bb_services IGNORESPELLING (~bb_services_design ~bb_services_content s
 
 concept: ~bb_careers_departments IGNORESPELLING (department section vertical)
 concept: ~bb_careers_engineering IGNORESPELLING (engineering software programming engineer programmer) 
-concept: ~bb_careers_design IGNORESPELLING (creative design UX content "user experience")
+concept: ~bb_careers_design IGNORESPELLING (creative design UX content "user experience" content writing)
 concept: ~bb_careers_operations IGNORESPELLING (operations management)
 concept: ~bb_careers_marketing IGNORESPELLING (marketing advertising outreach growth)
 concept: ~bb_careers IGNORESPELLING (~bb_careers_engineering ~bb_careers_design ~bb_careers_operations ~bb_careers_marketing career job opportunities openings roles hire)
