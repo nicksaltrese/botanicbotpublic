@@ -286,7 +286,7 @@ t: SERVICES_MENU ()
 topic: ~botanic_careers system repeat (~bb_careers)
 
 t: CAREERS_ENGINEERING ({careers} ~bb_careers_engineering)
-	$userInfo.response = ^"Oh, you speak engineering. Wonderful. We need people that think in code to build bots that think in code."
+	$userInfo.response = ^"Oh, you speak engineering. Wonderful. We need people that think in code to build bots that think in code. Is that you?"
 	$userInfo.response
 
 	a: (~yes)
@@ -299,7 +299,7 @@ t: CAREERS_ENGINEERING ({careers} ~bb_careers_engineering)
 			$userInfo.response
 
 t: CAREERS_DESIGN ({careers} ~bb_careers_design)
-	$userInfo.response = ^"Think you might have the creative chops to work on our design team? Talk to the head of creative services to find out if you're a fit."
+	$userInfo.response = ^"Think you might have the creative chops to work on our design team?"
 	$userInfo.response
 
 	a: (~yes)
@@ -312,7 +312,7 @@ t: CAREERS_DESIGN ({careers} ~bb_careers_design)
 			$userInfo.response
 
 t: CAREERS_OPERATIONS ({careers} ~bb_careers_operations)
-	$userInfo.response = ^"We always need people who can keep the lights on - I know I do. Sound like you?"
+	$userInfo.response = ^"We always need people who can keep the lights on - I know I do. Does this sound like you?"
 	$userInfo.response
 
 	a: (~yes)
@@ -325,7 +325,7 @@ t: CAREERS_OPERATIONS ({careers} ~bb_careers_operations)
 			$userInfo.response
 
 t: CAREERS_MARKETING ({careers} ~bb_careers_marketing)
-	$userInfo.response = ^"Bots are the future. Maybe you want to help spread the good news?"
+	$userInfo.response = ^"Bots are the future — maybe you want to help spread the good news. Do you want to get in touch?"
 	$userInfo.response
 
 	a: (~yes)
