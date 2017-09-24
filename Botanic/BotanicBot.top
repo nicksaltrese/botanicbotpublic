@@ -540,3 +540,9 @@ s: PRODUCT_PRODUCT3 (?)
 
 s: PRODUCT_PRODUCT4 (?)
 	you choose product4
+
+topic: ~help system repeat ()
+
+t: HELP_MENU (help menu)
+	[I am here to help. You can say about, careers, services, or contact, and I'll do my best to get you to the right place.][I understand. Try Careers, Services, About, or Contact. Those are the areas I have information.]
+
