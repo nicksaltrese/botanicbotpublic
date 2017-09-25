@@ -155,7 +155,7 @@ u: () # main per-sentence processing
 	if (%response == $_responseCount) 
 	{
 		 ^repeat() 
-		 I don't know what to say. 
+		 [Sorry, that's out of band.][I don't think I have enough throughput for this.][Looks like I'm out of bandwidth!][I have no hard-coded output for your input.][I'm finding no response in my memory.][I don't know what to say.] 
 	}
 
 
