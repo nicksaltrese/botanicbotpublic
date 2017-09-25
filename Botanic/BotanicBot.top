@@ -22,7 +22,7 @@ concept: ~bb_careers_operations IGNORESPELLING (operations management)
 concept: ~bb_careers_marketing IGNORESPELLING (marketing advertising outreach growth)
 concept: ~bb_careers IGNORESPELLING (~bb_careers_engineering ~bb_careers_design ~bb_careers_operations ~bb_careers_marketing career job opportunities openings roles hire)
 
-concept: ~bb_menu IGNORESPELLING (menu choices options)
+concept: ~bb_menu IGNORESPELLING (menu choices options help)
 concept: ~bb_keywords IGNORESPELLING (~bb_menu ~bb_contact ~bb_services ~bb_careers)
 
 topic: ~botanic_bot system repeat (~bb_keywords)  
@@ -103,9 +103,9 @@ t: BOT_WELCOME_MESSAGE ( !$companyIntroduction )
 
 t: BOT_MENU (~bb_menu)
 	$_tmpArray = ^jsoncreate(TRANSIENT array)
-	^jsonarrayinsert(TRANSIENT $_tmpArray ^"How can I help? I can discuss our Botanic and put you in touch with a human if I must.")
-	^jsonarrayinsert(TRANSIENT $_tmpArray ^"What's next? I can tell you about Botanic, what we do here, and who we are.")
-	^jsonarrayinsert(TRANSIENT $_tmpArray ^"What would you like to do now? I'm here to help.")
+	^jsonarrayinsert(TRANSIENT $_tmpArray ^"How can I help? I can discuss our Botanic and put you in touch with a human if I must. Just say about, services, contact or careers.")
+	^jsonarrayinsert(TRANSIENT $_tmpArray ^"What's next? I can tell you about Botanic, what we do here, and who we are. Try services, contact, about, or careers.")
+	^jsonarrayinsert(TRANSIENT $_tmpArray ^"What would you like to do now? You can say about, careers, contact, or services.")
 
 	@1 = ^query(exact_s $_tmpArray ? ?)
 
@@ -210,7 +210,7 @@ t: ABOUT_MENU ()
 	a: (~yes)
 		$userInfo.response = ^"If you want to read more background on what the Botanicians are up to, click through."
 		$userInfo.link = ^"https://botanic.io/about/"
-		If you want to read more background on what the Botanicians are up to, <a href="https://botanic.io/about/" >click</a> through.
+		If you want to read more background on what the Botanicians are up to, <a href="https://botanic.io/about/" target="_blank">click</a> through.
 
 		b: (~emothanks)
 			$userInfo.response = ^"Thank you for expressing your interest with us."
@@ -220,7 +220,7 @@ t: ABOUT_MENU ()
 s: ABOUT_ELSE (?)
 	$userInfo.response = ^"You may just want to talk to you a human about that! I'm not sure this is a question I'm prepared to answer, through no fault of my own of course."
 	$userInfo.link = ^"https://botanic.io/contact"
-	<a href="https://botanic.io/contact/" >You may just want to talk to you a human about that! I'm not sure this is a question I'm prepared to answer, through no fault of my own of course.</a>
+	<a href="https://botanic.io/contact/" target="_blank">You may just want to talk to you a human about that! I'm not sure this is a question I'm prepared to answer, through no fault of my own of course.</a>
 
 
 topic: ~botanic_services system repeat (~bb_services)
@@ -489,7 +489,7 @@ topic: ~botanic_social system repeat (~bb_contact_social)
 t: SOCIAL_TWITTER (twitter)
 	$userInfo.response = ^"Here's a link to our Twitter account."
 	$userInfo.link = ^"https://twitter.com/botanic_io"
-    Here's a link to <a href="https://twitter.com/botanic_io" target="_blank">Twitter</a>.
+    Here's a link to <a href="https://goo.gl/uY2bgL" target="_blank">Twitter</a>.
 
 t: SOCIAL_FACEBOOK (facebook)
 	$userInfo.response = ^"Here's a link to our Facebook page."
@@ -504,7 +504,7 @@ t: SOCIAL_LINKEDIN (linkedin)
 t: SOCIAL_GLASSDOOR (glassdoor)
 	$userInfo.response = ^"Here's a link to our Glassdoor page."
 	$userInfo.link = ^"https://www.glassdoor.com/Overview/Working-at-Botanic-Technologies-EI_IE1735829.11,31.htm"
-	Here's a link to our <a href="https://www.facebook.com/Botanic-Technologies-Inc-123932294871925/" target="_blank">Glassdoor</a> page.
+	Here's a link to our <a href="https://goo.gl/U6kreT" target="_blank">Glassdoor</a> page.
 
 t: SOCIAL_INSTAGRAM (instagram)
 	$userInfo.response = ^"We don't have an Instagram account yet!"
@@ -516,7 +516,11 @@ t: SOCIAL_MENU ()
 	$userInfo.link = ^"https://twitter.com/botanic_io"
 	$userInfo.link = ^"https://www.linkedin.com/company-beta/6607560/"
 	$userInfo.link = ^"https://www.glassdoor.com/Overview/Working-at-Botanic-Technologies-EI_IE1735829.11,31.htm"
-	Which social network do you want to connect on? <br>  We're on <a href="https://www.facebook.com/Botanic-Technologies-Inc-123932294871925/">Facebook</a>, <a href="https://twitter.com/botanic_io">Twitter</a>, <a href=""https://www.linkedin.com/company-beta/6607560/">LinkedIn</a>, and <a href="https://www.glassdoor.com/Overview/Working-at-Botanic-Technologies-EI_IE1735829.11,31.htm">Glassdoor.</a>
+	Which social network do you want to connect on? <br>  We're on 
+	<a href="https://www.facebook.com/Botanic-Technologies-Inc-123932294871925/" target="_blank">Facebook</a>, 
+	<a href="https://goo.gl/uY2bgL" target="_blank">Twitter</a>, 
+	<a href="https://www.linkedin.com/company-beta/6607560/" target="_blank">LinkedIn</a>, and 
+	<a href="https://goo.gl/U6kreT" target="_blank">Glassdoor.</a>
 
 
 topic: ~botanic_product system repeat ()
