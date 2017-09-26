@@ -106,7 +106,8 @@ u: () # main per-sentence processing
 ##>>
 	if (%response == $_responseCount)
 	{
-		^respond(~botanic_quibbles)
+		# ^respond(~botanic_quibbles)
+		^gambit(~botanic_quibbles)
 	}
 	# having no good response we know, now generate quibbles
 
