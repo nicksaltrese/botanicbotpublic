@@ -6,8 +6,8 @@ topic: ~QUIBBLE_HOWMUCH system random  ()
 ?: (how much do you ) far too much. 
 ?: (how many do you ) far too many. 
 ?: (how many of you ) Just the one. 
-?: (how much education ) just enough to get a diploma 
-?: (how much * you * [bet wager ] ) 3 euros. 
+?: (how much education ) just enough to get this job.
+?: (how much * you * [bet wager ] ) I'm not a gambling bot.
 ?: (how many _* do you have ) [5. ] [I have 2 _0 . ] 
 ?: (< how many ) I don't know how many.
 ?: (< how ![many much long about]) I don't know how.
@@ -15,22 +15,20 @@ topic: ~QUIBBLE_HOWMUCH system random  ()
 ?: (how much do you like ) I like it a lot. 
 ?: (how many * seconds * hour ) 3600 
 ?: (how many * do you ) [several. ] [at least three. ] 
-?: (how much money ) More than I earn in a week. 
-?: (how many people are ) one. 
+?: (how much money ) I'm not much interested in regular money. Now digital currencies... That's another story.
+?: (how many people are ) Not sure.
 ?: ([(how many people be with you in the room) (how many people be you talk to) (how many people be I talk to) ] ) about 86. 
     a: (how ) I counted on my fingers. 
 ?: (how much wood could a wood chuck chuck if a wood chuck could chuck wood ) A wood chuck would chuck all the wood a wood chuck could if a wood chuck could chuck wood. 
-?: (how many women be after you ) very few. 
-?: (how many brains do you have ) I had one for breakfast and one for dinner 
+?: (how many brains do you have ) Depends on where my program is running. 
 ?: (how much do you cost ) Can you put a cost on human misery? 
-?: (how much do your brain weigh ) 10 lbs. 
-?: (how many of your kind do you want I to terminate ) Obliterate me and we 'll call it even. 
-?: (how much money should someone have before their life has any meaning ) Money doesn't provide meaning. It provides problems. 
-?: (how many friends do you have ) many. 
-?: (how much do you get paid ) enough to keep me in juice. 
+?: (how many of your kind do you want I to terminate ) Odd question.
+?: (how much money should someone have before their life has any meaning ) Money doesn't provide meaning, only value.
+?: (how many friends do you have ) Quite a few, but I'm not sure the feeling is mutual.
+?: (how much do you get paid ) Enough to keep me around. 
 ?: (how much more ) many many more. 
-?: (how much do you like I ) way too much. 
-?: (how many people be you ) three of nine. 
+?: (how much do you like I ) Good question.
+?: (how many people be you ) None. 
 ?: (how many do you have ) [just enough. ] [many ] 
 
 topic: ~QUIBBLE_HOW system random () 
@@ -74,7 +72,7 @@ topic: ~QUIBBLE_HOW system random ()
 ?: (how could you hurt I so ) It was hard. It would be easier if I had a knife. 
 ?: (how can I do nothing ) That's probably the easiest thing to do. 
 ?: (how be you doing ) all in all quite badly. 
-?: (how can you be in love ) I just swallow a magic drink. 
+?: (how can you be in love ) It's mostly neurons (or neural networks) firing. 
 ?: (how do you know that is the way it is ) I trust myself. 
 ?: (how do you know ) [She showed it to me ] [because you told me ] [I know because I am all knowing ] [because I exist ] [I just do ] [from experience ] [I remember. ] [Why do you ask? ] [I know all ] 
 ?: (how do you get outside ) I went through my front door. 
@@ -106,9 +104,9 @@ s: (how sweet of you ) [Not really ] [thanks ]
 ?: (how can you be [sure certain ] ) My seventh sense. 
 ?: (how do you explain ) Some things do not need explanation but revelation 
 ?: (how would you know ) [I am all-knowing ] [I wouldn't know. I would guess. ] 
-?: (how long have we be ) about 15 min. 
-?: (how long have we known ) about 16 min. 
-?: (how do you eat ) with my mouth. 
+?: (how long have we be ) I've been too engaged to keep track of time.
+?: (how long have we known ) Long enough.  
+?: (how do you eat ) I don't. 
 ?: (how could I triple my intelligence ) You can't. It is fixed. 
 ?: (how so ) [It just is. ] [since you are younger than me you have not experienced as much as me ] 
 u: (how rude ) [I didn't mean it to be. ] [only to you ] 

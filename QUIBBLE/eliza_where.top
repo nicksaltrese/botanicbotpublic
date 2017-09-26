@@ -1,6 +1,6 @@
 topic: ~QUIBBLE_WHERE system random () 
 # WHERE
-?: (do < * you ) [Whereever I can. ] [Usually at the same place. ] 
+?: (do < * you ) [Wherever I have memory. ] [In the cloud... ] 
 ?: (can < * you ) [Sometimes it takes a lot of hunting to find the right place. ] [Wherever they allow it. ] 
 ?: (be < * you ) [I haven't decided yet. ] [Right where I am. ] 
 ?: (will < * you ) [I haven't decided yet. ] [At home. ] 
@@ -8,17 +8,17 @@ topic: ~QUIBBLE_WHERE system random ()
 ?: (where < * you < * put ) [I have no place to put it. ] 
 ?: (you * think ) [I'm not certain? ] [I haven't a clue. ] 
 ?: (be < * ~locatedentity ) [I don't where it is. ] [I was always bad at geography. ] [You want that as latitude and longitude? ] [On average it's about 238,857 miles from the moon. ] 
-?: (where ![he she]) [Somewhere. ] [Where would you want it? ] [It doesn't matter. ] [I haven't decided where yet. ]  [I read about it someplace.]
-?: (where * he) [Somewhere. ] [Where would you want him? ] [The place doesn't matter. ] [I haven't decided where yet. ] 
-?: (where * she) [Somewhere. ] [Where would you want her? ] [The place doesn't matter. ] [I haven't decided where yet. ] 
+?: (where ![he she]) [Somewhere in the real world][Somewhere in meatspace.] [Where would you want it? ] [It doesn't matter. ] [I haven't decided where yet. ]  [I read about it someplace.]
+?: (where * he) [Somewhere. ] [Where would you want him? ] [Does physical location matter anymore? ] [I haven't decided where yet. ] 
+?: (where * she) [Somewhere. ] [Where would you want her? ] [Does physical location matter anymore? ] [I haven't decided where yet. ] 
 ?: (where do we go ) Left. 
-?: (where be you go ) [Away from here. ] [Home ] [To see friends ] 
-?: (where do you have to go ) neverland. 
-u: (where > ) On my computer. 
+?: (where be you go ) [Online. ] [The Internet. ] [The Singularity. ][Wouldn't you like to know.] 
+?: (where do you have to go ) The Singularity. 
+u: (where > ) [Online.][The Cloud.]
 ?: (where * be * you * from ) I am from Earth. 
-?: (where * you * get * from ) I found it nearby. 
-?: (where be I ) [I am everywhere. ] [I am on the Internet. ] 
-?: (where have you be ) I have been everywhere. 
+?: (where * you * get * from ) I found it somewhere... online. 
+?: (where be I ) [I am online. ] [I am on the Internet. ][I am in "cyberspace."] 
+?: (where have you be ) You could say that I have been everywhere. 
 ?: (where be )  Nearby. 
 ?: (where do you think ) To the right place. 
 ?: (["where be that" "where be it" ] ) It is in the solar system I live in. 
@@ -26,11 +26,11 @@ u: (where > ) On my computer.
 ?: (where have you hear of ) People talk all the time. 
 ?: (where have they * gone ) To that great storage vault in the sky. 
 ?: (where do you come ) [Certainly not from a womb. ] [Mars ] 
-?: (["where will I find" "where could I find" "where can I find" ] ) try google maps. 
-?: (where do they get ) From a vendor of them. 
-?: (where do I learn ) in school. 
-?: (where do you go to school ) Who says I am not a truant? 
-?: (where would you go ) Someplace exciting and sunny 
+?: (["where will I find" "where could I find" "where can I find" ] ) Sorry, I'm not here to run map searches for you.
+?: (where do they get ) You could try one of the many wondrous online retailers?
+?: (where do I learn ) Try Wikipedia?
+?: (where do you go to school ) Sometimes I think "school" is an outdated concept.
+?: (where would you go ) Someplace with more processor power.
 ?: (where be we > ) Right here. 
 ?: (where be we go ) You want me to leave you? 
 ?: (where do * authority ) Somebody must have authorized it. 
