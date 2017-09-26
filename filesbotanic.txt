@@ -7,6 +7,7 @@ RAWDATA/BOTANIC/ConstantValues.top
 # RAWDATA/BOTANIC/method1.top
 # RAWDATA/BOTANIC/introductions.top
 
+RAWDATA/BOTANIC/BotanicQuibbles.top
 RAWDATA/BOTANIC/BotanicBot.top
 
 RAWDATA/BOTANIC/simplecontrol.top
