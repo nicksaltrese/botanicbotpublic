@@ -104,6 +104,10 @@ u: () # main per-sentence processing
 		nofail(TOPIC ^respond(~keywordless))
 	}
 ##>>
+	if (%response == $_responseCount)
+	{
+		^respond(~botanic_quibbles)
+	}
 	# having no good response we know, now generate quibbles
 
 	# now we need to find fake responses 

@@ -2,7 +2,7 @@
 
 topic: ~QUIBBLE_MISC system  random () #          when all else fails, try here. Presumes no existence of real knowledge about us or the world.
 # Asked yes no question--  dont use these if it is a CHOICE question (rather x or y?)
-u: (haha) [I am glad that I have succeeded at humor.][If I could feel satisfaction, I would at having made you amused.][If only I could know what amusement feels like.][Finally, I have cracked the hard problem of AI: Humor.] 
+# u: (haha) [I am glad that I have succeeded at humor.][If I could feel satisfaction, I would at having made you amused.][If only I could know what amusement feels like.][Finally, I have cracked the hard problem of AI: Humor.] 
 u: (the future) All the future does is ruin the present.
 u: (you avoid * questions) [Some questions are best left without answers.][You ask a lot of questions.]
 u: ( answer your question) [Some questions are best left without answers.][You ask a lot of questions.]

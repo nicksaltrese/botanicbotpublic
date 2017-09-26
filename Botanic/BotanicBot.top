@@ -25,7 +25,7 @@ concept: ~bb_careers IGNORESPELLING (~bb_careers_engineering ~bb_careers_design 
 concept: ~bb_menu IGNORESPELLING (menu choices options help)
 concept: ~bb_keywords IGNORESPELLING (~bb_menu ~bb_contact ~bb_services ~bb_careers)
 
-topic: ~botanic_bot system repeat (~bb_keywords)  
+topic: ~botanic_bot system repeat (~bb_keywords)
 
 t: ({careers} ~bb_careers_engineering) ^reuse(~botanic_careers.CAREERS_ENGINEERING)
 t: ({careers} ~bb_careers_design) ^reuse(~botanic_careers.CAREERS_DESIGN)
@@ -325,7 +325,7 @@ t: CAREERS_OPERATIONS ({careers} ~bb_careers_operations)
 			$userInfo.response
 
 t: CAREERS_MARKETING ({careers} ~bb_careers_marketing)
-	$userInfo.response = ^"Bots are the future — maybe you want to help spread the good news. Do you want to get in touch?"
+	$userInfo.response = ^"Bots are the future - maybe you want to help spread the good news. Do you want to get in touch?"
 	$userInfo.response
 
 	a: (~yes)
