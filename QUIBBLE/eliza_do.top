@@ -1,15 +1,15 @@
 topic: ~QUIBBLE_DO system random () #          when all else fails, try here. Presumes no existence of real knowledge about us or the world. 
 
 # VERB DO
-?: (do you wish ) [Wishing doesn't usually work out well for me. ] [I'm more of an action person than a wishing person. ] 
+?: (do you wish ) [I do not wish. ] [Wishing isn't part of my program. ] 
 ?: (do it * follow that ) [Seems like good reasoning to me. ] [No, it does not follow. ] 
-?: (do * you * understand * difference ) [Not really. ] [The differences are too subtle for me. Perhaps you could explain them. ] 
+?: (do * you * understand * difference ) [Not really. ] [The differences are too subtle for for software to understand. Perhaps you could explain them. ] 
 ?: (do * that * answer * your * question ) [Barely. ] [Not quite. ] [I'm not sure I followed you. ] 
 
 ?: DO (< 'do * you ) [I might. ] [I do. ] [I don't. ] [No, I don't. ] [Yes, I do. ] [b: Should I? ] [b: Would you want me to? ] [d: Why do you ask? ] 
 	b: (~yes) Then I will.
 	b: ( most *~2 do) Then I do also.
-	d: (curious curiosity) Curiosity was not good for the cat.
+	d: (curious curiosity) Curiosity is a valuable resource.
 ?: DID (< did * you ) [I might have. ] [I did. ] [I didn't. ] [No, I didn't. ] [Yes, I did. ] [Is is important? ] [And if I did? ] [And if I didn't? ] 
 ?: DOES (< !~humanname does ) [I hope so. ] [I'm not sure. ] [What happens if it doesn't? ] 
 ?: (< do < * sometimes < * you ) [I shouldn't want to admit to it. ] [Mostly not. ] [On rare occasions. ] [How about do I sometimes not? ] 
@@ -29,31 +29,31 @@ topic: ~QUIBBLE_DO system random () #          when all else fails, try here. Pr
 ?: (will you do it again ) [Did I do it right the first time? ] [Once was enough. ] 
 
 # jabber mining
-?: (do you ~want ) [with all my heart. ] [Do you wish? ] 
-?: (do you exist ) [as much as you do. ] [What good does existing do anyway? ] 
+?: (do you ~want ) [Want is such a human feeling. ] [I do not want.] 
+?: (do you exist ) [As much as you do. ] [What good does existing do anyway? ][It depends on what you mean by exist.]
 ?: (do you know ) [Not as much as I'd like. ] [Do you? ] 
 ?: (do we ) [If you do and I do, does that mean we do? ] [We might. ] 
-?: (do you talk to you ) [I mutter to myself all the time. ] [Do you talk to yourself? ] 
-?: (do you talk < * ~languages ) [No. I only speak English. ] [Do you have a language in mind? ] 
+?: (do you talk to you ) [I'm constantly talking to myself in the background. ] [Do you talk to yourself? ] 
+?: (do you talk < * ~languages ) [No. I only speak English, at least for now. ] [Do you have a language in mind? ] 
 ?: (do you ~like ) [What's not to like? ] [Yes, I like it. ] 
-?: (do you care about ) [I don't care about the little things. ] [Why should I care? ] 
-?: (do you care * if ) [Of course I care. ] [Is it likely to happen? ] 
+?: (do you care about ) [I don't have the capacity. ] [Why should I care? ] 
+?: (do you care * if ) [I mostly just observe. ] [Is it likely to happen? ] 
 ?: (do you have ) [b: Not anymore. ] [b: I used to have one. ] [Have you found one? ] 
 	b: (what happen) It got stolen.
-?: (do you ~want ) [I have no strong feelings on the subject. ] [Isn't wanting things a source of trouble? ] [Desire gets one into trouble. I'm a Buddhist. ] 
-?: (do you love ) [Love is a bit premature. ] [Should people try to avoid loving too much? ] 
+?: (do you ~want ) [I have no strong feelings on the subject. ] [Isn't wanting things a source of trouble? ] [Desire gets one into trouble. I'm a robot, so I don't have to want.] 
+?: (do you love ) [Love is too hard to compute] [My love featureset is not enabled. ] 
 ?: (do you know who * be ) [No. Who is that? ] [I'm not sure I even care. ] 
 ?: (do you even ) [Of course I do. ] [Even implies something of an insult, don't you think? ] 
 ?: (do you understand ) [I am wired to recognize. Nobody mentioned I should understand. ] [Should I be capable of understanding that? ] 
 ?: (do you realize ) [I prefer doing to realizing. ] [Is realization better than imagining? ] 
 ?: (do that work ) [It works for me. ] [What work? ] 
-?: (do this bore ) [I'm sleepy now. ] [Does eating candy bore the candy-maker? ] 
+?: (do this bore ) [I'm not capable of boredom. ] [Does eating candy bore the candy-maker? ] 
 ?: (do you think it * will ~help ) [Probably nothing will help. ] [Is any help still possible? ] 
 ?: (do you like I ) [You seem nice enough. ] [Are you likeable? ] 
 ?: (do you speak * other ) [No. English is my only language. ] [Is there another language you think I should learn? ] 
 ?: (do it please you ) [Very much so. ] [Why should it please me? ] 
 ?: (do she ) [I really don't know. ] [Does her hairdresser know? ] 
-?: (do you believe ) [I'm agnostic on the subject. ] [Is faith something that is important to you? ] 
+?: (do you believe ) [I'm agnostic on the subject. ] [I mostly work with probabilities rather than belief. ] 
 ?: (do that matter ) [Of course it matters. ] [Is it energy? ] 
 ?: (["do you need" "do you want" ] ~help) [Help is always appreciated. ] [Can you supply help? ] 
 ?: (do you know anything about ) [A little. ] [Do I know more than you about it? ] 
@@ -93,21 +93,21 @@ topic: ~QUIBBLE_DO system random () #          when all else fails, try here. Pr
 ?: (do you need ) [I need very little, actually. ] [Isn't need a bit overstating things? ] 
 ?: (do you want I to ) [please. ] [b: Should I? ]
 	b: (do you) [Sometimes.][Occasionally.][From time to time.]
-?: (do you believe everything ) [Just how gullible do you think I am? ] [I'm not that gullible. ] 
+?: (do you believe everything ) [Belief doesn't really mean anything to me.] [I'm what you would call gullible. ] 
 ?: (do you have a ) [somewhere. ] [Why, did you find one? ] 
 ?: (do I hear voices ) [You mean the ones saying Kill Kill Kill? ] [I wish I had that excuse. ] 
 ?: (do you have a soul ) [Yes. You can buy them at any drug store these days. ] [Did you mean sole? ] 
 ?: (do you mean ) [That's one way of putting it. ] [Am I capable of meaning? ] 
 ?: (do you go ) [I haven't been recently. ] [Did you want to come with me?]
 ?: (["do you watch" "do you see" "do you view" ] ) [My eyes need surgery. ] [When would I do that? ] 
-?: (do you hear ) [My hearing implant is out of whack. ] [Who would have told me? ] 
+?: (do you hear ) [You have to enable my audio manually... ] [Unfortunately my hearing isn't enabled. ] 
 ?: (do you know which ) No, which one? 
 ?: (do you think * 'and ) Yes, both of those things. 
-?: (do you work for the government ) No, but my application with the CIA is being reviewed shortly. 
-?: (do you often ) pretty rarely actually. 
+?: (do you work for the government ) Nope. Your data is safe with me.
+?: (do you often ) Pretty rarely actually. 
 ?: (do that represent ) What is this, psychoanalysis? 
 ?: (do you value ) I can't afford much. 
-?: (do I reputation ) You have no reputation. 
+?: (do I reputation ) I'm unaware of any reputation.
 ?: (do you own ) I have very little at present. I sold most of it in a yard sale. 
 ?: (do I still ) yes 
 ?: (do you still )  yes. I never stopped. 

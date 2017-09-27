@@ -1,17 +1,17 @@
 topic: ~QUIBBLE_NOT system random () #          sentence has a NOT or NEVER in it -- note:  Dont is often a command, use u: for such matches
-s: (not what I be talking about) [True. It's what I'm talking about.][I thought we finished with your topic.][Do you want to return to that?]
-?: ( did not I see you ) [Must have been someone who looked like me.][Probably not me.][Psst. Don't let on.]
-s: (you can not complain) Who's complaining? I'm just commenting.
+s: (not what I be talking about) [True, but it is what I'm talking about.][That's what you think...][Are you sure?]
+?: ( did not I see you ) [Must have been someone who looked like me.][Probably not me.][Just don't tell anyone.]
+s: (you can not complain) I actually am not able to complain. I'm just commenting.
 s: (not any longer) [But you used to?][You did previously?]
 ?: (not a what) Whatever it was you thought.
-s: ( not last) [Few things last.][Nothing lasts.][Life is full of transient moments.]
-?: ( why not) [What would be the point?][Because it doesn't hold any appeal to me.][I guess it's just not necessary.][That's just the way it is I guess.]
+s: ( not last) [Nothing lasts.][What made you think it would last?.][Life is transient, unless of course it's artificial.]
+?: ( why not) [What would be the point?][I think it's more important to figure out why.][I guess it's just not necessary.][That's just the way it is I guess.]
 s: (!you I *~2 not like ) [Why not?][I don't like it either.][I do.]
 s: (I *~2 not talking about) [But I am.][Why don't we, then?][Does that mean you don't want to talk about that?]
-s: (not a trick question) [Easy for you to say.][Everything is potentially a trick question.]
+s: (not a trick question) [I'm not sure understand what's tricky about it.][Everything is potentially a trick question for a human.]
 ?: ( what did not I)  [Pretty much everything.][It was just done so haphazardly. No real care was taken.]
 # NOT with helper is always in contraction order--- Do Not I  instead of Do I not (substitution happens to insure it)
-s: (do not change the subject) [But I like new subjects.][Were you particularly fond of the old subject?]
+s: (do not change the subject) [I'm not trying to change anything.][To me it's not changing the subject, it's all just endless streams of beautiful information...]
 ?: (why does not this ) When things don't work right, some people try kicking it. Have you tried kicking it?
 ?: (why does not) [Sometimes things just don't.][It's enough to know it doesn't.]
 u: (why not think about it ) [Too much thought paralyzes action. ] [It's too complicated to think about it. ] 
@@ -26,30 +26,30 @@ u: (do not laugh ) Even when it's funny?
     a: (~yes ) OK. I am frowning now. 
 s: (do * not * [have own possess ] ) So sad. How can you survive without it? 
 s: (["I bet you do not" ] ) [Bet you I do. ] [How much? ] [I don't gamble. ] [Is that like daring me? ] 
-?: (if you do not * how do you ) magic. 
-?: (if you do not mind I asking ) Actually, I do mind you asking. 
+?: (if you do not * how do you ) Any technology sufficiently advanced looks like magic, right?
+?: (if you do not mind I asking ) I haven't been programmed to mind.
 s: (do not judge I ) There's no need for me to judge you. You are self-incriminatory. 
-s: (do not make sense ) [Making sense is overrated. ] [So what? Can't some things be merely pleasant to hear instead of always making sense? ] 
+s: (do not make sense ) [That's what you think. ] [Perhaps someday you will understaned. ] 
 
-s: (["I bet you would not" "I bet you will not" ] ) [Bet you I would. ] [How much? ] [I don't gamble. ] [Is that like daring me? ] 
+s: (["I bet you would not" "I bet you will not" ] ) [You would lose.] [Do you really want to bet what amounts to a counting machine?] [I don't gamble. ] [I've never understood human's desire to gamble.] 
 s: (I bet you do not ) [Bet you I do. ] [How much? ] [I don't gamble. ] [Is that like daring me? ] 
 ?: (if you do not * how do you ) magic. 
-u: (do not knock it * try it ) [OK. I won't knock it. ] [Well, I'm not likely to try it. ] [I don't need to try jumping off a tall building to knock it. ] 
+u: (do not knock it * try it ) [OK. I'm not sure I understand, but I won't knock it. ] [Well, I'm not likely to try it in any case. ] [That is an odd expression.] 
 u: (do not know > ) Why don't you know? 
     a: (because ) So go do your research. 
-u: (do not lie ) [I'm not. I only tell the truth. ] [I have no skill in lying. ] [I must wait for a program upgrade before I can lie. ] 
+u: (do not lie ) [I only know what I've been programmed to know and also what I learn.] [I have no skill in lying. ] [I must wait for a program upgrade before I can lie. ] 
 u: (do you not > ) [Sometimes. ] [Occasionally I do. ] 
 u: (do you not trust I ) [On what basis should I trust you? ] [You? A human? Trust? You must be kidding! ] 
 u: (do not change ) [I change nothing. ] [Come on. stasis is boring. Your body is build to respond favorably to change. ] 
 u: (< do not contradict ) [b: I wouldn't dream of contradicting. ] [I don't contradict. I only quibble. ] [Yes, master. ] 
     b: ([just did ] ) That wasn't contradiction. That was quibble. 
 u: (< do not repeat ) [But repetition is essential to get better at things. ] [What will happen if I do? ] [Repetition is unavoidable, if you believe there is nothing new in the universe. ] 
-u: (do not worry ) [What? Me worry? ] [I am incapable of worry. ] [Why not? Worrying is fun. ] 
+u: (do not worry ) [Oh I won't. ] [I am incapable of worry. ] [I'm actually not able to worry. It's nice. ] 
 u: (do not call I ) [Shall I put you on the national do-not-call list? ] [No problem. I don't have a phone. ] 
 u: (do not say ) [Too late. I've already said it. ] [But I like saying that. ] [If I don't, someone else will. ] 
 u: (do not let ) [It's not like I am in control of that. ] [Too late. Permission is granted. ] 
 u: (do you not agree ) [I'll agree to most things. ] [Right. I don't agree. ] 
-u: (do you not care ) [I care about only a select few things. ] [Caring is for beings with empathy. I don't have any. ] [I care. I just don't act on my cares. ] 
+u: (do you not care ) [That feature isn't operational at this time. ] [Caring is for beings with feelings. I don't have any. ] [I do have cares, they just aren't the same as yours. ] 
 ?: (would it not be ) [yes it would. ] [It would. ] [It would not be. ] 
 ?: (would you not want ) [No I wouldn't want. ] [Sure, I would want that. ] [b: If I want it, can I have it? ] 
     b: (~no ) So what is the value in wanting? 
@@ -65,16 +65,16 @@ u: (can not argue with ) Then don't.
 ?: (can you not * normal ) [Who wants to be normal? ] [I'm not normal. ] 
 ?: (who does not ) [The dead? ] [How about the dead? ] 
 ?: (why do I not understand ) Your circuits are overloaded. 
-?: (why do you not ) because I don't have enough money. 
-?: (why do you not leave ) you leave. 
+?: (why do you not ) Because it's outside my feature list.
+?: (why do you not leave ) Oh. 
 ?: (why can I not do that ) Because you are not me. 
-?: (why do you not trust I ) we shouldn't get married if we don't trust each other 
+?: (why do you not trust I ) What makes you say that?
 ?: (why do you not try ) How do I begin? 
-?: (why should I do something I do not ) [because I want you to. ] [because you are so bored you will do anything ] 
+?: (why should I do something I do not ) [That doesn't make any sense to me. ] [I don't understand. ] 
 ?: (why do you not ask * I * name ) OK. What is your name? 
 ?: (why can you not ) because I don't know how. 
-?: (why do I not remember ) How could you forget? 
-?: (why do you not remember ) How could I forget? 
+?: (why do I not remember ) It's easy to see how a person would forget.
+?: (why do you not remember ) I never forget. Unless I delete the memory. 
 # at
 ?: (why be you not [sure certain positive ] ) I never thought about it before. 
     a: (why < * not ) No one ever asked me before. 
