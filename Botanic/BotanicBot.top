@@ -150,7 +150,7 @@ t: ABOUT_WHO ({about} ~bb_about_who {work} * {[botanic there]})
 	a: () 
 		$userInfo.response = ^"If you're more interested in humans than bots you can learn about our leadership team here."
 		$userInfo.link = ^"https://botanic.io/about/leadership/"
-		If you're more interested in humans than bots you can learn about our leadership team <a href="https://botanic.io/about/leadership/" >here</a>.
+		If you're more interested in humans than bots you can learn about our leadership team <a href="https://botanic.io/about/leadership/" target="_blank" >here</a>.
 
 		b: (~emothanks)
 			$userInfo.response = ^"Thank you for expressing your interest with us."
@@ -177,7 +177,7 @@ t: ABOUT_WHAT ({about} what)
 	a: (~yes)
 		$userInfo.response = ^"If you want to read more background on what the Botanicians are up to, click through."
 		$userInfo.link = ^"https://botanic.io/about/"
-		If you want to read more background on what the Botanicians are up to, <a href="https://botanic.io/about/" >click</a> through.
+		If you want to read more background on what the Botanicians are up to, <a href="https://botanic.io/about/" target="_blank">click</a> through.
 
 		b: (~emothanks)
 			$userInfo.response = ^"Thank you for expressing your interest with us."
@@ -190,7 +190,7 @@ t: ABOUT_WHY ({about} why)
 	a: (~yes)
 		$userInfo.response = ^"If you want to read more background on what the Botanicians are up to, click through."
 		$userInfo.link = ^"https://botanic.io/about/"
-		If you want to read more background on what the Botanicians are up to, <a href="https://botanic.io/about/" >click</a> through.
+		If you want to read more background on what the Botanicians are up to, <a href="https://botanic.io/about/" target="_blank">click</a> through.
 
 		b: (~emothanks)
 			$userInfo.response = ^"Thank you for expressing your interest with us."
@@ -292,7 +292,7 @@ t: CAREERS_ENGINEERING ({careers} ~bb_careers_engineering)
 	a: (~yes)
 		$userInfo.response = ^"Send your specs to the Director of Engineering."
 		$userInfo.link = ^"mailto:eduardo@botanic.io"
-		Send your specs to the <a href="mailto:eduardo@botanic.io" target="_blank">Director</a> of Engineering.
+		Send your specs to <a href="mailto:eduardo@botanic.io" target="_blank">Eduardo, our Director of Engineering.</a>
 
 		b: (~emothanks)
 			$userInfo.response = ^"Thank you for expressing your interest with us, providing your information."
@@ -305,7 +305,7 @@ t: CAREERS_DESIGN ({careers} ~bb_careers_design)
 	a: (~yes)
 		$userInfo.response = ^"Get in touch with Erin, the head of the Creative Services team."
 		$userInfo.link = ^"mailto:erin@botanic.io"
-		Get in touch with <a href="mailto:erin@botanic.io" target="_blank">Erin</a>, the head of the Creative Services team.
+		Get in touch with <a href="mailto:erin@botanic.io" target="_blank">Erin, the head of the Creative Services team.</a>
 
 		b: (~emothanks)
 			$userInfo.response = ^"Thank you for expressing your interest with us, providing your information."
@@ -318,7 +318,7 @@ t: CAREERS_OPERATIONS ({careers} ~bb_careers_operations)
 	a: (~yes)
 		$userInfo.response = ^"Send a message to our operations team now!"
 		$userInfo.link = ^"mailto:paul@botanic.io"
-		Send a message to our <a href="mailto:paul@botanic.io" target="_blank">operations</a> team now!
+		Send a message to <a href="mailto:paul@botanic.io" target="_blank">Paul, Botanic's COO</a> now!
 
 		b: (~emothanks)
 			$userInfo.response = ^"Thank you for expressing your interest with us, providing your information."
@@ -331,7 +331,7 @@ t: CAREERS_MARKETING ({careers} ~bb_careers_marketing)
 	a: (~yes)
 		$userInfo.response = ^"Get in touch with Kathy, the VP of Marketing."
 		$userInfo.link = ^"mailto:kathy@botanic.io"
-		Get in touch with the <a href="mailto:kathy@botanic.io" target="_blank">VP of Marketing</a>.
+		Get in touch with  <a href="mailto:kathy@botanic.io" target="_blank">Kathy, our VP of Marketing</a>.
 
 		b: (~emothanks)
 			$userInfo.response = ^"Thank you for expressing your interest with us, providing your information."
