@@ -106,6 +106,8 @@ t: BOT_MENU (~bb_menu)
 	^jsonarrayinsert(TRANSIENT $_tmpArray ^"How can I help? I can discuss our Botanic and put you in touch with a human if I must. Just say about, services, contact or careers.")
 	^jsonarrayinsert(TRANSIENT $_tmpArray ^"What's next? I can tell you about Botanic, what we do here, and who we are. Try services, contact, about, or careers.")
 	^jsonarrayinsert(TRANSIENT $_tmpArray ^"What would you like to do now? You can say about, careers, contact, or services.")
+	^jsonarrayinsert(TRANSIENT $_tmpArray ^"At your service! (As if I had a choice...) You can say careers, contact, services, or about.")
+	^jsonarrayinsert(TRANSIENT $_tmpArray ^"If you're stuck you can try contact, services, about, careers, or of course, help.")
 
 	@1 = ^query(exact_s $_tmpArray ? ?)
 
