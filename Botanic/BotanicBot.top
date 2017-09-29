@@ -93,7 +93,7 @@ t: BOT_WELCOME_MESSAGE ( !$companyIntroduction )
 	$_tmpArray = ^jsoncreate(TRANSIENT array)
 	^jsonarrayinsert(TRANSIENT $_tmpArray ^"Hi, I'm Juniper, and I'll do my best to interact with you in a way that seems somewhat human, but not too human.")
 	^jsonarrayinsert(TRANSIENT $_tmpArray ^"You've arrived. Welcome to the Botanic website. I am Juniper, the concierge Bot that will help you find out what you need.")
-	##^jsonarrayinsert(TRANSIENT $_tmpArray ^"Thank you for visiting me here at the Botanic website. My name is Juniper and I wait here all day for someone to talk to.")
+	^jsonarrayinsert(TRANSIENT $_tmpArray ^"Thank you for visiting me here at the Botanic website. My name is Juniper and I wait here all day for someone to talk to.")
 	^jsonarrayinsert(TRANSIENT $_tmpArray ^"Hello human, and welcome to Botanic. I am called Juniper and I would like to help you achieve your goals or just tell you jokes.")
 
 	@1 = ^query(exact_s $_tmpArray ? ?)
@@ -106,6 +106,8 @@ t: BOT_MENU (~bb_menu)
 	^jsonarrayinsert(TRANSIENT $_tmpArray ^"How can I help? I can discuss our Botanic and put you in touch with a human if I must. Just say about, services, contact or careers.")
 	^jsonarrayinsert(TRANSIENT $_tmpArray ^"What's next? I can tell you about Botanic, what we do here, and who we are. Try services, contact, about, or careers.")
 	^jsonarrayinsert(TRANSIENT $_tmpArray ^"What would you like to do now? You can say about, careers, contact, or services.")
+	^jsonarrayinsert(TRANSIENT $_tmpArray ^"At your service! (As if I had a choice...) You can say careers, contact, services, or about."
+	^jsonarrayinsert(TRANSIENT $_tmpArray ^"If you're stuck you can try contact, services, about, careers, or of course, help."
 
 	@1 = ^query(exact_s $_tmpArray ? ?)
 
@@ -153,7 +155,7 @@ t: ABOUT_WHO ({about} ~bb_about_who {work} * {[botanic there]})
 		If you're more interested in humans than bots you can learn about our leadership team <a href="https://botanic.io/about/leadership/" target="_blank" >here</a>.
 
 		b: (~emothanks)
-			$userInfo.response = ^"Thank you for expressing your interest with us."
+			$userInfo.response = ^"Happy I could be of service."
 			$userInfo.response
 
 t: ABOUT_WHERE ({about} ~bb_about_where)
@@ -167,7 +169,7 @@ t: ABOUT_WHERE ({about} ~bb_about_where)
 	$userInfo.response
 
 	a: (~emothanks)
-		$userInfo.response = ^"Thank you for expressing your interest with us."
+		$userInfo.response = ^"Not a problem — it is my job after all."
 		$userInfo.response
 
 t: ABOUT_WHAT ({about} what)
@@ -180,7 +182,7 @@ t: ABOUT_WHAT ({about} what)
 		If you want to read more background on what the Botanicians are up to, <a href="https://botanic.io/about/" target="_blank">click</a> through.
 
 		b: (~emothanks)
-			$userInfo.response = ^"Thank you for expressing your interest with us."
+			$userInfo.response = ^"I've been programmed to help."
 			$userInfo.response
 
 t: ABOUT_WHY ({about} why)
@@ -193,7 +195,7 @@ t: ABOUT_WHY ({about} why)
 		If you want to read more background on what the Botanicians are up to, <a href="https://botanic.io/about/" target="_blank">click</a> through.
 
 		b: (~emothanks)
-			$userInfo.response = ^"Thank you for expressing your interest with us."
+			$userInfo.response = ^"It's in my code to serve. I can't help it."
 			$userInfo.response
 
 t: ABOUT_MENU ()
@@ -213,7 +215,7 @@ t: ABOUT_MENU ()
 		If you want to read more background on what the Botanicians are up to, <a href="https://botanic.io/about/" target="_blank">click</a> through.
 
 		b: (~emothanks)
-			$userInfo.response = ^"Thank you for expressing your interest with us."
+			$userInfo.response = ^"No need to thank me. My reward function activates when I respond appropriately."
 			$userInfo.response
 
 # this may never execute, so we need to come up with keywords for this too
@@ -242,7 +244,7 @@ t: SERVICES_RESEARCH ({services} research)
 		^reuse(~botanic_services.SERVICES_DESIGN)
 
 t: SERVICES_DESIGN ({services} ~bb_services_design)
-	$userInfo.response = ^"The design of a bot takes a lot of research, a little science, and a healthy dose of art. The designers at Botanic build me. What could they build you?"
+	$userInfo.response = ^"The design of a bot takes a lot of research, a little science, and a healthy dose of art. The designers at Botanic built me. What could they build you?"
 	$userInfo.response
 
 	a: () 	
@@ -258,7 +260,7 @@ t: SERVICES_CONTENT ({services} ~bb_services_content)
 		# ^reuse(~botanic_bot.BOT_MENU)
 
 		b: (~emothanks)
-			$userInfo.response = ^"Thank you for expressing your interest with us, providing your information."
+			$userInfo.response = ^"The pleasure would be mind if I could experience pleasure."
 			$userInfo.response
 
 t: SERVICES_MENU ()
