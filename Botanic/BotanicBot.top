@@ -1,9 +1,9 @@
 ﻿
 concept: ~bb_email_id IGNORESPELLING (email emailid emailId "email id" "email Id")
 
-concept: ~bb_about_who IGNORESPELLING (who "who * botanic" personnel people staff leadership team) 
-concept: ~bb_about_where IGNORESPELLING (where "where * botanic" location located based)
-concept: ~bb_about IGNORESPELLING (about "about * botanic" info information)
+concept: ~bb_about_who IGNORESPELLING (who "who botanic" personnel people staff leadership team) 
+concept: ~bb_about_where IGNORESPELLING (where "where is botanic" location located based)
+concept: ~bb_about IGNORESPELLING (about "about botanic" info information)
 
 concept: ~bb_contact_phone IGNORESPELLING (phone telephone)
 concept: ~bb_contact_social IGNORESPELLING (social linkedin facebook twitter instagram glassdoor)
