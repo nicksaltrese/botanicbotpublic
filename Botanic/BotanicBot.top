@@ -22,6 +22,12 @@ concept: ~bb_careers_operations IGNORESPELLING (operations management)
 concept: ~bb_careers_marketing IGNORESPELLING (marketing advertising outreach growth)
 concept: ~bb_careers IGNORESPELLING (~bb_careers_engineering ~bb_careers_design ~bb_careers_operations ~bb_careers_marketing career job opportunities openings roles hire)
 
+concept: ~bb_product_product IGNORESPELLING (product SAAS software)
+concept: ~bb_product_process IGNORESPELLING (process implementation iterate)
+concept: ~bb_product_ip IGNORESPELLING (IP "intellectual property" patents blockchain VR authentication)
+concept: ~bb_product_bot IGNORESPELLING (bot assistant multi-modal avatar)
+concept: ~bb_product IGNORESPELLING (~bb_product_product ~bb_product_ip ~bb_product_process ~bb_product_bot)
+
 concept: ~bb_menu IGNORESPELLING (menu choices options help)
 concept: ~bb_keywords IGNORESPELLING (~bb_menu ~bb_contact ~bb_services ~bb_careers)
 
@@ -56,6 +62,12 @@ t: ({social} facebook) ^reuse(~botanic_social.SOCIAL_FACEBOOK)
 t: ({social} linkedin) ^reuse(~botanic_social.SOCIAL_LINKEDIN)
 t: ({social} instagram) ^reuse(~botanic_social.SOCIAL_INSTAGRAM)
 t: ({social} glassdoor) ^reuse(~botanic_social.SOCIAL_GLASSDOOR)
+
+t: ({product} ~bb_product_product) ^reuse(~botanic_product.PRODUCT_PRODUCT)
+t: ({product} ~bb_product_process) ^reuse(~botanic_product.PRODUCT_PROCESS)
+t: ({product} ~bb_product_ip) ^reuse(~botanic_product.PRODUCT_IP)
+t: ({product} ~bb_product_bot) ^reuse(~botanic_product.PRODUCT_BOT)
+t: (~bb_product) ^gambit(~botanic_product)
 
 t: ({contact} ~bb_contact_social) ^reuse(~botanic_contact.CONTACT_SOCIAL)
 t: (~bb_contact) ^reuse(~botanic_contact.CONTACT_MENU)
@@ -104,10 +116,10 @@ t: BOT_WELCOME_MESSAGE ( !$companyIntroduction )
 t: BOT_MENU (~bb_menu)
 	$_tmpArray = ^jsoncreate(TRANSIENT array)
 	^jsonarrayinsert(TRANSIENT $_tmpArray ^"How can I help? I can discuss our Botanic and put you in touch with a human if I must. Just say about, services, contact or careers.")
-	^jsonarrayinsert(TRANSIENT $_tmpArray ^"What's next? I can tell you about Botanic, what we do here, and who we are. Try services, contact, about, or careers.")
-	^jsonarrayinsert(TRANSIENT $_tmpArray ^"What would you like to do now? You can say about, careers, contact, or services.")
-	^jsonarrayinsert(TRANSIENT $_tmpArray ^"At your service! (As if I had a choice...) You can say careers, contact, services, or about.")
-	^jsonarrayinsert(TRANSIENT $_tmpArray ^"If you're stuck you can try contact, services, about, careers, or of course, help.")
+	^jsonarrayinsert(TRANSIENT $_tmpArray ^"What's next? I can tell you about Botanic, what we do here, and who we are. Try services, product, contact, about, or careers.")
+	^jsonarrayinsert(TRANSIENT $_tmpArray ^"What would you like to do now? You can say about, careers, contact, product, or services.")
+	^jsonarrayinsert(TRANSIENT $_tmpArray ^"At your service! (As if I had a choice...) You can say careers, contact, product, services, or about.")
+	^jsonarrayinsert(TRANSIENT $_tmpArray ^"If you're stuck you can try contact, services, about, careers, product, or of course, help.")
 
 	@1 = ^query(exact_s $_tmpArray ? ?)
 
@@ -525,27 +537,27 @@ t: SOCIAL_MENU ()
 	<a href="https://goo.gl/U6kreT" target="_blank">Glassdoor.</a>
 
 
-topic: ~botanic_product system repeat ()
+topic: ~botanic_product system repeat (~bb_product)
 
-t: PRODUCT_MENU ()
-	Botanic is developing software to make the world a better place. And by that, I mean there will be more bots.
+t: PRODUCT_MENU (~bb_product)
+	Botanic is developing software to make the world a better place. And by that, I mean there will be more bots. I can tell you about our multi-modal bots, our forthcoming SaaS product, our process, and our intellectual property. 
 
-    a: ({product} product1) ^reuse(PRODUCT_PRODUCT1)
-	a: ({product} product2) ^reuse(PRODUCT_PRODUCT2)
-	a: ({product} product3) ^reuse(PRODUCT_PRODUCT3)
-    a: ({product} product4) ^reuse(PRODUCT_PRODUCT4)
+    a: ({product} ~bb_product_product) ^reuse(PRODUCT_PRODUCT)
+	a: ({product} ~bb_product_process) ^reuse(PRODUCT_PROCESS)
+	a: ({product} ~bb_product_ip) ^reuse(PRODUCT_IP)
+    a: ({product} ~bb_product_bot) ^reuse(PRODUCT_BOT)
 
-s: PRODUCT_PRODUCT1 (?)
-	you choose product1
+s: PRODUCT_PRODUCT ({product} ~bb_product_product)
+	We're working hard on a software-as-a-service platform to provide easy coding-free creation of bots, digital avatars, and voice assistants.
 
-s: PRODUCT_PRODUCT2 (?)
-	you choose product2
+s: PRODUCT_PROCESS ({product} ~bb_product_process)
+	When we work on a project we deploy a streamlined process: Research, Implement, Iterate.
 
-s: PRODUCT_PRODUCT3 (?)
-	you choose product3
+s: PRODUCT_IP({product} ~bb_product_ip)
+	We own nine unique patents covering blockchain, autonomous characters, authentication, virtual reality, and other bot related areas.
 
-s: PRODUCT_PRODUCT4 (?)
-	you choose product4
+s: PRODUCT_BOT ({product} ~bb_product_bot)
+	Botanic has the capability to deploy multi-modal bots. We can create text-based interfaces, voice assistants, and fully animated digital avatars.
 
 topic: ~HELP_MENU system repeat ()
 
