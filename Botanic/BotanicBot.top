@@ -1,9 +1,9 @@
 ﻿
 concept: ~bb_email_id IGNORESPELLING (email emailid emailId "email id" "email Id")
 
-concept: ~bb_about_who IGNORESPELLING (who "who botanic" personnel people staff leadership team) 
-concept: ~bb_about_where IGNORESPELLING (where "where is botanic" location located based)
-concept: ~bb_about IGNORESPELLING (about "about botanic" info information)
+concept: ~bb_about_who IGNORESPELLING (who personnel people staff leadership team) 
+concept: ~bb_about_where IGNORESPELLING (where location based)
+concept: ~bb_about IGNORESPELLING (about info information)
 
 concept: ~bb_contact_phone IGNORESPELLING (phone telephone)
 concept: ~bb_contact_social IGNORESPELLING (social linkedin facebook twitter instagram glassdoor)
@@ -40,11 +40,11 @@ t: ({services} ~bb_services_design) ^reuse(~botanic_services.SERVICES_DESIGN)
 t: ({services} ~bb_services_content) ^reuse(~botanic_services.SERVICES_CONTENT)
 t: (~bb_services) ^gambit(~botanic_services)
 
-t: ({about} ~bb_about_who {work} * {[botanic there]}) ^reuse(~botanic_about.ABOUT_WHO)
-t: ({about} ~bb_about_where) ^reuse(~botanic_about.ABOUT_WHERE)
+t: ({about} ~bb_about_who {work} * [botanic there]) ^reuse(~botanic_about.ABOUT_WHO)
+t: ({about} ~bb_about_where * botanic) ^reuse(~botanic_about.ABOUT_WHERE)
 t: ({about} what * !~bb_careers) ^reuse(~botanic_about.ABOUT_WHAT)
-t: ({about} why) ^reuse(~botanic_about.ABOUT_WHY)
-t: ([~bb_about (what * !~bb_careers * botanic)]) ^reuse(~botanic_about.ABOUT_MENU)
+t: ({about} why * botanic) ^reuse(~botanic_about.ABOUT_WHY)
+t: ([(~bb_about * botanic) (what * !~bb_careers * botanic)]) ^reuse(~botanic_about.ABOUT_MENU)
 
 t: ({contact} ~bb_email_id) ^reuse(~botanic_contact.CONTACT_EMAIL)
 t: ({contact} ~bb_contact_phone) ^reuse(~botanic_contact.CONTACT_PHONE)
@@ -93,7 +93,7 @@ t: BOT_WELCOME_MESSAGE ( !$companyIntroduction )
 	$_tmpArray = ^jsoncreate(TRANSIENT array)
 	^jsonarrayinsert(TRANSIENT $_tmpArray ^"Hi, I'm Juniper, and I'll do my best to interact with you in a way that seems somewhat human, but not too human.")
 	^jsonarrayinsert(TRANSIENT $_tmpArray ^"You've arrived. Welcome to the Botanic website. I am Juniper, the concierge Bot that will help you find out what you need.")
-	##^jsonarrayinsert(TRANSIENT $_tmpArray ^"Thank you for visiting me here at the Botanic website. My name is Juniper and I wait here all day for someone to talk to.")
+	# ^jsonarrayinsert(TRANSIENT $_tmpArray ^"Thank you for visiting me here at the Botanic website. My name is Juniper and I wait here all day for someone to talk to.")
 	^jsonarrayinsert(TRANSIENT $_tmpArray ^"Hello human, and welcome to Botanic. I am called Juniper and I would like to help you achieve your goals or just tell you jokes.")
 
 	@1 = ^query(exact_s $_tmpArray ? ?)
@@ -152,7 +152,7 @@ t: ABOUT_WHO ({about} ~bb_about_who {work} * {[botanic there]})
 	a: () 
 		$userInfo.response = ^"If you're more interested in humans than bots you can learn about our leadership team here."
 		$userInfo.link = ^"https://botanic.io/about/leadership/"
-		If you're more interested in humans than bots you can learn about our leadership team <a href="https://botanic.io/about/leadership/" target="_blank" >here</a>.
+		If you're more interested in humans than bots you can learn about our leadership team <a href="https://botanic.io/about/leadership/" >here</a>.
 
 		b: (~emothanks)
 			$userInfo.response = ^"Thank you for expressing your interest with us."
@@ -179,7 +179,7 @@ t: ABOUT_WHAT ({about} what)
 	a: (~yes)
 		$userInfo.response = ^"If you want to read more background on what the Botanicians are up to, click through."
 		$userInfo.link = ^"https://botanic.io/about/"
-		If you want to read more background on what the Botanicians are up to, <a href="https://botanic.io/about/" target="_blank">click</a> through.
+		If you want to read more background on what the Botanicians are up to, <a href="https://botanic.io/about/" >click</a> through.
 
 		b: (~emothanks)
 			$userInfo.response = ^"Thank you for expressing your interest with us."
@@ -192,13 +192,13 @@ t: ABOUT_WHY ({about} why)
 	a: (~yes)
 		$userInfo.response = ^"If you want to read more background on what the Botanicians are up to, click through."
 		$userInfo.link = ^"https://botanic.io/about/"
-		If you want to read more background on what the Botanicians are up to, <a href="https://botanic.io/about/" target="_blank">click</a> through.
+		If you want to read more background on what the Botanicians are up to, <a href="https://botanic.io/about/" >click</a> through.
 
 		b: (~emothanks)
 			$userInfo.response = ^"Thank you for expressing your interest with us."
 			$userInfo.response
 
-t: ABOUT_MENU ()
+t: ABOUT_MENU (~bb_about * botanic)
 	$_tmpArray = ^jsoncreate(TRANSIENT array)
 	^jsonarrayinsert(TRANSIENT $_tmpArray ^"Botanic is an international software and services company that makes things like me - multi-model bots and digital assistants, to help humans like you do things that you want to do.")
 	^jsonarrayinsert(TRANSIENT $_tmpArray ^"Botanic is a gang of visionaries, programmers, writers, artists, and psychologists dedicated to making humane machines.")
