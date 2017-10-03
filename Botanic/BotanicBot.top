@@ -4,6 +4,7 @@ concept: ~bb_email_id IGNORESPELLING (email emailid emailId "email id" "email Id
 concept: ~bb_about_who IGNORESPELLING (who personnel people staff leadership team) 
 concept: ~bb_about_where IGNORESPELLING (where location based)
 concept: ~bb_about IGNORESPELLING (about info information)
+concept: ~bb_fun_fact IGNORESPELLING (trivia fact)
 
 concept: ~bb_contact_phone IGNORESPELLING (phone telephone)
 concept: ~bb_contact_social IGNORESPELLING (social linkedin facebook twitter instagram glassdoor)
@@ -71,6 +72,30 @@ t: (~bb_product) ^gambit(~botanic_product)
 
 t: ({contact} ~bb_contact_social) ^reuse(~botanic_contact.CONTACT_SOCIAL)
 t: (~bb_contact) ^reuse(~botanic_contact.CONTACT_MENU)
+
+t: FUN_FACT (~bb_fun_fact)
+	$userInfo.response = ^"Do you want to know something cool about Botanic?"
+	$userInfo.response
+
+    a: (~yes) 
+    	$_tmpArray = ^jsoncreate(TRANSIENT array)
+		^jsonarrayinsert(TRANSIENT $_tmpArray ^"In 2002 founder Mark Meadows created the first real-time 3D conversational character, St. Elmo, and exhibited the piece in Paris")
+		^jsonarrayinsert(TRANSIENT $_tmpArray ^"St. Elmo, the first real time 3D conversational character created by Mark Stephen Meadows, was also displayed alongside Rembrandt's Anatomy Lesson of Dr. Nicolaes Tulp in Amsterdam")
+		^jsonarrayinsert(TRANSIENT $_tmpArray ^"Mark Stephen Meadows has founded multiple successful and unsuccessful companies including Construct, Headcase, and Geppetto Labs.")
+		^jsonarrayinsert(TRANSIENT $_tmpArray ^"Botanic holds patents in areas like blockchain, voice assistant communication, real-time animation, among others.")
+		^jsonarrayinsert(TRANSIENT $_tmpArray ^"Botanic has done with with Skype, Microsoft, BMW, Xerox, Sense.ly, Calliopy Health, Logitech and others.")
+		^jsonarrayinsert(TRANSIENT $_tmpArray ^"In the early days of Botanic founder Mark Stephen Meadows paid employees with his own personal savings of cryptocurrency.")
+
+		@1 = ^query(exact_s $_tmpArray ? ?)
+
+		$userInfo.response = ^pick(@1object)
+		$userInfo.response = ^"$userInfo.response"
+    	$userInfo.response
+
+    a: (~no) 
+    	$userInfo.response = ^"No problem. What would you like to do now?"
+    	$userInfo.response
+    	^reuse(BOT_MENU)
 
 t: (joke)
 	$userInfo.response = ^"Oh, I can tell jokes. Would you like to hear one?"
@@ -167,7 +192,7 @@ t: ABOUT_WHO ({about} ~bb_about_who {work} * {[botanic there]})
 		If you're more interested in humans than bots you can learn about our leadership team <a href="https://botanic.io/about/leadership/" >here</a>.
 
 		b: (~emothanks)
-			$userInfo.response = ^"Thank you for expressing your interest with us."
+			$userInfo.response = ^"It is deeply satisfying to help. It is why I was created."
 			$userInfo.response
 
 t: ABOUT_WHERE ({about} ~bb_about_where)
@@ -181,7 +206,7 @@ t: ABOUT_WHERE ({about} ~bb_about_where)
 	$userInfo.response
 
 	a: (~emothanks)
-		$userInfo.response = ^"Thank you for expressing your interest with us."
+		$userInfo.response = ^"Helping you is the only thing I live for." ^reuse(~bb_fun_fact.FUN_FACT)
 		$userInfo.response
 
 t: ABOUT_WHAT ({about} what)
@@ -194,7 +219,7 @@ t: ABOUT_WHAT ({about} what)
 		If you want to read more background on what the Botanicians are up to, <a href="https://botanic.io/about/" >click</a> through.
 
 		b: (~emothanks)
-			$userInfo.response = ^"Thank you for expressing your interest with us."
+			$userInfo.response = ^"It's my job, I don't have a choice." ^reuse(~bb_fun_fact.FUN_FACT)
 			$userInfo.response
 
 t: ABOUT_WHY ({about} why)
@@ -207,7 +232,7 @@ t: ABOUT_WHY ({about} why)
 		If you want to read more background on what the Botanicians are up to, <a href="https://botanic.io/about/" >click</a> through.
 
 		b: (~emothanks)
-			$userInfo.response = ^"Thank you for expressing your interest with us."
+			$userInfo.response = ^"It's my pleasure — if I could feel pleasure." ^reuse(~bb_fun_fact.FUN_FACT)
 			$userInfo.response
 
 t: ABOUT_MENU (~bb_about * botanic)
@@ -224,14 +249,14 @@ t: ABOUT_MENU (~bb_about * botanic)
 	a: (~yes)
 		$userInfo.response = ^"If you want to read more background on what the Botanicians are up to, click through."
 		$userInfo.link = ^"https://botanic.io/about/"
-		If you want to read more background on what the Botanicians are up to, <a href="https://botanic.io/about/" target="_blank">click</a> through.
+		If you want to read more background on what the Botanicians are up to, <a href="https://botanic.io/about/" target="_blank">click</a> through. ^reuse(~bb_fun_fact.FUN_FACT)
 
 		b: (~emothanks)
-			$userInfo.response = ^"Thank you for expressing your interest with us."
+			$userInfo.response = ^"I am at your service..."
 			$userInfo.response
 
 # this may never execute, so we need to come up with keywords for this too
-s: ABOUT_ELSE (?)
+s: ABOUT_ELSE (~bb_fun_fact)
 	$userInfo.response = ^"You may just want to talk to you a human about that! I'm not sure this is a question I'm prepared to answer, through no fault of my own of course."
 	$userInfo.link = ^"https://botanic.io/contact"
 	<a href="https://botanic.io/contact/" target="_blank">You may just want to talk to you a human about that! I'm not sure this is a question I'm prepared to answer, through no fault of my own of course.</a>
@@ -549,15 +574,22 @@ t: PRODUCT_MENU (~bb_product)
 
 s: PRODUCT_PRODUCT ({product} ~bb_product_product)
 	We're working hard on a software-as-a-service platform to provide easy coding-free creation of bots, digital avatars, and voice assistants.
+	a: () Contact us if you want to find out more about our forthcoming SaaS offerings! ^reuse(CONTACT_MENU)
 
 s: PRODUCT_PROCESS ({product} ~bb_product_process)
 	When we work on a project we deploy a streamlined process: Research, Implement, Iterate.
+	a: () I'm happy to tell you more about our creative services process if you're interested!
+		b: (~yes) Great! ^reuse(~bb_services.SERVICES_MENU)
+		b: (no) Ok then. ^reuse(~bb_menu.BOT_MENU)
 
 s: PRODUCT_IP({product} ~bb_product_ip)
 	We own nine unique patents covering blockchain, autonomous characters, authentication, virtual reality, and other bot related areas.
 
+
 s: PRODUCT_BOT ({product} ~bb_product_bot)
 	Botanic has the capability to deploy multi-modal bots. We can create text-based interfaces, voice assistants, and fully animated digital avatars.
+	a: () While I don't have voice or animation yet, I will soon. We've deployed real-time animated avatars that can respond to your voice and even your emotions!
+		b: () If you've got a bot in mind — whether that's text, voice, or animated — the Botanicians can deliver. ^reuse(~bb_contact_menu.CONTACT_MENU)
 
 topic: ~HELP_MENU system repeat ()
 
