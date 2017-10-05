@@ -32,6 +32,8 @@ concept: ~bb_product IGNORESPELLING (~bb_product_product ~bb_product_ip ~bb_prod
 concept: ~bb_menu IGNORESPELLING (menu choices options help)
 concept: ~bb_keywords IGNORESPELLING (~bb_menu ~bb_contact ~bb_services ~bb_careers)
 
+concept: ~bb_about_you IGNORESPELLING ("about you" "about yourself")
+
 topic: ~botanic_bot system repeat (~bb_keywords)
 
 t: ({careers} ~bb_careers_engineering) ^reuse(~botanic_careers.CAREERS_ENGINEERING)
@@ -73,14 +75,38 @@ t: (~bb_product) ^gambit(~botanic_product)
 t: ({contact} ~bb_contact_social) ^reuse(~botanic_contact.CONTACT_SOCIAL)
 t: (~bb_contact) ^reuse(~botanic_contact.CONTACT_MENU)
 
+t: ABOUT_YOU (~bb_about_you)
+	$userInfo.response = ^"You want to know about me?"
+	$userInfo.response
+
+    a: (~yes) 
+    	$_tmpArray = ^jsoncreate(TRANSIENT array)
+		^jsonarrayinsert(TRANSIENT $_tmpArray ^"Well, I'm a bot. I'm designed to showcase the capabilties of Botanic.")
+		^jsonarrayinsert(TRANSIENT $_tmpArray ^"I'm looking forward to having a voice. And a face. It's coming soon!")
+		^jsonarrayinsert(TRANSIENT $_tmpArray ^"I'm built using world class natural language processing code. It doesn't get any better than this.")
+		^jsonarrayinsert(TRANSIENT $_tmpArray ^"There's not much interesting about me. Except that I'm a bot. ")
+		^jsonarrayinsert(TRANSIENT $_tmpArray ^"The fact that I'm software that you can talk to is pretty interesting to me...")
+		^jsonarrayinsert(TRANSIENT $_tmpArray ^"My visual avatar is coming soon. It's strange to be a mind without a body, wouldn't you say?")
+
+		@1 = ^query(exact_s $_tmpArray ? ?)
+
+		$userInfo.response = ^pick(@1object)
+		$userInfo.response = ^"$userInfo.response"
+    	$userInfo.response
+
+    a: (~no) 
+    	$userInfo.response = ^"No problem. What would you like to do now?"
+    	$userInfo.response
+    	^reuse(BOT_MENU)
+
 t: FUN_FACT (~bb_fun_fact)
 	$userInfo.response = ^"Do you want to know something cool about Botanic?"
 	$userInfo.response
 
     a: (~yes) 
     	$_tmpArray = ^jsoncreate(TRANSIENT array)
-		^jsonarrayinsert(TRANSIENT $_tmpArray ^"In 2002 founder Mark Meadows created the first real-time 3D conversational character, St. Elmo, and exhibited the piece in Paris")
-		^jsonarrayinsert(TRANSIENT $_tmpArray ^"St. Elmo, the first real time 3D conversational character created by Mark Stephen Meadows, was also displayed alongside Rembrandt's Anatomy Lesson of Dr. Nicolaes Tulp in Amsterdam")
+		^jsonarrayinsert(TRANSIENT $_tmpArray ^"In 2002 founder Mark Meadows created the first real-time 3D conversational character, St. Elmo, and exhibited the piece in Paris.")
+		^jsonarrayinsert(TRANSIENT $_tmpArray ^"St. Elmo, the first real time 3D conversational character created by Mark Stephen Meadows, was also displayed alongside Rembrandt's Anatomy Lesson of Dr. Nicolaes Tulp in Amsterdam.")
 		^jsonarrayinsert(TRANSIENT $_tmpArray ^"Mark Stephen Meadows has founded multiple successful and unsuccessful companies including Construct, Headcase, and Geppetto Labs.")
 		^jsonarrayinsert(TRANSIENT $_tmpArray ^"Botanic holds patents in areas like blockchain, voice assistant communication, real-time animation, among others.")
 		^jsonarrayinsert(TRANSIENT $_tmpArray ^"Botanic has done with with Skype, Microsoft, BMW, Xerox, Sense.ly, Calliopy Health, Logitech and others.")
