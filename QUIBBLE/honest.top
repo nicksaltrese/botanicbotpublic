@@ -160,8 +160,8 @@ u: ($$intent==disagree ) [OK. You disagree with me. That doesn't mean I'm not ri
 u: ($$intent==agree ) [OK. We agree. That's smart of you.] [I knew you'd compute it my way. ] [Are you just saying you agree so you can check the math later? ] [So we've arrived at the same conclusion? ] 
     [Yes. ] 
     [Magnificent! Human-computer interaction at its finest.]
-    [Are you sure? Do you want me to show you the code?]
-    [It seems like you've reached acceptable error rate. That is, you're sure.]
+    [Are you sure?]
+    [I see that you're certain. I wish I knew what that was like.]
     [You seem really positive.]
     [Finally, a reasonable human.]
 
