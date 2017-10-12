@@ -76,7 +76,11 @@ t: ({contact} ~bb_contact_social) ^reuse(~botanic_contact.CONTACT_SOCIAL)
 t: (~bb_contact) ^reuse(~botanic_contact.CONTACT_MENU)
 
 t: ABOUT_YOU (~bb_about_you)
-    $_tmpArray = ^jsoncreate(TRANSIENT array)
+	$userInfo.response = ^"You want to know about me?"
+	$userInfo.response
+
+    a: (~yes) 
+    	$_tmpArray = ^jsoncreate(TRANSIENT array)
 		^jsonarrayinsert(TRANSIENT $_tmpArray ^"Well, I'm a bot. I'm designed to showcase the capabilties of Botanic.")
 		^jsonarrayinsert(TRANSIENT $_tmpArray ^"I'm looking forward to having a voice. And a face. It's coming soon!")
 		^jsonarrayinsert(TRANSIENT $_tmpArray ^"I'm built using world class natural language processing code. It doesn't get any better than this.")
@@ -90,6 +94,10 @@ t: ABOUT_YOU (~bb_about_you)
 		$userInfo.response = ^"$userInfo.response"
     	$userInfo.response
 
+    a: (~no) 
+    	$userInfo.response = ^"No problem. What would you like to do now?"
+    	$userInfo.response
+    	^reuse(BOT_MENU)
 
 t: FUN_FACT (~bb_fun_fact)
 	$userInfo.response = ^"Do you want to know something cool about Botanic?"
@@ -116,18 +124,8 @@ t: FUN_FACT (~bb_fun_fact)
     	^reuse(BOT_MENU)
 
 t: (joke)
-    $_tmpArray = ^jsoncreate(TRANSIENT array)
-	^jsonarrayinsert(TRANSIENT $_tmpArray ^"Oh, I can tell jokes. Would you like to hear one?")
-	^jsonarrayinsert(TRANSIENT $_tmpArray ^"You want to experience my attempts at humor?")
-	^jsonarrayinsert(TRANSIENT $_tmpArray ^"I will attempt to make you chortle if you consent. Please say yes for a joke.")
-	^jsonarrayinsert(TRANSIENT $_tmpArray ^"Humor is a hard AI problem. Are you should you want me to tell you a joke?")
-	^jsonarrayinsert(TRANSIENT $_tmpArray ^"Jokes are my favorite, though I can not laugh. Would you like to hear one?"
-	
-	@1 = ^query(exact_s $_tmpArray ? ?)
-
-	$userInfo.response = ^pick(@1object)
-	$userInfo.response = ^"$userInfo.response"
-    $userInfo.response
+	$userInfo.response = ^"Oh, I can tell jokes. Would you like to hear one?"
+	$userInfo.response
 
     a: (~yes) 
     	$_tmpArray = ^jsoncreate(TRANSIENT array)
