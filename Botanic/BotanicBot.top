@@ -238,6 +238,11 @@ t: ABOUT_WHERE ({about} ~bb_about_where)
 
 t: ABOUT_WHAT ({about} what)
 	$userInfo.response = ^"Botanic develops chatbots (like me) for both high-profile and small-scale clients and creates software solutions for conversational interfaces."
+	$userInfo.response = ^"Botanic is developing conversational interfaces, so rather than type or tap your devices, you can talk to them. Sounds familiar, right?"
+	$userInfo.response = ^"At Botanic we're working on the future of user interface and we believe that is more humane. That's why you're chatting with me, correct?"
+	$userInfo.response = ^"What Botanic can make is machines with personality. In the future Botanic will provide everyone with the tools to create personality rich conversational interfaces."
+	$userInfo.response = ^"You're talking to a prime example of a machine with personality right now. While I am an example of what Botanic makes, they can also build bots with voice and visual avatars."
+
 	$userInfo.response
 
 	a: (~yes)
@@ -471,7 +476,7 @@ t: CHAT_FORM_NAME (!$userInfo.name)
 	a: () ^reuse(CONTINUE_FORM_FILLING)	
 
 t: CHAT_FORM_EMAIL (!$userInfo.email)
-	$userInfo.response = ^"Please let me know your email"
+	$userInfo.response = ^"Please tell me know your email address so I know how to get in touch with you."
 	$userInfo.response
 
     a: (!~negation ~bb_email_id {is} _~email_url)
@@ -517,7 +522,7 @@ t: CHAT_FORM_EMAIL (!$userInfo.email)
 	a: () ^reuse(CONTINUE_FORM_FILLING)
 
 t: CHAT_FORM_SHORT_MESSAGE (!$userInfo.shortMessage)
-	$userInfo.response = ^"please give your short message"
+	$userInfo.response = ^"Please enter a short message."
 	$userInfo.response
 
 	a: (_*)
@@ -529,7 +534,7 @@ t: CHAT_FORM_THANKS ()
 	if($userInfo.name AND $userInfo.email)
 	{
 		$userInfo.sendEmail = true
-		$userInfo.response = ^"thanks, we will contact you"
+		$userInfo.response = ^"Thanks, we will contact you."
 		$userInfo.response
 	}
 	else { ^reuse(CONTINUE_FORM_FILLING) }
