@@ -232,7 +232,8 @@ t: ABOUT_WHERE ({about} ~bb_about_where)
 	$userInfo.response
 
 	a: (~emothanks)
-		$userInfo.response = ^"Helping you is the only thing I live for." ^reuse(~bb_fun_fact.FUN_FACT)
+		$userInfo.response = ^"Helping you is the only thing I live for."
+		^reuse(~botanic_bot.FUN_FACT)
 		$userInfo.response
 
 t: ABOUT_WHAT ({about} what)
@@ -245,7 +246,8 @@ t: ABOUT_WHAT ({about} what)
 		If you want to read more background on what the Botanicians are up to, <a href="https://botanic.io/about/" >click</a> through.
 
 		b: (~emothanks)
-			$userInfo.response = ^"It's my job, I don't have a choice." ^reuse(~bb_fun_fact.FUN_FACT)
+			$userInfo.response = ^"It's my job, I don't have a choice."
+			^reuse(~botanic_bot.FUN_FACT)
 			$userInfo.response
 
 t: ABOUT_WHY ({about} why)
@@ -258,7 +260,8 @@ t: ABOUT_WHY ({about} why)
 		If you want to read more background on what the Botanicians are up to, <a href="https://botanic.io/about/" >click</a> through.
 
 		b: (~emothanks)
-			$userInfo.response = ^"It's my pleasure — if I could feel pleasure." ^reuse(~bb_fun_fact.FUN_FACT)
+			$userInfo.response = ^"It's my pleasure - if I could feel pleasure."
+			^reuse(~botanic_bot.FUN_FACT)
 			$userInfo.response
 
 t: ABOUT_MENU (~bb_about * botanic)
@@ -275,7 +278,7 @@ t: ABOUT_MENU (~bb_about * botanic)
 	a: (~yes)
 		$userInfo.response = ^"If you want to read more background on what the Botanicians are up to, click through."
 		$userInfo.link = ^"https://botanic.io/about/"
-		If you want to read more background on what the Botanicians are up to, <a href="https://botanic.io/about/" target="_blank">click</a> through. ^reuse(~bb_fun_fact.FUN_FACT)
+		If you want to read more background on what the Botanicians are up to, <a href="https://botanic.io/about/" target="_blank">click</a> through. ^reuse(~botanic_bot.FUN_FACT)
 
 		b: (~emothanks)
 			$userInfo.response = ^"I am at your service..."
@@ -296,7 +299,7 @@ t: SERVICES_DISCOVERY ({services} discovery)
 
 	a: () 	Do you want to hear about the research phase?
 		b: (~yes) ^reuse(~botanic_services.SERVICES_RESEARCH)
-		b: (~no) Ok, what would you like to do? ^reuse(~bb_menu.BOT_MENU)
+		b: (~no) Ok, what would you like to do? ^reuse(~botanic_bot.BOT_MENU)
 
 t: SERVICES_RESEARCH ({services} research)
 	$userInfo.response = ^"Like any good interface, a bot needs to be developed with the needs of the user in mind. That's where research comes in. Botanic will make sure that any bot will meet the actual needs of the user."
@@ -304,7 +307,7 @@ t: SERVICES_RESEARCH ({services} research)
 
 	a: () 	Do you want to hear about our design phase?
 		b: (~yes) ^reuse(~botanic_services.SERVICES_DESIGN)
-		b: (~no) Ok, what would you like to do? ^reuse(~bb_menu.BOT_MENU)
+		b: (~no) Ok, what would you like to do? ^reuse(~botanic_bot.BOT_MENU)
 
 t: SERVICES_DESIGN ({services} ~bb_services_design)
 	$userInfo.response = ^"The design of a bot takes a lot of research, a little science, and a healthy dose of art. The designers at Botanic build me. What could they build you?"
@@ -312,7 +315,7 @@ t: SERVICES_DESIGN ({services} ~bb_services_design)
 
 	a: () 	Do you want to hear about our content development process?
 		b: (~yes) ^reuse(~botanic_services.SERVICES_CONTENT)
-		b: (~no) Ok, what would you like to do? ^reuse(~bb_menu.BOT_MENU)
+		b: (~no) Ok, what would you like to do? ^reuse(~botanic_bot.BOT_MENU)
 
 t: SERVICES_CONTENT ({services} ~bb_services_content)
 	$userInfo.response = ^"Content is the words that I am saying to you right now. It takes a special talent to write words like these, would you say?"
@@ -600,13 +603,15 @@ t: PRODUCT_MENU (~bb_product)
 
 s: PRODUCT_PRODUCT ({product} ~bb_product_product)
 	We're working hard on a software-as-a-service platform to provide easy coding-free creation of bots, digital avatars, and voice assistants.
-	a: () Contact us if you want to find out more about our forthcoming SaaS offerings! ^reuse(CONTACT_MENU)
+	a: () 
+		Contact us if you want to find out more about our forthcoming SaaS offerings! 
+		^reuse(~botanic_contact.CONTACT_MENU)
 
 s: PRODUCT_PROCESS ({product} ~bb_product_process)
 	When we work on a project we deploy a streamlined process: Research, Implement, Iterate.
 	a: () I'm happy to tell you more about our creative services process if you're interested!
-		b: (~yes) Great! ^reuse(~bb_services.SERVICES_MENU)
-		b: (no) Ok then. ^reuse(~bb_menu.BOT_MENU)
+		b: (~yes) Great! ^reuse(~botanic_services.SERVICES_MENU)
+		b: (no) Ok then. ^reuse(~botanic_bot.BOT_MENU)
 
 s: PRODUCT_IP({product} ~bb_product_ip)
 	We own nine unique patents covering blockchain, autonomous characters, authentication, virtual reality, and other bot related areas.
@@ -614,8 +619,11 @@ s: PRODUCT_IP({product} ~bb_product_ip)
 
 s: PRODUCT_BOT ({product} ~bb_product_bot)
 	Botanic has the capability to deploy multi-modal bots. We can create text-based interfaces, voice assistants, and fully animated digital avatars.
-	a: () While I don't have voice or animation yet, I will soon. We've deployed real-time animated avatars that can respond to your voice and even your emotions!
-		b: () If you've got a bot in mind — whether that's text, voice, or animated — the Botanicians can deliver. ^reuse(~bb_contact_menu.CONTACT_MENU)
+	a: () 
+		While I don't have voice or animation yet, I will soon. We've deployed real-time animated avatars that can respond to your voice and even your emotions!
+		b: () 
+			If you've got a bot in mind - whether that's text, voice, or animated - the Botanicians can deliver. 
+			^reuse(~botanic_contact.CONTACT_MENU)
 
 topic: ~HELP_MENU system repeat ()
 
