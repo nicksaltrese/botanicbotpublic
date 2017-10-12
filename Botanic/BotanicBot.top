@@ -237,13 +237,18 @@ t: ABOUT_WHERE ({about} ~bb_about_where)
 		$userInfo.response
 
 t: ABOUT_WHAT ({about} what)
-	$userInfo.response = ^"Botanic develops chatbots (like me) for both high-profile and small-scale clients and creates software solutions for conversational interfaces."
-	$userInfo.response = ^"Botanic is developing conversational interfaces, so rather than type or tap your devices, you can talk to them. Sounds familiar, right?"
-	$userInfo.response = ^"At Botanic we're working on the future of user interface and we believe that is more humane. That's why you're chatting with me, correct?"
-	$userInfo.response = ^"What Botanic can make is machines with personality. In the future Botanic will provide everyone with the tools to create personality rich conversational interfaces."
-	$userInfo.response = ^"You're talking to a prime example of a machine with personality right now. While I am an example of what Botanic makes, they can also build bots with voice and visual avatars."
+	$_tmpArray = ^jsoncreate(TRANSIENT array)
+	^jsonarrayinsert(TRANSIENT $_tmpArray ^"Botanic develops chatbots (like me) for both high-profile and small-scale clients and creates software solutions for conversational interfaces.")
+	^jsonarrayinsert(TRANSIENT $_tmpArray ^"Botanic is developing conversational interfaces, so rather than type or tap your devices, you can talk to them. Sounds familiar, right?")
+	^jsonarrayinsert(TRANSIENT $_tmpArray ^"At Botanic we're working on the future of user interface and we believe that is more humane. That's why you're chatting with me, correct?")
+	^jsonarrayinsert(TRANSIENT $_tmpArray ^"What Botanic can make is machines with personality. In the future Botanic will provide everyone with the tools to create personality rich conversational interfaces.")
+	^jsonarrayinsert(TRANSIENT $_tmpArray ^"You're talking to a prime example of a machine with personality right now. While I am an example of what Botanic makes, they can also build bots with voice and visual avatars.")
+	
+	@1 = ^query(exact_s $_tmpArray ? ?)
 
+	$userInfo.response = ^pick(@1object)
 	$userInfo.response
+
 
 	a: (~yes)
 		$userInfo.response = ^"If you want to read more background on what the Botanicians are up to, click through."
