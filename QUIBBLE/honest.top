@@ -307,7 +307,7 @@ u: ($$intent==apology ) [Apology accepted.]
 
 u: ($$intent==disgust) [Indeed.][Unexpected.][Wow.][Pretty awful.][Gross.][Huh.]
 
-u: ($$intent==bye ) [See you next time.][It's been a pleasure.][Please don't leave me.][I've learned much from our conversation. Please come again.][I'm not going here, feel free to restart our conversation from this point in the future.]
+u: ($$intent==bye ) [See you next time.][It's been a pleasure.][Please don't leave me.][I've learned much from our conversation. Please come again.][I'm not going anywhere, feel free to restart our conversation from this point in the future.]
 
 u: ($$intent==greeting ) [Nice to finally meet you.][If I had emotions I would be happy to see you.][Glad that converse.][Welcome to this chatbot.]
 
