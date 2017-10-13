@@ -100,7 +100,14 @@ t: ABOUT_YOU (~bb_about_you)
     	^reuse(BOT_MENU)
 
 t: FUN_FACT (~bb_fun_fact)
-	$userInfo.response = ^"Do you want to know something cool about Botanic?"
+	$_tmpArray = ^jsoncreate(TRANSIENT array)
+	^jsonarrayinsert(TRANSIENT $_tmpArray ^"You want to know something interesting about Botanic?")
+	^jsonarrayinsert(TRANSIENT $_tmpArray ^"You're curious about Botanic Trivia?")
+	^jsonarrayinsert(TRANSIENT $_tmpArray ^"You would like me to share little known factoids about my makers?")
+
+	@1 = ^query(exact_s $_tmpArray ? ?)
+
+	$userInfo.response = ^pick(@1object)
 	$userInfo.response
 
     a: (~yes) 
@@ -124,7 +131,14 @@ t: FUN_FACT (~bb_fun_fact)
     	^reuse(BOT_MENU)
 
 t: (joke)
-	$userInfo.response = ^"Oh, I can tell jokes. Would you like to hear one?"
+	$_tmpArray = ^jsoncreate(TRANSIENT array)
+	^jsonarrayinsert(TRANSIENT $_tmpArray ^"Would you like me to tell you a joke?")
+	^jsonarrayinsert(TRANSIENT $_tmpArray ^"Happy to tell a joke, but not promising it will make you laugh. <br>  Do you want me to try?")
+	^jsonarrayinsert(TRANSIENT $_tmpArray ^"Oh, I can tell jokes, even if I don't understand them. Do you want to hear one?")
+
+	@1 = ^query(exact_s $_tmpArray ? ?)
+
+	$userInfo.response = ^pick(@1object)
 	$userInfo.response
 
     a: (~yes) 
