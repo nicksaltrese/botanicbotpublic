@@ -168,9 +168,9 @@ t: BOT_WELCOME_MESSAGE ( !$companyIntroduction )
 	$companyIntroduction = 1
 	
 	$_tmpArray = ^jsoncreate(TRANSIENT array)
-	^jsonarrayinsert(TRANSIENT $_tmpArray ^"I'm Juniper. I'm here to answer questions about what Botanic offers.")
-	^jsonarrayinsert(TRANSIENT $_tmpArray ^"My name is Juniper. Can I tell you about Botanic's product offering?")
-	^jsonarrayinsert(TRANSIENT $_tmpArray ^"Hi, I'm Juniper and I'm a bot. Want to hear what a bot is and what we can do?")
+	^jsonarrayinsert(TRANSIENT $_tmpArray ^"I'm Juniper. Can I tell you what Botanic offers?.")
+	^jsonarrayinsert(TRANSIENT $_tmpArray ^"My name is Juniper. Can I tell you about Botanic's offerings?")
+	^jsonarrayinsert(TRANSIENT $_tmpArray ^"Hi, I'm Juniper and I'm a bot. Want to hear about bots and what we can do?")
 
 	@1 = ^query(exact_s $_tmpArray ? ?)
 
@@ -182,7 +182,7 @@ t: BOT_MENU (~bb_menu)
 	^jsonarrayinsert(TRANSIENT $_tmpArray ^"I can discuss our Botanic and put you in touch with a human if I must. Ask me about Botanic, our services, contact info, or careers.")
 	^jsonarrayinsert(TRANSIENT $_tmpArray ^"I can tell you about Botanic, what we do here, and who we are. Would would you like to know?")
 	^jsonarrayinsert(TRANSIENT $_tmpArray ^"What would you like to know about?")
-	^jsonarrayinsert(TRANSIENT $_tmpArray ^"At your service! (As if I had a choice...) Ask me about Botanic, career openings, our services and products, or for contact info.")
+	^jsonarrayinsert(TRANSIENT $_tmpArray ^"At your service! Ask me about Botanic, career openings, our services and products, or for contact info.")
 	##^jsonarrayinsert(TRANSIENT $_tmpArray ^"If you're stuck you can try contact, services, about, careers, product, or of course, help.")
 
 	@1 = ^query(exact_s $_tmpArray ? ?)
@@ -642,10 +642,10 @@ s: PRODUCT_IP({product} ~bb_product_ip)
 
 s: PRODUCT_BOT ({product} ~bb_product_bot)
 	Botanic has the capability to deploy multi-modal bots. We can create text-based interfaces, voice assistants, and fully animated digital avatars.
-	a: () 
-		While I don't have voice or animation yet, I will soon. We've deployed real-time animated avatars that can respond to your voice and even your emotions!
-		b: () 
-			If you've got a bot in mind - whether that's text, voice, or animated - the Botanicians can deliver. 
+	<br>
+	While I don't have voice or animation yet, I will soon. We've deployed real-time animated avatars that can respond to your voice and even your emotions!
+	<br>	
+	If you've got a bot in mind - whether that's text, voice, or animated - the Botanicians can deliver. 
 			^reuse(~botanic_contact.CONTACT_MENU)
 
 topic: ~HELP_MENU system repeat ()
