@@ -179,9 +179,9 @@ t: BOT_WELCOME_MESSAGE ( !$companyIntroduction )
 
 t: BOT_MENU (~bb_menu)
 	$_tmpArray = ^jsoncreate(TRANSIENT array)
-	^jsonarrayinsert(TRANSIENT $_tmpArray ^"I can discuss our Botanic and put you in touch with a human if I must. Ask me about Botanic, our services, contact info, or careers.")
+	^jsonarrayinsert(TRANSIENT $_tmpArray ^"I can discuss our services and put you in touch with a human if I must. Ask me about Botanic, our services, contact info, or careers.")
 	^jsonarrayinsert(TRANSIENT $_tmpArray ^"I can tell you about Botanic, what we do here, and who we are. Would would you like to know?")
-	^jsonarrayinsert(TRANSIENT $_tmpArray ^"What would you like to know about?")
+	##^jsonarrayinsert(TRANSIENT $_tmpArray ^"What would you like to know about?")
 	^jsonarrayinsert(TRANSIENT $_tmpArray ^"At your service! Ask me about Botanic, career openings, our services and products, or for contact info.")
 	##^jsonarrayinsert(TRANSIENT $_tmpArray ^"If you're stuck you can try contact, services, about, careers, product, or of course, help.")
 
@@ -644,8 +644,9 @@ s: PRODUCT_BOT ({product} ~bb_product_bot)
 	Botanic has the capability to deploy multi-modal bots. We can create text-based interfaces, voice assistants, and fully animated digital avatars.
 	a: (what is *) A multi-modal bot has multiple modes of communication. That means visual and audio input and output.
 	a: (why * you) While I don't have voice or animation yet, I will soon. We've deployed real-time animated avatars that can respond to your voice and even your emotions!
-		b: () If you've got a bot in mind - whether that's text, voice, or animated - the Botanicians can deliver. 
-			^reuse(~botanic_contact.CONTACT_MENU)
+		b: () If you've got a bot in mind - whether that's text, voice, or animated - the Botanicians can deliver. Do you want to contact a person about your bot development needs?
+			c: (~yes)^reuse(~botanic_contact.CONTACT_MENU)
+			c: (~no) Ok then. ^reuse(~bb_menu)
 
 topic: ~HELP_MENU system repeat ()
 
