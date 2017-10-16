@@ -642,10 +642,9 @@ s: PRODUCT_IP({product} ~bb_product_ip)
 
 s: PRODUCT_BOT ({product} ~bb_product_bot)
 	Botanic has the capability to deploy multi-modal bots. We can create text-based interfaces, voice assistants, and fully animated digital avatars.
-	<br>
-	While I don't have voice or animation yet, I will soon. We've deployed real-time animated avatars that can respond to your voice and even your emotions!
-	<br>	
-	If you've got a bot in mind - whether that's text, voice, or animated - the Botanicians can deliver. 
+	a: (what is *) A multi-modal bot has multiple modes of communication. That means visual and audio input and output.
+	a: (why * you) While I don't have voice or animation yet, I will soon. We've deployed real-time animated avatars that can respond to your voice and even your emotions!
+		b: () If you've got a bot in mind - whether that's text, voice, or animated - the Botanicians can deliver. 
 			^reuse(~botanic_contact.CONTACT_MENU)
 
 topic: ~HELP_MENU system repeat ()
