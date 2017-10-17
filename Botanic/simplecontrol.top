@@ -217,6 +217,10 @@ t: ($$oobjson)
 	^postprintbefore($$oobjson)
 	^fail(RULE)
 
+t: ($menuOption=1)
+	$menuOption = 2
+	$$menuOptionMsg
+
 ##<<
 t: (^query(direct_v ? chatoutput ? -1 ? @9  ))  # get the sentences  (why is the object) -- no longer has quotes around it
 	^loop()

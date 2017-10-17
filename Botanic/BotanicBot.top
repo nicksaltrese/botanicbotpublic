@@ -36,6 +36,10 @@ concept: ~bb_about_you IGNORESPELLING ("about you" "about yourself")
 
 topic: ~botanic_bot system repeat (~bb_keywords)
 
+t: ($companyIntroduction !$menuOption)
+	$menuOption = 1
+	$$menuOptionMsg = ^"If you need to see your options say \"menu\" at any point."
+
 t: ({careers} ~bb_careers_engineering) ^reuse(~botanic_careers.CAREERS_ENGINEERING)
 t: ({careers} ~bb_careers_design) ^reuse(~botanic_careers.CAREERS_DESIGN)
 t: ({careers} ~bb_careers_operations) ^reuse(~botanic_careers.CAREERS_OPERATIONS)
@@ -646,7 +650,7 @@ s: PRODUCT_BOT ({product} ~bb_product_bot)
 	a: (why * you) While I don't have voice or animation yet, I will soon. We've deployed real-time animated avatars that can respond to your voice and even your emotions!
 		b: () If you've got a bot in mind - whether that's text, voice, or animated - the Botanicians can deliver. Do you want to contact a person about your bot development needs?
 			c: (~yes)^reuse(~botanic_contact.CONTACT_MENU)
-			c: (~no) Ok then. ^reuse(~bb_menu)
+			c: (~no) Ok then. ^reuse(~botanic_bot.BOT_MENU)
 
 topic: ~HELP_MENU system repeat ()
 
