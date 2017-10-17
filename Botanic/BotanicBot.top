@@ -168,7 +168,7 @@ t: BOT_WELCOME_MESSAGE ( !$companyIntroduction )
 	$companyIntroduction = 1
 	
 	$_tmpArray = ^jsoncreate(TRANSIENT array)
-	^jsonarrayinsert(TRANSIENT $_tmpArray ^"I'm Juniper. Can I tell you what Botanic offers?.")
+	^jsonarrayinsert(TRANSIENT $_tmpArray ^"I'm Juniper. Can I tell you what Botanic offers?")
 	^jsonarrayinsert(TRANSIENT $_tmpArray ^"My name is Juniper. Can I tell you about Botanic's offerings?")
 	^jsonarrayinsert(TRANSIENT $_tmpArray ^"Hi, I'm Juniper and I'm a bot. Want to hear about bots and what we can do?")
 
