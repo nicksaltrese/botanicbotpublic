@@ -172,9 +172,9 @@ t: BOT_WELCOME_MESSAGE ( !$companyIntroduction )
 	$companyIntroduction = 1
 	
 	$_tmpArray = ^jsoncreate(TRANSIENT array)
-	^jsonarrayinsert(TRANSIENT $_tmpArray ^"I'm Juniper. Can I tell you what Botanic offers?")
-	^jsonarrayinsert(TRANSIENT $_tmpArray ^"My name is Juniper. Can I tell you about Botanic's offerings?")
-	^jsonarrayinsert(TRANSIENT $_tmpArray ^"Hi, I'm Juniper and I'm a bot. Want to hear about bots and what we can do?")
+	^jsonarrayinsert(TRANSIENT $_tmpArray ^"Hello human, and welcome to Botanic. I’m Juniper and I can help you learn how bots like me can help your organization. Would you rather learn about chatbots, voice-assistants or avatars?")
+	^jsonarrayinsert(TRANSIENT $_tmpArray ^"Welcome to Botanic!  I’m Juniper, and I can talk about how to create multi-modal bots like me, why people implement bots, or I can just tell you a joke. Which one would you like to talk about?")
+	^jsonarrayinsert(TRANSIENT $_tmpArray ^"Greetings, I am called Juniper. I’m a bot representing Botanic. Would you rather talk about who we are, what we do, or why we do it?")
 
 	@1 = ^query(exact_s $_tmpArray ? ?)
 
