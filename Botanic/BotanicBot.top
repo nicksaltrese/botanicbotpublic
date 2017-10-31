@@ -646,8 +646,8 @@ s: PRODUCT_IP({product} ~bb_product_ip)
 
 s: PRODUCT_BOT ({product} ~bb_product_bot)
 	Botanic has the capability to deploy multi-modal bots. Do you know the difference between chatbots, voice assistants, and digital avatars?
-	a: (~no) The most basic conversational interfaces are just text. Like me. These are called chatbots. <br> A voice assistant is an audio conversational interface that you can talk to and it will listen and understand. <br.> An avatar is an audio and visual interface that will listen to you, watch you, and understand you. 
-	a: (~yes) The most basic conversational interfaces are just text. Like me. <br> A voice assistant is an audio conversational interface that you can talk to and it will listen and understand. <br.> An avatar is an audio and visual interface that will listen to you, watch you, and understand you. 
+	a: (~no) The most basic conversational interfaces are just text. Like me. These are called chatbots. <br> A voice assistant is an audio conversational interface that you can talk to and it will listen and understand. <br> An avatar is an audio and visual interface that will listen to you, watch you, and understand you. 
+	a: (~yes) The most basic conversational interfaces are just text. Like me. <br> A voice assistant is an audio conversational interface that you can talk to and it will listen and understand. <br> An avatar is an audio and visual interface that will listen to you, watch you, and understand you. 
 	a: (what is *) A multi-modal bot has multiple modes of communication. That means visual and audio input and output.
 	a: (why * you) While I don't have voice or animation yet, I will soon. We've deployed real-time animated avatars that can respond to your voice and even your emotions!
 		b: () If you've got a bot in mind - whether that's text, voice, or animated - the Botanicians can deliver. Do you want to contact a person about your bot development needs?
