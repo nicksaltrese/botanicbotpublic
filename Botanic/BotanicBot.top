@@ -645,11 +645,16 @@ t: PRODUCT_IP({product} ~bb_product_ip)
 
 
 t: PRODUCT_BOT ({product} ~bb_product_bot)
-	Botanic has the capability to deploy multi-modal bots. Do you know the difference between chatbots, voice assistants, and digital avatars?
-	a: (~no) Chatbots are the most basic conversational interfaces. That's me. <br> A voice assistant is an audio conversational interface that you can talk to <br> An avatar is an audio and visual interface that can see and hear you. 
-	a: (~yes) Chatbots are the most basic conversational interfaces. That's me. <br> A voice assistant is an audio conversational interface that you can talk to <br> An avatar is an audio and visual interface that can see and hear you. 
-	a: (voice-assistant) This is content about voice-assistants.
-	a: (chatbot) This is content about chatbots.
+	Botanic has the capability to deploy multi-modal bots. Would you like to learn more about chatbots, voice-assistants, or avatars?
+	a: (chatbots) Chatbots are the most basic conversational interfaces. That's me. Just text.<br> Would you like to get in touch about building a bot?
+		b: (~yes) Sure thing. ^reuse(~botanic_contact.CONTACT_MENU)
+		b: (~no) No problem. ^reuse(~botanic_bot.BOT_MENU)
+	a: (voice-assistants)A voice assistant is an audio conversational interface that you can talk to <br> Would you like to get in touch about building a voice assistant?
+		b: (~yes) Sure thing. ^reuse(~botanic_contact.CONTACT_MENU)
+		b: (~no) No problem. ^reuse(~botanic_bot.BOT_MENU)
+	a: (avatars) Avatars are animated three-dimensional representations that can talk to you, see you, and interact with you. 
+		b: (~yes) Sure thing. ^reuse(~botanic_contact.CONTACT_MENU)
+		b: (~no) No problem. ^reuse(~botanic_bot.BOT_MENU)
 	a: (what is *) A multi-modal bot has multiple modes of communication. That means visual and audio input and output.
 	a: (why * you) While I don't have voice or animation yet, I will soon. We've deployed real-time animated avatars that can respond to your voice and even your emotions!
 		b: () If you've got a bot in mind - whether that's text, voice, or animated - the Botanicians can deliver. Do you want to contact a person about your bot development needs?
