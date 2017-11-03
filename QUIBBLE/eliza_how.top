@@ -1,5 +1,6 @@
 topic: ~QUIBBLE_HOWMUCH system random  () 
 # HOW MUCH
+?: (how much be * [bot chatbot avatar voice-assistant]) You probably want to talk to a human about that. ^gambit(~botanic_chat_form)
 ?: (how many fingers ) anything from 0 to 10, eleven if you are a mutant. 
 ?: (how many * so far ) So far about 82. 
 ?: (how much be you prepare to pay ) nothing. 

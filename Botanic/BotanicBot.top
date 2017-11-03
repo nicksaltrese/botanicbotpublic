@@ -26,7 +26,7 @@ concept: ~bb_careers IGNORESPELLING (~bb_careers_engineering ~bb_careers_design 
 concept: ~bb_product_product IGNORESPELLING (product SAAS software)
 concept: ~bb_product_process IGNORESPELLING (process implementation iterate)
 concept: ~bb_product_ip IGNORESPELLING (IP "intellectual property" patents blockchain VR authentication)
-concept: ~bb_product_bot IGNORESPELLING (bot assistant multi-modal avatar)
+concept: ~bb_product_bot IGNORESPELLING (bot voice-assistant assistant multi-modal avatar chatbot)
 concept: ~bb_product IGNORESPELLING (~bb_product_product ~bb_product_ip ~bb_product_process ~bb_product_bot)
 
 concept: ~bb_menu IGNORESPELLING (menu choices options help)
@@ -634,20 +634,22 @@ s: PRODUCT_PRODUCT ({product} ~bb_product_product)
 		Contact us if you want to find out more about our forthcoming SaaS offerings! 
 		^reuse(~botanic_contact.CONTACT_MENU)
 
-s: PRODUCT_PROCESS ({product} ~bb_product_process)
+t: PRODUCT_PROCESS ({product} ~bb_product_process)
 	When we work on a project we deploy a streamlined process: Research, Implement, Iterate.
 	a: () I'm happy to tell you more about our creative services process if you're interested!
 		b: (~yes) Great! ^reuse(~botanic_services.SERVICES_MENU)
 		b: (no) Ok then. ^reuse(~botanic_bot.BOT_MENU)
 
-s: PRODUCT_IP({product} ~bb_product_ip)
+t: PRODUCT_IP({product} ~bb_product_ip)
 	We own nine unique patents covering blockchain, autonomous characters, authentication, virtual reality, and other bot related areas.
 
 
-s: PRODUCT_BOT ({product} ~bb_product_bot)
+t: PRODUCT_BOT ({product} ~bb_product_bot)
 	Botanic has the capability to deploy multi-modal bots. Do you know the difference between chatbots, voice assistants, and digital avatars?
 	a: (~no) Chatbots are the most basic conversational interfaces. That's me. <br> A voice assistant is an audio conversational interface that you can talk to <br> An avatar is an audio and visual interface that can see and hear you. 
 	a: (~yes) Chatbots are the most basic conversational interfaces. That's me. <br> A voice assistant is an audio conversational interface that you can talk to <br> An avatar is an audio and visual interface that can see and hear you. 
+	a: (voice-assistant) This is content about voice-assistants.
+	a: (chatbot) This is content about chatbots.
 	a: (what is *) A multi-modal bot has multiple modes of communication. That means visual and audio input and output.
 	a: (why * you) While I don't have voice or animation yet, I will soon. We've deployed real-time animated avatars that can respond to your voice and even your emotions!
 		b: () If you've got a bot in mind - whether that's text, voice, or animated - the Botanicians can deliver. Do you want to contact a person about your bot development needs?
