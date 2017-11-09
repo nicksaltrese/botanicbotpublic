@@ -62,7 +62,7 @@ t: ([(~bb_about * botanic) (what * !~bb_careers * botanic)]) ^reuse(~botanic_abo
 t: ({contact} ~bb_email_id) ^reuse(~botanic_contact.CONTACT_EMAIL)
 t: ({contact} ~bb_contact_phone) ^reuse(~botanic_contact.CONTACT_PHONE)
 t: ({contact} {~bb_email_id} ~bb_contact_email_signup) ^reuse(~botanic_contact.CONTACT_EMAIL_SIGNUP)
-t: ({contact} [chat contact form] {[chat contact form]} {[chat contact form]}) ^reuse(~botanic_contact.CONTACT_CHAT_FORM)
+t: ({contact} [contact form] {[contact form]} {[contact form]}) ^reuse(~botanic_contact.CONTACT_CHAT_FORM)
 
 t: ({social} twitter) ^reuse(~botanic_social.SOCIAL_TWITTER)
 t: ({social} facebook) ^reuse(~botanic_social.SOCIAL_FACEBOOK)
@@ -451,7 +451,7 @@ t: CONTACT_PHONE ({contact} ~bb_contact_phone)
 	$userInfo.response = ^"Call 1.888.969.2687. Numbers are easier for me to remember but if you prefer letters that's 1-888-969-BOTS. Clever, isn't it?"
 	$userInfo.response
 
-t: CONTACT_CHAT_FORM ({contact} [chat contact form] {[chat contact form]} {[chat contact form]})
+t: CONTACT_CHAT_FORM ({contact} [contact form] {[contact form]} {[contact form]})
 	^gambit(~botanic_chat_form)
 
 t: CONTACT_SOCIAL ({contact} ~bb_contact_social)
@@ -647,13 +647,13 @@ t: PRODUCT_IP({product} ~bb_product_ip)
 t: PRODUCT_BOT ({product} ~bb_product_bot)
 	Botanic has the capability to deploy multi-modal bots. Would you like to learn more about chatbots, voice-assistants, or avatars?
 	a: (chatbots) Chatbots are the most basic conversational interfaces. That's me. Just text.<br> Would you like to get in touch about building a bot?
-		b: (~yes) Sure thing. ^reuse(~botanic_contact.CONTACT_MENU)
+		b: (~yes) ^reuse(~botanic_contact.CONTACT_MENU)
 		b: (~no) No problem. ^reuse(~botanic_bot.BOT_MENU)
 	a: (voice-assistants)A voice assistant is an audio conversational interface that you can talk to <br> Would you like to get in touch about building a voice assistant?
-		b: (~yes) Sure thing. ^reuse(~botanic_contact.CONTACT_MENU)
+		b: (~yes) ^reuse(~botanic_contact.CONTACT_MENU)
 		b: (~no) No problem. ^reuse(~botanic_bot.BOT_MENU)
-	a: (avatars) Avatars are animated three-dimensional representations that can talk to you, see you, and interact with you. 
-		b: (~yes) Sure thing. ^reuse(~botanic_contact.CONTACT_MENU)
+	a: (avatars) Avatars are animated three-dimensional representations that can talk to you, see you, and interact with you. <br> Would you like to build an avatar with Botanic? 
+		b: (~yes) ^reuse(~botanic_contact.CONTACT_MENU)
 		b: (~no) No problem. ^reuse(~botanic_bot.BOT_MENU)
 	a: (what is *) A multi-modal bot has multiple modes of communication. That means visual and audio input and output.
 	a: (why * you) While I don't have voice or animation yet, I will soon. We've deployed real-time animated avatars that can respond to your voice and even your emotions!
