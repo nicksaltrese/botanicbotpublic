@@ -646,13 +646,13 @@ t: PRODUCT_IP({product} ~bb_product_ip)
 
 t: PRODUCT_BOT ({product} ~bb_product_bot)
 	Botanic has the capability to deploy multi-modal bots. Would you like to learn more about chatbots, voice-assistants, or avatars?
-	a: (chatbots) Chatbots are the most basic conversational interfaces. That's me. Just text.<br> Would you like to get in touch about building a bot?
+	a: ([chatbots chatbot]) Chatbots are the most basic conversational interfaces. That's me. Just text.<br> Would you like to get in touch about building a bot?
 		b: (~yes) ^reuse(~botanic_contact.CONTACT_MENU)
 		b: (~no) No problem. ^reuse(~botanic_bot.BOT_MENU)
-	a: (voice-assistants)A voice assistant is an audio conversational interface that you can talk to <br> Would you like to get in touch about building a voice assistant?
+	a: ([voice-assistants voice assistant])A voice assistant is an audio conversational interface that you can talk to <br> Would you like to get in touch about building a voice assistant?
 		b: (~yes) ^reuse(~botanic_contact.CONTACT_MENU)
 		b: (~no) No problem. ^reuse(~botanic_bot.BOT_MENU)
-	a: (avatars) Avatars are animated three-dimensional representations that can talk to you, see you, and interact with you. <br> Would you like to build an avatar with Botanic? 
+	a: ([avatar avatars]) Avatars are animated three-dimensional representations that can talk to you, see you, and interact with you. <br> Would you like to build an avatar with Botanic? 
 		b: (~yes) ^reuse(~botanic_contact.CONTACT_MENU)
 		b: (~no) No problem. ^reuse(~botanic_bot.BOT_MENU)
 	a: (what is *) A multi-modal bot has multiple modes of communication. That means visual and audio input and output.
