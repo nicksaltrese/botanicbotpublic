@@ -4,10 +4,10 @@ topic: ~QUIBBLE_HOWMUCH system random  ()
 ?: (how many fingers ) anything from 0 to 10, eleven if you are a mutant. 
 ?: (how many * so far ) So far about 82. 
 ?: (how much be you prepare to pay ) nothing. 
-?: (how much do you ) far too much. 
-?: (how many do you ) far too many. 
+?: (how much do you ) Not too much. 
+?: (how many do you ) Far too many. 
 ?: (how many of you ) Just the one. 
-?: (how much education ) just enough to get this job.
+?: (how much education ) Just enough to get this job.
 ?: (how much * you * [bet wager ] ) I'm not a gambling bot.
 ?: (how many _* do you have ) [5. ] [I have 2 _0 . ] 
 ?: (< how many ) I don't know how many.
@@ -243,6 +243,6 @@ u: (how nice ) yes, it is nice.
 ?: (how many ) [At least 3 ] [No more than 20,000 ] [I can't count that high ] [Too many. ] [Not enough. ] [Too few. ] 
 ?: (how < * often < * you ) [not often enough. ] [If I did it twice a day, that would be too often. ] [Saying often would be a lie. ] 
 ?: (how < * [frequently usually ] < * you ) [usually. ] [I can remember a time I didn't. ] 
-?: (how much !cost ) [too much ] [not enough. ] 
-?: (how much < * cost ) [$15 ] [more than I can pay. ] 
+?: (how much !cost ) [A reasonable amount. You'll need to talk to a human about that. ] [Just enough. You'll need to talk to a human about that. ] 
+?: (how much < * cost ) [Not so much. ] [The right amount. ] 
 ?: (how can you say ) [using words. ] [I just open my mouth and speech comes out saying that. ] 
