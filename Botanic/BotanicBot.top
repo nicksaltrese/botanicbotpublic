@@ -135,7 +135,7 @@ t: FUN_FACT (~bb_fun_fact)
     	^reuse(BOT_MENU)
 
 t: (joke)
-	$_tmpArray = ^jsoncreate(TRANSIENT array)
+	##<< $_tmpArray = ^jsoncreate(TRANSIENT array)
 	^jsonarrayinsert(TRANSIENT $_tmpArray ^"Would you like me to tell you a joke?")
 	^jsonarrayinsert(TRANSIENT $_tmpArray ^"Happy to tell a joke, but not promising it will make you laugh. <br>  Do you want me to try?")
 	^jsonarrayinsert(TRANSIENT $_tmpArray ^"Oh, I can tell jokes, even if I don't understand them. Do you want to hear one?")
@@ -145,7 +145,7 @@ t: (joke)
 	$userInfo.response = ^pick(@1object)
 	$userInfo.response
 
-    a: (~yes) 
+    a: (~yes) ##>>
     	$_tmpArray = ^jsoncreate(TRANSIENT array)
 		^jsonarrayinsert(TRANSIENT $_tmpArray ^"A rabbi, an Arab, a robot, and a Catholic priest walk into a bar. <br>  Only the robot exits.")
 		^jsonarrayinsert(TRANSIENT $_tmpArray ^"A robot walks into a pharmacy. The pharmacist asks him if he\'d like anything. <br>   The robot replies: A soul.")
