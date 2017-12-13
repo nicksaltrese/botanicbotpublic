@@ -470,7 +470,8 @@ topic: ~botanic_contact system repeat (~bb_contact)
 
 t: CONTACT_EMAIL ({contact} ~bb_email_id)
 	$userInfo.response = ^"Send an email to info@botanic.io and some human will respond as soon as possible."
-	$userInfo.response
+	$userInfo.link = ^"mailto:info@botanic.io"
+	Send an email to <a href="mailto:info@botanic.io" target="_blank">info@botanic.io</a> and some human will respond as soon as possible.
 
 t: CONTACT_PHONE ({contact} ~bb_contact_phone)
 	$userInfo.response = ^"Call 1.888.969.2687. Numbers are easier for me to remember but if you prefer letters that's 1-888-969-BOTS. Clever, isn't it?"
