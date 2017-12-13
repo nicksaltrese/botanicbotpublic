@@ -79,6 +79,22 @@ t: (~bb_product) ^gambit(~botanic_product)
 t: ({contact} ~bb_contact_social) ^reuse(~botanic_contact.CONTACT_SOCIAL)
 t: (~bb_contact) ^reuse(~botanic_contact.CONTACT_MENU)
 
+t: WHY_BOTS (why * ~bb_product_bot)
+    	$_tmpArray = ^jsoncreate(TRANSIENT array)
+		^jsonarrayinsert(TRANSIENT $_tmpArray ^"Because 24/7 personalized customer service is the key to growing any business, on a global scale. Want to learn more?")
+		^jsonarrayinsert(TRANSIENT $_tmpArray ^"We answer up to 80% of your users’ questions so you can run your business more efficiently at a lower cost. Interested in hearing more?")
+		^jsonarrayinsert(TRANSIENT $_tmpArray ^"We are ROI machines! Literally. Want to see a demo [from a human]?")
+		^jsonarrayinsert(TRANSIENT $_tmpArray ^"We’ve been known to increase conversions by over 27% almost immediately. We help build your business while you’re away from the screen. Want to learn more?") 
+		a: (~yes) 
+		$userInfo.response = ^"Check out this blog to learn more about the benefits bots can provide. You can also contact the Botanic team to discuss your options."
+		$userInfo.link = ^"http://blog.botanic.io/what-are-bots-good-for"
+		$userInfo.link = ^"http://botanic.io/contact"
+		Check out <a href="http://blog.botanic.io/what-are-bots-good-for" target="_blank">this blog</a> to learn more about the benefits bots can provide. You can also <a href="http://botanic.io/contact" target="_blank">contact the Botanic team</a> to discuss your options.
+		a: (~no) 
+    	$userInfo.response = ^"No problem. What would you like to do now?"
+    	$userInfo.response
+    	^reuse(BOT_MENU)
+
 t: ABOUT_YOU (~bb_about_you)
 	$userInfo.response = ^"You want to know about me?"
 	$userInfo.response
