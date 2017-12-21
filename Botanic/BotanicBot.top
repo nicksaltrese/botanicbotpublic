@@ -63,7 +63,7 @@ Our webinar The Disrupting Convergence of Blockchain and AI in the Global Econom
 t: AUGMENTED_INTELLIGENCE (~bb_augmnented_intelligence)
 	$userInfo.response ^"Bots can help collect and incorporate user data, helping to improve and personalize client interactions--that\'s why it\'s better to deploy them now.  Learn more about it here."
 	$userInfo.link = ^"http://blog.botanic.io/3-key-lessons-from-the-chatbots-conference/"
-		Bots can help collect and incorporate user data, helping to improve and personalize client interactions--that\'s why it\'s better to deploy them now. <a href="http://blog.botanic.io/3-key-lessons-from-the-chatbots-conference/" target="_blank"> Learn more about it here. </a>
+	Bots can help collect and incorporate user data, helping to improve and personalize client interactions--that\'s why it\'s better to deploy them now. <a href="http://blog.botanic.io/3-key-lessons-from-the-chatbots-conference/" target="_blank"> Learn more about it here. </a>
  
 t: TRUST_SECURITY (~bb_trust_security)
 	$userInfo.response = ^"Our bots can be used for anything you can say outloud, write or even convey in a gesture!  The more modes we can communicate through, the faster and better we can build trust. The same goes for security. Learn more about how we do it here."
@@ -71,15 +71,15 @@ t: TRUST_SECURITY (~bb_trust_security)
 	Our bots can be used for anything you can say outloud, write or even convey in a gesture!  The more modes we can communicate through, the faster and better we can build trust. The same goes for security. <a href="http://blog.botanic.io/news/artificial-intelligence-and-artificial-trust/" target="_blank">Learn more about how we do it here. </a> 
 
 t: SEARCH_FUNCTION (~bb_search_function)
-	$userInfo.response = ^"As voice recognition is refined and bots become more ubiquitous, there\'s even talk that bots will be replacing the search function. Learn more about it here: [http://blog.botanic.io/what-are-bots-good-for]")
+	$userInfo.response = ^"As voice recognition is refined and bots become more ubiquitous, there\'s even talk that bots will be replacing the search function. Learn more about it here: [http://blog.botanic.io/what-are-bots-good-for]"
 	$userInfo.link = ^"http://blog.botanic.io/what-are-bots-good-for/"
-		As voice recognition is refined and bots become more ubiquitous, there\'s even talk that bots will be replacing the search function. <a href="http://blog.botanic.io/what-are-bots-good-for" target="_blank">Check out this blog for more about what bots can do.</a>
+	As voice recognition is refined and bots become more ubiquitous, there\'s even talk that bots will be replacing the search function. <a href="http://blog.botanic.io/what-are-bots-good-for" target="_blank">Check out this blog for more about what bots can do.</a>
 
 
 t: ENTERPRISE (~bb_enterprise)
 	$userInfo.response = ^"Whatever field you work in, we automate both repetitive and complex tasks. Our bots are customizable and able to perform anything from password changes to secure transactions. These transactions can even be made with our patented voice-to-blockchain bridge. Learn more about it here."
 	$userInfo.link = ^"http://blog.botanic.io/what-are-bots-good-for/"
-		Whatever field you work in, we automate both repetitive and complex tasks. Our bots are customizable and able to perform anything from password changes to secure transactions. These transactions can even be made with our patented voice-to-blockchain bridge. <a href="http://blog.botanic.io/what-are-bots-good-for" target="_blank">Learn more about it here.</a> 
+	Whatever field you work in, we automate both repetitive and complex tasks. Our bots are customizable and able to perform anything from password changes to secure transactions. These transactions can even be made with our patented voice-to-blockchain bridge. <a href="http://blog.botanic.io/what-are-bots-good-for" target="_blank">Learn more about it here.</a> 
 
 t: WHY_BOTS (why * ~bb_product_bot)
 	$_tmpArray = ^jsoncreate(TRANSIENT array)
