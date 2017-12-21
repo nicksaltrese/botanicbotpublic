@@ -45,7 +45,7 @@ topic: ~botanic_bot system repeat (~bb_keywords)
 t: ($companyIntroduction !$menuOption)
 	$menuOption = 1
 	$$menuOptionMsg = ^"<br> If you need to see your options say \"menu\" at any point."
-	
+
 t: WEBINAR_INTRO (~bb_webinar_intro)
 	$_tmpArray = ^jsoncreate(TRANSIENT array)
 	^jsonarrayinsert(TRANSIENT $_tmpArray ^"Our webinar The Disrupting Convergence of Blockchain and AI in the Global Economy is right around the corner. <br> We will be discussing everything from AI to blockchain and even the capabilities of our patented voice-to-blockchain bridge. <br> Want to learn more?")
@@ -57,6 +57,7 @@ t: WEBINAR_INTRO (~bb_webinar_intro)
 
 	a: (~yes) 
 		$userInfo.response = ^"Join the conversation about AI, blockchain, and responsible data management. Learn how these impact the global economy and how it can accelerate your business: [link to webinar]. "
+		$userInfo.link = ^"http://blog.botanic.io/"
 		$userInfo.response
 		^reuse(~botanic_services.SERVICES_DISCOVERY)
 	
@@ -73,7 +74,7 @@ t: AUGMENTED_INTELLIGENCE (~bb_augmnented_intelligence)
 
 	$userInfo.response = ^"Learn more about it here."
 	$userInfo.link = ^"http://blog.botanic.io/3-key-lessons-from-the-chatbots-conference/"
-		Learn more <a href="http://blog.botanic.io/3-key-lessons-from-the-chatbots-conference/" >click</a> about it here.
+		Learn more <a href="http://blog.botanic.io/3-key-lessons-from-the-chatbots-conference/" > about it here. </a>
  
 t: TRUST_SECURITY (~bb_trust_security)
 	$_tmpArray = ^jsoncreate(TRANSIENT array)
@@ -83,7 +84,7 @@ t: TRUST_SECURITY (~bb_trust_security)
 
 	$userInfo.response = ^"Learn more about it here."
 	$userInfo.link = ^"http://blog.botanic.io/news/artificial-intelligence-and-artificial-trust/"
-		Learn more about <a href="http://blog.botanic.io/news/artificial-intelligence-and-artificial-trust/" >click</a> how we do it here.
+		Learn more about <a href="http://blog.botanic.io/news/artificial-intelligence-and-artificial-trust/" >how we do it here. </a> 
 
 t: SEARCH_FUNCTION (~bb_search_function)
 	$_tmpArray = ^jsoncreate(TRANSIENT array)
@@ -93,7 +94,7 @@ t: SEARCH_FUNCTION (~bb_search_function)
 
 	$userInfo.response = ^"Learn more about it here."
 	$userInfo.link = ^"http://blog.botanic.io/what-are-bots-good-for/"
-		Learn more about <a href="http://blog.botanic.io/what-are-bots-good-for/" >click</a> it here.
+		Learn more about <a href="http://blog.botanic.io/what-are-bots-good-for/"> it here.</a>
 
 
 t: ENTERPRISE (~bb_enterprise)
@@ -104,7 +105,7 @@ t: ENTERPRISE (~bb_enterprise)
 
 	$userInfo.response = ^"Learn more about it here."
 	$userInfo.link = ^"http://blog.botanic.io/what-are-bots-good-for/"
-		Learn more about <a href="http://blog.botanic.io/what-are-bots-good-for/" >click</a> it here.
+		Learn more about <a href="http://blog.botanic.io/what-are-bots-good-for/" > it here.</a>
 
 t: WHY_BOTS (why * ~bb_product_bot)
 	$_tmpArray = ^jsoncreate(TRANSIENT array)
