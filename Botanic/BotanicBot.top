@@ -52,8 +52,8 @@ Our webinar The Disrupting Convergence of Blockchain and AI in the Global Econom
 
 	a: (~yes) 
 		$userInfo.response = ^"Join the conversation about AI, blockchain, and responsible data management. Learn how these impact the global economy and how it can accelerate your business. "
-		$userInfo.link = ^"http://blog.botanic.io/"
-		Join the conversation about AI, blockchain, and responsible data management. <a href="http://blog.botanic.io" target="_blank">Learn how these impact the global economy and how it can accelerate your business.</a>
+		$userInfo.link = ^"http://info.botanic.io/disrupting-convergence-of-blockchain-and-ai-in-healthcare"
+		Join the conversation about AI, blockchain, and responsible data management. <a href="http://info.botanic.io/disrupting-convergence-of-blockchain-and-ai-in-healthcare" target="_blank">Learn how these impact the global economy and how it can accelerate your business.</a>
 	
 	a: (~no) 
    		$userInfo.response = ^"Ok then."
