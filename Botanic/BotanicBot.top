@@ -235,7 +235,7 @@ t: (joke)
 
 t: BOT_WELCOME_MESSAGE ( !$companyIntroduction ) 
 	$companyIntroduction = 1
-
+##<<
 	$_tmpArray = ^jsoncreate(TRANSIENT array)
 
 	^jsonarrayinsert(TRANSIENT $_tmpArray ^"Happy Holidays from the team at Botanic! Though we have limited staff from 12.23.17 - 01.01.18, we are available. <br> Register for our webinar 01.18.18!")
@@ -243,8 +243,8 @@ t: BOT_WELCOME_MESSAGE ( !$companyIntroduction )
     ##^jsonarrayinsert(TRANSIENT $_tmpArray ^"Greetings, I am called Juniper. I\’m a bot representing Botanic. <br> Would you like to talk about who we are or what we do?")
 
 	@1 = ^query(exact_s $_tmpArray ? ?)
-
-	$userInfo.response = ^pick(@1object)
+##>>
+	$userInfo.response = ^"Happy Holidays from the team at Botanic! Though we have limited staff from 12.23.17 - 01.01.18, we are available. <br> Register for our webinar 01.18.18!"
 	$userInfo.link = ^"mailto:info@botanic.io"
 	$userInfo.link = ^"http://info.botanic.io/disrupting-convergence-of-blockchain-and-ai-in-healthcare"
 	$userInfo.response
