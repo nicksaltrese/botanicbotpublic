@@ -245,7 +245,11 @@ t: BOT_WELCOME_MESSAGE ( !$companyIntroduction )
 	@1 = ^query(exact_s $_tmpArray ? ?)
 
 	$userInfo.response = ^pick(@1object)
+	$userInfo.link = ^"mailto:info@botanic.io"
+	$userInfo.link = ^"http://info.botanic.io/disrupting-convergence-of-blockchain-and-ai-in-healthcare"
 	$userInfo.response
+		Happy Holidays from the team at Botanic! Though we have limited staff from 12.23.17 - 01.01.18, <a href="mailto:info@botanic.io" target="_blank">we are available.</a> <br> <a href=""http://info.botanic.io/disrupting-convergence-of-blockchain-and-ai-in-healthcare">Register for our webinar 01.18.18!</a>
+
 
 t: BOT_MENU (~bb_menu)
 	$_tmpArray = ^jsoncreate(TRANSIENT array)
