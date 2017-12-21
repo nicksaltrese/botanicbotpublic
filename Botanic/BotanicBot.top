@@ -34,11 +34,77 @@ concept: ~bb_keywords IGNORESPELLING (~bb_menu ~bb_contact ~bb_services ~bb_care
 
 concept: ~bb_about_you IGNORESPELLING ("about you" "about yourself")
 
+concept: ~bb_webinar_intro IGNORESPELLING (webinar conference event events blockchain "learn more" register)
+concept: ~bb_augmnented_intelligence IGNORESPELLING ( "augmented intelligence" "* what * bots * do ?" "data * collection")
+concept: ~bb_trust_security IGNORESPELLING (trust security "multi-modal AI"  "* what * bots * for" "why * buy * bot" "why * implement * bot")
+concept: ~bb_search_function IGNORESPELLING (analytics "big data" search "search function")
+concept: ~bb_enterprise IGNORESPELLING ("customer service" HR "human resources" "financial services" "lead generation" medical wellness retail travel education automotive)
+
 topic: ~botanic_bot system repeat (~bb_keywords)
 
 t: ($companyIntroduction !$menuOption)
 	$menuOption = 1
 	$$menuOptionMsg = ^"<br> If you need to see your options say \"menu\" at any point."
+	
+t: WEBINAR_INTRO (~bb_webinar_intro)
+	$_tmpArray = ^jsoncreate(TRANSIENT array)
+	^jsonarrayinsert(TRANSIENT $_tmpArray ^"Our webinar The Disrupting Convergence of Blockchain and AI in the Global Economy is right around the corner. <br> We will be discussing everything from AI to blockchain and even the capabilities of our patented voice-to-blockchain bridge. <br> Want to learn more?")
+	
+	@1 = ^query(exact_s $_tmpArray ? ?)
+
+	$userInfo.response = ^pick(@1object)
+	$userInfo.response
+
+	a: (~yes) 
+		$userInfo.response = ^"Join the conversation about AI, blockchain, and responsible data management. Learn how these impact the global economy and how it can accelerate your business: [link to webinar]. "
+		$userInfo.response
+		^reuse(~botanic_services.SERVICES_DISCOVERY)
+	
+	a: (~no) 
+   		$userInfo.response = ^"Ok then."
+   	 	$userInfo.response
+    	^reuse(~botanic_bot.BOT_MENU)
+
+t: AUGMENTED_INTELLIGENCE (~bb_augmnented_intelligence)
+	$_tmpArray = ^jsoncreate(TRANSIENT array)
+	^jsonarrayinsert(TRANSIENT $_tmpArray ^"Bots can help collect and incorporate user data, helping to improve and personalize client interactions--that\'s why it\'s better to deploy them now.  Learn more about it here. ")
+	
+	@1 = ^query(exact_s $_tmpArray ? ?)
+
+	$userInfo.response = ^"Learn more about it here."
+	$userInfo.link = ^"http://blog.botanic.io/3-key-lessons-from-the-chatbots-conference/"
+		Learn more <a href="http://blog.botanic.io/3-key-lessons-from-the-chatbots-conference/" >click</a> about it here.
+ 
+t: TRUST_SECURITY (~bb_trust_security)
+	$_tmpArray = ^jsoncreate(TRANSIENT array)
+	^jsonarrayinsert(TRANSIENT $_tmpArray ^"Our bots can be used for anything you can say outloud, write or even convey in a gesture!  The more modes we can communicate through, the faster and better we can build trust. The same goes for security. Learn more about how we do it here.")
+	
+	@1 = ^query(exact_s $_tmpArray ? ?)
+
+	$userInfo.response = ^"Learn more about it here."
+	$userInfo.link = ^"http://blog.botanic.io/news/artificial-intelligence-and-artificial-trust/"
+		Learn more about <a href="http://blog.botanic.io/news/artificial-intelligence-and-artificial-trust/" >click</a> how we do it here.
+
+t: SEARCH_FUNCTION (~bb_search_function)
+	$_tmpArray = ^jsoncreate(TRANSIENT array)
+	^jsonarrayinsert(TRANSIENT $_tmpArray ^"As voice recognition is refined and bots become more ubiquitous, there\'s even talk that bots will be replacing the search function. Learn more about it here: [http://blog.botanic.io/what-are-bots-good-for]")
+	
+	@1 = ^query(exact_s $_tmpArray ? ?)
+
+	$userInfo.response = ^"Learn more about it here."
+	$userInfo.link = ^"http://blog.botanic.io/what-are-bots-good-for/"
+		Learn more about <a href="http://blog.botanic.io/what-are-bots-good-for/" >click</a> it here.
+
+
+t: ENTERPRISE (~bb_enterprise)
+	$_tmpArray = ^jsoncreate(TRANSIENT array)
+	^jsonarrayinsert(TRANSIENT $_tmpArray ^"Whatever field you work in, we automate both repetitive and complex tasks. Our bots are customizable and able to perform anything from password changes to secure transactions. These transactions can even be made with our patented voice-to-blockchain bridge. Learn more about it here: [http://blog.botanic.io/what-are-bots-good-for]. and think about joining our webinar [link to webinar]")
+	
+	@1 = ^query(exact_s $_tmpArray ? ?)
+
+	$userInfo.response = ^"Learn more about it here."
+	$userInfo.link = ^"http://blog.botanic.io/what-are-bots-good-for/"
+		Learn more about <a href="http://blog.botanic.io/what-are-bots-good-for/" >click</a> it here.
 
 t: WHY_BOTS (why * ~bb_product_bot)
 	$_tmpArray = ^jsoncreate(TRANSIENT array)
@@ -197,9 +263,9 @@ t: BOT_WELCOME_MESSAGE ( !$companyIntroduction )
 
 	$_tmpArray = ^jsoncreate(TRANSIENT array)
 
-    ^jsonarrayinsert(TRANSIENT $_tmpArray ^"Welcome to Botanic. I\'m Juniper and I can help you learn about bots. <br> Want to learn about chatbots, voice-assistants or avatars?")
-    ^jsonarrayinsert(TRANSIENT $_tmpArray ^"Welcome to Botanic! I\’m Juniper, and I can talk about bots like me, Botanic, or I can just tell you a joke. <br> Which one would you like to talk about?")
-    ^jsonarrayinsert(TRANSIENT $_tmpArray ^"Greetings, I am called Juniper. I\’m a bot representing Botanic. <br> Would you like to talk about who we are or what we do?")
+	^jsonarrayinsert(TRANSIENT $_tmpArray ^"Happy Holidays from the team at Botanic! Though we have limited staff from 12.23.17 - 01.01.18, we are available. <br> Register for our webinar 01.18.18!")
+    ##^jsonarrayinsert(TRANSIENT $_tmpArray ^"Welcome to Botanic! I\’m Juniper, and I can talk about bots like me, Botanic, or I can just tell you a joke. <br> Which one would you like to talk about?")
+    ##^jsonarrayinsert(TRANSIENT $_tmpArray ^"Greetings, I am called Juniper. I\’m a bot representing Botanic. <br> Would you like to talk about who we are or what we do?")
 
 	@1 = ^query(exact_s $_tmpArray ? ?)
 
@@ -690,4 +756,8 @@ topic: ~HELP_MENU system repeat ()
 
 t: HELP_MENU (help menu)
 	[I am here to help. You can say about, careers, services, or contact, and I'll do my best to get you to the right place.][I understand. Try Careers, Services, About, or Contact. Those are the areas I have information.]
+
+
+
+
 
