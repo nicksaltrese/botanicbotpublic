@@ -235,20 +235,12 @@ t: (joke)
 
 t: BOT_WELCOME_MESSAGE ( !$companyIntroduction ) 
 	$companyIntroduction = 1
-##<<
-	$_tmpArray = ^jsoncreate(TRANSIENT array)
 
-	^jsonarrayinsert(TRANSIENT $_tmpArray ^"Happy Holidays from the team at Botanic! Though we have limited staff from 12.23.17 - 01.01.18, we are available. <br> Register for our webinar 01.18.18!")
-    ##^jsonarrayinsert(TRANSIENT $_tmpArray ^"Welcome to Botanic! I\’m Juniper, and I can talk about bots like me, Botanic, or I can just tell you a joke. <br> Which one would you like to talk about?")
-    ##^jsonarrayinsert(TRANSIENT $_tmpArray ^"Greetings, I am called Juniper. I\’m a bot representing Botanic. <br> Would you like to talk about who we are or what we do?")
+	$_tmpArray = ^jsoncreate(TRANSIENT array)
+    ^jsonarrayinsert(TRANSIENT $_tmpArray ^"Welcome to Botanic! I\’m Juniper, and I can talk about bots like me, Botanic, or I can just tell you a joke. <br> Which one would you like to talk about?")
+    ^jsonarrayinsert(TRANSIENT $_tmpArray ^"Greetings, I am called Juniper. I\’m a bot representing Botanic. <br> Would you like to talk about who we are or what we do?")
 
 	@1 = ^query(exact_s $_tmpArray ? ?)
-##>>
-	$userInfo.response = ^"Happy Holidays from the team at Botanic! Though we have limited staff from 12.23.17 - 01.01.18, we are available. <br> Register for our webinar 01.18.18!"
-	$userInfo.link = ^"mailto:info@botanic.io"
-	$userInfo.link = ^"http://info.botanic.io/disrupting-convergence-of-blockchain-and-ai-in-healthcare"
-	Happy Holidays from the team at Botanic! Though we have limited staff from 12.23.17 - 01.01.18, <a href="mailto:info@botanic.io" target="_blank">we are available.</a> <br> <a href="http://info.botanic.io/disrupting-convergence-of-blockchain-and-ai-in-healthcare" target="_blank">Register for our webinar 01.18.18!</a>
-
 
 t: BOT_MENU (~bb_menu)
 	$_tmpArray = ^jsoncreate(TRANSIENT array)
