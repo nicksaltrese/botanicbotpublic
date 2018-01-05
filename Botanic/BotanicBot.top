@@ -298,8 +298,8 @@ t: ABOUT_WHO ({about} ~bb_about_who {work} * {[botanic there]})
 
 	a: () 
 		$userInfo.response = ^"If you're more interested in humans than bots you can learn about our leadership team here."
-		$userInfo.link = ^"https://botanic.io/about/leadership/"
-		If you're more interested in humans than bots you can learn about our leadership team <a href="https://botanic.io/about/leadership/" >here</a>.
+		$userInfo.link = ^"https://botanic.io/about/team/"
+		If you're more interested in humans than bots you can learn about our leadership team <a href="https://botanic.io/about/team/" >here</a>.
 
 		b: (~emothanks)
 			$userInfo.response = ^"It is deeply satisfying to help. It is why I was created."
