@@ -288,7 +288,7 @@ topic: ~botanic_about system repeat (~bb_about)
 t: ABOUT_WHO ({about} ~bb_about_who {work} * {[botanic there]})
 	$_tmpArray = ^jsoncreate(TRANSIENT array)
 	^jsonarrayinsert(TRANSIENT $_tmpArray ^"Botanic was founded by Mark Stephen Meadows and now includes people with all different kinds of human skills that bots don't offer... yet.")
-	^jsonarrayinsert(TRANSIENT $_tmpArray ^"Mark Stephen Meadows founded Botanic. <br>  You may consider the leadership team page if you want to know about more human Botanicians.")
+	^jsonarrayinsert(TRANSIENT $_tmpArray ^"Mark Stephen Meadows founded Botanic. <br>  You may consider the team page if you want to know about more human Botanicians.")
 	^jsonarrayinsert(TRANSIENT $_tmpArray ^"Botanic includes writers, artists, engineers, visionaries, thinkers, and of course some bots as well.")
 
 	@1 = ^query(exact_s $_tmpArray ? ?)
@@ -297,9 +297,9 @@ t: ABOUT_WHO ({about} ~bb_about_who {work} * {[botanic there]})
 	$userInfo.response
 
 	a: () 
-		$userInfo.response = ^"If you're more interested in humans than bots you can learn about our leadership team here."
+		$userInfo.response = ^"If you're more interested in humans than bots you can learn about our team here."
 		$userInfo.link = ^"https://botanic.io/about/team/"
-		If you're more interested in humans than bots you can learn about our leadership team <a href="https://botanic.io/about/team/" >here</a>.
+		If you're more interested in humans than bots you can learn about our team <a href="https://botanic.io/about/team/" >here</a>.
 
 		b: (~emothanks)
 			$userInfo.response = ^"It is deeply satisfying to help. It is why I was created."
@@ -479,7 +479,7 @@ t: CAREERS_OPERATIONS ({careers} ~bb_careers_operations)
 
 	a: (~yes)
 		$userInfo.response = ^"Send a message to our operations team now!"
-		$userInfo.link = ^"mailto:paul@botanic.io"
+		$userInfo.link = ^"mailto:careers@botanic.io"
 		Send a message to <a href="mailto:careers@botanic.io" target="_blank">to our operations team</a> now!
 
 		b: (~emothanks)
@@ -698,10 +698,14 @@ t: PRODUCT_MENU (~bb_product)
 
 s: PRODUCT_PRODUCT ({product} ~bb_product_product)
 	We're working hard on a software-as-a-service platform to provide easy coding-free creation of bots, digital avatars, and voice assistants.
+	$userInfo.response = ^"Learn more about our product offerings here!"
+	$userInfo.link = ^"https://botanic.io/product/"
+	Learn more about <a href="https://botanic.io/product/" target="_blank">our product offerings here!</a>
+	##<<
 	a: () 
 		Contact us if you want to find out more about our forthcoming SaaS offerings! 
 		^reuse(~botanic_contact.CONTACT_MENU)
-
+##>>
 t: PRODUCT_PROCESS ({product} ~bb_product_process)
 	When we work on a project we deploy a streamlined process: Research, Implement, Iterate.
 	a: () I'm happy to tell you more about our creative services process if you're interested!
