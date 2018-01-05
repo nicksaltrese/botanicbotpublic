@@ -277,7 +277,7 @@ Botanic about flow in indented form :
       "name": "about leadership",
       "type": "message",
       "msg": [
-        "You can find out more about the leadership team at Botanic here. INSERT LINK HERE https://botanic.io/about/leadership/"
+        "You can find out more about the leadership team at Botanic here. INSERT LINK HERE https://botanic.io/about/team/"
       ],
       "connections": [
         {
