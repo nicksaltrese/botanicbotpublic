@@ -34,7 +34,7 @@ concept: ~bb_keywords IGNORESPELLING (~bb_menu ~bb_contact ~bb_services ~bb_care
 
 concept: ~bb_about_you IGNORESPELLING ("about you" "about yourself")
 
-concept: ~bb_webinar_intro IGNORESPELLING (webinar conference event events blockchain "learn more" register)
+##concept: ~bb_webinar_intro IGNORESPELLING (webinar conference event events blockchain "learn more" register)
 concept: ~bb_augmnented_intelligence IGNORESPELLING ( "augmented intelligence" "* what * bots * do ?" "data * collection")
 concept: ~bb_trust_security IGNORESPELLING (trust security "multi-modal AI"  "* what * bots * for" "why * buy * bot" "why * implement * bot")
 concept: ~bb_search_function IGNORESPELLING (analytics "big data" search "search function")
@@ -46,6 +46,7 @@ t: ($companyIntroduction !$menuOption)
 	$menuOption = 1
 	$$menuOptionMsg = ^"<br> If you need to see your options say \"menu\" at any point."
 
+##<<
 t: WEBINAR_INTRO (~bb_webinar_intro)
 Our webinar The Disrupting Convergence of Blockchain and AI in the Global Economy is right around the corner. <br> We will be discussing everything from AI to blockchain and even the capabilities of our patented voice-to-blockchain bridge. <br> Want to learn more?
 
@@ -59,7 +60,7 @@ Our webinar The Disrupting Convergence of Blockchain and AI in the Global Econom
    		$userInfo.response = ^"Ok then."
    	 	$userInfo.response
     	^reuse(~botanic_bot.BOT_MENU)
-
+##>>
 t: AUGMENTED_INTELLIGENCE (~bb_augmnented_intelligence)
 	$userInfo.response ^"Bots can help collect and incorporate user data, helping to improve and personalize client interactions--that\'s why it\'s better to deploy them now.  Learn more about it here."
 	$userInfo.link = ^"http://blog.botanic.io/3-key-lessons-from-the-chatbots-conference/"
@@ -235,18 +236,19 @@ t: (joke)
 
 t: BOT_WELCOME_MESSAGE ( !$companyIntroduction ) 
 	$companyIntroduction = 1
+	Greetings, I am called Juniper. I\’m a bot representing Botanic. <br> Would you like to talk about who we are or what we do?
 ##<<
 	$_tmpArray = ^jsoncreate(TRANSIENT array)
     ^jsonarrayinsert(TRANSIENT $_tmpArray ^"Welcome to Botanic! I\’m Juniper, and I can talk about bots like me, Botanic, or I can just tell you a joke. <br> Which one would you like to talk about?")
     ^jsonarrayinsert(TRANSIENT $_tmpArray ^"Greetings, I am called Juniper. I\’m a bot representing Botanic. <br> Would you like to talk about who we are or what we do?")
 
-	@1 = ^query(exact_s $_tmpArray ? ?)##>>
+	@1 = ^query(exact_s $_tmpArray ? ?)
 	Welcome to Botanic! I’m Juniper, and I can talk about bots like me, Botanic, or I can just tell you a joke. <br>
 
 		$userInfo.response = ^"I want to make sure you know about our upcoming webinar on AI, blockchain, and responsible data management. Check it out here!"
 		$userInfo.link = ^"http://info.botanic.io/disrupting-convergence-of-blockchain-and-ai-in-healthcare"
 		I want to make sure you know about our upcoming webinar on AI, blockchain, and responsible data management. <a href="http://info.botanic.io/disrupting-convergence-of-blockchain-and-ai-in-healthcare" target="_blank">Check it out here!</a>
-	
+##>>
 
 t: BOT_MENU (~bb_menu)
 	$_tmpArray = ^jsoncreate(TRANSIENT array)
