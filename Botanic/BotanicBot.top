@@ -235,7 +235,7 @@ t: (joke)
 
 t: BOT_WELCOME_MESSAGE ( !$companyIntroduction ) 
 	$companyIntroduction = 1
-Greetings, I am called Juniper. I\’m a bot representing Botanic. <br> Would you like to talk about who we are or what we do?
+Greetings, I am called Juniper. I’m a bot representing Botanic. <br> Would you like to talk about who we are or what we do?
 ##<<
 	$_tmpArray = ^jsoncreate(TRANSIENT array)
     ^jsonarrayinsert(TRANSIENT $_tmpArray ^"Welcome to Botanic! I\’m Juniper, and I can talk about bots like me, Botanic, or I can just tell you a joke. <br> Which one would you like to talk about?")
