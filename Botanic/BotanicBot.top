@@ -5,7 +5,7 @@ concept: ~bb_about_who IGNORESPELLING (who personnel people staff leadership tea
 concept: ~bb_about_where IGNORESPELLING (where location based)
 concept: ~bb_about IGNORESPELLING (about info information)
 concept: ~bb_fun_fact IGNORESPELLING (trivia fact)
-concept: ~bb_about_mission IGNORESPELLING (mission vision)
+concept: ~bb_about_mission IGNORESPELLING (mission vision values "mission statement" "corporate values")
 concept: ~bb_about_culture IGNORESPELLING (culture "company culture" "work environment")
 
 concept: ~bb_contact_phone IGNORESPELLING (phone telephone)
