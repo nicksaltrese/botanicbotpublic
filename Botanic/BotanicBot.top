@@ -5,6 +5,8 @@ concept: ~bb_about_who IGNORESPELLING (who personnel people staff leadership tea
 concept: ~bb_about_where IGNORESPELLING (where location based)
 concept: ~bb_about IGNORESPELLING (about info information)
 concept: ~bb_fun_fact IGNORESPELLING (trivia fact)
+concept: ~bb_about_mission IGNORESPELLING (mission vision)
+concept: ~bb_about_culture IGNORESPELLING (culture "company culture" "work environment")
 
 concept: ~bb_contact_phone IGNORESPELLING (phone telephone)
 concept: ~bb_contact_social IGNORESPELLING (social linkedin facebook twitter instagram glassdoor)
@@ -90,6 +92,7 @@ t: WHY_BOTS (why * ~bb_product_bot)
     	$userInfo.response
     	^reuse(BOT_MENU)
 
+
 t: ({careers} ~bb_careers_engineering) ^reuse(~botanic_careers.CAREERS_ENGINEERING)
 t: ({careers} ~bb_careers_design) ^reuse(~botanic_careers.CAREERS_DESIGN)
 t: ({careers} ~bb_careers_operations) ^reuse(~botanic_careers.CAREERS_OPERATIONS)
@@ -108,6 +111,8 @@ t: ({about} ~bb_about_where * botanic) ^reuse(~botanic_about.ABOUT_WHERE)
 t: ({about} what * !~bb_careers) ^reuse(~botanic_about.ABOUT_WHAT)
 t: ({about} why * botanic) ^reuse(~botanic_about.ABOUT_WHY)
 t: ([(~bb_about * botanic) (what * !~bb_careers * botanic)]) ^reuse(~botanic_about.ABOUT_MENU)
+t: (~bb_about_culture) ^reuse(~botanic_about.CULTURE)
+t: (~bb_about_mission) ^reuse(~botanic_about.MISSION)
 
 t: ({contact} ~bb_email_id) ^reuse(~botanic_contact.CONTACT_EMAIL)
 t: ({contact} ~bb_contact_phone) ^reuse(~botanic_contact.CONTACT_PHONE)
@@ -363,6 +368,17 @@ t: ABOUT_MENU (~bb_about * botanic)
 		b: (~emothanks)
 			$userInfo.response = ^"I am at your service..."
 			$userInfo.response
+t: ABOUT_MISSION (~bb_about_mission)
+	Our mission is to provide companies with tools and templates to easily deploy artful and humane graphical bots and conversational avatars that further their brand and drive exposure, meaningful conversations and revenue.
+	a: () Would you like to hear about our vision of the future?
+		b: (~yes)
+		We see a world where technology does good in the world. In business. In families. In life. Our quest is to show what is possible, why it matters, and to continuously push the edge of what we all think is possible.
+		b: (~no) Ok. ^reuse(botanic_bot.BOT_MENU)
+
+
+t: ABOUT_CULTURE (~bb_about_culture)
+	Our company culture is based on integrity in all that we do. That means we do what we say, and we say what we do. Our corporate values are trust, respect, and honesty.
+
 
 # this may never execute, so we need to come up with keywords for this too
 s: ABOUT_ELSE (~bb_fun_fact)
