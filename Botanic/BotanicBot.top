@@ -50,17 +50,10 @@ t: ($companyIntroduction !$menuOption)
 
 t: WEBINAR_INTRO (~bb_webinar_intro)
 Our webinar The Disrupting Convergence of Blockchain and AI in the Global Economy is available online now.<br> Our CEO Mark Stephen Meadows, Tina Wood, founder of Collider Health, and Dawid Konotey-Ahulu, founder of Redington Limited discuss AI, blockchain, and the healthcare system.
-
-
-	a: (~yes) 
 		$userInfo.response = ^"Watch the conversation here!"
 		$userInfo.link = ^"http://info.botanic.io/disrupting-convergence-of-blockchain-and-ai-in-healthcare"
 		<a href="http://info.botanic.io/convergence-of-blockchain-and-ai-in-healthcare-webinar" target="_blank">Watch the conversation here!</a>
-	
-	a: (~no) 
-   		$userInfo.response = ^"Ok then."
-   	 	$userInfo.response
-    	^reuse(~botanic_bot.BOT_MENU)
+
 
 t: AUGMENTED_INTELLIGENCE (~bb_augmnented_intelligence)
 	$userInfo.response ^"Bots can help collect and incorporate user data, helping to improve and personalize client interactions--that\'s why it\'s better to deploy them now.  Learn more about it here."
@@ -240,7 +233,7 @@ t: (joke)
 
 t: BOT_WELCOME_MESSAGE ( !$companyIntroduction ) 
 	$companyIntroduction = 1
-Greetings, I am called Juniper. I’m a bot representing Botanic. <br> Would you like to talk about who we are or what we do?
+Welcome to Botanic! I’m Juniper, and I can talk about bots like me, Botanic, or I can just tell you a joke. <br> What would you like to talk about?
 ##<<
 	$_tmpArray = ^jsoncreate(TRANSIENT array)
     ^jsonarrayinsert(TRANSIENT $_tmpArray ^"Welcome to Botanic! I\’m Juniper, and I can talk about bots like me, Botanic, or I can just tell you a joke. <br> Which one would you like to talk about?")
