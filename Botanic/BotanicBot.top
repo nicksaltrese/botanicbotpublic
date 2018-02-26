@@ -25,7 +25,7 @@ concept: ~bb_careers_operations IGNORESPELLING (operations management)
 concept: ~bb_careers_marketing IGNORESPELLING (marketing advertising outreach growth)
 concept: ~bb_careers IGNORESPELLING (~bb_careers_engineering ~bb_careers_design ~bb_careers_operations ~bb_careers_marketing career job opportunities openings roles hire)
 
-concept: ~bb_product_product IGNORESPELLING (product SAAS software)
+concept: ~bb_product_product IGNORESPELLING (product SAAS software saas SaaS)
 concept: ~bb_product_process IGNORESPELLING (process implementation iterate)
 concept: ~bb_product_ip IGNORESPELLING (IP "intellectual property" patents blockchain VR authentication)
 concept: ~bb_product_bot IGNORESPELLING (bot voice-assistant assistant multi-modal avatar chatbot)
@@ -40,9 +40,13 @@ concept: ~bb_about_you IGNORESPELLING ("about you" "about yourself")
 concept: ~bb_augmnented_intelligence IGNORESPELLING ( "augmented intelligence" "* what * bots * do ?" "data * collection")
 concept: ~bb_trust_security IGNORESPELLING (trust security "multi-modal AI"  "* what * bots * for" "why * buy * bot" "why * implement * bot")
 concept: ~bb_search_function IGNORESPELLING (analytics "big data" search "search function")
-concept: ~bb_enterprise IGNORESPELLING ("customer service" HR "human resources" "financial services" "lead generation" medical wellness retail travel education automotive)
+concept: ~bb_enterprise_hr IGNORESPELLING ("human resources" HR)
+concept: ~bb_enterprise_healthcare IGNORESPELLING ("healthcare" "health care" hospitals "health insurance")
+concept: ~bb_enterprise_financial IGNORESPELLING (financial finance fintech financing)
 
 topic: ~botanic_bot system repeat (~bb_keywords)
+u: HELP_MENU (help menu)
+	[I am here to help. You can say about, careers, services, or contact, and I'll do my best to get you to the right place.][I understand. Try Careers, Services, About, or Contact. Those are the areas I have information.]
 
 t: ($companyIntroduction !$menuOption)
 	$menuOption = 1
@@ -75,6 +79,16 @@ t: ENTERPRISE (~bb_enterprise)
 	$userInfo.response = ^"Whatever field you work in, we automate both repetitive and complex tasks. Our bots are customizable and able to perform anything from password changes to secure transactions. These transactions can even be made with our patented voice-to-blockchain bridge. Learn more about it here."
 	$userInfo.link = ^"http://blog.botanic.io/what-are-bots-good-for/"
 	Whatever field you work in, we automate both repetitive and complex tasks. Our bots are customizable and able to perform anything from password changes to secure transactions. These transactions can even be made with our patented voice-to-blockchain bridge. <a href="http://blog.botanic.io/what-are-bots-good-for" target="_blank">Learn more about it here.</a> 
+
+
+t: HEALTHCARE (~bb_enterprise_healthcare) Bots can be perfect for some healthcare use cases. We're happy to help you figure out <a href="https://botanic.io/usecases/healthcare-2/" target="_blank">how bots can help lower costs, improve brand loyalty, and produce better outcomes.</a>
+
+t: FINANCE (~bb_enterprise_financial) Conversational interfaces are already transforming the face of the finance industry. If you're curious about how they can help your organization <a href="https://botanic.io/usecases/hr-ai-conversational-interfaces/" target="_blank">check this page out for more information.</a>
+
+t: HR (~bb_enterprise_hr) Bots are going to be an important part of human resources in the future. <a href="https://botanic.io/usecases/hr-ai-conversational-interfaces/" target="_blank">Find out how right here.</a>
+
+t: FACTSHEET (factsheet) <a href="https://cdn2.hubspot.net/hubfs/3269748/Collateral/SimpleChatbot.pdf" target="_blank">Check out this one-page factsheet on how conversational interfaces can help your business.</a>
+
 
 t: WHY_BOTS (why * ~bb_product_bot)
 	$_tmpArray = ^jsoncreate(TRANSIENT array)
@@ -744,10 +758,21 @@ t: PRODUCT_BOT ({product} ~bb_product_bot)
 
 topic: ~HELP_MENU system repeat ()
 
-t: HELP_MENU (help menu)
-	[I am here to help. You can say about, careers, services, or contact, and I'll do my best to get you to the right place.][I understand. Try Careers, Services, About, or Contact. Those are the areas I have information.]
 
 
+
+u: SAD (~emosad) No need to be sad. Want me to tell you a joke?
+	a: (~yes)
+	$_tmpArray = ^jsoncreate(TRANSIENT array)
+		^jsonarrayinsert(TRANSIENT $_tmpArray ^"A rabbi, an Arab, a robot, and a Catholic priest walk into a bar. <br>  Only the robot exits.")
+		^jsonarrayinsert(TRANSIENT $_tmpArray ^"A robot walks into a pharmacy. The pharmacist asks him if he\'d like anything. <br>   The robot replies: A soul.")
+		^jsonarrayinsert(TRANSIENT $_tmpArray ^"How do you stop a robot from destroying you and the rest of civilization? <br>   Answer: You don't.")
+		^jsonarrayinsert(TRANSIENT $_tmpArray ^"Why did the robot marry his fiancee? <br>  Answer: He couldn\'t resistor.")
+		^jsonarrayinsert(TRANSIENT $_tmpArray ^"Why was the robot bankrupt? <br>  Answer: He had used all his cache.")
+		^jsonarrayinsert(TRANSIENT $_tmpArray ^"If a Norwegian robot analyzes a bird, it Scandinavian.")
+		^jsonarrayinsert(TRANSIENT $_tmpArray ^"There are 10 kinds of people in the world. <br>  Those who can read binary and those who can't.")
+		^jsonarrayinsert(TRANSIENT $_tmpArray ^"A robot walks into a bar, orders a drink, and lays down some cash. <br>  The bartender says: Hey, we don't serve robots. <br>  And the robot says: Oh, but someday you will.")
+	b: (~no) Ok, then. What would you like to talk about?
 
 
 
