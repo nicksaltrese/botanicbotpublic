@@ -487,37 +487,21 @@ t: CAREERS_ENGINEERING ({careers} ~bb_careers_engineering)
 	$userInfo.link = ^"https://botanic.io/about/careers/"
 	Oh, you speak engineering. Wonderful. We need people that think in code to build bots that think in code. Check our <a href="https://botanic.io/about/careers/" target="_blank">careers page</a> for any openings.
 
-		b: (~emothanks)
-			$userInfo.response = ^"Thank you for expressing your interest with us, providing your information."
-			$userInfo.response
-
 t: CAREERS_DESIGN ({careers} ~bb_careers_design)
 	$userInfo.response = ^"Think you might have the creative chops to work on our design team?"
 	$userInfo.response = ^"Get in touch with Erin, the head of the Creative Services team."
 	$userInfo.link = ^"https://botanic.io/about/careers/"
 	Think you might have the creative chops to work on our design team? Check out our <a href="https://botanic.io/about/careers/" target="_blank">careers page</a> for any openings.
 
-		b: (~emothanks)
-			$userInfo.response = ^"Thank you for expressing your interest with us, providing your information."
-			$userInfo.response
-
 t: CAREERS_OPERATIONS ({careers} ~bb_careers_operations)
 	$userInfo.response = ^"We always need people who can keep the lights on - I know I do. Does this sound like you?"
 	$userInfo.link = ^"https://botanic.io/about/careers/"
 	We always need people who can keep the lights on - I know I do. Does this sound like you? Check out our <a href="https://botanic.io/about/careers/" target="_blank">careers page</a> for any openings.
 
-		b: (~emothanks)
-			$userInfo.response = ^"Thank you for expressing your interest with us, providing your information."
-			$userInfo.response
-
 t: CAREERS_MARKETING ({careers} ~bb_careers_marketing)
 	$userInfo.response = ^"Bots are the future - maybe you want to help spread the good news. Do you want to get in touch?"
 	$userInfo.link = ^"https://botanic.io/about/careers/"
 	Bots are the future - maybe you want to help spread the good news. Check out our <a href="https://botanic.io/about/careers/" target="_blank">careers page</a> for any openings.
-
-		b: (~emothanks)
-			$userInfo.response = ^"Thank you for expressing your interest with us, providing your information."
-			$userInfo.response
 
 t: CAREERS_DEPARTMENTS ({what} ~bb_careers_departments)
 	$userInfo.response = ^"Engineering, Design, Operations and Marketing"
