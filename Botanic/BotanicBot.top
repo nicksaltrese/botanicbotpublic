@@ -79,6 +79,11 @@ t: ENTERPRISE (~bb_enterprise)
 	$userInfo.response = ^"Whatever field you work in, we automate both repetitive and complex tasks. Our bots are customizable and able to perform anything from password changes to secure transactions. These transactions can even be made with our patented voice-to-blockchain bridge. Learn more about it here."
 	$userInfo.link = ^"http://blog.botanic.io/what-are-bots-good-for/"
 	Whatever field you work in, we automate both repetitive and complex tasks. Our bots are customizable and able to perform anything from password changes to secure transactions. These transactions can even be made with our patented voice-to-blockchain bridge. <a href="http://blog.botanic.io/what-are-bots-good-for" target="_blank">Learn more about it here.</a> 
+u: (what be * chatbot) I'm a chatbot. Maybe you're a chatbot? I can't tell.
+u: (what be [AI "artificial intelligence"]) Artificial intelligence is any kind of intelligence exhibited by machines. You could say I exhibited artificial intelligence by answering this question.
+u: (how do you * [AI "artificial intelligence"])
+u: (what be machine learning) Machine learning is a way that computer systems can learn from data and improve performance without explicitly being programmed.
+u: (what be [NLP "natural language processing"]) Natural language processing is any kind of program or algorithm that understands human languages.
 
 
 t: HEALTHCARE (~bb_enterprise_healthcare) Bots can be perfect for some healthcare use cases. We're happy to help you figure out <a href="https://botanic.io/usecases/healthcare-2/" target="_blank">how bots can help lower costs, improve brand loyalty, and produce better outcomes.</a>
@@ -472,13 +477,9 @@ t: SERVICES_MENU ()
 topic: ~botanic_careers system repeat (~bb_careers)
 
 t: CAREERS_ENGINEERING ({careers} ~bb_careers_engineering)
-	$userInfo.response = ^"Oh, you speak engineering. Wonderful. We need people that think in code to build bots that think in code. Is that you?"
-	$userInfo.response
-
-	a: (~yes)
-		$userInfo.response = ^"Send your specs to the Director of Engineering."
-		$userInfo.link = ^"mailto:eduardo@botanic.io"
-		Send your specs to <a href="mailto:careers@botanic.io" target="_blank">Eduardo, our Director of Engineering.</a>
+	$userInfo.response = ^"Oh, you speak engineering. Wonderful. We need people that think in code to build bots that think in code. Check our careers page for any openings."
+	$userInfo.link = ^"https://botanic.io/about/careers/"
+	Oh, you speak engineering. Wonderful. We need people that think in code to build bots that think in code. Check our <a href="https://botanic.io/about/careers/" target="_blank">careers page</a> for any openings.
 
 		b: (~emothanks)
 			$userInfo.response = ^"Thank you for expressing your interest with us, providing your information."
@@ -486,12 +487,9 @@ t: CAREERS_ENGINEERING ({careers} ~bb_careers_engineering)
 
 t: CAREERS_DESIGN ({careers} ~bb_careers_design)
 	$userInfo.response = ^"Think you might have the creative chops to work on our design team?"
-	$userInfo.response
-
-	a: (~yes)
-		$userInfo.response = ^"Get in touch with Erin, the head of the Creative Services team."
-		$userInfo.link = ^"mailto:erin@botanic.io"
-		Get in touch with <a href="mailto:careers@botanic.io" target="_blank">Erin, the head of the Creative Services team.</a>
+	$userInfo.response = ^"Get in touch with Erin, the head of the Creative Services team."
+	$userInfo.link = ^"https://botanic.io/about/careers/"
+	Think you might have the creative chops to work on our design team? Check out our <a href="https://botanic.io/about/careers/" target="_blank">careers page</a> for any openings.
 
 		b: (~emothanks)
 			$userInfo.response = ^"Thank you for expressing your interest with us, providing your information."
@@ -499,12 +497,8 @@ t: CAREERS_DESIGN ({careers} ~bb_careers_design)
 
 t: CAREERS_OPERATIONS ({careers} ~bb_careers_operations)
 	$userInfo.response = ^"We always need people who can keep the lights on - I know I do. Does this sound like you?"
-	$userInfo.response
-
-	a: (~yes)
-		$userInfo.response = ^"Send a message to our operations team now!"
-		$userInfo.link = ^"mailto:careers@botanic.io"
-		Send a message to <a href="mailto:careers@botanic.io" target="_blank">to our operations team</a> now!
+	$userInfo.link = ^"https://botanic.io/about/careers/"
+	We always need people who can keep the lights on - I know I do. Does this sound like you? Check out our <a href="https://botanic.io/about/careers/" target="_blank">careers page</a> for any openings.
 
 		b: (~emothanks)
 			$userInfo.response = ^"Thank you for expressing your interest with us, providing your information."
@@ -512,12 +506,8 @@ t: CAREERS_OPERATIONS ({careers} ~bb_careers_operations)
 
 t: CAREERS_MARKETING ({careers} ~bb_careers_marketing)
 	$userInfo.response = ^"Bots are the future - maybe you want to help spread the good news. Do you want to get in touch?"
-	$userInfo.response
-
-	a: (~yes)
-		$userInfo.response = ^"Get in touch with Kathy, the VP of Marketing."
-		$userInfo.link = ^"mailto:kathy@botanic.io"
-		Get in touch with  <a href="mailto:careers@botanic.io" target="_blank">Kathy, our VP of Marketing</a>.
+	$userInfo.link = ^"https://botanic.io/about/careers/"
+	Bots are the future - maybe you want to help spread the good news. Check out our <a href="https://botanic.io/about/careers/" target="_blank">careers page</a> for any openings.
 
 		b: (~emothanks)
 			$userInfo.response = ^"Thank you for expressing your interest with us, providing your information."
