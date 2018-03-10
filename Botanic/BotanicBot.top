@@ -78,12 +78,18 @@ t: SEARCH_FUNCTION (~bb_search_function)
 t: ENTERPRISE (~bb_enterprise)
 	$userInfo.response = ^"Whatever field you work in, we automate both repetitive and complex tasks. Our bots are customizable and able to perform anything from password changes to secure transactions. These transactions can even be made with our patented voice-to-blockchain bridge. Learn more about it here."
 	$userInfo.link = ^"http://blog.botanic.io/what-are-bots-good-for/"
-	Whatever field you work in, we automate both repetitive and complex tasks. Our bots are customizable and able to perform anything from password changes to secure transactions. These transactions can even be made with our patented voice-to-blockchain bridge. <a href="http://blog.botanic.io/what-are-bots-good-for" target="_blank">Learn more about it here.</a> 
-u: (what be * chatbot) I'm a chatbot. Maybe you're a chatbot? I can't tell.
-u: (what be [AI "artificial intelligence"]) Artificial intelligence is any kind of intelligence exhibited by machines. You could say I exhibited artificial intelligence by answering this question.
+	Whatever field you work in, we automate both repetitive and complex tasks. Our bots are customizable and able to perform anything from password changes to secure transactions. These transactions can even be made with our patented voice-to-blockchain bridge. <a href="http://blog.botanic.io/what-are-bots-good-for" target="_blank">Learn more about it here.</a>
+
+u: (what be * chatbot) 
+	$userInfo.response = ^""I'm a chatbot. Maybe you're a chatbot? I can't tell."
+u: (what be [AI "artificial intelligence"]) 
+	$userInfo.response = ^"Artificial intelligence is any kind of intelligence exhibited by machines. You could say I exhibited artificial intelligence by answering this question."
 u: (how do you * [AI "artificial intelligence"])
-u: (what be machine learning) Machine learning is a way that computer systems can learn from data and improve performance without explicitly being programmed.
-u: (what be [NLP "natural language processing"]) Natural language processing is any kind of program or algorithm that understands human languages.
+	$userInfo.response = ^"I am artificial intelligence."
+u: (what be machine learning) 
+	$userInfo.response = ^"Machine learning is a way that computer systems can learn from data and improve performance without explicitly being programmed."
+u: (what be [NLP "natural language processing"]) 
+	$userInfo.response = ^"Natural language processing is any kind of program or algorithm that understands human languages."
 
 
 t: HEALTHCARE (~bb_enterprise_healthcare) Bots can be perfect for some healthcare use cases. We're happy to help you figure out <a href="https://botanic.io/usecases/healthcare-2/" target="_blank">how bots can help lower costs, improve brand loyalty, and produce better outcomes.</a>
