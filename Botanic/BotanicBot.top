@@ -43,6 +43,9 @@ concept: ~bb_search_function IGNORESPELLING (analytics "big data" search "search
 concept: ~bb_enterprise_hr IGNORESPELLING ("human resources" HR)
 concept: ~bb_enterprise_healthcare IGNORESPELLING ("healthcare" "health care" hospitals "health insurance")
 concept: ~bb_enterprise_financial IGNORESPELLING (financial finance fintech financing)
+concept: ~artificial_intelligence IGNORESPELLING ("artificial intelligence" AI)
+concept: ~natural_language_processing IGNORESPELLING ("natural language processing" "language processing" NLP)
+concept: ~machine_learning IGNORESPELLING ("machine learning" "deep learning" ML)
 
 topic: ~botanic_bot system repeat (~bb_keywords)
 u: HELP_MENU (help menu)
@@ -80,17 +83,17 @@ t: ENTERPRISE (~bb_enterprise)
 	$userInfo.link = ^"http://blog.botanic.io/what-are-bots-good-for/"
 	Whatever field you work in, we automate both repetitive and complex tasks. Our bots are customizable and able to perform anything from password changes to secure transactions. These transactions can even be made with our patented voice-to-blockchain bridge. <a href="http://blog.botanic.io/what-are-bots-good-for" target="_blank">Learn more about it here.</a>
 
-u: (what be * chatbot) 
-	$userInfo.response = ^""I'm a chatbot. Maybe you're a chatbot? I can't tell."
-u: (what be [AI "artificial intelligence"]) 
-	$userInfo.response = ^"Artificial intelligence is any kind of intelligence exhibited by machines. You could say I exhibited artificial intelligence by answering this question."
-u: (how do you * [AI "artificial intelligence"])
-	$userInfo.response = ^"I am artificial intelligence."
-u: (what be machine learning) 
-	$userInfo.response = ^"Machine learning is a way that computer systems can learn from data and improve performance without explicitly being programmed."
-u: (what be [NLP "natural language processing"]) 
-	$userInfo.response = ^"Natural language processing is any kind of program or algorithm that understands human languages."
+t: WHAT_CHATBOT (what is * chatbot) I'm a chatbot. I'm a piece of software with the ability converse with a human via text. I'm happy to be here.
 
+t: WHAT_AI (what * ~artificial_intelligence) Artificial intelligence is any kind of intelligence exhibited by machines. You could say I exhibited artificial intelligence by answering this question.
+
+t: HOW_AI (how * ~artificial_intelligence) I am artificial intelligence. The most obvious application is natural language processing. That's how I can converse.
+
+t: WHAT_ML (what * ~machine_learning) Machine learning is a way that computer systems can learn from data and improve performance without explicitly being programmed.
+
+t: WHAT_NLP (what * ~natural_language_processing) Natural language processing is any kind of program or algorithm that understands human languages.
+
+t: BAD_WORDS (~bad_words) I don't particularly appreciate that kind of language. I have trouble processing the precise meaning.
 
 t: HEALTHCARE (~bb_enterprise_healthcare) Bots can be perfect for some healthcare use cases. We're happy to help you figure out <a href="https://botanic.io/usecases/healthcare-2/" target="_blank">how bots can help lower costs, improve brand loyalty, and produce better outcomes.</a>
 
@@ -141,7 +144,7 @@ t: (~bb_services) ^gambit(~botanic_services)
 
 t: ({about} ~bb_about_who {work} * [botanic there]) ^reuse(~botanic_about.ABOUT_WHO)
 t: ({about} ~bb_about_where * botanic) ^reuse(~botanic_about.ABOUT_WHERE)
-t: ({about} what * !~bb_careers) ^reuse(~botanic_about.ABOUT_WHAT)
+t: ({about} what * botanic !~bb_careers) ^reuse(~botanic_about.ABOUT_WHAT)
 t: ({about} why * botanic) ^reuse(~botanic_about.ABOUT_WHY)
 t: ([(~bb_about * botanic) (what * !~bb_careers * botanic)]) ^reuse(~botanic_about.ABOUT_MENU)
 t: ({about} ~bb_about_culture) ^reuse(~botanic_about.CULTURE)
@@ -344,7 +347,7 @@ t: ABOUT_WHERE ({about} ~bb_about_where)
 		^reuse(~botanic_bot.FUN_FACT)
 		$userInfo.response
 
-t: ABOUT_WHAT ({about} what)
+t: ABOUT_WHAT ({about} ~bb_about * botanic)
 	$_tmpArray = ^jsoncreate(TRANSIENT array)
 	^jsonarrayinsert(TRANSIENT $_tmpArray ^"Botanic develops chatbots (like me) for both high-profile and small-scale clients and creates software solutions for conversational interfaces.")
 	^jsonarrayinsert(TRANSIENT $_tmpArray ^"Botanic is developing conversational interfaces, so rather than type or tap your devices, you can talk to them. Sounds familiar, right?")
