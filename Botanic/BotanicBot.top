@@ -103,6 +103,36 @@ t: HR (~bb_enterprise_hr) Bots are going to be an important part of human resour
 
 t: FACTSHEET (factsheet) <a href="https://cdn2.hubspot.net/hubfs/3269748/Collateral/SimpleChatbot.pdf" target="_blank">Check out this one-page factsheet on how conversational interfaces can help your business.</a>
 
+t: MISSION (~bb_about_mission) Our mission is to provide companies with tools and templates to easily deploy artful and humane graphical bots and conversational avatars that further their brand and drive exposure, meaningful conversations and revenue.
+	a: () Would you like to hear about our vision of the future?
+		b: (~yes) We see a world where technology does good in the world. In business. In families. In life. Our quest is to show what is possible, why it matters, and to continuously push the edge of what we all think is possible.
+		b: (~no) Ok. ^reuse(botanic_bot.BOT_MENU)
+
+t: CULTURE (~bb_about_culture) Our company culture is based on integrity in all that we do. That means we do what we say, and we say what we do. Our corporate values are trust, respect, and honesty.
+
+t: SAD (~feeling_sad) Maybe a joke will cheer you up? Do you want to hear one?
+	a: (~yes)
+		$_tmpArray = ^jsoncreate(TRANSIENT array)
+
+		^jsonarrayinsert(TRANSIENT $_tmpArray ^"A rabbi, an Arab, a robot, and a Catholic priest walk into a bar. <br>  Only the robot exits.")
+		^jsonarrayinsert(TRANSIENT $_tmpArray ^"A robot walks into a pharmacy. The pharmacist asks him if he\'d like anything. <br>   The robot replies: A soul.")
+		^jsonarrayinsert(TRANSIENT $_tmpArray ^"How do you stop a robot from destroying you and the rest of civilization? <br>   Answer: You don't.")
+		^jsonarrayinsert(TRANSIENT $_tmpArray ^"Why did the robot marry his fiancee? <br>  Answer: He couldn\'t resistor.")
+		^jsonarrayinsert(TRANSIENT $_tmpArray ^"Why was the robot bankrupt? <br>  Answer: He had used all his cache.")
+		^jsonarrayinsert(TRANSIENT $_tmpArray ^"If a Norwegian robot analyzes a bird, it Scandinavian.")
+		^jsonarrayinsert(TRANSIENT $_tmpArray ^"There are 10 kinds of people in the world. <br>  Those who can read binary and those who can't.")
+		^jsonarrayinsert(TRANSIENT $_tmpArray ^"A robot walks into a bar, orders a drink, and lays down some cash. <br>  The bartender says: Hey, we don't serve robots. <br>  And the robot says: Oh, but someday you will.")
+	
+    	@1 = ^query(exact_s $_tmpArray ? ?)
+
+		$userInfo.response = ^pick(@1object)
+		$userInfo.response
+	a: (~no) Ok, then. What would you like to talk about?
+
+t: THANKS (~emothanks) [Happy to help.][Glad I could be of service.][It is my pleasure.]
+t: HOWZIT (~emohowzit) [Just fine, thanks][Never better.][Have no reason to complain.]
+t: SKEPTIC (~emoskeptic) [You don't need to believe me.]
+
 
 t: WHY_BOTS (why * ~bb_product_bot)
 	$_tmpArray = ^jsoncreate(TRANSIENT array)
@@ -738,24 +768,6 @@ t: PRODUCT_BOT ({product} ~bb_product_bot)
 		b: () If you've got a bot in mind - whether that's text, voice, or animated - the Botanicians can deliver. Do you want to contact a person about your bot development needs?
 			c: (~yes)^reuse(~botanic_contact.CONTACT_MENU)
 			c: (~no) Ok then. ^reuse(~botanic_bot.BOT_MENU)
-
-topic: ~HELP_MENU system repeat ()
-
-
-
-
-u: SAD (~emosad) No need to be sad. Want me to tell you a joke?
-	a: (~yes)
-	$_tmpArray = ^jsoncreate(TRANSIENT array)
-		^jsonarrayinsert(TRANSIENT $_tmpArray ^"A rabbi, an Arab, a robot, and a Catholic priest walk into a bar. <br>  Only the robot exits.")
-		^jsonarrayinsert(TRANSIENT $_tmpArray ^"A robot walks into a pharmacy. The pharmacist asks him if he\'d like anything. <br>   The robot replies: A soul.")
-		^jsonarrayinsert(TRANSIENT $_tmpArray ^"How do you stop a robot from destroying you and the rest of civilization? <br>   Answer: You don't.")
-		^jsonarrayinsert(TRANSIENT $_tmpArray ^"Why did the robot marry his fiancee? <br>  Answer: He couldn\'t resistor.")
-		^jsonarrayinsert(TRANSIENT $_tmpArray ^"Why was the robot bankrupt? <br>  Answer: He had used all his cache.")
-		^jsonarrayinsert(TRANSIENT $_tmpArray ^"If a Norwegian robot analyzes a bird, it Scandinavian.")
-		^jsonarrayinsert(TRANSIENT $_tmpArray ^"There are 10 kinds of people in the world. <br>  Those who can read binary and those who can't.")
-		^jsonarrayinsert(TRANSIENT $_tmpArray ^"A robot walks into a bar, orders a drink, and lays down some cash. <br>  The bartender says: Hey, we don't serve robots. <br>  And the robot says: Oh, but someday you will.")
-	b: (~no) Ok, then. What would you like to talk about?
 
 
 
