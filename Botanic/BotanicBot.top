@@ -50,11 +50,11 @@ concept: ~machine_learning IGNORESPELLING ("machine learning" "deep learning" ML
 topic: ~botanic_bot system repeat (~bb_keywords)
 u: HELP_MENU (help menu)
 	[I am here to help. You can say about, careers, services, or contact, and I'll do my best to get you to the right place.][I understand. Try Careers, Services, About, or Contact. Those are the areas I have information.]
-
+##<<
 t: ($companyIntroduction !$menuOption)
 	$menuOption = 1
 	$$menuOptionMsg = ^"<br> If you need to see your options say \"menu\" at any point."
-
+##>>
 t: WEBINAR_INTRO (~bb_webinar_intro)
 Our webinar The Disrupting Convergence of Blockchain and AI in the Global Economy is available online now.<br> Our CEO Mark Stephen Meadows, Tina Wood, founder of Collider Health, and Dawid Konotey-Ahulu, founder of Redington Limited discuss AI, blockchain, and the healthcare system.
 		$userInfo.response = ^"Watch the conversation here!"
@@ -291,20 +291,19 @@ t: (joke)
 
 t: BOT_WELCOME_MESSAGE ( !$companyIntroduction ) 
 	$companyIntroduction = 1
-Welcome to Botanic! I’m Juniper, and I can talk about bots like me, Botanic, or I can just tell you a joke. <br> What would you like to talk about?
-##<<
 	$_tmpArray = ^jsoncreate(TRANSIENT array)
-    ^jsonarrayinsert(TRANSIENT $_tmpArray ^"Welcome to Botanic! I\’m Juniper, and I can talk about bots like me, Botanic, or I can just tell you a joke. <br> Which one would you like to talk about?")
-    ^jsonarrayinsert(TRANSIENT $_tmpArray ^"Greetings, I am called Juniper. I\’m a bot representing Botanic. <br> Would you like to talk about who we are or what we do?")
-
+    ^jsonarrayinsert(TRANSIENT $_tmpArray ^"Welcome to Botanic! I\’m Juniper, and I can talk about bots like me, Botanic, or I can just tell you a joke. <br> What would you like to do?")
+    ^jsonarrayinsert(TRANSIENT $_tmpArray ^"Hi, My name is Juniper. I\’m a bot representing Botanic. <br> Would you like to talk about what we do?")
+    ^jsonarrayinsert(TRANSIENT $_tmpArray ^"I/'m Juniper and I/'m at your service! Ask me about Botanic, our services and products, or for contact info.")
 	@1 = ^query(exact_s $_tmpArray ? ?)
+##<<
 	Welcome to Botanic! I’m Juniper, and I can talk about bots like me, Botanic, or I can just tell you a joke. <br>
 
 		$userInfo.response = ^"I want to make sure you know about our upcoming webinar on AI, blockchain, and responsible data management. Check it out here!"
 		$userInfo.link = ^"http://info.botanic.io/disrupting-convergence-of-blockchain-and-ai-in-healthcare"
 		I want to make sure you know about our upcoming webinar on AI, blockchain, and responsible data management. <a href="http://info.botanic.io/disrupting-convergence-of-blockchain-and-ai-in-healthcare" target="_blank">Check it out here!</a>
-##>>	
-
+	
+##>>
 t: BOT_MENU (~bb_menu)
 	$_tmpArray = ^jsoncreate(TRANSIENT array)
 	^jsonarrayinsert(TRANSIENT $_tmpArray ^"I can discuss our services and put you in touch with a human if I must. Ask me about Botanic, our services, contact info, or careers.")
@@ -321,7 +320,6 @@ t: BOT_MENU (~bb_menu)
 t: ($companyIntroduction==1)
 	$companyIntroduction = 2
 	^reuse(BOT_MENU)
-
 ##<<
 t: USER_NAME (!$userInfo.name)
 	[What can I call you?]
@@ -338,8 +336,7 @@ t: USER_NAME (!$userInfo.name)
 	a: (_*)
 		$userInfo.name = '_0
 		# ^retry(TOP_RULE)
-##>>		
-
+##>>
 topic: ~botanic_about system repeat (~bb_about)
 
 t: ABOUT_WHO ({about} ~bb_about_who {work} * {[botanic there]})
