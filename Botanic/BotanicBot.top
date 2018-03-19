@@ -291,19 +291,20 @@ t: (joke)
 
 t: BOT_WELCOME_MESSAGE ( !$companyIntroduction ) 
 	$companyIntroduction = 1
-	$_tmpArray = ^jsoncreate(TRANSIENT array)
-    ^jsonarrayinsert(TRANSIENT $_tmpArray ^"Welcome to Botanic! I\’m Juniper, and I can talk about bots like me, Botanic, or I can just tell you a joke. <br> What would you like to do?")
-    ^jsonarrayinsert(TRANSIENT $_tmpArray ^"Hi, My name is Juniper. I\’m a bot representing Botanic. <br> Would you like to talk about what we do?")
-    ^jsonarrayinsert(TRANSIENT $_tmpArray ^"I/'m Juniper and I/'m at your service! Ask me about Botanic, our services and products, or for contact info.")
-	@1 = ^query(exact_s $_tmpArray ? ?)
+Welcome to Botanic! I’m Juniper, and I can talk about bots like me, Botanic, or I can just tell you a joke. <br> What would you like to talk about?
 ##<<
+	$_tmpArray = ^jsoncreate(TRANSIENT array)
+    ^jsonarrayinsert(TRANSIENT $_tmpArray ^"Welcome to Botanic! I\’m Juniper, and I can talk about bots like me, Botanic, or I can just tell you a joke. <br> Which one would you like to talk about?")
+    ^jsonarrayinsert(TRANSIENT $_tmpArray ^"Greetings, I am called Juniper. I\’m a bot representing Botanic. <br> Would you like to talk about who we are or what we do?")
+
+	@1 = ^query(exact_s $_tmpArray ? ?)
 	Welcome to Botanic! I’m Juniper, and I can talk about bots like me, Botanic, or I can just tell you a joke. <br>
 
 		$userInfo.response = ^"I want to make sure you know about our upcoming webinar on AI, blockchain, and responsible data management. Check it out here!"
 		$userInfo.link = ^"http://info.botanic.io/disrupting-convergence-of-blockchain-and-ai-in-healthcare"
 		I want to make sure you know about our upcoming webinar on AI, blockchain, and responsible data management. <a href="http://info.botanic.io/disrupting-convergence-of-blockchain-and-ai-in-healthcare" target="_blank">Check it out here!</a>
-	
-##>>
+##>>	
+
 t: BOT_MENU (~bb_menu)
 	$_tmpArray = ^jsoncreate(TRANSIENT array)
 	^jsonarrayinsert(TRANSIENT $_tmpArray ^"I can discuss our services and put you in touch with a human if I must. Ask me about Botanic, our services, contact info, or careers.")
@@ -320,6 +321,7 @@ t: BOT_MENU (~bb_menu)
 t: ($companyIntroduction==1)
 	$companyIntroduction = 2
 	^reuse(BOT_MENU)
+
 ##<<
 t: USER_NAME (!$userInfo.name)
 	[What can I call you?]
@@ -336,7 +338,8 @@ t: USER_NAME (!$userInfo.name)
 	a: (_*)
 		$userInfo.name = '_0
 		# ^retry(TOP_RULE)
-##>>
+##>>		
+
 topic: ~botanic_about system repeat (~bb_about)
 
 t: ABOUT_WHO ({about} ~bb_about_who {work} * {[botanic there]})
