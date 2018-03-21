@@ -91,6 +91,10 @@ t: HOW_AI (how * ~artificial_intelligence) I am artificial intelligence. The mos
 
 t: WHAT_ML (what * ~machine_learning) Machine learning is a way that computer systems can learn from data and improve performance without explicitly being programmed.
 
+t: WHAT_NLP (what * ~natural_language_processing * you) We are using both Chatscript and our own proprietary NLP system called MT-One.
+
+t: HOW_MUCH ("how much * cost" "what does this cost" "how much do bots cost" "what does it cost" "how much are ~bots") If you want to find out about how much it costs to deploy bots you can get in touch with the human members of Botanic. ^reuse(~botanic_contact.CONTACT_MENU)
+
 t: WHAT_NLP (what * ~natural_language_processing) Natural language processing is any kind of program or algorithm that understands human languages.
 
 t: BAD_WORDS (~bad_words) I don't particularly appreciate that kind of language. I have trouble processing the precise meaning.
